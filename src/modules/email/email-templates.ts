@@ -4,7 +4,9 @@ export type EmailTemplate =
   | { name: 'verify-email'; link: string }
   | { name: 'reset-password'; link: string }
   | { name: 'password-changed' }
-  | { name: 'registration-attempt'; signInLink: string; resetLink: string };
+  | { name: 'registration-attempt'; signInLink: string; resetLink: string }
+  | { name: 'organization-invitation'; organizationName: string; role: string; link: string }
+  | { name: 'organization-contact-confirmation'; organizationName: string; link: string };
 
 export interface RenderedEmail {
   subject: string;
@@ -81,6 +83,41 @@ function copyFor(template: EmailTemplate, locale: PreferredLocale): Copy {
             ? `আপনি সাইন ইন করতে পারেন (${template.signInLink}) অথবা পাসওয়ার্ড ভুলে গেলে রিসেট করতে পারেন (${template.resetLink})।`
             : `You can sign in (${template.signInLink}) or, if you forgot your password, reset it (${template.resetLink}).`,
         ],
+        footer: bn ? FOOTER.bn : FOOTER.en,
+      };
+    case 'organization-invitation':
+      // The invitee may not have an account yet, so the greeting does not use a name.
+      return {
+        subject: bn
+          ? 'সিভিকআই-এ একটি প্রতিষ্ঠানে যোগদানের আমন্ত্রণ'
+          : 'You are invited to join an organization on CivicEye',
+        greeting: () => (bn ? 'শুভেচ্ছা,' : 'Hello,'),
+        paragraphs: [
+          bn
+            ? `আপনাকে সিভিকআই-এ "${template.organizationName}"-এ ${template.role} হিসেবে যোগ দিতে আমন্ত্রণ জানানো হয়েছে। আমন্ত্রণটি ৭ দিন কার্যকর থাকবে।`
+            : `You have been invited to join "${template.organizationName}" on CivicEye as ${template.role}. The invitation is valid for 7 days.`,
+          bn
+            ? 'গ্রহণ করতে এই ইমেইল ঠিকানা দিয়ে সাইন ইন করুন (প্রয়োজনে অ্যাকাউন্ট খুলুন ও ইমেইল যাচাই করুন), তারপর নিচের লিংকে ক্লিক করুন।'
+            : 'To accept, sign in with this email address (create an account and verify your email if needed), then use the link below.',
+        ],
+        action: { label: bn ? 'আমন্ত্রণ গ্রহণ করুন' : 'Accept invitation', link: template.link },
+        footer: bn ? FOOTER.bn : FOOTER.en,
+      };
+    case 'organization-contact-confirmation':
+      return {
+        subject: bn
+          ? 'সিভিকআই-এ আপনার প্রতিষ্ঠানের যাচাই নিশ্চিত করুন'
+          : 'Confirm your organization’s verification on CivicEye',
+        greeting: (name) => (bn ? `প্রিয় ${name},` : `Hello ${name},`),
+        paragraphs: [
+          bn
+            ? `আপনাকে সিভিকআই-এ "${template.organizationName}"-এর যাচাইয়ের জন্য যোগাযোগ ব্যক্তি হিসেবে উল্লেখ করা হয়েছে। এই প্রতিষ্ঠান সিভিকআই ব্যবহার করছে তা নিশ্চিত করতে নিচের লিংকে ক্লিক করুন। লিংকটি ৭ দিন কার্যকর থাকবে।`
+            : `You have been named as the verification contact for "${template.organizationName}" on CivicEye. Use the link below to confirm that this organization is using CivicEye. The link is valid for 7 days.`,
+          bn
+            ? 'এই অনুরোধ সম্পর্কে আপনার জানা না থাকলে লিংকে ক্লিক করবেন না।'
+            : 'If you do not recognize this request, do not use the link.',
+        ],
+        action: { label: bn ? 'নিশ্চিত করুন' : 'Confirm', link: template.link },
         footer: bn ? FOOTER.bn : FOOTER.en,
       };
   }

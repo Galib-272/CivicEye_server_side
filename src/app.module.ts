@@ -9,7 +9,9 @@ import { AccessModule } from './modules/access/access.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { AuditModule } from './modules/audit/audit.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CategoriesModule } from './modules/categories/categories.module';
 import { EmailModule } from './modules/email/email.module';
+import { OrganizationsModule } from './modules/organizations/organizations.module';
 import { UsersModule } from './modules/users/users.module';
 import { RateLimitModule } from './rate-limit/rate-limit.module';
 import { RedisModule } from './redis/redis.module';
@@ -32,6 +34,8 @@ export class AppModule {
         HealthModule,
         UsersModule,
         AdminModule,
+        CategoriesModule,
+        OrganizationsModule,
       ],
     };
   }
