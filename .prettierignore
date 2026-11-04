@@ -1,0 +1,8 @@
+node_modules
+dist
+coverage
+src/generated
+prisma/migrations
+openapi/openapi.json
+ai-services
+ml
