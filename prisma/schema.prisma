@@ -10,3 +10,216 @@ datasource db {
   provider   = "postgresql"
   extensions = [postgis, pg_trgm, citext]
 }
+
+// ─── Identity and access (Phase 2) ──────────────────────────────────────────────
+
+/// PRD §4.1 account states. PENDING_VERIFICATION accounts can sign in but cannot submit
+/// reports, comment or join organizations until the email address is verified.
+enum AccountStatus {
+  PENDING_VERIFICATION
+  ACTIVE
+  SUSPENDED
+  DEACTIVATED
+  DELETED
+}
+
+/// Platform-wide role. Organization roles are separate (OrganizationMember.role).
+enum PlatformRole {
+  CITIZEN
+  SUPER_ADMIN
+}
+
+enum PreferredLocale {
+  en
+  bn
+}
+
+model User {
+  id                String          @id @default(uuid(7)) @db.Uuid
+  email             String          @unique @db.Citext
+  name              String          @db.VarChar(100)
+  passwordHash      String          @map("password_hash")
+  status            AccountStatus   @default(PENDING_VERIFICATION)
+  platformRole      PlatformRole    @default(CITIZEN) @map("platform_role")
+  preferredLocale   PreferredLocale @default(en) @map("preferred_locale")
+  emailVerifiedAt   DateTime?       @map("email_verified_at") @db.Timestamptz(3)
+  passwordChangedAt DateTime        @default(now()) @map("password_changed_at") @db.Timestamptz(3)
+  createdAt         DateTime        @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt         DateTime        @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  sessions                UserSession[]
+  emailVerificationTokens EmailVerificationToken[]
+  passwordResetTokens     PasswordResetToken[]
+  mfa                     UserMfa?
+  mfaBackupCodes          MfaBackupCode[]
+  memberships             OrganizationMember[]     @relation("MemberUser")
+  invitedMemberships      OrganizationMember[]     @relation("MemberInvitedBy")
+  auditLogs               AuditLog[]
+
+  @@map("users")
+}
+
+/// Metadata for listing and revoking sessions. The live session is stored in Redis under a
+/// hash of the cookie value; the raw session token is never persisted.
+model UserSession {
+  id                String    @id @default(uuid(7)) @db.Uuid
+  userId            String    @map("user_id") @db.Uuid
+  tokenHash         String    @unique @map("token_hash") @db.Char(64)
+  ipAddress         String?   @map("ip_address") @db.VarChar(45)
+  userAgent         String?   @map("user_agent") @db.VarChar(255)
+  createdAt         DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  lastSeenAt        DateTime  @default(now()) @map("last_seen_at") @db.Timestamptz(3)
+  absoluteExpiresAt DateTime  @map("absolute_expires_at") @db.Timestamptz(3)
+  revokedAt         DateTime? @map("revoked_at") @db.Timestamptz(3)
+  revokedReason     String?   @map("revoked_reason") @db.VarChar(50)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId, revokedAt])
+  @@map("user_sessions")
+}
+
+/// Single-use email verification tokens. Only a SHA-256 hash of the token is stored.
+model EmailVerificationToken {
+  id        String    @id @default(uuid(7)) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash") @db.Char(64)
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz(3)
+  usedAt    DateTime? @map("used_at") @db.Timestamptz(3)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@map("email_verification_tokens")
+}
+
+/// Single-use password reset tokens. Only a SHA-256 hash of the token is stored.
+model PasswordResetToken {
+  id        String    @id @default(uuid(7)) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash") @db.Char(64)
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz(3)
+  usedAt    DateTime? @map("used_at") @db.Timestamptz(3)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@map("password_reset_tokens")
+}
+
+/// TOTP two-factor configuration. The secret is encrypted with AES-256-GCM (MFA_ENCRYPTION_KEY).
+model UserMfa {
+  userId          String    @id @map("user_id") @db.Uuid
+  secretEncrypted String    @map("secret_encrypted")
+  enabledAt       DateTime? @map("enabled_at") @db.Timestamptz(3)
+  /// Last accepted TOTP time step; codes at or before it are rejected (replay protection).
+  lastUsedStep    BigInt?   @map("last_used_step")
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@map("user_mfa")
+}
+
+/// One-time backup codes for two-factor login. Only SHA-256 hashes are stored.
+model MfaBackupCode {
+  id        String    @id @default(uuid(7)) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  codeHash  String    @unique @map("code_hash") @db.Char(64)
+  usedAt    DateTime? @map("used_at") @db.Timestamptz(3)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([userId])
+  @@map("mfa_backup_codes")
+}
+
+// ─── Organizations (membership foundation; full model in Phase 3) ───────────────
+
+enum OrganizationVerificationState {
+  UNVERIFIED
+  PENDING_VERIFICATION
+  VERIFIED
+  REJECTED
+  SUSPENDED
+}
+
+/// Organization-specific roles. Whether a separate reviewer/supervisor role is needed is an
+/// open product decision; add it here when approved.
+enum OrganizationRole {
+  ORG_ADMIN
+  WORKER
+}
+
+enum MembershipStatus {
+  INVITED
+  ACTIVE
+  REMOVED
+}
+
+model Organization {
+  id                String                        @id @default(uuid(7)) @db.Uuid
+  name              String                        @db.VarChar(200)
+  verificationState OrganizationVerificationState @default(UNVERIFIED) @map("verification_state")
+  isActive          Boolean                       @default(true) @map("is_active")
+  createdAt         DateTime                      @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt         DateTime                      @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  members OrganizationMember[]
+
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String           @id @default(uuid(7)) @db.Uuid
+  organizationId String           @map("organization_id") @db.Uuid
+  userId         String           @map("user_id") @db.Uuid
+  role           OrganizationRole
+  status         MembershipStatus @default(INVITED)
+  invitedById    String?          @map("invited_by_id") @db.Uuid
+  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+  approvedAt     DateTime?        @map("approved_at") @db.Timestamptz(3)
+  updatedAt      DateTime         @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  user         User         @relation("MemberUser", fields: [userId], references: [id], onDelete: Restrict)
+  invitedBy    User?        @relation("MemberInvitedBy", fields: [invitedById], references: [id], onDelete: Restrict)
+
+  @@unique([organizationId, userId])
+  @@index([userId, status])
+  @@map("organization_members")
+}
+
+// ─── Audit ─────────────────────────────────────────────────────────────────────
+
+enum AuditResult {
+  SUCCESS
+  FAILURE
+}
+
+/// Insert-only record of security-relevant actions (PRD §26.7). A database trigger rejects
+/// UPDATE and DELETE. Never store passwords, tokens or other secrets in metadata.
+model AuditLog {
+  id          String      @id @default(uuid(7)) @db.Uuid
+  actorUserId String?     @map("actor_user_id") @db.Uuid
+  action      String      @db.VarChar(100)
+  targetType  String?     @map("target_type") @db.VarChar(50)
+  targetId    String?     @map("target_id") @db.VarChar(100)
+  result      AuditResult
+  reason      String?     @db.VarChar(1000)
+  requestId   String?     @map("request_id") @db.VarChar(64)
+  ipAddress   String?     @map("ip_address") @db.VarChar(45)
+  metadata    Json?
+  createdAt   DateTime    @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  actor User? @relation(fields: [actorUserId], references: [id], onDelete: Restrict)
+
+  @@index([actorUserId, createdAt])
+  @@index([targetType, targetId, createdAt])
+  @@index([action, createdAt])
+  @@map("audit_logs")
+}
