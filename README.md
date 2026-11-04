@@ -6,9 +6,9 @@ repairs them, and an authorized person verifies the work.
 
 The web app lives in a separate repository: [CivicEye_client_side](https://github.com/Galib-272/CivicEye_client_side).
 
-> **Status: Phase 2 (accounts and access control).** Registration, sign-in, email
-> verification, password reset, sessions, two-factor authentication for Super Admins, and the
-> permission framework are in place. Reports, organizations, maps and AI come in later phases.
+> **Status: Phase 3 (organizations).** Accounts and access control (Phase 2) plus
+> organizations: Super Admin creation and verification, members and invitations, issue
+> categories, and service areas stored in PostGIS. Reports, maps and AI come in later phases.
 > See the [decision register](docs/decision-register.md) for what is decided and what is open.
 
 ## Stack
@@ -121,6 +121,25 @@ Variables for storage, maps and the AI service are added in the phases that need
   append-only.
 - **First admin**: there is no public way to become an administrator. Run `npm run admin:create`
   on a machine with database access; two-factor setup is enforced at first sign-in.
+
+## Organizations
+
+- **Creation and verification** (Super Admin only): an organization is created with its official
+  government email domain (`*.gov.bd`). A named contact on that domain confirms through a
+  single-use email link; only then can a Super Admin approve. Decisions are kept in an
+  append-only history and the audit log. Suspending an organization removes members' access.
+- **Roles**: Org Admin (profile, members, categories), Reviewer (reviews reports and verifies
+  work) and Worker. Access comes only from an active membership; other organizations — and Super
+  Admins without a membership — get `NOT_FOUND`. The last Org Admin cannot be removed or demoted.
+- **Invitations** are single-use, expire after 7 days, and can only be accepted by the invited,
+  verified email address.
+- **Service areas** are uploaded by Super Admins as GeoJSON (Polygon/MultiPolygon, WGS84, at most
+  5 MB, 50,000 points, 10,000 km²). Invalid shapes are rejected, never repaired. Overlaps between
+  organizations are reported, not resolved (policy still open). `POST /locations/organization-match`
+  returns verified organizations covering a point. All geometry is EPSG:4326; areas are computed on
+  the ellipsoid.
+- **Categories** from PRD §5.3 are seeded (Bangla names need native-speaker review) and managed by
+  Super Admins; at most two levels deep.
 
 ## API conventions
 

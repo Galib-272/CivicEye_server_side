@@ -19,6 +19,11 @@ Last updated: 2026-11-04 (Phase 1).
 | Two-factor login              | Required for Super Admins (authenticator app + backup codes); optional for Org Admins now, required before launch | 2026-11-04 |
 | Session lifetimes             | Citizens 7 days / 24 h idle; Super Admins 12 h / 30 min idle                                                      | 2026-11-04 |
 | Password policy               | 12–128 characters, not common, no name/email; no composition rules                                                | 2026-11-04 |
+| Launch area                   | One city at launch (which city is still to be named)                                                              | 2026-11-04 |
+| Organization creation         | Super Admin creates organizations; no self-registration at launch                                                 | 2026-11-04 |
+| Verification evidence         | Official government email domain, confirmed by a named contact person at that domain                              | 2026-11-04 |
+| Organization roles            | Org Admin, Reviewer (reviews reports, verifies work) and Worker                                                   | 2026-11-04 |
+| Initial organization types    | City corporations only at launch                                                                                  | 2026-11-04 |
 | Session architecture          | Server-managed sessions in Redis, opaque HttpOnly cookie, no JWT or refresh tokens                                | 2026-11-04 |
 
 ## Engineering defaults (reversible)
@@ -37,10 +42,7 @@ Last updated: 2026-11-04 (Phase 1).
 
 | Decision                                                                                  | Needed by                        |
 | ----------------------------------------------------------------------------------------- | -------------------------------- |
-| Org-level roles: separate reviewer/supervisor role in the MVP?                            | Phase 2–3                        |
-| Who creates organizations (self-registration or Super Admin)                              | Phase 3                          |
-| Organization verification evidence                                                        | Phase 3                          |
-| Exact initial launch geography                                                            | Phase 3                          |
+| Which city launches first (needed before loading real service-area boundaries)            | Phase 3 data                     |
 | Public vs. private report default                                                         | Phase 4                          |
 | Citizen editing and withdrawal policies                                                   | Phase 4                          |
 | Image upload limits; object storage provider                                              | Phase 4                          |
@@ -61,9 +63,19 @@ Last updated: 2026-11-04 (Phase 1).
   (needs the deletion/retention policy), and regenerating backup codes or turning two-factor off.
 - Emails are sent in the background without retries until the Phase 7 outbox.
 
+## Phase 3 notes
+
+- Approved defaults: invitations expire after 7 days; only Super Admins draw service areas;
+  service-area limits 10,000 km², 50,000 points, 5 MB; the public profile shows name, type,
+  description, website and public contact only.
+- The official domain must end in `.gov.bd` (launch is in Bangladesh). Change
+  `GOVERNMENT_DOMAIN_SUFFIXES` if other countries or domains are approved.
+- Not built in Phase 3: organization logos (needs file storage, Phase 4), report routing
+  (Phase 5), an interactive map (Phase 4), organization self-registration (not approved).
+
 ## Open — remaining PRD §37 items
 
-Initial organization types · appeal policy · public comment policy · minimum account age ·
+appeal policy · public comment policy · minimum account age ·
 authentication provider · worker availability rules · citizen satisfaction confirmation ·
 report priority policy · emergency issue handling · data retention schedule · account deletion
 and anonymization · AI training data consent · AI production acceptance thresholds · AI hardware
