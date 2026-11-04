@@ -6,9 +6,10 @@ repairs them, and an authorized person verifies the work.
 
 The web app lives in a separate repository: [CivicEye_client_side](https://github.com/Galib-272/CivicEye_client_side).
 
-> **Status: Phase 1 (project foundation).** There are no product features yet: no accounts,
-> reports, maps or AI. See the [decision register](docs/decision-register.md) for what is
-> decided and what is still open.
+> **Status: Phase 2 (accounts and access control).** Registration, sign-in, email
+> verification, password reset, sessions, two-factor authentication for Super Admins, and the
+> permission framework are in place. Reports, organizations, maps and AI come in later phases.
+> See the [decision register](docs/decision-register.md) for what is decided and what is open.
 
 ## Stack
 
@@ -61,6 +62,7 @@ npm run dev
 | Apply migrations                 | `npm run db:migrate`                      |
 | Create a migration               | `npm run db:migrate:dev -- --name <name>` |
 | Export OpenAPI                   | `npm run openapi:export`                  |
+| Create a Super Admin             | `npm run admin:create`                    |
 
 **After changing an API endpoint**, run `npm run openapi:export` and commit
 `openapi/openapi.json`. CI fails if it is stale. The web app copies this file
@@ -85,8 +87,40 @@ Validated at startup: the API exits with a list of invalid variable names (never
 | `RATE_LIMIT_MAX_REQUESTS`   | no       | `300`                   | Requests allowed per client per window              |
 | `HEALTH_CHECK_TIMEOUT_MS`   | no       | `2000`                  | Timeout per dependency in the readiness check       |
 
-Variables for sessions, storage, email, maps and the AI service are added in the phases that
-need them.
+| `SESSION_COOKIE_SECURE` | no | on in staging/production | HTTPS-only session cookie |
+| `MFA_ENCRYPTION_KEY` | yes | — | 32 random bytes, base64 (`openssl rand -base64 32`). Encrypts two-factor secrets. The `.env.example` value is a public placeholder and is rejected in staging/production. |
+| `EMAIL_PROVIDER` | no | `smtp` | `smtp` (Mailpit locally) or `resend` |
+| `EMAIL_FROM` | yes | — | Sender, e.g. `"CivicEye <no-reply@your-domain>"` (quote it) |
+| `SMTP_URL` | when `smtp` | — | e.g. `smtp://127.0.0.1:1025` for Mailpit |
+| `RESEND_API_KEY` | when `resend` | — | From the Resend dashboard. Sending to real users needs a domain verified in Resend. |
+
+Variables for storage, maps and the AI service are added in the phases that need them.
+
+## Accounts and access control
+
+- **Sessions** are server-managed: the browser holds an opaque random token in an `HttpOnly`,
+  `SameSite=Lax` cookie; Redis stores the session under a SHA-256 hash of that token, and
+  PostgreSQL keeps metadata so users can see and sign out their devices. Lifetimes: citizens
+  7 days (24 h idle), Super Admins 12 hours (30 min idle). If Redis is unavailable, sign-in and
+  session checks fail closed.
+- **CSRF**: state-changing requests must send the `x-csrf-token` header (returned by
+  `POST /auth/login` and `GET /auth/me`) and come from an allowed origin. The web app and API must
+  be served from the same site (e.g. `example.org` and `api.example.org`) for cookies to work.
+- **Permissions**: every route must declare `@Public()` or `@RequirePermissions(...)`; the API
+  refuses to start otherwise. Role→permission maps are in
+  [`src/modules/access/permissions.ts`](src/modules/access/permissions.ts). Organization
+  permissions come only from an active membership in that organization, never from a platform role.
+- **Passwords**: Argon2id; 12–128 characters, not common or containing the user's name/email.
+- **Two-factor**: TOTP authenticator apps plus 10 one-time backup codes; required for Super Admins.
+- **Account enumeration**: register and forgot-password respond identically for known and
+  unknown emails; login gives the same error for a wrong password and an unknown email.
+- **Emails** (verification, reset, notices) are sent in the background; links carry tokens in the
+  URL fragment, which browsers never send to servers. Reliable retries arrive with the
+  notification outbox in Phase 7.
+- **Audit log**: security events are written to `audit_logs`, which a database trigger makes
+  append-only.
+- **First admin**: there is no public way to become an administrator. Run `npm run admin:create`
+  on a machine with database access; two-factor setup is enforced at first sign-in.
 
 ## API conventions
 
