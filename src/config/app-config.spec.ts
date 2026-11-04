@@ -1,10 +1,14 @@
 import { ConfigValidationError, loadConfig } from './app-config';
+import { PUBLIC_PLACEHOLDER_MFA_KEY } from './env.schema';
 
 const validEnv = {
   NODE_ENV: 'development',
   WEB_URL: 'http://localhost:3000',
   DATABASE_URL: 'postgresql://user:pass@localhost:5432/civiceye',
   REDIS_URL: 'redis://localhost:6379',
+  MFA_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString('base64'),
+  EMAIL_FROM: 'CivicEye <test@example.test>',
+  SMTP_URL: 'smtp://127.0.0.1:1025',
 };
 
 function captureError(env: NodeJS.ProcessEnv): ConfigValidationError {
@@ -86,5 +90,43 @@ describe('loadConfig', () => {
     const secret = 'postgresql-but-not-really-s3cr3t-value';
     const error = captureError({ ...validEnv, DATABASE_URL: secret });
     expect(error.message).not.toContain(secret);
+  });
+
+  it('defaults secure session cookies on only in staging and production', () => {
+    expect(loadConfig(validEnv).session.cookieSecure).toBe(false);
+    expect(loadConfig({ ...validEnv, NODE_ENV: 'staging' }).session.cookieSecure).toBe(true);
+    expect(loadConfig({ ...validEnv, NODE_ENV: 'production' }).session.cookieSecure).toBe(true);
+  });
+
+  it('requires a 32-byte two-factor encryption key', () => {
+    const error = captureError({
+      ...validEnv,
+      MFA_ENCRYPTION_KEY: Buffer.alloc(16).toString('base64'),
+    });
+    expect(error.issues[0]).toMatch(/^MFA_ENCRYPTION_KEY/);
+  });
+
+  it('rejects the public placeholder key outside development and test', () => {
+    const env = { ...validEnv, MFA_ENCRYPTION_KEY: PUBLIC_PLACEHOLDER_MFA_KEY };
+    expect(() => loadConfig(env)).not.toThrow();
+    expect(captureError({ ...env, NODE_ENV: 'production' }).issues[0]).toMatch(
+      /^MFA_ENCRYPTION_KEY/,
+    );
+  });
+
+  it('requires the settings of the selected email provider', () => {
+    const { SMTP_URL: _smtp, ...withoutSmtp } = validEnv;
+    expect(captureError(withoutSmtp).issues[0]).toMatch(/^SMTP_URL/);
+    expect(captureError({ ...validEnv, EMAIL_PROVIDER: 'resend' }).issues[0]).toMatch(
+      /^RESEND_API_KEY/,
+    );
+    expect(
+      loadConfig({ ...validEnv, EMAIL_PROVIDER: 'resend', RESEND_API_KEY: 're_test_0123456789' })
+        .email,
+    ).toEqual({
+      provider: 'resend',
+      from: 'CivicEye <test@example.test>',
+      resendApiKey: 're_test_0123456789',
+    });
   });
 });

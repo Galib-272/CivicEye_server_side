@@ -7,6 +7,9 @@ function configWith(redisUrl: string) {
     WEB_URL: 'http://localhost:3000',
     DATABASE_URL: 'postgresql://u:p@localhost:5432/db',
     REDIS_URL: redisUrl,
+    MFA_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString('base64'),
+    EMAIL_FROM: 'CivicEye <test@example.test>',
+    SMTP_URL: 'smtp://127.0.0.1:1025',
   });
 }
 

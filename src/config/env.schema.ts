@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+/** The development-only key published in .env.example; rejected in staging and production. */
+export const PUBLIC_PLACEHOLDER_MFA_KEY = 'ZGV2LW9ubHktcGxhY2Vob2xkZXIta2V5LTMyYnl0ZXM=';
+
 const booleanString = z.enum(['true', 'false']).transform((value) => value === 'true');
 
 const commaSeparatedOrigins = z
@@ -36,11 +39,51 @@ export const envSchema = z
     RATE_LIMIT_MAX_REQUESTS: z.coerce.number().int().min(1).max(100000).default(300),
 
     HEALTH_CHECK_TIMEOUT_MS: z.coerce.number().int().min(100).max(10000).default(2000),
+
+    // Secure (HTTPS-only) session cookies. Defaults to true in staging and production.
+    SESSION_COOKIE_SECURE: booleanString.optional(),
+    // 32 random bytes, base64-encoded. Encrypts two-factor secrets at rest.
+    MFA_ENCRYPTION_KEY: z.string().refine((value) => Buffer.from(value, 'base64').length === 32, {
+      message: 'must be 32 bytes encoded as base64',
+    }),
+
+    EMAIL_PROVIDER: z.enum(['smtp', 'resend']).default('smtp'),
+    EMAIL_FROM: z.string().min(3).max(200),
+    SMTP_URL: z.url({ protocol: /^smtps?$/ }).optional(),
+    RESEND_API_KEY: z.string().min(10).optional(),
+  })
+  .superRefine((env, ctx) => {
+    if (
+      (env.NODE_ENV === 'staging' || env.NODE_ENV === 'production') &&
+      env.MFA_ENCRYPTION_KEY === PUBLIC_PLACEHOLDER_MFA_KEY
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['MFA_ENCRYPTION_KEY'],
+        message: 'the public placeholder from .env.example cannot be used here',
+      });
+    }
+    if (env.EMAIL_PROVIDER === 'smtp' && !env.SMTP_URL) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['SMTP_URL'],
+        message: 'required when EMAIL_PROVIDER=smtp',
+      });
+    }
+    if (env.EMAIL_PROVIDER === 'resend' && !env.RESEND_API_KEY) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['RESEND_API_KEY'],
+        message: 'required when EMAIL_PROVIDER=resend',
+      });
+    }
   })
   .transform((env) => ({
     ...env,
     // API docs are on by default outside production and must be enabled explicitly in production.
     OPENAPI_ENABLED: env.OPENAPI_ENABLED ?? env.NODE_ENV !== 'production',
+    SESSION_COOKIE_SECURE:
+      env.SESSION_COOKIE_SECURE ?? (env.NODE_ENV === 'staging' || env.NODE_ENV === 'production'),
   }));
 
 export type Env = z.infer<typeof envSchema>;

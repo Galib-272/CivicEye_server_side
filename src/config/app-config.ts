@@ -15,6 +15,11 @@ export interface AppConfig {
   openApiEnabled: boolean;
   rateLimit: { windowSeconds: number; maxRequests: number };
   healthCheckTimeoutMs: number;
+  session: { cookieSecure: boolean };
+  mfaEncryptionKey: Buffer;
+  email:
+    | { provider: 'smtp'; from: string; smtpUrl: string }
+    | { provider: 'resend'; from: string; resendApiKey: string };
 }
 
 export class ConfigValidationError extends Error {
@@ -62,5 +67,11 @@ export function loadConfig(source: NodeJS.ProcessEnv = process.env): AppConfig {
       maxRequests: env.RATE_LIMIT_MAX_REQUESTS,
     },
     healthCheckTimeoutMs: env.HEALTH_CHECK_TIMEOUT_MS,
+    session: { cookieSecure: env.SESSION_COOKIE_SECURE },
+    mfaEncryptionKey: Buffer.from(env.MFA_ENCRYPTION_KEY, 'base64'),
+    email:
+      env.EMAIL_PROVIDER === 'resend'
+        ? { provider: 'resend', from: env.EMAIL_FROM, resendApiKey: env.RESEND_API_KEY ?? '' }
+        : { provider: 'smtp', from: env.EMAIL_FROM, smtpUrl: env.SMTP_URL ?? '' },
   };
 }

@@ -20,6 +20,13 @@ export const ErrorCode = {
   AI_SERVICE_UNAVAILABLE: 'AI_SERVICE_UNAVAILABLE',
   SERVICE_UNAVAILABLE: 'SERVICE_UNAVAILABLE',
   INTERNAL_ERROR: 'INTERNAL_ERROR',
+  INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
+  INVALID_TOKEN: 'INVALID_TOKEN',
+  INVALID_MFA_CODE: 'INVALID_MFA_CODE',
+  MFA_REQUIRED: 'MFA_REQUIRED',
+  EMAIL_NOT_VERIFIED: 'EMAIL_NOT_VERIFIED',
+  ACCOUNT_INACTIVE: 'ACCOUNT_INACTIVE',
+  CSRF_TOKEN_INVALID: 'CSRF_TOKEN_INVALID',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
@@ -73,5 +80,33 @@ export const errorCodeDefaults: Record<ErrorCode, { status: HttpStatus; message:
   INTERNAL_ERROR: {
     status: HttpStatus.INTERNAL_SERVER_ERROR,
     message: 'An unexpected error occurred.',
+  },
+  INVALID_CREDENTIALS: {
+    status: HttpStatus.UNAUTHORIZED,
+    message: 'The email or password is incorrect.',
+  },
+  INVALID_TOKEN: {
+    status: HttpStatus.BAD_REQUEST,
+    message: 'This link is invalid or has expired.',
+  },
+  INVALID_MFA_CODE: {
+    status: HttpStatus.BAD_REQUEST,
+    message: 'The verification code is incorrect.',
+  },
+  MFA_REQUIRED: {
+    status: HttpStatus.FORBIDDEN,
+    message: 'Two-factor verification is required to continue.',
+  },
+  EMAIL_NOT_VERIFIED: {
+    status: HttpStatus.FORBIDDEN,
+    message: 'Please verify your email address first.',
+  },
+  ACCOUNT_INACTIVE: {
+    status: HttpStatus.FORBIDDEN,
+    message: 'This account cannot sign in. Please contact support.',
+  },
+  CSRF_TOKEN_INVALID: {
+    status: HttpStatus.FORBIDDEN,
+    message: 'The request could not be verified. Please reload the page and try again.',
   },
 };
