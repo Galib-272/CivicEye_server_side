@@ -18,6 +18,8 @@ export const Permission = {
   /** Create, verify and suspend organizations; manage members and service areas of any organization. */
   AdminOrganizationsManage: 'admin.organizations.manage',
   AdminCategoriesManage: 'admin.categories.manage',
+  /** See reports no organization covers and route them manually. */
+  AdminReportsTriage: 'admin.reports.triage',
 } as const;
 
 export type Permission = (typeof Permission)[keyof typeof Permission];
@@ -44,6 +46,7 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, ReadonlySet<Permiss
     Permission.AdminUsersManage,
     Permission.AdminOrganizationsManage,
     Permission.AdminCategoriesManage,
+    Permission.AdminReportsTriage,
   ]),
 };
 

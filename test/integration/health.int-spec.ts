@@ -66,6 +66,19 @@ describe('Health endpoints against real PostgreSQL and Redis', () => {
     expect(denied.headers['access-control-allow-origin']).toBeUndefined();
   });
 
+  it('lets browsers send the report idempotency and version headers', async () => {
+    const preflight = await request(app.getHttpServer())
+      .options('/api/v1/reports')
+      .set('Origin', 'http://localhost:3000')
+      .set('Access-Control-Request-Method', 'POST')
+      .set('Access-Control-Request-Headers', 'content-type,idempotency-key,if-match,x-csrf-token');
+    expect(preflight.status).toBeLessThan(300);
+    const allowed = String(preflight.headers['access-control-allow-headers']).toLowerCase();
+    for (const header of ['idempotency-key', 'if-match', 'x-csrf-token', 'content-type']) {
+      expect(allowed).toContain(header);
+    }
+  });
+
   // Runs last: stopping containers is irreversible for this suite.
   describe('when dependencies fail', () => {
     it('returns 503 SERVICE_UNAVAILABLE when Redis is down', async () => {

@@ -60,6 +60,12 @@ model User {
   invitationsSent         OrganizationInvitation[]         @relation("InvitationInvitedBy")
   invitationsAccepted     OrganizationInvitation[]         @relation("InvitationAcceptedBy")
   serviceAreasCreated     ServiceArea[]                    @relation("ServiceAreaCreatedBy")
+  reports                 Report[]                         @relation("ReportCitizen")
+  statusChanges           ReportStatusHistory[]            @relation("StatusHistoryActor")
+  reportEdits             ReportEdit[]                     @relation("ReportEditor")
+  mediaUploads            ReportMedia[]                    @relation("MediaUploader")
+  routingDecisions        ReportRoutingDecision[]          @relation("RoutingDecidedBy")
+  idempotencyKeys         IdempotencyKey[]                 @relation("IdempotencyKeyUser")
 
   @@map("users")
 }
@@ -196,6 +202,8 @@ model Organization {
   invitations         OrganizationInvitation[]
   serviceAreas        ServiceArea[]
   categories          OrganizationCategory[]
+  reports             Report[]
+  routingDecisions    ReportRoutingDecision[]          @relation("RoutingDecisionOrganization")
 
   @@index([verificationState, isActive])
   @@map("organizations")
@@ -303,6 +311,7 @@ model ReportCategory {
   parent        ReportCategory?        @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Restrict)
   children      ReportCategory[]       @relation("CategoryParent")
   organizations OrganizationCategory[]
+  reports       Report[]
 
   @@index([parentId, displayOrder])
   @@map("report_categories")
@@ -370,4 +379,201 @@ model AuditLog {
   @@index([targetType, targetId, createdAt])
   @@index([action, createdAt])
   @@map("audit_logs")
+}
+
+// ─── Civic reports (Phase 4) ───────────────────────────────────────────────────
+
+/// PRD §6.1 report lifecycle. Transitions are enforced by ReportTransitionService only.
+enum ReportStatus {
+  SUBMITTED
+  UNDER_REVIEW
+  NEEDS_INFORMATION
+  ACCEPTED
+  REJECTED
+  ASSIGNED
+  IN_PROGRESS
+  WORK_COMPLETED
+  PENDING_VERIFICATION
+  RESOLVED
+  REOPENED
+  CLOSED
+  WITHDRAWN
+  DUPLICATE
+}
+
+enum ReportVisibility {
+  PUBLIC
+  PRIVATE
+  ORGANIZATION_ONLY
+  RESTRICTED
+}
+
+/// Outcome of matching the report location to organizations' service areas.
+enum RoutingOutcome {
+  ROUTED
+  UNROUTED
+  AMBIGUOUS
+  MANUAL
+}
+
+model Report {
+  id                  String                               @id @default(uuid(7)) @db.Uuid
+  /// Human-friendly, unguessable identifier shown to users, e.g. CE-7K3M-Q9TX.
+  publicId            String                               @unique @map("public_id") @db.VarChar(16)
+  citizenId           String                               @map("citizen_id") @db.Uuid
+  organizationId      String?                              @map("organization_id") @db.Uuid
+  categoryId          String                               @map("category_id") @db.Uuid
+  title               String                               @db.VarChar(120)
+  description         String                               @db.VarChar(2000)
+  status              ReportStatus                         @default(SUBMITTED)
+  /// Unset until the report priority policy is decided.
+  priority            Int?
+  /// WGS84 point. Written and queried with raw SQL (Prisma has no PostGIS types).
+  location            Unsupported("geography(Point,4326)")
+  /// Exact coordinates for display; the geography column is authoritative for spatial queries.
+  latitude            Decimal                              @db.Decimal(9, 6)
+  longitude           Decimal                              @db.Decimal(9, 6)
+  locationAccuracyM   Int?                                 @map("location_accuracy_m")
+  locationDescription String?                              @map("location_description") @db.VarChar(300)
+  visibility          ReportVisibility                     @default(PUBLIC)
+  routingOutcome      RoutingOutcome                       @map("routing_outcome")
+  version             Int                                  @default(1)
+  submittedAt         DateTime                             @default(now()) @map("submitted_at") @db.Timestamptz(3)
+  reviewedAt          DateTime?                            @map("reviewed_at") @db.Timestamptz(3)
+  resolvedAt          DateTime?                            @map("resolved_at") @db.Timestamptz(3)
+  closedAt            DateTime?                            @map("closed_at") @db.Timestamptz(3)
+  createdAt           DateTime                             @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt           DateTime                             @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  citizen          User                    @relation("ReportCitizen", fields: [citizenId], references: [id], onDelete: Restrict)
+  organization     Organization?           @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  category         ReportCategory          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  statusHistory    ReportStatusHistory[]
+  edits            ReportEdit[]
+  media            ReportMedia[]
+  routingDecisions ReportRoutingDecision[]
+
+  @@index([location], type: Gist)
+  @@index([citizenId, createdAt])
+  @@index([organizationId, status, createdAt])
+  @@index([status, visibility, createdAt])
+  @@index([routingOutcome, status])
+  @@index([categoryId])
+  @@map("reports")
+}
+
+/// Append-only status timeline (PRD §6.4). A trigger rejects UPDATE/DELETE.
+model ReportStatusHistory {
+  id            String        @id @default(uuid(7)) @db.Uuid
+  reportId      String        @map("report_id") @db.Uuid
+  fromStatus    ReportStatus? @map("from_status")
+  toStatus      ReportStatus  @map("to_status")
+  actorUserId   String?       @map("actor_user_id") @db.Uuid
+  /// Role or permission context of the actor, e.g. "citizen", "super_admin", "system".
+  actorContext  String        @map("actor_context") @db.VarChar(50)
+  reason        String?       @db.VarChar(1000)
+  publicMessage String?       @map("public_message") @db.VarChar(1000)
+  internalNote  String?       @map("internal_note") @db.VarChar(2000)
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  actor  User?  @relation("StatusHistoryActor", fields: [actorUserId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("report_status_history")
+}
+
+/// Append-only record of every citizen edit, field by field.
+model ReportEdit {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  reportId  String   @map("report_id") @db.Uuid
+  editorId  String   @map("editor_id") @db.Uuid
+  version   Int
+  changes   Json
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report Report @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  editor User   @relation("ReportEditor", fields: [editorId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, version])
+  @@map("report_edits")
+}
+
+enum MediaStatus {
+  PENDING_UPLOAD
+  UPLOADED
+  PROCESSED
+  REJECTED
+}
+
+enum MediaPurpose {
+  REPORT_PHOTO
+}
+
+model ReportMedia {
+  id              String       @id @default(uuid(7)) @db.Uuid
+  reportId        String?      @map("report_id") @db.Uuid
+  uploaderId      String       @map("uploader_id") @db.Uuid
+  purpose         MediaPurpose
+  status          MediaStatus  @default(PENDING_UPLOAD)
+  /// Random, server-generated object keys; never derived from user input.
+  originalKey     String       @unique @map("original_key") @db.VarChar(200)
+  displayKey      String?      @map("display_key") @db.VarChar(200)
+  thumbnailKey    String?      @map("thumbnail_key") @db.VarChar(200)
+  declaredType    String       @map("declared_type") @db.VarChar(50)
+  declaredBytes   Int          @map("declared_bytes")
+  detectedFormat  String?      @map("detected_format") @db.VarChar(20)
+  width           Int?
+  height          Int?
+  sha256          String?      @db.Char(64)
+  rejectionReason String?      @map("rejection_reason") @db.VarChar(300)
+  position        Int          @default(0)
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  processedAt     DateTime?    @map("processed_at") @db.Timestamptz(3)
+
+  report   Report? @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  uploader User    @relation("MediaUploader", fields: [uploaderId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, position])
+  @@index([uploaderId, status, createdAt])
+  @@map("report_media")
+}
+
+/// Explains how a report was matched to an organization (PRD §7.5).
+model ReportRoutingDecision {
+  id             String         @id @default(uuid(7)) @db.Uuid
+  reportId       String         @map("report_id") @db.Uuid
+  outcome        RoutingOutcome
+  organizationId String?        @map("organization_id") @db.Uuid
+  /// Organizations whose service areas covered the point at decision time.
+  candidates     Json
+  rule           String         @db.VarChar(100)
+  decidedById    String?        @map("decided_by_id") @db.Uuid
+  reason         String?        @db.VarChar(1000)
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report       Report        @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization Organization? @relation("RoutingDecisionOrganization", fields: [organizationId], references: [id], onDelete: Restrict)
+  decidedBy    User?         @relation("RoutingDecidedBy", fields: [decidedById], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("report_routing_decisions")
+}
+
+/// Stored responses for Idempotency-Key requests, so a retried submission returns the original result.
+model IdempotencyKey {
+  id           String   @id @default(uuid(7)) @db.Uuid
+  userId       String   @map("user_id") @db.Uuid
+  key          String   @db.VarChar(100)
+  route        String   @db.VarChar(100)
+  requestHash  String   @map("request_hash") @db.Char(64)
+  responseBody Json?    @map("response_body")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  expiresAt    DateTime @map("expires_at") @db.Timestamptz(3)
+
+  user User @relation("IdempotencyKeyUser", fields: [userId], references: [id], onDelete: Restrict)
+
+  @@unique([userId, route, key])
+  @@index([expiresAt])
+  @@map("idempotency_keys")
 }

@@ -12,6 +12,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { EmailModule } from './modules/email/email.module';
 import { OrganizationsModule } from './modules/organizations/organizations.module';
+import { ReportsModule } from './modules/reports/reports.module';
+import { StorageModule } from './modules/storage/storage.module';
 import { UsersModule } from './modules/users/users.module';
 import { RateLimitModule } from './rate-limit/rate-limit.module';
 import { RedisModule } from './redis/redis.module';
@@ -36,6 +38,8 @@ export class AppModule {
         AdminModule,
         CategoriesModule,
         OrganizationsModule,
+        StorageModule,
+        ReportsModule,
       ],
     };
   }

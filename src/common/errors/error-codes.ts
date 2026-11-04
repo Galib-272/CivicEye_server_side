@@ -27,6 +27,7 @@ export const ErrorCode = {
   EMAIL_NOT_VERIFIED: 'EMAIL_NOT_VERIFIED',
   ACCOUNT_INACTIVE: 'ACCOUNT_INACTIVE',
   CSRF_TOKEN_INVALID: 'CSRF_TOKEN_INVALID',
+  PRECONDITION_REQUIRED: 'PRECONDITION_REQUIRED',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];
@@ -108,5 +109,9 @@ export const errorCodeDefaults: Record<ErrorCode, { status: HttpStatus; message:
   CSRF_TOKEN_INVALID: {
     status: HttpStatus.FORBIDDEN,
     message: 'The request could not be verified. Please reload the page and try again.',
+  },
+  PRECONDITION_REQUIRED: {
+    status: HttpStatus.PRECONDITION_REQUIRED,
+    message: 'Send the If-Match header with the version you are changing.',
   },
 };

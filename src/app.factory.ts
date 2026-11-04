@@ -49,7 +49,16 @@ export function configureApp(app: NestExpressApplication, config: AppConfig): vo
     origin: config.corsOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Accept', 'Accept-Language', CSRF_HEADER, REQUEST_ID_HEADER],
+    // Idempotency-Key (report submission) and If-Match (report edits) are sent by browsers.
+    allowedHeaders: [
+      'Content-Type',
+      'Accept',
+      'Accept-Language',
+      'Idempotency-Key',
+      'If-Match',
+      CSRF_HEADER,
+      REQUEST_ID_HEADER,
+    ],
     exposedHeaders: [REQUEST_ID_HEADER],
     maxAge: 600,
   });
