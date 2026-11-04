@@ -14,7 +14,15 @@ import { loadConfig } from '../src/config/app-config';
 loadDotenv({ path: resolve(__dirname, '../.env.example'), quiet: true });
 
 async function main(): Promise<void> {
-  const config = { ...loadConfig(), openApiEnabled: false, logLevel: 'silent' as const };
+  const loaded = loadConfig();
+  // Nothing may connect during export (CI has no storage service): no bucket setup, no workers.
+  const config = {
+    ...loaded,
+    openApiEnabled: false,
+    logLevel: 'silent' as const,
+    runWorkers: false,
+    storage: { ...loaded.storage, createBucket: false },
+  };
   const app = await createApp(config);
   await app.init();
   const document = buildOpenApiDocument(app);
