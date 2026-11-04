@@ -52,9 +52,14 @@ model User {
   passwordResetTokens     PasswordResetToken[]
   mfa                     UserMfa?
   mfaBackupCodes          MfaBackupCode[]
-  memberships             OrganizationMember[]     @relation("MemberUser")
-  invitedMemberships      OrganizationMember[]     @relation("MemberInvitedBy")
+  memberships             OrganizationMember[]             @relation("MemberUser")
+  invitedMemberships      OrganizationMember[]             @relation("MemberInvitedBy")
   auditLogs               AuditLog[]
+  organizationsCreated    Organization[]                   @relation("OrganizationCreatedBy")
+  verificationDecisions   OrganizationVerificationRecord[] @relation("VerificationDecidedBy")
+  invitationsSent         OrganizationInvitation[]         @relation("InvitationInvitedBy")
+  invitationsAccepted     OrganizationInvitation[]         @relation("InvitationAcceptedBy")
+  serviceAreasCreated     ServiceArea[]                    @relation("ServiceAreaCreatedBy")
 
   @@map("users")
 }
@@ -148,11 +153,17 @@ enum OrganizationVerificationState {
   SUSPENDED
 }
 
-/// Organization-specific roles. Whether a separate reviewer/supervisor role is needed is an
-/// open product decision; add it here when approved.
+/// Organization-specific roles (approved): admins manage the organization, reviewers review
+/// reports and verify completed work, workers carry out assigned tasks.
 enum OrganizationRole {
   ORG_ADMIN
+  ORG_REVIEWER
   WORKER
+}
+
+/// Initial organization types (approved: city corporations only at launch).
+enum OrganizationType {
+  CITY_CORPORATION
 }
 
 enum MembershipStatus {
@@ -162,16 +173,153 @@ enum MembershipStatus {
 }
 
 model Organization {
-  id                String                        @id @default(uuid(7)) @db.Uuid
-  name              String                        @db.VarChar(200)
-  verificationState OrganizationVerificationState @default(UNVERIFIED) @map("verification_state")
-  isActive          Boolean                       @default(true) @map("is_active")
-  createdAt         DateTime                      @default(now()) @map("created_at") @db.Timestamptz(3)
-  updatedAt         DateTime                      @updatedAt @map("updated_at") @db.Timestamptz(3)
+  id                  String                        @id @default(uuid(7)) @db.Uuid
+  name                String                        @unique @db.Citext
+  type                OrganizationType              @default(CITY_CORPORATION)
+  description         String?                       @db.VarChar(2000)
+  website             String?                       @db.VarChar(300)
+  /// Public contact details shown on the organization's public profile.
+  publicEmail         String?                       @map("public_email") @db.VarChar(254)
+  publicPhone         String?                       @map("public_phone") @db.VarChar(30)
+  /// Government email domain the verification contact must use (e.g. "dncc.gov.bd").
+  officialEmailDomain String                        @map("official_email_domain") @db.VarChar(253)
+  verificationState   OrganizationVerificationState @default(UNVERIFIED) @map("verification_state")
+  isActive            Boolean                       @default(true) @map("is_active")
+  createdById         String?                       @map("created_by_id") @db.Uuid
+  createdAt           DateTime                      @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt           DateTime                      @updatedAt @map("updated_at") @db.Timestamptz(3)
 
-  members OrganizationMember[]
+  createdBy           User?                            @relation("OrganizationCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  members             OrganizationMember[]
+  verificationContact OrganizationVerificationContact?
+  verificationRecords OrganizationVerificationRecord[]
+  invitations         OrganizationInvitation[]
+  serviceAreas        ServiceArea[]
+  categories          OrganizationCategory[]
 
+  @@index([verificationState, isActive])
   @@map("organizations")
+}
+
+/// The named person at the organization who confirms control of the official email domain by
+/// following a single-use link sent to their official address.
+model OrganizationVerificationContact {
+  id             String    @id @default(uuid(7)) @db.Uuid
+  organizationId String    @unique @map("organization_id") @db.Uuid
+  name           String    @db.VarChar(100)
+  jobTitle       String    @map("job_title") @db.VarChar(100)
+  email          String    @db.Citext
+  tokenHash      String?   @unique @map("token_hash") @db.Char(64)
+  tokenExpiresAt DateTime? @map("token_expires_at") @db.Timestamptz(3)
+  confirmedAt    DateTime? @map("confirmed_at") @db.Timestamptz(3)
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+
+  @@map("organization_verification_contacts")
+}
+
+/// Append-only history of verification decisions (PRD §7.2). A trigger rejects UPDATE/DELETE.
+model OrganizationVerificationRecord {
+  id             String                        @id @default(uuid(7)) @db.Uuid
+  organizationId String                        @map("organization_id") @db.Uuid
+  fromState      OrganizationVerificationState @map("from_state")
+  toState        OrganizationVerificationState @map("to_state")
+  decidedById    String                        @map("decided_by_id") @db.Uuid
+  reason         String?                       @db.VarChar(1000)
+  createdAt      DateTime                      @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  decidedBy    User         @relation("VerificationDecidedBy", fields: [decidedById], references: [id], onDelete: Restrict)
+
+  @@index([organizationId, createdAt])
+  @@map("organization_verification_records")
+}
+
+/// Single-use invitations to join an organization. Only a SHA-256 hash of the token is stored.
+model OrganizationInvitation {
+  id             String           @id @default(uuid(7)) @db.Uuid
+  organizationId String           @map("organization_id") @db.Uuid
+  email          String           @db.Citext
+  role           OrganizationRole
+  tokenHash      String           @unique @map("token_hash") @db.Char(64)
+  expiresAt      DateTime         @map("expires_at") @db.Timestamptz(3)
+  invitedById    String           @map("invited_by_id") @db.Uuid
+  acceptedAt     DateTime?        @map("accepted_at") @db.Timestamptz(3)
+  acceptedById   String?          @map("accepted_by_id") @db.Uuid
+  revokedAt      DateTime?        @map("revoked_at") @db.Timestamptz(3)
+  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  invitedBy    User         @relation("InvitationInvitedBy", fields: [invitedById], references: [id], onDelete: Restrict)
+  acceptedBy   User?        @relation("InvitationAcceptedBy", fields: [acceptedById], references: [id], onDelete: Restrict)
+
+  @@index([organizationId, acceptedAt, revokedAt])
+  @@index([email])
+  @@map("organization_invitations")
+}
+
+/// Area an organization serves, as a WGS84 (EPSG:4326) MultiPolygon. Written and queried with
+/// raw SQL because Prisma does not support PostGIS types (see ServiceAreasService).
+model ServiceArea {
+  id             String                                     @id @default(uuid(7)) @db.Uuid
+  organizationId String                                     @map("organization_id") @db.Uuid
+  name           String                                     @db.VarChar(200)
+  geom           Unsupported("geometry(MultiPolygon,4326)")
+  areaSqKm       Decimal                                    @map("area_sq_km") @db.Decimal(12, 3)
+  pointCount     Int                                        @map("point_count")
+  isActive       Boolean                                    @default(true) @map("is_active")
+  createdById    String                                     @map("created_by_id") @db.Uuid
+  createdAt      DateTime                                   @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime                                   @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  createdBy    User         @relation("ServiceAreaCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+
+  @@index([geom], type: Gist)
+  @@index([organizationId, isActive])
+  @@map("service_areas")
+}
+
+/// Global, administrable issue categories (PRD §5.3). At most two levels deep.
+model ReportCategory {
+  id               String   @id @default(uuid(7)) @db.Uuid
+  slug             String   @unique @db.VarChar(60)
+  parentId         String?  @map("parent_id") @db.Uuid
+  nameEn           String   @map("name_en") @db.VarChar(100)
+  nameBn           String   @map("name_bn") @db.VarChar(100)
+  descriptionEn    String?  @map("description_en") @db.VarChar(500)
+  descriptionBn    String?  @map("description_bn") @db.VarChar(500)
+  isActive         Boolean  @default(true) @map("is_active")
+  displayOrder     Int      @default(0) @map("display_order")
+  /// Radius for duplicate candidate search (Phase 8). Unset until validated with real data.
+  duplicateRadiusM Int?     @map("duplicate_radius_m")
+  aiConfig         Json?    @map("ai_config")
+  evidenceRules    Json?    @map("evidence_rules")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  parent        ReportCategory?        @relation("CategoryParent", fields: [parentId], references: [id], onDelete: Restrict)
+  children      ReportCategory[]       @relation("CategoryParent")
+  organizations OrganizationCategory[]
+
+  @@index([parentId, displayOrder])
+  @@map("report_categories")
+}
+
+/// Categories an organization handles.
+model OrganizationCategory {
+  organizationId String   @map("organization_id") @db.Uuid
+  categoryId     String   @map("category_id") @db.Uuid
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  organization Organization   @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  category     ReportCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+
+  @@id([organizationId, categoryId])
+  @@index([categoryId])
+  @@map("organization_categories")
 }
 
 model OrganizationMember {
