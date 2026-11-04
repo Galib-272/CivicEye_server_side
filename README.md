@@ -14,7 +14,7 @@ The web app lives in a separate repository: [CivicEye_client_side](https://githu
 ## Stack
 
 NestJS (modular monolith) · TypeScript · PostgreSQL 17 + PostGIS 3 via Prisma · Redis ·
-BullMQ · OpenAPI. The internal AI service ([`ai-services/`](ai-services)) and ML work
+BullMQ · S3-compatible object storage (Cloudflare R2; SeaweedFS locally) · sharp · OpenAPI. The internal AI service ([`ai-services/`](ai-services)) and ML work
 ([`ml/`](ml)) will live in this repository; neither exists yet.
 
 ## Prerequisites
@@ -42,18 +42,21 @@ cp .env.example .env
 npm install
 npm run db:migrate
 npm run dev
+npm run worker:dev               # second terminal: processes uploaded photos
 ```
 
 - API: <http://localhost:4000>
 - API docs: <http://localhost:4000/api/docs>
 - Readiness: <http://localhost:4000/api/v1/health/ready>
 - Development mail (Mailpit, used from Phase 2): <http://localhost:8025>
+- Local object storage (SeaweedFS S3 API): <http://127.0.0.1:8333>
 
 ## Commands
 
 | Task                             | Command                                   |
 | -------------------------------- | ----------------------------------------- |
 | Develop (watch mode)             | `npm run dev`                             |
+| Background worker (watch / prod) | `npm run worker:dev` / `npm run worker`   |
 | Lint / format check              | `npm run lint` / `npm run format:check`   |
 | Type check                       | `npm run typecheck`                       |
 | Unit tests                       | `npm test`                                |
@@ -94,7 +97,15 @@ Validated at startup: the API exits with a list of invalid variable names (never
 | `SMTP_URL` | when `smtp` | — | e.g. `smtp://127.0.0.1:1025` for Mailpit |
 | `RESEND_API_KEY` | when `resend` | — | From the Resend dashboard. Sending to real users needs a domain verified in Resend. |
 
-Variables for storage, maps and the AI service are added in the phases that need them.
+| `STORAGE_ENDPOINT` | yes | — | S3-compatible endpoint (`http://127.0.0.1:8333` locally; the R2 account endpoint in staging/production) |
+| `STORAGE_REGION` | no | `auto` | Region (R2 uses `auto`) |
+| `STORAGE_BUCKET` | yes | — | Bucket for report photos |
+| `STORAGE_ACCESS_KEY_ID` / `STORAGE_SECRET_ACCESS_KEY` | yes | — | Storage credentials (local values are in `docker/seaweedfs/s3.json`) |
+| `STORAGE_FORCE_PATH_STYLE` | no | `false` | `true` for local SeaweedFS |
+| `STORAGE_CREATE_BUCKET` | no | `false` | Create the bucket and its CORS rule at startup; development/test only (rejected in staging/production) |
+| `RUN_WORKERS` | no | `false` | Run background jobs (photo processing) inside this process |
+
+Variables for maps and the AI service are added in the phases that need them.
 
 ## Accounts and access control
 
@@ -140,6 +151,20 @@ Variables for storage, maps and the AI service are added in the phases that need
   the ellipsoid.
 - **Categories** from PRD §5.3 are seeded (Bangla names need native-speaker review) and managed by
   Super Admins; at most two levels deep.
+
+## Reports and photos
+
+- Photos go straight from the browser to storage through a short-lived (5 minute) signed URL.
+  The **worker** (`npm run worker`, or `RUN_WORKERS=true` in the API process) checks each photo
+  by its content, re-encodes it without metadata (GPS included), makes a thumbnail and deletes
+  the original. Run the worker alongside the API, or photos stay "checking".
+- Submitting needs a verified email and an `Idempotency-Key` header; repeating a key returns the
+  same report. Edits need `If-Match: <version>`; a stale version gets `409`, none gets `428`.
+- Status changes go through one transition table (`report-transitions.ts`); status history and
+  edits are append-only in the database.
+- Public responses never include the reporter and round locations to 3 decimals (about 100 m).
+- In staging/production (Cloudflare R2), add a bucket CORS rule allowing `PUT` and `GET` from the
+  web origin with the `Content-Type` header.
 
 ## API conventions
 
