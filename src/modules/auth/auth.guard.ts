@@ -6,13 +6,19 @@ import { ErrorCode } from '../../common/errors/error-codes';
 import { APP_CONFIG, type AppConfig } from '../../config/app-config';
 import { PrismaService } from '../../database/prisma.service';
 import { AccessService } from '../access/access.service';
-import type { Permission } from '../access/permissions';
+import type { OrganizationPermission, Permission } from '../access/permissions';
 import { AUTH_USER_SELECT, SIGN_IN_ALLOWED_STATUSES } from './auth-context';
-import { ALLOW_INCOMPLETE_MFA, IS_PUBLIC, REQUIRED_PERMISSIONS } from './auth.decorators';
+import {
+  ALLOW_INCOMPLETE_MFA,
+  IS_PUBLIC,
+  ORGANIZATION_PERMISSION,
+  REQUIRED_PERMISSIONS,
+} from './auth.decorators';
 import { constantTimeEquals } from './crypto';
 import { SessionService } from './session.service';
 
 const SAFE_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export const CSRF_HEADER = 'x-csrf-token';
 
 /**
@@ -21,7 +27,8 @@ export const CSRF_HEADER = 'x-csrf-token';
  * 2. Resolves the session cookie and reloads the user, ending sessions of inactive accounts.
  * 3. Public routes stop here.
  * 4. Otherwise requires a session, a valid CSRF token on state-changing requests, completed
- *    two-factor verification, and every permission the route declares.
+ *    two-factor verification, every permission the route declares and, for organization
+ *    routes, an active membership whose role grants the organization permission.
  */
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -76,6 +83,23 @@ export class AuthGuard implements CanActivate {
           ? ErrorCode.EMAIL_NOT_VERIFIED
           : ErrorCode.FORBIDDEN,
       );
+    }
+
+    const organizationPermission = this.reflector.getAllAndOverride<OrganizationPermission>(
+      ORGANIZATION_PERMISSION,
+      targets,
+    );
+    if (organizationPermission) {
+      const organizationId = request.params['organizationId'];
+      const allowed =
+        typeof organizationId === 'string' &&
+        UUID.test(organizationId) &&
+        (await this.access.hasOrganizationPermission(
+          auth.user.id,
+          organizationId,
+          organizationPermission,
+        ));
+      if (!allowed) throw new AppException(ErrorCode.NOT_FOUND);
     }
     return true;
   }

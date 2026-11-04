@@ -15,6 +15,9 @@ export const Permission = {
   OrganizationJoin: 'organization.join',
   AdminUsersRead: 'admin.users.read',
   AdminUsersManage: 'admin.users.manage',
+  /** Create, verify and suspend organizations; manage members and service areas of any organization. */
+  AdminOrganizationsManage: 'admin.organizations.manage',
+  AdminCategoriesManage: 'admin.categories.manage',
 } as const;
 
 export type Permission = (typeof Permission)[keyof typeof Permission];
@@ -39,6 +42,8 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, ReadonlySet<Permiss
     ...CITIZEN_PERMISSIONS,
     Permission.AdminUsersRead,
     Permission.AdminUsersManage,
+    Permission.AdminOrganizationsManage,
+    Permission.AdminCategoriesManage,
   ]),
 };
 
@@ -48,8 +53,11 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, ReadonlySet<Permiss
  */
 export const OrganizationPermission = {
   ViewOrganization: 'org.view',
+  ManageProfile: 'org.profile.manage',
   ManageMembers: 'org.members.manage',
+  ManageCategories: 'org.categories.manage',
   ReviewReports: 'org.reports.review',
+  VerifyWork: 'org.work.verify',
   ManageAssignments: 'org.assignments.manage',
   WorkAssignedTasks: 'org.tasks.work',
 } as const;
@@ -63,8 +71,17 @@ export const ORGANIZATION_ROLE_PERMISSIONS: Record<
 > = {
   ORG_ADMIN: new Set([
     OrganizationPermission.ViewOrganization,
+    OrganizationPermission.ManageProfile,
     OrganizationPermission.ManageMembers,
+    OrganizationPermission.ManageCategories,
     OrganizationPermission.ReviewReports,
+    OrganizationPermission.VerifyWork,
+    OrganizationPermission.ManageAssignments,
+  ]),
+  ORG_REVIEWER: new Set([
+    OrganizationPermission.ViewOrganization,
+    OrganizationPermission.ReviewReports,
+    OrganizationPermission.VerifyWork,
     OrganizationPermission.ManageAssignments,
   ]),
   WORKER: new Set([
