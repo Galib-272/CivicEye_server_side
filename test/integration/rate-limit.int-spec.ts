@@ -5,11 +5,13 @@ import { Redis } from 'ioredis';
 import request from 'supertest';
 import { configureApp } from '../../src/app.factory';
 import { AppModule } from '../../src/app.module';
+import { Public } from '../../src/modules/auth/auth.decorators';
 import { RedisThrottlerStorage } from '../../src/rate-limit/redis-throttler.storage';
 import { startEnvironment, type TestEnvironment } from './environment';
 
 // Phase 1 has no throttled business endpoints yet, so the suite mounts a probe route.
 @Controller({ path: 'rate-limit-probe', version: '1' })
+@Public()
 class ProbeController {
   @Get()
   get() {

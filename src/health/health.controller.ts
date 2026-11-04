@@ -4,10 +4,12 @@ import { SkipThrottle } from '@nestjs/throttler';
 import { AppException } from '../common/errors/app-exception';
 import { ErrorCode } from '../common/errors/error-codes';
 import { ApiEnvelopeResponse, ApiErrorResponses } from '../common/http/openapi';
+import { Public } from '../modules/auth/auth.decorators';
 import { LivenessDto, ReadinessDto } from './health.dto';
 import { HealthService } from './health.service';
 
 @ApiTags('health')
+@Public()
 @SkipThrottle()
 @Controller({ path: 'health', version: '1' })
 export class HealthController {

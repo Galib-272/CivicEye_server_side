@@ -2,6 +2,7 @@ import { VersioningType, type INestApplication } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule, type OpenAPIObject } from '@nestjs/swagger';
+import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
@@ -9,6 +10,7 @@ import { HttpExceptionFilter } from './common/errors/http-exception.filter';
 import { assignRequestId, REQUEST_ID_HEADER } from './common/http/request-id';
 import { ResponseEnvelopeInterceptor } from './common/http/response-envelope.interceptor';
 import type { AppConfig } from './config/app-config';
+import { CSRF_HEADER } from './modules/auth/auth.guard';
 
 export const API_PREFIX = 'api';
 export const OPENAPI_PATH = 'api/docs';
@@ -31,6 +33,7 @@ export function configureApp(app: NestExpressApplication, config: AppConfig): vo
   // First middleware: every response, including body-parser errors, carries a request ID.
   app.use(assignRequestId);
   app.useBodyParser('json', { limit: '100kb' });
+  app.use(cookieParser());
 
   app.use(
     helmet({
@@ -46,6 +49,7 @@ export function configureApp(app: NestExpressApplication, config: AppConfig): vo
     origin: config.corsOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Accept', 'Accept-Language', CSRF_HEADER, REQUEST_ID_HEADER],
     exposedHeaders: [REQUEST_ID_HEADER],
     maxAge: 600,
   });
