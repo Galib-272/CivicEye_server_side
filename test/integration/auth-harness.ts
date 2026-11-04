@@ -2,6 +2,7 @@ import type { Type } from '@nestjs/common';
 import type { NestExpressApplication } from '@nestjs/platform-express';
 import { Test } from '@nestjs/testing';
 import { Redis } from 'ioredis';
+import { Secret, TOTP } from 'otpauth';
 import request from 'supertest';
 import { configureApp } from '../../src/app.factory';
 import { AppModule } from '../../src/app.module';
@@ -66,6 +67,10 @@ export interface AuthHarness {
     verified?: boolean;
   }): Promise<string>;
   resetRateLimits(): Promise<void>;
+  /** Creates a Super Admin, signs in and completes two-factor setup. */
+  superAdmin(email: string): Promise<Client>;
+  /** Creates a verified citizen and signs them in. */
+  signedIn(email: string, name?: string): Promise<{ client: Client; userId: string }>;
   close(): Promise<void>;
 }
 
@@ -97,11 +102,29 @@ export class Client {
       .send(body);
   }
 
+  put(path: string, body: object = {}) {
+    return this.agent
+      .put(`/api/v1${path}`)
+      .set('Origin', WEB_ORIGIN)
+      .set('x-csrf-token', this.csrfToken)
+      .send(body);
+  }
+
   delete(path: string) {
     return this.agent
       .delete(`/api/v1${path}`)
       .set('Origin', WEB_ORIGIN)
       .set('x-csrf-token', this.csrfToken);
+  }
+
+  /** Multipart upload of one file plus text fields. */
+  upload(path: string, fields: Record<string, string>, file: { name: string; content: string }) {
+    let req = this.agent
+      .post(`/api/v1${path}`)
+      .set('Origin', WEB_ORIGIN)
+      .set('x-csrf-token', this.csrfToken);
+    for (const [key, value] of Object.entries(fields)) req = req.field(key, value);
+    return req.attach('file', Buffer.from(file.content), file.name);
   }
 
   async login(email: string, password = STRONG_PASSWORD) {
@@ -136,7 +159,7 @@ export async function startAuthHarness(extraControllers: Type[] = []): Promise<A
   const passwords = app.get(PasswordService);
   const redis = new Redis(env.redisUrl);
 
-  return {
+  const harness: AuthHarness = {
     env,
     app,
     prisma,
@@ -163,6 +186,29 @@ export async function startAuthHarness(extraControllers: Type[] = []): Promise<A
       });
       return user.id;
     },
+    async superAdmin(email) {
+      await harness.createUser({ email, name: 'Super Admin', platformRole: 'SUPER_ADMIN' });
+      const client = new Client(app);
+      await client.login(email);
+      const setup = await client.post('/auth/mfa/setup').expect(200);
+      const { secret } = (setup.body as { data: { secret: string } }).data;
+      const code = new TOTP({
+        secret: Secret.fromBase32(secret),
+        digits: 6,
+        period: 30,
+      }).generate();
+      const enabled = await client.post('/auth/mfa/enable', { code }).expect(200);
+      client.csrfToken = (
+        enabled.body as { data: { auth: { csrfToken: string } } }
+      ).data.auth.csrfToken;
+      return client;
+    },
+    async signedIn(email, name = 'Test User') {
+      const userId = await harness.createUser({ email, name });
+      const client = new Client(app);
+      await client.login(email);
+      return { client, userId };
+    },
     async resetRateLimits() {
       const keys = await redis.keys('civiceye:authlimit:*');
       if (keys.length > 0) await redis.del(...keys);
@@ -173,4 +219,5 @@ export async function startAuthHarness(extraControllers: Type[] = []): Promise<A
       await env.stop();
     },
   };
+  return harness;
 }
