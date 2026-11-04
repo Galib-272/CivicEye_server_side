@@ -1,0 +1,14 @@
+{
+  "identities": [
+    {
+      "name": "civiceye-dev",
+      "credentials": [
+        {
+          "accessKey": "civiceye-dev-access",
+          "secretKey": "civiceye-dev-secret-not-for-production"
+        }
+      ],
+      "actions": ["Admin", "Read", "Write", "List", "Tagging"]
+    }
+  ]
+}

@@ -10,6 +10,10 @@ function configWith(redisUrl: string) {
     MFA_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString('base64'),
     EMAIL_FROM: 'CivicEye <test@example.test>',
     SMTP_URL: 'smtp://127.0.0.1:1025',
+    STORAGE_ENDPOINT: 'http://127.0.0.1:8333',
+    STORAGE_BUCKET: 'civiceye-test',
+    STORAGE_ACCESS_KEY_ID: 'test-access',
+    STORAGE_SECRET_ACCESS_KEY: 'test-secret-value',
   });
 }
 

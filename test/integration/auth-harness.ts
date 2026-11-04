@@ -134,7 +134,10 @@ export class Client {
   }
 }
 
-export async function startAuthHarness(extraControllers: Type[] = []): Promise<AuthHarness> {
+export async function startAuthHarness(
+  extraControllers: Type[] = [],
+  options: { runWorkers?: boolean } = {},
+): Promise<AuthHarness> {
   const env = await startEnvironment();
   const deploy = runPrisma(['migrate', 'deploy'], env.databaseUrl);
   if (deploy.status !== 0) throw new Error(`migrate deploy failed:\n${deploy.output}`);
@@ -142,7 +145,10 @@ export async function startAuthHarness(extraControllers: Type[] = []): Promise<A
   const mail = new CapturingTransport();
   // The global per-IP limit is raised so the whole suite (one client IP) is not throttled;
   // the authentication limits under test are separate and unchanged.
-  const config = env.config({ rateLimit: { windowSeconds: 60, maxRequests: 10_000 } });
+  const config = env.config({
+    rateLimit: { windowSeconds: 60, maxRequests: 10_000 },
+    runWorkers: options.runWorkers ?? false,
+  });
   const moduleRef = await Test.createTestingModule({
     imports: [AppModule.forRoot(config)],
     controllers: extraControllers,

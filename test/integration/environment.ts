@@ -2,13 +2,14 @@ import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { PostgreSqlContainer, type StartedPostgreSqlContainer } from '@testcontainers/postgresql';
 import { RedisContainer, type StartedRedisContainer } from '@testcontainers/redis';
-import { GenericContainer } from 'testcontainers';
+import { GenericContainer, Wait, type StartedTestContainer } from 'testcontainers';
 import { loadConfig, type AppConfig } from '../../src/config/app-config';
 
 // Keep in sync with docker-compose.yml. The PostGIS image is built from the project's
 // Dockerfile so it runs natively on both amd64 (CI) and arm64 (Apple silicon).
 export const POSTGIS_IMAGE = 'civiceye-postgis:17';
 export const REDIS_IMAGE = 'redis:7.4-alpine';
+export const STORAGE_IMAGE = 'chrislusf/seaweedfs:3.97';
 
 const SERVER_ROOT = resolve(__dirname, '../..');
 
@@ -24,6 +25,7 @@ function buildPostgisImage(): Promise<unknown> {
 export interface TestEnvironment {
   postgres: StartedPostgreSqlContainer;
   redis: StartedRedisContainer;
+  storage: StartedTestContainer;
   databaseUrl: string;
   redisUrl: string;
   config(overrides?: Partial<AppConfig>): AppConfig;
@@ -32,16 +34,35 @@ export interface TestEnvironment {
 
 export async function startEnvironment(): Promise<TestEnvironment> {
   await buildPostgisImage();
-  const [postgres, redis] = await Promise.all([
+  const [postgres, redis, storage] = await Promise.all([
     new PostgreSqlContainer(POSTGIS_IMAGE).start(),
     new RedisContainer(REDIS_IMAGE).start(),
+    new GenericContainer(STORAGE_IMAGE)
+      .withCommand([
+        'server',
+        '-s3',
+        '-s3.port=8333',
+        '-s3.config=/etc/seaweedfs/s3.json',
+        '-dir=/data',
+      ])
+      .withCopyFilesToContainer([
+        {
+          source: resolve(SERVER_ROOT, 'docker/seaweedfs/s3.json'),
+          target: '/etc/seaweedfs/s3.json',
+        },
+      ])
+      .withExposedPorts(8333)
+      .withWaitStrategy(Wait.forLogMessage(/Start Seaweed S3 API Server/))
+      .start(),
   ]);
   const databaseUrl = postgres.getConnectionUri();
   const redisUrl = redis.getConnectionUrl();
+  const storageEndpoint = `http://${storage.getHost()}:${storage.getMappedPort(8333)}`;
 
   return {
     postgres,
     redis,
+    storage,
     databaseUrl,
     redisUrl,
     config: (overrides = {}) => ({
@@ -55,11 +76,18 @@ export async function startEnvironment(): Promise<TestEnvironment> {
         MFA_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString('base64'),
         EMAIL_FROM: 'CivicEye <test@example.test>',
         SMTP_URL: 'smtp://127.0.0.1:1025',
+        // Credentials match docker/seaweedfs/s3.json.
+        STORAGE_ENDPOINT: storageEndpoint,
+        STORAGE_BUCKET: 'civiceye-test',
+        STORAGE_ACCESS_KEY_ID: 'civiceye-dev-access',
+        STORAGE_SECRET_ACCESS_KEY: 'civiceye-dev-secret-not-for-production',
+        STORAGE_FORCE_PATH_STYLE: 'true',
+        STORAGE_CREATE_BUCKET: 'true',
       }),
       ...overrides,
     }),
     stop: async () => {
-      await Promise.allSettled([postgres.stop(), redis.stop()]);
+      await Promise.allSettled([postgres.stop(), redis.stop(), storage.stop()]);
     },
   };
 }

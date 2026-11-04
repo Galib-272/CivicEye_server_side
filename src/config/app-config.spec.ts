@@ -9,6 +9,10 @@ const validEnv = {
   MFA_ENCRYPTION_KEY: Buffer.alloc(32, 7).toString('base64'),
   EMAIL_FROM: 'CivicEye <test@example.test>',
   SMTP_URL: 'smtp://127.0.0.1:1025',
+  STORAGE_ENDPOINT: 'http://127.0.0.1:8333',
+  STORAGE_BUCKET: 'civiceye-test',
+  STORAGE_ACCESS_KEY_ID: 'test-access',
+  STORAGE_SECRET_ACCESS_KEY: 'test-secret-value',
 };
 
 function captureError(env: NodeJS.ProcessEnv): ConfigValidationError {
@@ -128,5 +132,21 @@ describe('loadConfig', () => {
       from: 'CivicEye <test@example.test>',
       resendApiKey: 're_test_0123456789',
     });
+  });
+
+  it('reads storage settings and refuses bucket creation in staging and production', () => {
+    expect(loadConfig({ ...validEnv, STORAGE_CREATE_BUCKET: 'true' }).storage).toMatchObject({
+      endpoint: 'http://127.0.0.1:8333',
+      region: 'auto',
+      bucket: 'civiceye-test',
+      createBucket: true,
+    });
+    expect(
+      captureError({ ...validEnv, NODE_ENV: 'production', STORAGE_CREATE_BUCKET: 'true' })
+        .issues[0],
+    ).toMatch(/^STORAGE_CREATE_BUCKET/);
+    expect(captureError({ ...validEnv, STORAGE_BUCKET: 'Bad_Bucket' }).issues[0]).toMatch(
+      /^STORAGE_BUCKET/,
+    );
   });
 });

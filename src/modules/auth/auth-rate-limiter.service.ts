@@ -33,6 +33,10 @@ export const AuthLimits = {
   resendVerificationPerUser: { bucket: 'verify-resend:user', limit: 5, windowSeconds: 60 * 60 },
   changePasswordPerUser: { bucket: 'password-change:user', limit: 10, windowSeconds: 15 * 60 },
   mfaPerUser: { bucket: 'mfa:user', limit: 10, windowSeconds: 15 * 60 },
+  // Approved report limits (Phase 4) and photo uploads to match (5 photos per report).
+  reportsPerUserHour: { bucket: 'reports:user:hour', limit: 10, windowSeconds: 60 * 60 },
+  reportsPerUserDay: { bucket: 'reports:user:day', limit: 30, windowSeconds: 24 * 60 * 60 },
+  mediaUploadsPerUser: { bucket: 'media:user', limit: 60, windowSeconds: 60 * 60 },
 } satisfies Record<string, LimitRule>;
 
 /**

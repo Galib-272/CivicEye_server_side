@@ -51,6 +51,21 @@ export const envSchema = z
     EMAIL_FROM: z.string().min(3).max(200),
     SMTP_URL: z.url({ protocol: /^smtps?$/ }).optional(),
     RESEND_API_KEY: z.string().min(10).optional(),
+
+    // S3-compatible object storage: SeaweedFS locally, Cloudflare R2 in staging/production.
+    STORAGE_ENDPOINT: z.url({ protocol: /^https?$/ }),
+    STORAGE_REGION: z.string().min(1).max(50).default('auto'),
+    STORAGE_BUCKET: z
+      .string()
+      .regex(/^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$/, 'must be a valid bucket name'),
+    STORAGE_ACCESS_KEY_ID: z.string().min(3),
+    STORAGE_SECRET_ACCESS_KEY: z.string().min(8),
+    STORAGE_FORCE_PATH_STYLE: booleanString.default(false),
+    // Create the bucket on startup. For local development and tests only.
+    STORAGE_CREATE_BUCKET: booleanString.default(false),
+
+    // Run background job processors in this process (the worker entry point sets this).
+    RUN_WORKERS: booleanString.default(false),
   })
   .superRefine((env, ctx) => {
     if (
@@ -61,6 +76,16 @@ export const envSchema = z
         code: 'custom',
         path: ['MFA_ENCRYPTION_KEY'],
         message: 'the public placeholder from .env.example cannot be used here',
+      });
+    }
+    if (
+      (env.NODE_ENV === 'staging' || env.NODE_ENV === 'production') &&
+      env.STORAGE_CREATE_BUCKET
+    ) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['STORAGE_CREATE_BUCKET'],
+        message: 'must not be enabled in staging or production',
       });
     }
     if (env.EMAIL_PROVIDER === 'smtp' && !env.SMTP_URL) {

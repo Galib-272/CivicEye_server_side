@@ -8,6 +8,8 @@
     "node": ">=24"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1161.0",
+    "@aws-sdk/s3-request-presigner": "^3.1161.0",
     "@nestjs/common": "^12.3.2",
     "@nestjs/core": "^12.3.2",
     "@nestjs/platform-express": "^12.3.2",
@@ -29,6 +31,7 @@
     "reflect-metadata": "^0.2.2",
     "resend": "^6.37.0",
     "rxjs": "^7.8.2",
+    "sharp": "^0.35.5",
     "zod": "^4.6.7"
   },
   "devDependencies": {
@@ -77,6 +80,8 @@
     "db:migrate:status": "prisma migrate status",
     "openapi:export": "ts-node --transpile-only scripts/export-openapi.ts",
     "postinstall": "prisma generate",
-    "admin:create": "ts-node --transpile-only scripts/create-admin.ts"
+    "admin:create": "ts-node --transpile-only scripts/create-admin.ts",
+    "worker": "node dist/worker.js",
+    "worker:dev": "ts-node --transpile-only src/worker.ts"
   }
 }

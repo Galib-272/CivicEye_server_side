@@ -20,6 +20,16 @@ export interface AppConfig {
   email:
     | { provider: 'smtp'; from: string; smtpUrl: string }
     | { provider: 'resend'; from: string; resendApiKey: string };
+  storage: {
+    endpoint: string;
+    region: string;
+    bucket: string;
+    accessKeyId: string;
+    secretAccessKey: string;
+    forcePathStyle: boolean;
+    createBucket: boolean;
+  };
+  runWorkers: boolean;
 }
 
 export class ConfigValidationError extends Error {
@@ -73,5 +83,15 @@ export function loadConfig(source: NodeJS.ProcessEnv = process.env): AppConfig {
       env.EMAIL_PROVIDER === 'resend'
         ? { provider: 'resend', from: env.EMAIL_FROM, resendApiKey: env.RESEND_API_KEY ?? '' }
         : { provider: 'smtp', from: env.EMAIL_FROM, smtpUrl: env.SMTP_URL ?? '' },
+    storage: {
+      endpoint: env.STORAGE_ENDPOINT,
+      region: env.STORAGE_REGION,
+      bucket: env.STORAGE_BUCKET,
+      accessKeyId: env.STORAGE_ACCESS_KEY_ID,
+      secretAccessKey: env.STORAGE_SECRET_ACCESS_KEY,
+      forcePathStyle: env.STORAGE_FORCE_PATH_STYLE,
+      createBucket: env.STORAGE_CREATE_BUCKET,
+    },
+    runWorkers: env.RUN_WORKERS,
   };
 }
