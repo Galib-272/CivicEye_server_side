@@ -164,6 +164,17 @@ export const ownReportSchema = publicReportSchema.extend({
   informationRequest: z.object({ message: z.string(), requestedAt: z.iso.datetime() }).nullable(),
   rejection: z.object({ reason: z.enum(REJECTION_REASONS), message: z.string() }).nullable(),
   photos: z.array(photo),
+  /** The verified fix, once the report is resolved: what was done and after photos. */
+  completion: z
+    .object({
+      description: z.string(),
+      photos: z.array(photo),
+      resolvedAt: z.iso.datetime(),
+    })
+    .nullable(),
+  canGiveFeedback: z.boolean(),
+  /** The citizen's "Is it fixed?" answer for the current resolution. */
+  feedback: z.object({ fixed: z.boolean(), comment: z.string().nullable() }).nullable(),
 });
 
 /** An organization's message on a report, as citizens and the public see it. */

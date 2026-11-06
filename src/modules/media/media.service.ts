@@ -43,13 +43,14 @@ export class MediaService {
     uploaderId: string,
     contentType: (typeof ACCEPTED_CONTENT_TYPES)[number],
     byteSize: number,
+    purpose: 'REPORT_PHOTO' | 'WORK_PHOTO' = 'REPORT_PHOTO',
   ) {
     await this.limiter.consume(AuthLimits.mediaUploadsPerUser, uploaderId);
     const key = `uploads/${randomUUID()}`;
     const media = await this.prisma.reportMedia.create({
       data: {
         uploaderId,
-        purpose: 'REPORT_PHOTO',
+        purpose,
         originalKey: key,
         declaredType: contentType,
         declaredBytes: byteSize,
@@ -157,11 +158,14 @@ export class MediaService {
     };
   }
 
-  /** Removes a photo that has not been attached to a report yet. */
+  /** Removes a photo that has not been attached to a report or a work update yet. */
   async remove(mediaId: string, uploaderId: string): Promise<void> {
     const media = await this.ownedMedia(mediaId, uploaderId);
-    if (media.reportId) {
-      throw new AppException(ErrorCode.CONFLICT, 'Photos on a submitted report cannot be removed.');
+    if (media.reportId || media.assignmentId) {
+      throw new AppException(
+        ErrorCode.CONFLICT,
+        'Photos that are already in use cannot be removed.',
+      );
     }
     await this.prisma.reportMedia.delete({ where: { id: media.id } });
     await Promise.all(

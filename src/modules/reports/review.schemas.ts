@@ -1,13 +1,18 @@
 import { z } from 'zod';
 import type { ReportStatus } from '../../generated/prisma/enums';
 import { category, photo, REJECTION_REASONS, ROUTING_OUTCOMES, status } from './reports.schemas';
+import { assignmentSchema, feedbackViewSchema } from './work.schemas';
 
 /** Review queue tabs and the statuses each one shows. */
 export const QUEUE_TABS = {
   NEW: ['SUBMITTED'],
   UNDER_REVIEW: ['UNDER_REVIEW'],
   NEEDS_INFORMATION: ['NEEDS_INFORMATION'],
-  ACCEPTED: ['ACCEPTED'],
+  /** Accepted or reopened: waiting for a worker. */
+  ACCEPTED: ['ACCEPTED', 'REOPENED'],
+  IN_WORK: ['ASSIGNED', 'IN_PROGRESS', 'WORK_COMPLETED'],
+  TO_VERIFY: ['PENDING_VERIFICATION'],
+  RESOLVED: ['RESOLVED', 'CLOSED'],
   CLOSED: ['REJECTED', 'WITHDRAWN'],
 } as const satisfies Record<string, readonly ReportStatus[]>;
 export type QueueTab = keyof typeof QUEUE_TABS;
@@ -100,6 +105,10 @@ export const organizationReportSchema = z.object({
   photos: z.array(photo),
   informationRequests: z.array(conversationEntry),
   rejection: z.object({ reason: z.enum(REJECTION_REASONS), message: z.string() }).nullable(),
+  /** Every assignment of this report, oldest first, with events, evidence and verification. */
+  assignments: z.array(assignmentSchema),
+  /** The reporting citizen's "Is it fixed?" answers. */
+  feedback: z.array(feedbackViewSchema),
   /** What the viewer may do now; the API checks again on every action. */
   actions: z.object({
     startReview: z.boolean(),
@@ -107,6 +116,12 @@ export const organizationReportSchema = z.object({
     accept: z.boolean(),
     reject: z.boolean(),
     transfer: z.boolean(),
+    assign: z.boolean(),
+    reassign: z.boolean(),
+    cancelAssignment: z.boolean(),
+    verify: z.boolean(),
+    reopen: z.boolean(),
+    close: z.boolean(),
   }),
 });
 export type OrganizationReport = z.infer<typeof organizationReportSchema>;

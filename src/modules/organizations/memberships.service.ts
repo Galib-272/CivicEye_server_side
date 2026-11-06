@@ -10,6 +10,7 @@ import type { AuthenticatedUser } from '../auth/auth-context';
 import { generateToken, sha256Hex } from '../auth/crypto';
 import { EmailService } from '../email/email.service';
 import type { InviteInput } from './organizations.schemas';
+import { releaseOpenAssignments } from '../reports/assignment-workflow';
 
 const INVITATION_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
@@ -265,6 +266,14 @@ export class MembershipsService {
       if (member.role === role) return;
       if (member.role === 'ORG_ADMIN') await this.assertNotLastAdmin(tx, organizationId);
       await tx.organizationMember.update({ where: { id: memberId }, data: { role } });
+      if (member.role === 'WORKER') {
+        await releaseOpenAssignments(tx, {
+          organizationId,
+          workerId: member.userId,
+          reason: 'The worker’s role changed; the task needs a new worker.',
+          actorId,
+        });
+      }
       await this.audit.record(
         {
           action: 'organization.member_role_changed',
@@ -285,6 +294,13 @@ export class MembershipsService {
       const member = await this.lockedActiveMember(tx, organizationId, memberId);
       if (member.role === 'ORG_ADMIN') await this.assertNotLastAdmin(tx, organizationId);
       await tx.organizationMember.update({ where: { id: memberId }, data: { status: 'REMOVED' } });
+      // Approved policy: a departing worker's open tasks go back to the organization.
+      await releaseOpenAssignments(tx, {
+        organizationId,
+        workerId: member.userId,
+        reason: 'The worker left the organization; the task needs a new worker.',
+        actorId,
+      });
       await this.audit.record(
         {
           action: 'organization.member_removed',

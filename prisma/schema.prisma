@@ -72,6 +72,12 @@ model User {
   internalNotes           ReportInternalNote[]             @relation("InternalNoteAuthor")
   publicUpdates           ReportPublicUpdate[]             @relation("PublicUpdateAuthor")
   hiddenPublicUpdates     ReportPublicUpdate[]             @relation("PublicUpdateHiddenBy")
+  workAssignments         ReportAssignment[]               @relation("AssignmentWorker")
+  assignmentsMade         ReportAssignment[]               @relation("AssignmentAssigner")
+  assignmentEvents        AssignmentEvent[]                @relation("AssignmentEventActor")
+  completionSubmissions   CompletionSubmission[]           @relation("CompletionWorker")
+  verifications           WorkVerification[]               @relation("WorkVerifier")
+  reportFeedback          CitizenFeedback[]                @relation("FeedbackCitizen")
   idempotencyKeys         IdempotencyKey[]                 @relation("IdempotencyKeyUser")
 
   @@map("users")
@@ -217,6 +223,7 @@ model Organization {
   transfersIn         ReportTransfer[]                 @relation("TransferTo")
   internalNotes       ReportInternalNote[]
   publicUpdates       ReportPublicUpdate[]
+  assignments         ReportAssignment[]
 
   @@index([verificationState, isActive])
   @@map("organizations")
@@ -355,6 +362,8 @@ model OrganizationMember {
   invitedById    String?          @map("invited_by_id") @db.Uuid
   createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
   approvedAt     DateTime?        @map("approved_at") @db.Timestamptz(3)
+  /// Workers set this; unavailable workers cannot receive new assignments.
+  available      Boolean          @default(true)
   updatedAt      DateTime         @updatedAt @map("updated_at") @db.Timestamptz(3)
 
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
@@ -489,6 +498,9 @@ model Report {
   transfers        ReportTransfer[]
   internalNotes    ReportInternalNote[]
   publicUpdates    ReportPublicUpdate[]
+  assignments      ReportAssignment[]
+  verifications    WorkVerification[]
+  feedback         CitizenFeedback[]
 
   @@index([location], type: Gist)
   @@index([citizenId, createdAt])
@@ -545,6 +557,41 @@ enum MediaStatus {
 
 enum MediaPurpose {
   REPORT_PHOTO
+  /// Progress and completion photos taken by the assigned worker.
+  WORK_PHOTO
+}
+
+/// PENDING → ACCEPTED → IN_PROGRESS → COMPLETED (evidence submitted) → VERIFIED; or it ends
+/// as DECLINED, RETURNED or CANCELLED. At most one active assignment per report.
+enum AssignmentState {
+  PENDING
+  ACCEPTED
+  IN_PROGRESS
+  COMPLETED
+  VERIFIED
+  DECLINED
+  RETURNED
+  CANCELLED
+}
+
+enum AssignmentEventKind {
+  ASSIGNED
+  ACCEPTED
+  DECLINED
+  STARTED
+  PROGRESS
+  COMPLETED
+  APPROVED
+  REJECTED
+  MORE_EVIDENCE_NEEDED
+  RETURNED
+  CANCELLED
+}
+
+enum VerificationOutcome {
+  APPROVED
+  REJECTED
+  NEEDS_MORE_EVIDENCE
 }
 
 model ReportMedia {
@@ -568,10 +615,15 @@ model ReportMedia {
   createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
   processedAt     DateTime?    @map("processed_at") @db.Timestamptz(3)
 
-  report   Report? @relation(fields: [reportId], references: [id], onDelete: Restrict)
-  uploader User    @relation("MediaUploader", fields: [uploaderId], references: [id], onDelete: Restrict)
+  /// Set for WORK_PHOTO media once used in a progress update or completion submission.
+  assignmentId String? @map("assignment_id") @db.Uuid
+
+  report     Report?           @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  uploader   User              @relation("MediaUploader", fields: [uploaderId], references: [id], onDelete: Restrict)
+  assignment ReportAssignment? @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
 
   @@index([reportId, position])
+  @@index([assignmentId])
   @@index([uploaderId, status, createdAt])
   @@map("report_media")
 }
@@ -733,4 +785,111 @@ model ReportPublicUpdate {
 
   @@index([reportId, createdAt])
   @@map("report_public_updates")
+}
+
+/// One worker's responsibility for a report. State and timestamps change as work moves on;
+/// who, what and for whom never change (database trigger), and every change is recorded in
+/// assignment_events.
+model ReportAssignment {
+  id             String          @id @default(uuid(7)) @db.Uuid
+  reportId       String          @map("report_id") @db.Uuid
+  organizationId String          @map("organization_id") @db.Uuid
+  workerId       String          @map("worker_id") @db.Uuid
+  assignedById   String          @map("assigned_by_id") @db.Uuid
+  state          AssignmentState @default(PENDING)
+  /// Instructions from the person who assigned the task.
+  note           String?         @db.VarChar(1000)
+  assignedAt     DateTime        @default(now()) @map("assigned_at") @db.Timestamptz(3)
+  acceptedAt     DateTime?       @map("accepted_at") @db.Timestamptz(3)
+  startedAt      DateTime?       @map("started_at") @db.Timestamptz(3)
+  completedAt    DateTime?       @map("completed_at") @db.Timestamptz(3)
+  endedAt        DateTime?       @map("ended_at") @db.Timestamptz(3)
+  endReason      String?         @map("end_reason") @db.VarChar(1000)
+
+  report        Report                 @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization  Organization           @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  worker        User                   @relation("AssignmentWorker", fields: [workerId], references: [id], onDelete: Restrict)
+  assignedBy    User                   @relation("AssignmentAssigner", fields: [assignedById], references: [id], onDelete: Restrict)
+  events        AssignmentEvent[]
+  submissions   CompletionSubmission[]
+  verifications WorkVerification[]
+  media         ReportMedia[]
+
+  @@index([reportId, assignedAt])
+  @@index([workerId, state])
+  @@index([organizationId, state])
+  @@map("report_assignments")
+}
+
+/// Everything that happened to an assignment, including progress notes. Append-only.
+model AssignmentEvent {
+  id           String              @id @default(uuid(7)) @db.Uuid
+  assignmentId String              @map("assignment_id") @db.Uuid
+  /// Null for system actions (e.g. the worker left the organization).
+  actorId      String?             @map("actor_id") @db.Uuid
+  kind         AssignmentEventKind
+  message      String?             @db.VarChar(2000)
+  mediaIds     String[]            @map("media_ids") @db.Uuid
+  createdAt    DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  assignment ReportAssignment @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  actor      User?            @relation("AssignmentEventActor", fields: [actorId], references: [id], onDelete: Restrict)
+
+  @@index([assignmentId, createdAt])
+  @@map("assignment_events")
+}
+
+/// The worker's claim that the work is done, with after photos. Append-only.
+model CompletionSubmission {
+  id           String   @id @default(uuid(7)) @db.Uuid
+  assignmentId String   @map("assignment_id") @db.Uuid
+  workerId     String   @map("worker_id") @db.Uuid
+  description  String   @db.VarChar(2000)
+  mediaIds     String[] @map("media_ids") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  assignment   ReportAssignment  @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  worker       User              @relation("CompletionWorker", fields: [workerId], references: [id], onDelete: Restrict)
+  verification WorkVerification?
+
+  @@index([assignmentId, createdAt])
+  @@map("completion_submissions")
+}
+
+/// The organization's check of one completion submission, by someone other than the worker.
+/// Append-only.
+model WorkVerification {
+  id           String              @id @default(uuid(7)) @db.Uuid
+  reportId     String              @map("report_id") @db.Uuid
+  assignmentId String              @map("assignment_id") @db.Uuid
+  submissionId String              @unique @map("submission_id") @db.Uuid
+  verifierId   String              @map("verifier_id") @db.Uuid
+  outcome      VerificationOutcome
+  reason       String?             @db.VarChar(1000)
+  createdAt    DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report     Report               @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  assignment ReportAssignment     @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  submission CompletionSubmission @relation(fields: [submissionId], references: [id], onDelete: Restrict)
+  verifier   User                 @relation("WorkVerifier", fields: [verifierId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("work_verifications")
+}
+
+/// "Is it fixed?" from the reporting citizen after resolution. Feedback only: it never
+/// changes the report's status. Append-only.
+model CitizenFeedback {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  reportId  String   @map("report_id") @db.Uuid
+  citizenId String   @map("citizen_id") @db.Uuid
+  fixed     Boolean
+  comment   String?  @db.VarChar(1000)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report  Report @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  citizen User   @relation("FeedbackCitizen", fields: [citizenId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("citizen_feedback")
 }

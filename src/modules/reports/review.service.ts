@@ -9,6 +9,7 @@ import type { Prisma } from '../../generated/prisma/client';
 import { AuditService } from '../audit/audit.service';
 import { MediaService } from '../media/media.service';
 import { ServiceAreasService } from '../service-areas/service-areas.service';
+import { AssignmentViews } from './assignment-views.service';
 import { canTransition } from './report-transitions';
 import { applyTransition, lockReport } from './report-workflow';
 import { ReportsService } from './reports.service';
@@ -64,6 +65,7 @@ export class ReviewService {
     private readonly media: MediaService,
     private readonly serviceAreas: ServiceAreasService,
     private readonly reports: ReportsService,
+    private readonly assignments: AssignmentViews,
   ) {}
 
   // ─── Queue ──────────────────────────────────────────────────────────────────
@@ -137,7 +139,7 @@ export class ReviewService {
     });
     if (!row) throw new AppException(ErrorCode.NOT_FOUND);
 
-    const [media, requests, decision] = await Promise.all([
+    const [media, requests, decision, assignments, feedback] = await Promise.all([
       this.prisma.reportMedia.findMany({
         where: { reportId: row.id },
         orderBy: { position: 'asc' },
@@ -166,9 +168,18 @@ export class ReviewService {
             select: { rejectionReason: true, publicMessage: true },
           })
         : null,
+      this.assignments.forReport(row.id),
+      this.prisma.citizenFeedback.findMany({
+        where: { reportId: row.id },
+        orderBy: { createdAt: 'asc' },
+        select: { fixed: true, comment: true, createdAt: true },
+      }),
     ]);
     const photos = await Promise.all(media.map((item) => this.media.toView(item)));
     const reviewer = viewer.kind === 'organization';
+    const can = (name: Parameters<typeof canTransition>[0]) =>
+      reviewer && canTransition(name, row.status, 'org_reviewer');
+    const awaitingVerification = assignments.some((assignment) => assignment.state === 'COMPLETED');
     return {
       publicId: row.publicId,
       title: row.title,
@@ -211,7 +222,19 @@ export class ReviewService {
         accept: reviewer && canTransition('accept', row.status, 'org_reviewer'),
         reject: reviewer && canTransition('reject', row.status, 'org_reviewer'),
         transfer: reviewer && canTransition('transfer', row.status, 'org_reviewer'),
+        assign: can('assign'),
+        reassign: can('reassign'),
+        cancelAssignment: can('releaseAssignment'),
+        verify: can('approveWork') && awaitingVerification,
+        reopen: can('reopen'),
+        close: can('close'),
       },
+      assignments,
+      feedback: feedback.map((entry) => ({
+        fixed: entry.fixed,
+        comment: entry.comment,
+        createdAt: entry.createdAt.toISOString(),
+      })),
     };
   }
 

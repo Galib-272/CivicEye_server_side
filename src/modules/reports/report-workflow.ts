@@ -16,7 +16,8 @@ export interface LockedReport {
 }
 
 export interface TransitionOptions {
-  actorUserId: string;
+  /** Null for system actions. */
+  actorUserId: string | null;
   /** Recorded in the history, e.g. "citizen", "org_reviewer". */
   actorContext: string;
   /** Required by rules with requiresReason. Shown only to the reporting citizen. */

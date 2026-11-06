@@ -60,6 +60,7 @@ export const REPORT_SELECT = {
   routingOutcome: true,
   version: true,
   submittedAt: true,
+  resolvedAt: true,
   updatedAt: true,
   category: { select: { id: true, slug: true, nameEn: true, nameBn: true } },
   organization: { select: { name: true } },
@@ -116,7 +117,7 @@ export class ReportsService {
       },
     });
     const photos = await Promise.all(media.map((item) => this.media.toView(item)));
-    const [request, decision] = await Promise.all([
+    const [request, decision, completion, feedback] = await Promise.all([
       row.status === 'NEEDS_INFORMATION'
         ? this.prisma.reportInformationRequest.findFirst({
             where: { reportId: row.id, response: null },
@@ -129,6 +130,14 @@ export class ReportsService {
             where: { reportId: row.id, decision: 'REJECTED' },
             orderBy: { createdAt: 'desc' },
             select: { rejectionReason: true, publicMessage: true },
+          })
+        : null,
+      this.completion(row),
+      row.status === 'RESOLVED' && row.resolvedAt
+        ? this.prisma.citizenFeedback.findFirst({
+            where: { reportId: row.id, createdAt: { gte: row.resolvedAt } },
+            orderBy: { createdAt: 'desc' },
+            select: { fixed: true, comment: true },
           })
         : null,
     ]);
@@ -153,6 +162,36 @@ export class ReportsService {
           ? { reason: decision.rejectionReason, message: decision.publicMessage }
           : null,
       photos: photos.map(({ id, thumbnailUrl, displayUrl }) => ({ id, thumbnailUrl, displayUrl })),
+      completion,
+      canGiveFeedback: row.status === 'RESOLVED' && feedback === null,
+      feedback,
+    };
+  }
+
+  /** What the organization verified as the fix (description and after photos). */
+  private async completion(row: ReportRow) {
+    if ((row.status !== 'RESOLVED' && row.status !== 'CLOSED') || !row.resolvedAt) return null;
+    const approved = await this.prisma.workVerification.findFirst({
+      where: { reportId: row.id, outcome: 'APPROVED' },
+      orderBy: { createdAt: 'desc' },
+      select: { submission: { select: { description: true, mediaIds: true } } },
+    });
+    if (!approved) return null;
+    const media = await this.prisma.reportMedia.findMany({
+      where: { id: { in: approved.submission.mediaIds } },
+      select: {
+        id: true,
+        status: true,
+        rejectionReason: true,
+        displayKey: true,
+        thumbnailKey: true,
+      },
+    });
+    const photos = await Promise.all(media.map((item) => this.media.toView(item)));
+    return {
+      description: approved.submission.description,
+      photos: photos.map(({ id, thumbnailUrl, displayUrl }) => ({ id, thumbnailUrl, displayUrl })),
+      resolvedAt: row.resolvedAt.toISOString(),
     };
   }
 
@@ -275,7 +314,13 @@ export class ReportsService {
 
     const mediaIds = [...new Set(input.mediaIds)];
     const media = await this.prisma.reportMedia.findMany({
-      where: { id: { in: mediaIds }, uploaderId: citizen.id, reportId: null },
+      where: {
+        id: { in: mediaIds },
+        uploaderId: citizen.id,
+        reportId: null,
+        assignmentId: null,
+        purpose: 'REPORT_PHOTO',
+      },
       select: { id: true, status: true },
     });
     if (media.length !== mediaIds.length) {
@@ -332,7 +377,14 @@ export class ReportsService {
           });
           for (const [position, mediaId] of mediaIds.entries()) {
             const attached = await tx.reportMedia.updateMany({
-              where: { id: mediaId, uploaderId: citizen.id, reportId: null, status: 'PROCESSED' },
+              where: {
+                id: mediaId,
+                uploaderId: citizen.id,
+                reportId: null,
+                assignmentId: null,
+                purpose: 'REPORT_PHOTO',
+                status: 'PROCESSED',
+              },
               data: { reportId: id, position },
             });
             if (attached.count !== 1) {
@@ -555,7 +607,14 @@ export class ReportsService {
       }
       for (const [offset, mediaId] of mediaIds.entries()) {
         const updated = await tx.reportMedia.updateMany({
-          where: { id: mediaId, uploaderId: citizen.id, reportId: null, status: 'PROCESSED' },
+          where: {
+            id: mediaId,
+            uploaderId: citizen.id,
+            reportId: null,
+            assignmentId: null,
+            purpose: 'REPORT_PHOTO',
+            status: 'PROCESSED',
+          },
           data: { reportId: current.id, position: attached + offset },
         });
         if (updated.count !== 1) {

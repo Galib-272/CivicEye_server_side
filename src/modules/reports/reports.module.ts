@@ -9,6 +9,13 @@ import {
   OrganizationReportsController,
 } from './review.controller';
 import { ReviewService } from './review.service';
+import { AssignmentViews } from './assignment-views.service';
+import {
+  OrganizationWorkController,
+  ReportFeedbackController,
+  WorkController,
+} from './work.controller';
+import { WorkService } from './work.service';
 
 @Module({
   imports: [MediaModule, OrganizationsModule],
@@ -18,7 +25,10 @@ import { ReviewService } from './review.service';
     AdminReportsController,
     AdminReportModerationController,
     OrganizationReportsController,
+    OrganizationWorkController,
+    ReportFeedbackController,
+    WorkController,
   ],
-  providers: [ReportsService, ReviewService, IdempotencyService],
+  providers: [ReportsService, ReviewService, WorkService, AssignmentViews, IdempotencyService],
 })
 export class ReportsModule {}

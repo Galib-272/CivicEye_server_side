@@ -13,6 +13,8 @@ import { MediaService } from './media.service';
 const uploadIntentSchema = z.strictObject({
   contentType: z.enum(ACCEPTED_CONTENT_TYPES),
   byteSize: z.number().int().min(1).max(PHOTO_LIMITS.maxBytes),
+  /** WORK_PHOTO for an assigned worker's progress and completion photos. */
+  purpose: z.enum(['REPORT_PHOTO', 'WORK_PHOTO']).default('REPORT_PHOTO'),
 });
 
 const uploadIntentResponseSchema = z.object({
@@ -33,7 +35,7 @@ export const mediaViewSchema = z.object({
 
 const uuid = new ZodValidationPipe(z.uuid());
 
-/** Photo uploads for reports. Uploading requires a verified email, like submitting a report. */
+/** Photo uploads for reports and work. Uploading requires a verified email. */
 @ApiTags('media')
 @Controller({ path: 'media', version: '1' })
 @RequirePermissions(Permission.ReportCreate)
@@ -51,7 +53,12 @@ export class MediaController {
     @CurrentAuth() auth: AuthContext,
     @Body(new ZodValidationPipe(uploadIntentSchema)) input: z.infer<typeof uploadIntentSchema>,
   ) {
-    return this.media.createUploadIntent(auth.user.id, input.contentType, input.byteSize);
+    return this.media.createUploadIntent(
+      auth.user.id,
+      input.contentType,
+      input.byteSize,
+      input.purpose,
+    );
   }
 
   @Post(':mediaId/confirm')

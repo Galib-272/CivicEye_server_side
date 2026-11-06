@@ -14,7 +14,7 @@ export interface TransitionRule {
 /**
  * The single table of allowed report status changes (PRD §6.2). Every status change in the
  * application goes through ReportTransitionService, which consults this table; there is no
- * other way to change a report's status. Phase 6 adds the assignment and verification rules.
+ * other way to change a report's status.
  */
 export const TRANSITIONS = {
   withdraw: {
@@ -65,6 +65,75 @@ export const TRANSITIONS = {
     to: 'SUBMITTED',
     actors: ['org_reviewer'],
     requiresReason: true,
+  },
+  // ─── Assignment and verification (Phase 6, PRD §6.2, §8) ──────────────────────
+  assign: {
+    from: ['ACCEPTED', 'REOPENED'],
+    to: 'ASSIGNED',
+    actors: ['org_reviewer'],
+    requiresReason: false,
+  },
+  /** A supervisor moves the task to another worker. */
+  reassign: {
+    from: ['ASSIGNED', 'IN_PROGRESS'],
+    to: 'ASSIGNED',
+    actors: ['org_reviewer'],
+    requiresReason: true,
+  },
+  /**
+   * The task goes back to the organization: the worker declines or returns it (unsafe,
+   * inaccessible, partly done), a supervisor cancels it, or the worker left (system).
+   */
+  releaseAssignment: {
+    from: ['ASSIGNED', 'IN_PROGRESS'],
+    to: 'ACCEPTED',
+    actors: ['assigned_worker', 'org_reviewer', 'system'],
+    requiresReason: true,
+  },
+  startWork: {
+    from: ['ASSIGNED'],
+    to: 'IN_PROGRESS',
+    actors: ['assigned_worker'],
+    requiresReason: false,
+  },
+  /** The evidence itself is stored in completion_submissions. */
+  completeWork: {
+    from: ['IN_PROGRESS'],
+    to: 'WORK_COMPLETED',
+    actors: ['assigned_worker'],
+    requiresReason: false,
+  },
+  /** Approved policy: valid evidence goes straight to verification. */
+  submitForVerification: {
+    from: ['WORK_COMPLETED'],
+    to: 'PENDING_VERIFICATION',
+    actors: ['system'],
+    requiresReason: false,
+  },
+  approveWork: {
+    from: ['PENDING_VERIFICATION'],
+    to: 'RESOLVED',
+    actors: ['org_reviewer'],
+    requiresReason: false,
+  },
+  /** Verification failed or needs more evidence: the same worker continues. */
+  rejectWork: {
+    from: ['PENDING_VERIFICATION'],
+    to: 'IN_PROGRESS',
+    actors: ['org_reviewer'],
+    requiresReason: true,
+  },
+  reopen: {
+    from: ['RESOLVED'],
+    to: 'REOPENED',
+    actors: ['org_reviewer'],
+    requiresReason: true,
+  },
+  close: {
+    from: ['RESOLVED'],
+    to: 'CLOSED',
+    actors: ['org_reviewer'],
+    requiresReason: false,
   },
 } as const satisfies Record<string, TransitionRule>;
 
