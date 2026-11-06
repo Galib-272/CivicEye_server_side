@@ -1,4 +1,4 @@
-import type { PreferredLocale } from '../../generated/prisma/enums';
+import type { NotificationType, PreferredLocale } from '../../generated/prisma/enums';
 
 export type EmailTemplate =
   | { name: 'verify-email'; link: string }
@@ -6,7 +6,113 @@ export type EmailTemplate =
   | { name: 'password-changed' }
   | { name: 'registration-attempt'; signInLink: string; resetLink: string }
   | { name: 'organization-invitation'; organizationName: string; role: string; link: string }
-  | { name: 'organization-contact-confirmation'; organizationName: string; link: string };
+  | { name: 'organization-contact-confirmation'; organizationName: string; link: string }
+  | {
+      name: 'notification';
+      type: NotificationType;
+      /** The public report ID only; never the title, description, location or messages. */
+      reportPublicId: string | null;
+      link: string;
+    };
+
+/**
+ * One sentence per notification type. Deliberately free of report content: emails can be read
+ * on shared devices and in notification previews, so they only say what kind of change happened.
+ */
+export const NOTIFICATION_SENTENCES: Record<NotificationType, { en: string; bn: string }> = {
+  REPORT_UNDER_REVIEW: {
+    en: 'The responsible organization started reviewing your report.',
+    bn: 'দায়িত্বপ্রাপ্ত প্রতিষ্ঠান আপনার রিপোর্ট পর্যালোচনা শুরু করেছে।',
+  },
+  INFORMATION_REQUESTED: {
+    en: 'The organization needs more information about your report.',
+    bn: 'আপনার রিপোর্ট সম্পর্কে প্রতিষ্ঠানের আরও তথ্য প্রয়োজন।',
+  },
+  REPORT_ACCEPTED: {
+    en: 'Your report was accepted.',
+    bn: 'আপনার রিপোর্ট গৃহীত হয়েছে।',
+  },
+  REPORT_REJECTED: {
+    en: 'Your report was not accepted. The reason is on the report page.',
+    bn: 'আপনার রিপোর্ট গৃহীত হয়নি। কারণ রিপোর্টের পাতায় দেখুন।',
+  },
+  REPORT_TRANSFERRED: {
+    en: 'Your report was moved to another organization.',
+    bn: 'আপনার রিপোর্ট অন্য একটি প্রতিষ্ঠানে পাঠানো হয়েছে।',
+  },
+  REPORT_ASSIGNED: {
+    en: 'A worker has been assigned to your report.',
+    bn: 'আপনার রিপোর্টের জন্য একজন কর্মীকে দায়িত্ব দেওয়া হয়েছে।',
+  },
+  WORK_STARTED: {
+    en: 'Work on your report has started.',
+    bn: 'আপনার রিপোর্টের কাজ শুরু হয়েছে।',
+  },
+  REPORT_RESOLVED: {
+    en: 'Your report was resolved. Let the organization know whether it is fixed.',
+    bn: 'আপনার রিপোর্টের সমাধান হয়েছে। সমস্যাটি ঠিক হয়েছে কি না প্রতিষ্ঠানকে জানান।',
+  },
+  REPORT_REOPENED: {
+    en: 'Your report was reopened.',
+    bn: 'আপনার রিপোর্ট পুনরায় খোলা হয়েছে।',
+  },
+  REPORT_CLOSED: {
+    en: 'Your report was closed.',
+    bn: 'আপনার রিপোর্ট বন্ধ করা হয়েছে।',
+  },
+  PUBLIC_UPDATE_POSTED: {
+    en: 'The organization posted an update on your report.',
+    bn: 'প্রতিষ্ঠান আপনার রিপোর্টে একটি হালনাগাদ দিয়েছে।',
+  },
+  NEW_REPORT: {
+    en: 'A new report is waiting for review.',
+    bn: 'একটি নতুন রিপোর্ট পর্যালোচনার অপেক্ষায় আছে।',
+  },
+  INFORMATION_PROVIDED: {
+    en: 'A citizen answered your question about a report.',
+    bn: 'একজন নাগরিক একটি রিপোর্ট নিয়ে আপনার প্রশ্নের উত্তর দিয়েছেন।',
+  },
+  REPORT_WITHDRAWN: {
+    en: 'A citizen withdrew a report.',
+    bn: 'একজন নাগরিক একটি রিপোর্ট প্রত্যাহার করেছেন।',
+  },
+  TASK_DECLINED: {
+    en: 'A worker declined a task. The report needs a new worker.',
+    bn: 'একজন কর্মী একটি কাজ ফিরিয়ে দিয়েছেন। রিপোর্টটির জন্য নতুন কর্মী প্রয়োজন।',
+  },
+  TASK_RETURNED: {
+    en: 'A worker returned a task. The report needs a new worker.',
+    bn: 'একজন কর্মী একটি কাজ ফেরত দিয়েছেন। রিপোর্টটির জন্য নতুন কর্মী প্রয়োজন।',
+  },
+  WORK_SUBMITTED: {
+    en: 'Completed work is waiting for verification.',
+    bn: 'সম্পন্ন কাজ যাচাইয়ের অপেক্ষায় আছে।',
+  },
+  NOT_FIXED_FEEDBACK: {
+    en: 'A citizen says a resolved issue is not fixed.',
+    bn: 'একজন নাগরিক বলেছেন সমাধান হওয়া একটি সমস্যা ঠিক হয়নি।',
+  },
+  ACCEPTANCE_OVERDUE: {
+    en: 'A task has not been accepted for 48 hours.',
+    bn: '৪৮ ঘণ্টায়ও একটি কাজ গ্রহণ করা হয়নি।',
+  },
+  TASK_ASSIGNED: {
+    en: 'You have a new task.',
+    bn: 'আপনার জন্য একটি নতুন কাজ আছে।',
+  },
+  TASK_CANCELLED: {
+    en: 'One of your tasks was cancelled or given to another worker.',
+    bn: 'আপনার একটি কাজ বাতিল করা হয়েছে বা অন্য কর্মীকে দেওয়া হয়েছে।',
+  },
+  MORE_EVIDENCE_NEEDED: {
+    en: 'Your completed work needs changes or more evidence.',
+    bn: 'আপনার সম্পন্ন কাজে পরিবর্তন বা আরও প্রমাণ প্রয়োজন।',
+  },
+  WORK_APPROVED: {
+    en: 'Your completed work was approved.',
+    bn: 'আপনার সম্পন্ন কাজ অনুমোদিত হয়েছে।',
+  },
+};
 
 export interface RenderedEmail {
   subject: string;
@@ -101,6 +207,22 @@ function copyFor(template: EmailTemplate, locale: PreferredLocale): Copy {
             : 'To accept, sign in with this email address (create an account and verify your email if needed), then use the link below.',
         ],
         action: { label: bn ? 'আমন্ত্রণ গ্রহণ করুন' : 'Accept invitation', link: template.link },
+        footer: bn ? FOOTER.bn : FOOTER.en,
+      };
+    case 'notification':
+      return {
+        subject: bn ? 'সিভিকআই-এ নতুন হালনাগাদ' : 'New activity on CivicEye',
+        greeting: (name) => (bn ? `প্রিয় ${name},` : `Hello ${name},`),
+        paragraphs: [
+          NOTIFICATION_SENTENCES[template.type][bn ? 'bn' : 'en'],
+          ...(template.reportPublicId
+            ? [bn ? `রিপোর্ট: ${template.reportPublicId}` : `Report: ${template.reportPublicId}`]
+            : []),
+          bn
+            ? 'বিস্তারিত দেখতে সিভিকআই-এ সাইন ইন করুন। ইমেইল সেটিংস আপনার অ্যাকাউন্ট পাতায় বদলানো যায়।'
+            : 'Sign in to CivicEye to see the details. You can change email settings on your account page.',
+        ],
+        action: { label: bn ? 'খুলুন' : 'Open', link: template.link },
         footer: bn ? FOOTER.bn : FOOTER.en,
       };
     case 'organization-contact-confirmation':

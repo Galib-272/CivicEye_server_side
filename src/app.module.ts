@@ -12,6 +12,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { EmailModule } from './modules/email/email.module';
 import { OrganizationsModule } from './modules/organizations/organizations.module';
+import { NotificationsModule } from './modules/notifications/notifications.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { StorageModule } from './modules/storage/storage.module';
 import { UsersModule } from './modules/users/users.module';
@@ -40,6 +41,7 @@ export class AppModule {
         OrganizationsModule,
         StorageModule,
         ReportsModule,
+        NotificationsModule,
       ],
     };
   }

@@ -11,6 +11,7 @@ import { assignRequestId, REQUEST_ID_HEADER } from './common/http/request-id';
 import { ResponseEnvelopeInterceptor } from './common/http/response-envelope.interceptor';
 import type { AppConfig } from './config/app-config';
 import { CSRF_HEADER } from './modules/auth/auth.guard';
+import { ConfiguredIoAdapter } from './modules/notifications/realtime.adapter';
 
 export const API_PREFIX = 'api';
 export const OPENAPI_PATH = 'api/docs';
@@ -65,6 +66,7 @@ export function configureApp(app: NestExpressApplication, config: AppConfig): vo
 
   app.setGlobalPrefix(API_PREFIX);
   app.enableVersioning({ type: VersioningType.URI, defaultVersion: '1' });
+  app.useWebSocketAdapter(new ConfiguredIoAdapter(app, config));
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalInterceptors(new ResponseEnvelopeInterceptor());
   app.enableShutdownHooks();

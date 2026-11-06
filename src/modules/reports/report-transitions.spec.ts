@@ -50,7 +50,7 @@ const EXPECTED: Record<TransitionName, { from: string[]; actors: TransitionActor
     approveWork: { from: ['PENDING_VERIFICATION'], actors: ['org_reviewer'], to: 'RESOLVED' },
     rejectWork: { from: ['PENDING_VERIFICATION'], actors: ['org_reviewer'], to: 'IN_PROGRESS' },
     reopen: { from: ['RESOLVED'], actors: ['org_reviewer'], to: 'REOPENED' },
-    close: { from: ['RESOLVED'], actors: ['org_reviewer'], to: 'CLOSED' },
+    close: { from: ['RESOLVED'], actors: ['org_reviewer', 'system'], to: 'CLOSED' },
   };
 
 describe('report transition rules', () => {

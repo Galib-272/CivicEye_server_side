@@ -2,6 +2,7 @@ import { AppException } from '../../common/errors/app-exception';
 import { ErrorCode } from '../../common/errors/error-codes';
 import type { Prisma } from '../../generated/prisma/client';
 import type { ReportStatus } from '../../generated/prisma/enums';
+import { recordEvent } from '../notifications/outbox';
 import {
   canTransition,
   TRANSITIONS,
@@ -56,9 +57,10 @@ export async function applyTransition(
     throw new AppException(ErrorCode.VALIDATION_ERROR, 'A reason is required.');
   }
   const version = report.version + 1;
-  await tx.report.update({
+  const updated = await tx.report.update({
     where: { id: report.id },
     data: { ...options.data, status: rule.to, version },
+    select: { organizationId: true },
   });
   await tx.reportStatusHistory.create({
     data: {
@@ -70,6 +72,15 @@ export async function applyTransition(
       reason: options.reason ?? null,
       publicMessage: options.publicMessage ?? null,
     },
+  });
+  // Same transaction: the notification exists only if the change commits.
+  await recordEvent(tx, 'report.status_changed', {
+    reportId: report.id,
+    transition: name,
+    from: report.status,
+    to: rule.to,
+    organizationId: updated.organizationId,
+    actorUserId: options.actorUserId,
   });
   return version;
 }

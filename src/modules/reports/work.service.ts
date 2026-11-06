@@ -11,6 +11,7 @@ import { AuditService } from '../audit/audit.service';
 import type { AuthenticatedUser } from '../auth/auth-context';
 import { AssignmentViews } from './assignment-views.service';
 import { OPEN_ASSIGNMENT_STATES } from './assignment-workflow';
+import { recordEvent } from '../notifications/outbox';
 import { applyTransition, lockReport } from './report-workflow';
 import { ReportsService } from './reports.service';
 import { ReviewService } from './review.service';
@@ -217,6 +218,11 @@ export class WorkService {
           : 'MORE_EVIDENCE_NEEDED';
       await tx.assignmentEvent.create({
         data: { assignmentId: assignment.id, actorId, kind, message: input.reason ?? null },
+      });
+      await recordEvent(tx, 'assignment.verified', {
+        assignmentId: assignment.id,
+        outcome: input.outcome,
+        actorUserId: actorId,
       });
       await this.record(tx, request, actorId, report.id, 'report.work_verified', {
         organizationId,
@@ -577,6 +583,7 @@ export class WorkService {
       if (given > 0) {
         throw new AppException(ErrorCode.CONFLICT, 'You already gave feedback on this fix.');
       }
+      if (!input.fixed) await recordEvent(tx, 'report.not_fixed', { reportId: id });
       await tx.citizenFeedback.create({
         data: {
           reportId: id,
@@ -682,6 +689,10 @@ export class WorkService {
         message: input.note ?? null,
       },
     });
+    await recordEvent(tx, 'assignment.created', {
+      assignmentId: assignment.id,
+      actorUserId: actorId,
+    });
   }
 
   private async endAssignment(
@@ -697,6 +708,7 @@ export class WorkService {
       data: { state, endedAt: new Date(), endReason: reason },
     });
     await tx.assignmentEvent.create({ data: { assignmentId, actorId, kind, message: reason } });
+    await recordEvent(tx, 'assignment.ended', { assignmentId, kind: state, actorUserId: actorId });
   }
 
   /** Links the worker's own processed WORK_PHOTO uploads to the assignment. */

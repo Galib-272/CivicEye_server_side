@@ -1,5 +1,6 @@
 import type { Prisma } from '../../generated/prisma/client';
 import type { AssignmentState } from '../../generated/prisma/enums';
+import { recordEvent } from '../notifications/outbox';
 import { applyTransition } from './report-workflow';
 
 /** Assignments a worker is still responsible for (before evidence is submitted). */
@@ -41,6 +42,11 @@ export async function releaseOpenAssignments(
         kind: 'CANCELLED',
         message: input.reason,
       },
+    });
+    await recordEvent(tx, 'assignment.ended', {
+      assignmentId: assignment.id,
+      kind: 'CANCELLED',
+      actorUserId: input.actorId,
     });
     await applyTransition(tx, report, 'releaseAssignment', 'system', {
       actorUserId: input.actorId,

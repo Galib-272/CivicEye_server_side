@@ -129,10 +129,11 @@ export const TRANSITIONS = {
     actors: ['org_reviewer'],
     requiresReason: true,
   },
+  /** By a reviewer, or automatically 14 days after resolution (approved policy). */
   close: {
     from: ['RESOLVED'],
     to: 'CLOSED',
-    actors: ['org_reviewer'],
+    actors: ['org_reviewer', 'system'],
     requiresReason: false,
   },
 } as const satisfies Record<string, TransitionRule>;

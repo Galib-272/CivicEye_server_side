@@ -15,6 +15,7 @@ import { PHOTO_LIMITS } from '../media/image-processing';
 import { MediaService } from '../media/media.service';
 import { ServiceAreasService } from '../service-areas/service-areas.service';
 import { canTransition, EDITABLE_STATUSES } from './report-transitions';
+import { recordEvent } from '../notifications/outbox';
 import { applyTransition, lockReport } from './report-workflow';
 import type {
   CreateReportInput,
@@ -391,6 +392,7 @@ export class ReportsService {
               throw new AppException(ErrorCode.CONFLICT, 'A photo was used by another submission.');
             }
           }
+          await recordEvent(tx, 'report.submitted', { reportId: id });
           await this.audit.record(
             {
               action: 'report.submitted',
@@ -757,6 +759,11 @@ export class ReportsService {
           decidedById: actorId,
           reason,
         },
+      });
+      await recordEvent(tx, 'report.routed', {
+        reportId: report.id,
+        organizationId,
+        actorUserId: actorId,
       });
       await this.audit.record(
         {

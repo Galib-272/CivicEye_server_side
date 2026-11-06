@@ -11,6 +11,7 @@ import { MediaService } from '../media/media.service';
 import { ServiceAreasService } from '../service-areas/service-areas.service';
 import { AssignmentViews } from './assignment-views.service';
 import { canTransition } from './report-transitions';
+import { recordEvent } from '../notifications/outbox';
 import { applyTransition, lockReport } from './report-workflow';
 import { ReportsService } from './reports.service';
 import {
@@ -588,6 +589,7 @@ export class ReviewService {
     const reportId = await this.reportId(publicId, { kind: 'organization', organizationId });
     await this.prisma.$transaction(async (tx) => {
       await tx.reportPublicUpdate.create({ data: { reportId, organizationId, authorId, body } });
+      await recordEvent(tx, 'report.update_posted', { reportId, actorUserId: authorId });
       await this.record(tx, request, authorId, reportId, 'report.update_posted', {
         organizationId,
       });
