@@ -43,6 +43,9 @@ class ResendTransport implements EmailTransport {
 
 export const EMAIL_TRANSPORT = Symbol('EMAIL_TRANSPORT');
 
+/** Waits before retrying an account email; after the last one it is logged as failed. */
+export const ACCOUNT_EMAIL_RETRY_DELAYS_MS = [2_000, 10_000] as const;
+
 export function createEmailTransport(config: AppConfig): EmailTransport {
   return config.email.provider === 'resend'
     ? new ResendTransport(config.email.resendApiKey)
@@ -65,21 +68,48 @@ export class EmailService {
     return url.toString();
   }
 
+  /** Renders and sends one email, throwing if the provider refuses it. */
+  async send(
+    recipient: { email: string; name: string; preferredLocale: PreferredLocale },
+    template: EmailTemplate,
+  ): Promise<void> {
+    const rendered = renderEmail(template, recipient.preferredLocale, recipient.name);
+    await this.transport.send(this.config.email.from, { to: recipient.email, ...rendered });
+  }
+
   /**
    * Sends in the background and never throws: a failed email must not undo or fail the action
-   * that triggered it, and response time must not depend on whether an email was sent.
-   * Reliable delivery with retries arrives with the notification outbox (Phase 7).
+   * that triggered it. Transient failures are retried in this process (after 2 s and 10 s), so
+   * one-time links in account emails are never written to a queue or the database.
    */
   sendInBackground(
     recipient: { email: string; name: string; preferredLocale: PreferredLocale },
     template: EmailTemplate,
   ): void {
-    const rendered = renderEmail(template, recipient.preferredLocale, recipient.name);
-    void this.transport
-      .send(this.config.email.from, { to: recipient.email, ...rendered })
-      .catch((error: unknown) =>
-        // The address is personal data; log the template only.
-        this.logger.error({ err: error, template: template.name }, 'Email delivery failed'),
-      );
+    void this.sendWithRetry(recipient, template, ACCOUNT_EMAIL_RETRY_DELAYS_MS);
+  }
+
+  private async sendWithRetry(
+    recipient: { email: string; name: string; preferredLocale: PreferredLocale },
+    template: EmailTemplate,
+    delays: readonly number[],
+  ): Promise<void> {
+    for (let attempt = 0; ; attempt += 1) {
+      try {
+        await this.send(recipient, template);
+        return;
+      } catch (error) {
+        const delay = delays[attempt];
+        if (delay === undefined) {
+          // The address is personal data; log the template only.
+          this.logger.error(
+            { err: error, template: template.name, attempts: attempt + 1 },
+            'Email delivery failed',
+          );
+          return;
+        }
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+    }
   }
 }
