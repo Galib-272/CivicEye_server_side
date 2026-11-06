@@ -20,6 +20,7 @@ export const Permission = {
   AdminCategoriesManage: 'admin.categories.manage',
   /** See reports no organization covers and route them manually. */
   AdminReportsTriage: 'admin.reports.triage',
+  AdminReportsManage: 'admin.reports.manage',
 } as const;
 
 export type Permission = (typeof Permission)[keyof typeof Permission];
@@ -47,6 +48,7 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, ReadonlySet<Permiss
     Permission.AdminOrganizationsManage,
     Permission.AdminCategoriesManage,
     Permission.AdminReportsTriage,
+    Permission.AdminReportsManage,
   ]),
 };
 

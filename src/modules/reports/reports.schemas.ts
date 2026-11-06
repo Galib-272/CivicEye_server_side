@@ -26,7 +26,7 @@ export const REPORT_STATUSES = [
   'WITHDRAWN',
   'DUPLICATE',
 ] as const;
-const status = z.enum(REPORT_STATUSES);
+export const status = z.enum(REPORT_STATUSES);
 
 // Requests.
 
@@ -66,6 +66,30 @@ export const updateReportSchema = z
   });
 export type UpdateReportInput = z.infer<typeof updateReportSchema>;
 
+/** The citizen's answer to an information request, with up to 5 photos in total. */
+export const provideInformationSchema = z.strictObject({
+  message: z.string().trim().min(10).max(2000),
+  mediaIds: z.array(z.uuid()).max(PHOTO_LIMITS.maxPerReport).default([]),
+});
+export type ProvideInformationInput = z.infer<typeof provideInformationSchema>;
+
+export const REJECTION_REASONS = [
+  'NOT_A_CIVIC_ISSUE',
+  'INSUFFICIENT_INFORMATION',
+  'ALREADY_FIXED',
+  'INAPPROPRIATE_CONTENT',
+  'NO_RESPONSE',
+  'OTHER',
+] as const;
+
+export const ROUTING_OUTCOMES = [
+  'ROUTED',
+  'UNROUTED',
+  'AMBIGUOUS',
+  'MANUAL',
+  'TRANSFERRED',
+] as const;
+
 export const withdrawSchema = z.strictObject({ reason: z.string().trim().min(5).max(1000) });
 
 export const routeReportSchema = z.strictObject({
@@ -98,7 +122,7 @@ export const triageQuerySchema = z.strictObject({
 
 // Responses.
 
-const category = z.object({
+export const category = z.object({
   id: z.uuid(),
   slug: z.string(),
   nameEn: z.string(),
@@ -121,7 +145,7 @@ export const publicReportSchema = z.object({
   updatedAt: z.iso.datetime(),
 });
 
-const photo = z.object({
+export const photo = z.object({
   id: z.uuid(),
   thumbnailUrl: z.string().nullable(),
   displayUrl: z.string().nullable(),
@@ -131,11 +155,23 @@ const photo = z.object({
 export const ownReportSchema = publicReportSchema.extend({
   visibility: z.enum(['PUBLIC', 'PRIVATE', 'ORGANIZATION_ONLY', 'RESTRICTED']),
   locationAccuracyM: z.number().int().nullable(),
-  routing: z.enum(['ROUTED', 'UNROUTED', 'AMBIGUOUS', 'MANUAL']),
+  routing: z.enum(ROUTING_OUTCOMES),
   version: z.number().int(),
   canEdit: z.boolean(),
   canWithdraw: z.boolean(),
+  canProvideInformation: z.boolean(),
+  /** The open request from the organization, while the report needs information. */
+  informationRequest: z.object({ message: z.string(), requestedAt: z.iso.datetime() }).nullable(),
+  rejection: z.object({ reason: z.enum(REJECTION_REASONS), message: z.string() }).nullable(),
   photos: z.array(photo),
+});
+
+/** An organization's message on a report, as citizens and the public see it. */
+export const publicUpdateSchema = z.object({
+  id: z.uuid(),
+  organizationName: z.string(),
+  body: z.string(),
+  createdAt: z.iso.datetime(),
 });
 
 export const historyEntrySchema = z.object({
@@ -159,6 +195,8 @@ export const triageItemSchema = z.object({
   status,
   routing: z.enum(['UNROUTED', 'AMBIGUOUS']),
   candidates: z.array(z.object({ id: z.uuid(), name: z.string() })),
+  /** Why it is waiting, e.g. the reason an organization sent it back. */
+  note: z.string().nullable(),
   latitude: z.number(),
   longitude: z.number(),
   locationDescription: z.string().nullable(),

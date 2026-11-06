@@ -65,6 +65,13 @@ model User {
   reportEdits             ReportEdit[]                     @relation("ReportEditor")
   mediaUploads            ReportMedia[]                    @relation("MediaUploader")
   routingDecisions        ReportRoutingDecision[]          @relation("RoutingDecidedBy")
+  reviewDecisions         ReportReviewDecision[]           @relation("ReviewDecisionReviewer")
+  informationRequests     ReportInformationRequest[]       @relation("InformationRequester")
+  informationResponses    ReportInformationResponse[]      @relation("InformationResponder")
+  reportTransfers         ReportTransfer[]                 @relation("TransferActor")
+  internalNotes           ReportInternalNote[]             @relation("InternalNoteAuthor")
+  publicUpdates           ReportPublicUpdate[]             @relation("PublicUpdateAuthor")
+  hiddenPublicUpdates     ReportPublicUpdate[]             @relation("PublicUpdateHiddenBy")
   idempotencyKeys         IdempotencyKey[]                 @relation("IdempotencyKeyUser")
 
   @@map("users")
@@ -204,6 +211,12 @@ model Organization {
   categories          OrganizationCategory[]
   reports             Report[]
   routingDecisions    ReportRoutingDecision[]          @relation("RoutingDecisionOrganization")
+  reviewDecisions     ReportReviewDecision[]
+  informationRequests ReportInformationRequest[]
+  transfersOut        ReportTransfer[]                 @relation("TransferFrom")
+  transfersIn         ReportTransfer[]                 @relation("TransferTo")
+  internalNotes       ReportInternalNote[]
+  publicUpdates       ReportPublicUpdate[]
 
   @@index([verificationState, isActive])
   @@map("organizations")
@@ -312,6 +325,8 @@ model ReportCategory {
   children      ReportCategory[]       @relation("CategoryParent")
   organizations OrganizationCategory[]
   reports       Report[]
+  reviewsFrom   ReportReviewDecision[] @relation("ReviewCategoryFrom")
+  reviewsTo     ReportReviewDecision[] @relation("ReviewCategoryTo")
 
   @@index([parentId, displayOrder])
   @@map("report_categories")
@@ -414,6 +429,23 @@ enum RoutingOutcome {
   UNROUTED
   AMBIGUOUS
   MANUAL
+  /// Moved by the previous organization to another one that covers the location.
+  TRANSFERRED
+}
+
+enum ReviewDecision {
+  ACCEPTED
+  REJECTED
+}
+
+/// Approved rejection reasons. Each rejection also carries a message the citizen sees.
+enum RejectionReason {
+  NOT_A_CIVIC_ISSUE
+  INSUFFICIENT_INFORMATION
+  ALREADY_FIXED
+  INAPPROPRIATE_CONTENT
+  NO_RESPONSE
+  OTHER
 }
 
 model Report {
@@ -445,13 +477,18 @@ model Report {
   createdAt           DateTime                             @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt           DateTime                             @updatedAt @map("updated_at") @db.Timestamptz(3)
 
-  citizen          User                    @relation("ReportCitizen", fields: [citizenId], references: [id], onDelete: Restrict)
-  organization     Organization?           @relation(fields: [organizationId], references: [id], onDelete: Restrict)
-  category         ReportCategory          @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  citizen          User                       @relation("ReportCitizen", fields: [citizenId], references: [id], onDelete: Restrict)
+  organization     Organization?              @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  category         ReportCategory             @relation(fields: [categoryId], references: [id], onDelete: Restrict)
   statusHistory    ReportStatusHistory[]
   edits            ReportEdit[]
   media            ReportMedia[]
   routingDecisions ReportRoutingDecision[]
+  reviewDecisions  ReportReviewDecision[]
+  infoRequests     ReportInformationRequest[]
+  transfers        ReportTransfer[]
+  internalNotes    ReportInternalNote[]
+  publicUpdates    ReportPublicUpdate[]
 
   @@index([location], type: Gist)
   @@index([citizenId, createdAt])
@@ -576,4 +613,124 @@ model IdempotencyKey {
   @@unique([userId, route, key])
   @@index([expiresAt])
   @@map("idempotency_keys")
+}
+
+/// Accept/reject decisions by an organization reviewer. Append-only.
+model ReportReviewDecision {
+  id              String           @id @default(uuid(7)) @db.Uuid
+  reportId        String           @map("report_id") @db.Uuid
+  organizationId  String           @map("organization_id") @db.Uuid
+  reviewerId      String           @map("reviewer_id") @db.Uuid
+  decision        ReviewDecision
+  rejectionReason RejectionReason? @map("rejection_reason")
+  /// Shown to the citizen (and publicly for public reports).
+  publicMessage   String?          @map("public_message") @db.VarChar(1000)
+  /// Set when the reviewer corrected the category while accepting.
+  categoryFromId  String?          @map("category_from_id") @db.Uuid
+  categoryToId    String?          @map("category_to_id") @db.Uuid
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report       Report          @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization Organization    @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  reviewer     User            @relation("ReviewDecisionReviewer", fields: [reviewerId], references: [id], onDelete: Restrict)
+  categoryFrom ReportCategory? @relation("ReviewCategoryFrom", fields: [categoryFromId], references: [id], onDelete: Restrict)
+  categoryTo   ReportCategory? @relation("ReviewCategoryTo", fields: [categoryToId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("report_review_decisions")
+}
+
+/// A reviewer asking the citizen for more information. Append-only.
+model ReportInformationRequest {
+  id             String   @id @default(uuid(7)) @db.Uuid
+  reportId       String   @map("report_id") @db.Uuid
+  organizationId String   @map("organization_id") @db.Uuid
+  requestedById  String   @map("requested_by_id") @db.Uuid
+  message        String   @db.VarChar(1000)
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report       Report                     @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization Organization               @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  requestedBy  User                       @relation("InformationRequester", fields: [requestedById], references: [id], onDelete: Restrict)
+  response     ReportInformationResponse?
+
+  @@index([reportId, createdAt])
+  @@map("report_information_requests")
+}
+
+/// The citizen's answer to one information request. Append-only, at most one per request.
+model ReportInformationResponse {
+  id            String   @id @default(uuid(7)) @db.Uuid
+  requestId     String   @unique @map("request_id") @db.Uuid
+  respondedById String   @map("responded_by_id") @db.Uuid
+  message       String   @db.VarChar(2000)
+  /// Photos added with this answer (also attached to the report).
+  mediaIds      String[] @map("media_ids") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  request     ReportInformationRequest @relation(fields: [requestId], references: [id], onDelete: Restrict)
+  respondedBy User                     @relation("InformationResponder", fields: [respondedById], references: [id], onDelete: Restrict)
+
+  @@map("report_information_responses")
+}
+
+/// Moves of a report between organizations (or back to Super Admin triage). Append-only.
+model ReportTransfer {
+  id                 String       @id @default(uuid(7)) @db.Uuid
+  reportId           String       @map("report_id") @db.Uuid
+  fromOrganizationId String       @map("from_organization_id") @db.Uuid
+  /// Null when the report was sent back to Super Admin triage.
+  toOrganizationId   String?      @map("to_organization_id") @db.Uuid
+  actorId            String       @map("actor_id") @db.Uuid
+  fromStatus         ReportStatus @map("from_status")
+  reason             String       @db.VarChar(1000)
+  createdAt          DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report           Report        @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  fromOrganization Organization  @relation("TransferFrom", fields: [fromOrganizationId], references: [id], onDelete: Restrict)
+  toOrganization   Organization? @relation("TransferTo", fields: [toOrganizationId], references: [id], onDelete: Restrict)
+  actor            User          @relation("TransferActor", fields: [actorId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("report_transfers")
+}
+
+/// Private notes for the organization handling a report. Never returned to citizens or the
+/// public, nor to other organizations after a transfer. Append-only.
+model ReportInternalNote {
+  id             String   @id @default(uuid(7)) @db.Uuid
+  reportId       String   @map("report_id") @db.Uuid
+  organizationId String   @map("organization_id") @db.Uuid
+  authorId       String   @map("author_id") @db.Uuid
+  body           String   @db.VarChar(2000)
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report       Report       @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  author       User         @relation("InternalNoteAuthor", fields: [authorId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, organizationId, createdAt])
+  @@map("report_internal_notes")
+}
+
+/// Organization messages shown on the report page. Only the hidden_* fields may change, once,
+/// when a Super Admin hides an update (enforced by a database trigger).
+model ReportPublicUpdate {
+  id             String    @id @default(uuid(7)) @db.Uuid
+  reportId       String    @map("report_id") @db.Uuid
+  organizationId String    @map("organization_id") @db.Uuid
+  authorId       String    @map("author_id") @db.Uuid
+  body           String    @db.VarChar(1000)
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  hiddenAt       DateTime? @map("hidden_at") @db.Timestamptz(3)
+  hiddenById     String?   @map("hidden_by_id") @db.Uuid
+  hiddenReason   String?   @map("hidden_reason") @db.VarChar(1000)
+
+  report       Report       @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  author       User         @relation("PublicUpdateAuthor", fields: [authorId], references: [id], onDelete: Restrict)
+  hiddenBy     User?        @relation("PublicUpdateHiddenBy", fields: [hiddenById], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("report_public_updates")
 }

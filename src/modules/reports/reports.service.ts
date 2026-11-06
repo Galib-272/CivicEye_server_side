@@ -11,13 +11,17 @@ import type { ReportStatus, RoutingOutcome } from '../../generated/prisma/enums'
 import { AuditService } from '../audit/audit.service';
 import type { AuthenticatedUser } from '../auth/auth-context';
 import { AuthLimits, AuthRateLimiter } from '../auth/auth-rate-limiter.service';
+import { PHOTO_LIMITS } from '../media/image-processing';
 import { MediaService } from '../media/media.service';
 import { ServiceAreasService } from '../service-areas/service-areas.service';
-import { canTransition, EDITABLE_STATUSES, TRANSITIONS } from './report-transitions';
+import { canTransition, EDITABLE_STATUSES } from './report-transitions';
+import { applyTransition, lockReport } from './report-workflow';
 import type {
   CreateReportInput,
   historyEntrySchema,
   ownReportSchema,
+  ProvideInformationInput,
+  publicUpdateSchema,
   PublicReportsQuery,
   publicReportSchema,
   triageItemSchema,
@@ -36,11 +40,11 @@ function generatePublicId(): string {
 }
 
 /** Public precision (approved): 3 decimal places, about 110 m of latitude. */
-function roundForPublic(value: number): number {
+export function roundForPublic(value: number): number {
   return Math.round(value * 1000) / 1000;
 }
 
-const REPORT_SELECT = {
+export const REPORT_SELECT = {
   id: true,
   publicId: true,
   citizenId: true,
@@ -62,7 +66,7 @@ const REPORT_SELECT = {
   _count: { select: { media: true } },
 } as const;
 
-type ReportRow = Prisma.ReportGetPayload<{ select: typeof REPORT_SELECT }>;
+export type ReportRow = Prisma.ReportGetPayload<{ select: typeof REPORT_SELECT }>;
 
 /** Reports a member of the public may see: public, and not withdrawn by the citizen. */
 const PUBLICLY_VISIBLE: Prisma.ReportWhereInput = {
@@ -112,6 +116,22 @@ export class ReportsService {
       },
     });
     const photos = await Promise.all(media.map((item) => this.media.toView(item)));
+    const [request, decision] = await Promise.all([
+      row.status === 'NEEDS_INFORMATION'
+        ? this.prisma.reportInformationRequest.findFirst({
+            where: { reportId: row.id, response: null },
+            orderBy: { createdAt: 'desc' },
+            select: { message: true, createdAt: true },
+          })
+        : null,
+      row.status === 'REJECTED'
+        ? this.prisma.reportReviewDecision.findFirst({
+            where: { reportId: row.id, decision: 'REJECTED' },
+            orderBy: { createdAt: 'desc' },
+            select: { rejectionReason: true, publicMessage: true },
+          })
+        : null,
+    ]);
     return {
       ...this.toPublic(row),
       // The citizen sees their own exact location.
@@ -123,13 +143,22 @@ export class ReportsService {
       version: row.version,
       canEdit: EDITABLE_STATUSES.has(row.status),
       canWithdraw: canTransition('withdraw', row.status, 'owner'),
+      canProvideInformation:
+        request !== null && canTransition('provideInformation', row.status, 'owner'),
+      informationRequest: request
+        ? { message: request.message, requestedAt: request.createdAt.toISOString() }
+        : null,
+      rejection:
+        decision?.rejectionReason && decision.publicMessage
+          ? { reason: decision.rejectionReason, message: decision.publicMessage }
+          : null,
       photos: photos.map(({ id, thumbnailUrl, displayUrl }) => ({ id, thumbnailUrl, displayUrl })),
     };
   }
 
   /**
    * One report for whoever is asking: the full view for its citizen, otherwise the public view
-   * if it is publicly visible. Anything else is NOT_FOUND (organization views arrive in Phase 5).
+   * if it is publicly visible. Anything else is NOT_FOUND; organizations use their own workspace view.
    */
   async findForViewer(publicId: string, viewer: AuthenticatedUser | undefined) {
     const row = await this.prisma.report.findUnique({ where: { publicId }, select: REPORT_SELECT });
@@ -470,7 +499,11 @@ export class ReportsService {
   async withdraw(publicId: string, reason: string, citizen: AuthenticatedUser, request: Request) {
     await this.prisma.$transaction(async (tx) => {
       const current = await this.lockOwned(tx, publicId, citizen.id);
-      await this.applyTransition(tx, current, 'withdraw', 'owner', citizen.id, 'citizen', reason);
+      await applyTransition(tx, current, 'withdraw', 'owner', {
+        actorUserId: citizen.id,
+        actorContext: 'citizen',
+        reason,
+      });
       await this.audit.record(
         {
           action: 'report.withdrawn',
@@ -485,6 +518,92 @@ export class ReportsService {
       );
     });
     return this.findForViewer(publicId, citizen).then((result) => result.report);
+  }
+
+  /**
+   * The citizen answers the open information request, optionally adding photos (5 in total),
+   * which sends the report back to the organization's review.
+   */
+  async provideInformation(
+    publicId: string,
+    input: ProvideInformationInput,
+    citizen: AuthenticatedUser,
+    request: Request,
+  ) {
+    const mediaIds = [...new Set(input.mediaIds)];
+    await this.prisma.$transaction(async (tx) => {
+      const current = await this.lockOwned(tx, publicId, citizen.id);
+      const open = await tx.reportInformationRequest.findFirst({
+        where: { reportId: current.id, response: null },
+        orderBy: { createdAt: 'desc' },
+        select: { id: true },
+      });
+      if (!open || current.status !== 'NEEDS_INFORMATION') {
+        throw new AppException(
+          ErrorCode.INVALID_STATE_TRANSITION,
+          'No information has been requested for this report.',
+        );
+      }
+      const attached = await tx.reportMedia.count({ where: { reportId: current.id } });
+      if (attached + mediaIds.length > PHOTO_LIMITS.maxPerReport) {
+        throw new AppException(ErrorCode.VALIDATION_ERROR, undefined, [
+          {
+            field: 'mediaIds',
+            message: `A report can have at most ${PHOTO_LIMITS.maxPerReport} photos.`,
+          },
+        ]);
+      }
+      for (const [offset, mediaId] of mediaIds.entries()) {
+        const updated = await tx.reportMedia.updateMany({
+          where: { id: mediaId, uploaderId: citizen.id, reportId: null, status: 'PROCESSED' },
+          data: { reportId: current.id, position: attached + offset },
+        });
+        if (updated.count !== 1) {
+          throw new AppException(ErrorCode.VALIDATION_ERROR, undefined, [
+            {
+              field: 'mediaIds',
+              message: 'A photo was not found, is still being checked, or is already used.',
+            },
+          ]);
+        }
+      }
+      await tx.reportInformationResponse.create({
+        data: { requestId: open.id, respondedById: citizen.id, message: input.message, mediaIds },
+      });
+      await applyTransition(tx, current, 'provideInformation', 'owner', {
+        actorUserId: citizen.id,
+        actorContext: 'citizen',
+      });
+      await this.audit.record(
+        {
+          action: 'report.information_provided',
+          result: 'SUCCESS',
+          actorUserId: citizen.id,
+          targetType: 'report',
+          targetId: current.id,
+          metadata: { photos: mediaIds.length },
+        },
+        request,
+        tx,
+      );
+    });
+    return this.findForViewer(publicId, citizen).then((result) => result.report);
+  }
+
+  /** Organization updates for anyone who may see the report. Hidden updates are left out. */
+  async publicUpdates(publicId: string, viewer: AuthenticatedUser | undefined) {
+    await this.findForViewer(publicId, viewer);
+    const updates = await this.prisma.reportPublicUpdate.findMany({
+      where: { report: { publicId }, hiddenAt: null },
+      orderBy: { createdAt: 'asc' },
+      select: { id: true, body: true, createdAt: true, organization: { select: { name: true } } },
+    });
+    return updates.map((update): z.infer<typeof publicUpdateSchema> => ({
+      id: update.id,
+      organizationName: update.organization.name,
+      body: update.body,
+      createdAt: update.createdAt.toISOString(),
+    }));
   }
 
   // ─── Super Admin triage ─────────────────────────────────────────────────────
@@ -507,7 +626,7 @@ export class ReportsService {
           routingDecisions: {
             orderBy: { createdAt: 'desc' },
             take: 1,
-            select: { candidates: true },
+            select: { candidates: true, reason: true },
           },
         },
       }),
@@ -523,6 +642,7 @@ export class ReportsService {
           id: string;
           name: string;
         }>,
+        note: row.routingDecisions[0]?.reason ?? null,
         latitude: row.latitude.toNumber(),
         longitude: row.longitude.toNumber(),
         locationDescription: row.locationDescription,
@@ -599,11 +719,9 @@ export class ReportsService {
 
   /** Locks the citizen's own report row; another citizen's report looks like a missing one. */
   private async lockOwned(tx: Prisma.TransactionClient, publicId: string, citizenId: string) {
-    const [locked] = await tx.$queryRaw<Array<{ id: string }>>`
-      SELECT id FROM reports WHERE public_id = ${publicId} AND citizen_id = ${citizenId}::uuid FOR UPDATE`;
-    if (!locked) throw new AppException(ErrorCode.NOT_FOUND);
+    const id = await lockReport(tx, publicId, { citizenId });
     return tx.report.findUniqueOrThrow({
-      where: { id: locked.id },
+      where: { id },
       select: {
         id: true,
         status: true,
@@ -620,40 +738,7 @@ export class ReportsService {
     });
   }
 
-  /** The only place a report's status changes: checks the rule table and writes history. */
-  private async applyTransition(
-    tx: Prisma.TransactionClient,
-    report: { id: string; status: ReportStatus; version: number },
-    name: keyof typeof TRANSITIONS,
-    actor: 'owner',
-    actorUserId: string,
-    actorContext: string,
-    reason: string | null,
-  ) {
-    const rule = TRANSITIONS[name];
-    if (!canTransition(name, report.status, actor)) {
-      throw new AppException(ErrorCode.INVALID_STATE_TRANSITION);
-    }
-    if (rule.requiresReason && !reason) {
-      throw new AppException(ErrorCode.VALIDATION_ERROR, 'A reason is required.');
-    }
-    await tx.report.update({
-      where: { id: report.id },
-      data: { status: rule.to, version: report.version + 1 },
-    });
-    await tx.reportStatusHistory.create({
-      data: {
-        reportId: report.id,
-        fromStatus: report.status,
-        toStatus: rule.to,
-        actorUserId,
-        actorContext,
-        reason,
-      },
-    });
-  }
-
-  private async assertActiveCategory(categoryId: string): Promise<void> {
+  async assertActiveCategory(categoryId: string): Promise<void> {
     const category = await this.prisma.reportCategory.findFirst({
       where: {
         id: categoryId,

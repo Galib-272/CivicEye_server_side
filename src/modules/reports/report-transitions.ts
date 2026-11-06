@@ -14,8 +14,7 @@ export interface TransitionRule {
 /**
  * The single table of allowed report status changes (PRD §6.2). Every status change in the
  * application goes through ReportTransitionService, which consults this table; there is no
- * other way to change a report's status. Phases 5–6 add the review, assignment and
- * verification rules here once their policies are approved.
+ * other way to change a report's status. Phase 6 adds the assignment and verification rules.
  */
 export const TRANSITIONS = {
   withdraw: {
@@ -23,6 +22,48 @@ export const TRANSITIONS = {
     from: ['SUBMITTED', 'NEEDS_INFORMATION'],
     to: 'WITHDRAWN',
     actors: ['owner'],
+    requiresReason: true,
+  },
+  // ─── Review (Phase 5, PRD §6.2) ───────────────────────────────────────────────
+  startReview: {
+    from: ['SUBMITTED'],
+    to: 'UNDER_REVIEW',
+    actors: ['org_reviewer'],
+    requiresReason: false,
+  },
+  requestInformation: {
+    from: ['UNDER_REVIEW'],
+    to: 'NEEDS_INFORMATION',
+    actors: ['org_reviewer'],
+    requiresReason: true,
+  },
+  provideInformation: {
+    from: ['NEEDS_INFORMATION'],
+    to: 'UNDER_REVIEW',
+    actors: ['owner'],
+    // The answer itself is stored in report_information_responses.
+    requiresReason: false,
+  },
+  accept: {
+    from: ['UNDER_REVIEW'],
+    to: 'ACCEPTED',
+    actors: ['org_reviewer'],
+    requiresReason: false,
+  },
+  reject: {
+    from: ['UNDER_REVIEW'],
+    to: 'REJECTED',
+    actors: ['org_reviewer'],
+    requiresReason: true,
+  },
+  /**
+   * Approved transfer policy: a report not yet assigned to a worker moves to another
+   * organization (or back to Super Admin triage) and restarts at SUBMITTED there.
+   */
+  transfer: {
+    from: ['SUBMITTED', 'UNDER_REVIEW', 'NEEDS_INFORMATION', 'ACCEPTED'],
+    to: 'SUBMITTED',
+    actors: ['org_reviewer'],
     requiresReason: true,
   },
 } as const satisfies Record<string, TransitionRule>;

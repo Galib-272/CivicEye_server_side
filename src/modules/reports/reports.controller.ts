@@ -13,8 +13,6 @@ import {
 import { ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
 import { z } from 'zod';
-import { AppException } from '../../common/errors/app-exception';
-import { ErrorCode } from '../../common/errors/error-codes';
 import { ApiErrorResponses } from '../../common/http/openapi';
 import {
   ApiZodBody,
@@ -27,13 +25,16 @@ import { Permission } from '../access/permissions';
 import type { AuthContext } from '../auth/auth-context';
 import { CurrentAuth, Public, RequirePermissions } from '../auth/auth.decorators';
 import { IdempotencyService } from './idempotency.service';
+import { parseIfMatch } from './review.controller';
 import {
   createReportSchema,
   historyEntrySchema,
   myReportsQuerySchema,
   myReportsSummarySchema,
   ownReportSchema,
+  provideInformationSchema,
   publicIdSchema,
+  publicUpdateSchema,
   publicReportSchema,
   publicReportsQuerySchema,
   routeReportSchema,
@@ -42,6 +43,7 @@ import {
   updateReportSchema,
   withdrawSchema,
   type CreateReportInput,
+  type ProvideInformationInput,
   type PublicReportsQuery,
   type UpdateReportInput,
 } from './reports.schemas';
@@ -49,18 +51,6 @@ import { ReportsService } from './reports.service';
 
 const publicId = new ZodValidationPipe(publicIdSchema);
 const reportViewSchema = z.union([ownReportSchema, publicReportSchema]);
-
-function parseIfMatch(header: string | undefined): number {
-  if (header === undefined) throw new AppException(ErrorCode.PRECONDITION_REQUIRED);
-  const version = Number(header.replace(/^W\//, '').replace(/"/g, ''));
-  if (!Number.isInteger(version) || version < 1) {
-    throw new AppException(
-      ErrorCode.VALIDATION_ERROR,
-      'If-Match must be the report version number.',
-    );
-  }
-  return version;
-}
 
 @ApiTags('reports')
 @Controller({ path: 'reports', version: '1' })
@@ -147,6 +137,34 @@ export class ReportsController {
   @ApiErrorResponses(404)
   history(@Param('publicId', publicId) id: string, @Req() request: Request) {
     return this.reports.history(id, request.auth?.user);
+  }
+
+  @Get(':publicId/updates')
+  @Public()
+  @ApiOperation({ summary: 'Organization updates on a report you may see.' })
+  @ApiZodResponse(z.array(publicUpdateSchema))
+  @ApiErrorResponses(404)
+  updates(@Param('publicId', publicId) id: string, @Req() request: Request) {
+    return this.reports.publicUpdates(id, request.auth?.user);
+  }
+
+  @Post(':publicId/additional-information')
+  @RequirePermissions(Permission.ReportCreate)
+  @HttpCode(200)
+  @ApiOperation({
+    summary:
+      'Answer the organization’s information request (NEEDS_INFORMATION → UNDER_REVIEW), optionally with more photos.',
+  })
+  @ApiZodBody(provideInformationSchema)
+  @ApiZodResponse(ownReportSchema)
+  @ApiErrorResponses(400, 403, 404, 422)
+  provideInformation(
+    @CurrentAuth() auth: AuthContext,
+    @Param('publicId', publicId) id: string,
+    @Body(new ZodValidationPipe(provideInformationSchema)) input: ProvideInformationInput,
+    @Req() request: Request,
+  ) {
+    return this.reports.provideInformation(id, input, auth.user, request);
   }
 
   @Patch(':publicId')
