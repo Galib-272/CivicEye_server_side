@@ -166,6 +166,24 @@ Variables for maps and the AI service are added in the phases that need them.
 - In staging/production (Cloudflare R2), add a bucket CORS rule allowing `PUT` and `GET` from the
   web origin with the `Content-Type` header.
 
+## Organization review
+
+Reviewers (Org Admin and Reviewer roles) work under `/organizations/:organizationId/reports`:
+the review queue, a workspace per report, decisions (start review, request information,
+accept, reject, transfer), internal notes and public updates. Citizens answer information
+requests at `POST /reports/:publicId/additional-information`.
+
+- Organizations never see who reported an issue.
+- Every status change goes through the transition table (`report-transitions.ts`) and
+  `applyTransition` (`report-workflow.ts`), which checks the role, the current status, the
+  required reason and the `If-Match` version, then writes the history entry in the same
+  transaction.
+- Review decisions, information requests and answers, transfers and internal notes are
+  append-only in the database; public updates may only be hidden, once, by a Super Admin.
+- A transfer moves the report to another organization covering the location (or back to
+  Super Admin triage) and restarts it at SUBMITTED; the previous organization loses access.
+- Super Admins get an audited read-only view at `/admin/reports/:publicId`.
+
 ## API conventions
 
 - Base path `/api/v1`. Every response uses the standard envelope:

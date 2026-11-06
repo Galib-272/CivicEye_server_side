@@ -4,7 +4,7 @@ Tracks product and engineering decisions required by the PRD (§37, §39). A dec
 **Decided** only with product-owner approval; approved product decisions are also written back
 into the PRD. **Default** entries are reversible engineering choices made so work can proceed.
 
-Last updated: 2026-11-04 (Phase 4).
+Last updated: 2026-11-06 (Phase 5).
 
 ## Decided
 
@@ -31,6 +31,15 @@ Last updated: 2026-11-04 (Phase 4).
 | Photo limits                  | 1–5 photos, 10 MB each, JPEG/PNG/WebP (HEIC: see Phase 4 notes); all metadata including GPS removed               | 2026-11-04 |
 | Object storage                | Cloudflare R2 (staging/production); SeaweedFS locally (MinIO images are no longer published)                      | 2026-11-04 |
 | Unrouted reports              | Reports outside every service area wait in a Super Admin triage list; never auto-assigned                         | 2026-11-04 |
+| Project purpose               | Portfolio project: free services only; technical choices delegated to the developer, each phase still approved    | 2026-11-06 |
+| Review start                  | A reviewer starts the review explicitly (SUBMITTED → UNDER_REVIEW)                                                | 2026-11-06 |
+| Information requests          | Message required; the citizen answers with text and optional photos (5 in total); no automatic timeout            | 2026-11-06 |
+| Acceptance rule               | Category must be one the organization handles; location in its area unless sent there by a Super Admin/transfer   | 2026-11-06 |
+| Rejection reasons             | Not a civic issue, not enough information, already fixed, inappropriate, no answer, other — plus a message        | 2026-11-06 |
+| Transfer policy               | Reason required; to an organization covering the location and category, or back to triage; restarts at SUBMITTED  | 2026-11-06 |
+| Internal notes                | Org reviewers/admins and Super Admins only; append-only; not visible to another organization after a transfer     | 2026-11-06 |
+| Public updates                | Organization posts; Super Admin can hide one with a reason (audited)                                              | 2026-11-06 |
+| Reporter identity             | Never shown to organizations; contact only through information requests and public updates                        | 2026-11-06 |
 | Session architecture          | Server-managed sessions in Redis, opaque HttpOnly cookie, no JWT or refresh tokens                                | 2026-11-04 |
 
 ## Engineering defaults (reversible)
@@ -50,8 +59,8 @@ Last updated: 2026-11-04 (Phase 4).
 | Decision                                                                                  | Needed by                        |
 | ----------------------------------------------------------------------------------------- | -------------------------------- |
 | Map tiles: confirm OpenFreeMap for launch (no SLA) or choose a paid provider; geocoding   | Before launch                    |
-| State-machine gaps G1–G12 from the architecture review                                    | Phase 4–6                        |
-| Service-area overlap and transfer policies                                                | Phase 5                          |
+| State-machine gaps G2–G5, G6, G9, G12 (assignment, verification, reopening)               | Phase 6                          |
+| Appeal policy (G7) and public comment policy                                              | Later phase                      |
 | Assignment acknowledgement and completion verification policies                           | Phase 6                          |
 | Resend sending domain (a domain you own, verified in Resend)                              | Before staging                   |
 | Update PRD §32.1 (one repository) to the approved two-repository layout                   | Before Phase 2                   |
@@ -92,6 +101,20 @@ Last updated: 2026-11-04 (Phase 4).
 - Not built in Phase 4: adding information after SUBMITTED (with the Phase 5 review workflow),
   organization report views (Phase 5), public photos, address search, a map of all reports.
 
+## Phase 5 notes
+
+- Resolved gaps: G1 (unrouted reports → triage), G8 (withdrawal from SUBMITTED or
+  NEEDS_INFORMATION only), G10 (transfer policy above), G11 (no timeout for information
+  requests).
+- Overlapping service areas stay a Super Admin decision (triage); there are no automatic
+  jurisdiction priority rules.
+- Super Admins can view any report (each view is audited) but do not make review decisions on
+  an organization's behalf.
+- Review actions send `If-Match` with the report version; a decision on a report someone else
+  just changed is refused (409), so two reviewers cannot overwrite each other.
+- Not built in Phase 5: notifications (Phase 7), worker assignment (Phase 6), appeals and
+  citizen comments (policies not decided), duplicate marking (Phase 8).
+
 ## Open — remaining PRD §37 items
 
 appeal policy · public comment policy · minimum account age ·
@@ -99,4 +122,4 @@ authentication provider · worker availability rules · citizen satisfaction con
 report priority policy · emergency issue handling · data retention schedule · account deletion
 and anonymization · AI training data consent · AI production acceptance thresholds · AI hardware
 budget · RPO and RTO · production hosting provider · expected initial traffic · load targets ·
-face and number-plate blurring in public photos · rejection reason codes · Bangla category names.
+face and number-plate blurring in public photos · Bangla category names.
