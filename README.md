@@ -184,6 +184,20 @@ requests at `POST /reports/:publicId/additional-information`.
   Super Admin triage) and restarts it at SUBMITTED; the previous organization loses access.
 - Super Admins get an audited read-only view at `/admin/reports/:publicId`.
 
+## Assignments and work
+
+- Org Admins and Reviewers assign an accepted report to one available Worker
+  (`POST /organizations/:id/reports/:publicId/assign`), reassign or cancel it, verify the
+  completion evidence (`.../verify`: APPROVED, REJECTED or NEEDS_MORE_EVIDENCE), and reopen or
+  close resolved reports. Every action sends `If-Match` with the report version.
+- Workers use `/work`: their tasks, accept or decline, start, progress notes with photos,
+  return the task, and submit completion evidence (description and 1–5 after photos, uploaded
+  with `purpose: WORK_PHOTO`).
+- A verifier can never approve work they did themselves; the server checks the assignment and
+  the submission, not just the current role.
+- Citizens answer "Is it fixed?" on resolved reports (`POST /reports/:publicId/feedback`); the
+  answer is feedback only.
+
 ## API conventions
 
 - Base path `/api/v1`. Every response uses the standard envelope:
