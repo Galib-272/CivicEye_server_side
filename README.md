@@ -198,6 +198,19 @@ requests at `POST /reports/:publicId/additional-information`.
 - Citizens answer "Is it fixed?" on resolved reports (`POST /reports/:publicId/feedback`); the
   answer is feedback only.
 
+## Notifications and live updates
+
+- Changes record events in the `outbox_events` table in the same transaction. Worker processes
+  turn them into notifications (`GET /notifications`), queue emails and announce live updates.
+  Run the worker (`npm run worker:dev`) or nothing is delivered.
+- Emails contain only the kind of change, the report ID and a link. In staging/production use
+  Brevo's free SMTP relay: `EMAIL_PROVIDER=smtp` and
+  `SMTP_URL=smtp://<login>:<smtp-key>@smtp-relay.brevo.com:587`.
+- Live updates use Socket.IO at `/socket.io`. Browsers get a one-time ticket from
+  `POST /notifications/realtime-ticket` and connect with it; messages contain no data.
+- Resolved reports close automatically after 14 days; reviewers are reminded about tasks not
+  accepted within 48 hours. Super Admins see failures at `GET /admin/delivery-health`.
+
 ## API conventions
 
 - Base path `/api/v1`. Every response uses the standard envelope:
