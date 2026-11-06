@@ -1,6 +1,10 @@
 import 'reflect-metadata';
+import { config as loadDotenv } from 'dotenv';
 import { createApp } from './app.factory';
 import { ConfigValidationError, loadConfig } from './config/app-config';
+
+// Local development reads .env. Variables already set (as on a hosting provider) win.
+loadDotenv({ quiet: true });
 
 async function bootstrap(): Promise<void> {
   const config = loadConfig();

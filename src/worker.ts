@@ -1,8 +1,12 @@
 import 'reflect-metadata';
+import { config as loadDotenv } from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { Logger } from 'nestjs-pino';
 import { AppModule } from './app.module';
 import { ConfigValidationError, loadConfig } from './config/app-config';
+
+// Local development reads .env. Variables already set (as on a hosting provider) win.
+loadDotenv({ quiet: true });
 
 /**
  * Background worker: the same application modules without an HTTP server, with job
