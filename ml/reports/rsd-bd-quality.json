@@ -1,0 +1,273 @@
+{
+  "dataset": "rsd-bd",
+  "images": 1607,
+  "unreadable": [],
+  "label_problems": [],
+  "by_label": {
+    "Creak": 586,
+    "Pot hole": 511,
+    "Asphalt": 510
+  },
+  "by_label_and_split": {},
+  "sizes": {
+    "512x512": 187,
+    "3072x4080": 165,
+    "4032x3024": 75,
+    "1200x1600": 75,
+    "960x1280": 56,
+    "867x1156": 23,
+    "4080x3072": 21,
+    "963x1280": 11,
+    "346x237": 4,
+    "262x321": 4
+  },
+  "exact_duplicate_images": 1064,
+  "exact_duplicate_groups": 462,
+  "near_duplicate_groups": 528,
+  "near_duplicate_groups_with_different_labels": 0,
+  "near_duplicate_groups_across_splits": 0,
+  "near_duplicate_examples": [
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/10.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp(10).JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (25).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(10).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/109.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (101).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(100).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/111.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (103).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(102).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/116.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp(91).JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (106).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(106).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/12.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (27).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(12).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/13.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (28).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(13).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/16.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (30).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(15).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/18.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (31).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(16).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/27.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (37).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(24).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/28.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp(20).JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (38).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(25).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/38.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp(29).JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (46).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(34).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/40.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (48).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(36).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/48.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (55).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(44).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/51.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp(40).JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (58).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(47).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    },
+    {
+      "images": [
+        "rsd-bd/Road damage data/Asphalt/52.JPG",
+        "rsd-bd/Road damage data/Asphalt/asp(41).JPG",
+        "rsd-bd/Road damage data/Asphalt/asp1 (59).JPG",
+        "rsd-bd/Road damage data/Asphalt/asphalt(48).JPG"
+      ],
+      "labels": [
+        "Asphalt"
+      ],
+      "splits": [
+        ""
+      ]
+    }
+  ],
+  "brightness": {
+    "min": 0.3893849551677704,
+    "p1": 0.4313240051269531,
+    "median": 0.6442802548408508,
+    "p99": 0.7490832805633545,
+    "max": 0.7930688261985779
+  },
+  "sharpness": {
+    "min": 1.1767922639846802,
+    "p1": 6.577965908050537,
+    "median": 201.37962341308594,
+    "max": 3794.990478515625
+  },
+  "very_dark": [],
+  "very_bright": [],
+  "very_blurry": [
+    "rsd-bd/Road damage data/Asphalt/asphalt(105).JPG",
+    "rsd-bd/Road damage data/Asphalt/asphalt(106).JPG",
+    "rsd-bd/Road damage data/Asphalt/asphalt(107).JPG",
+    "rsd-bd/Road damage data/Asphalt/asphalt(108).JPG",
+    "rsd-bd/Road damage data/Asphalt/asphalt(109).JPG",
+    "rsd-bd/Road damage data/Creak/1.JPG",
+    "rsd-bd/Road damage data/Creak/114.JPG",
+    "rsd-bd/Road damage data/Creak/115.JPG",
+    "rsd-bd/Road damage data/Creak/120.JPG",
+    "rsd-bd/Road damage data/Creak/2.JPG",
+    "rsd-bd/Road damage data/Creak/3.JPG",
+    "rsd-bd/Road damage data/Creak/99.JPG",
+    "rsd-bd/Road damage data/Creak/IMG20240301073421.jpg",
+    "rsd-bd/Road damage data/Creak/IMG20240301074307.jpg",
+    "rsd-bd/Road damage data/Creak/IMG20240301074308.jpg",
+    "rsd-bd/Road damage data/Creak/IMG20240301074309.jpg",
+    "rsd-bd/Road damage data/Pot hole/118 (3).JPG"
+  ],
+  "with_camera_exif": 268,
+  "cameras": {
+    "OPPO OPPO A77s": 186,
+    "samsung SM-G935F": 76,
+    "OPPO OPPO A76": 4,
+    "Xiaomi 21091116I": 2
+  }
+}

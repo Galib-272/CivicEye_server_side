@@ -1,5 +1,7 @@
-# Dependencies
-node_modules/
+# Dependencies: node_modules links to .deps.nosync/node_modules, which iCloud does not sync
+node_modules
+*.nosync
+ml/data
 
 # Build output
 dist/

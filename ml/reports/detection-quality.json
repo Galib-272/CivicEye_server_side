@@ -1,0 +1,116 @@
+{
+  "dataset": "detection",
+  "images": 1406,
+  "unreadable": [],
+  "label_problems": [],
+  "by_label": {
+    "normal": 703,
+    "damage": 703
+  },
+  "by_label_and_split": {
+    "test/damage": 73,
+    "test/normal": 68,
+    "train/damage": 492,
+    "train/normal": 492,
+    "validation/damage": 138,
+    "validation/normal": 143
+  },
+  "sizes": {
+    "640x640": 1406
+  },
+  "exact_duplicate_images": 0,
+  "exact_duplicate_groups": 0,
+  "near_duplicate_groups": 3,
+  "near_duplicate_groups_with_different_labels": 1,
+  "near_duplicate_groups_across_splits": 1,
+  "near_duplicate_examples": [
+    {
+      "images": [
+        "Bangladesh-Road-Damage-Dataset/train/images/normal_002_jpg.rf.feaae975489a84fd05408a5fcdcf828c.jpg",
+        "Bangladesh-Road-Damage-Dataset/train/images/normal_473_jpg.rf.d036526015ebc8d6541be82c00b1988c.jpg"
+      ],
+      "labels": [
+        "normal"
+      ],
+      "splits": [
+        "train"
+      ]
+    },
+    {
+      "images": [
+        "Bangladesh-Road-Damage-Dataset/train/images/normal_035_jpg.rf.65f12afbfe86759ea95c35784b95dd6b.jpg",
+        "Bangladesh-Road-Damage-Dataset/train/images/normal_190_jpg.rf.6dcbee48ad4df0373766ae08812fda7c.jpg"
+      ],
+      "labels": [
+        "normal"
+      ],
+      "splits": [
+        "train"
+      ]
+    },
+    {
+      "images": [
+        "Bangladesh-Road-Damage-Dataset/train/images/pothole_573_jpg.rf.d673b11c9f400b5bd8be47c56a7bb5db.jpg",
+        "Bangladesh-Road-Damage-Dataset/test/images/normal_398_jpg.rf.193d64dfb79dc1036fd920f2afc0b09f.jpg"
+      ],
+      "labels": [
+        "damage",
+        "normal"
+      ],
+      "splits": [
+        "test",
+        "train"
+      ]
+    }
+  ],
+  "brightness": {
+    "min": 0.13500255346298218,
+    "p1": 0.24935034587979316,
+    "median": 0.46740786731243134,
+    "p99": 0.7089855998754502,
+    "max": 0.7862895727157593
+  },
+  "sharpness": {
+    "min": 19.476821899414062,
+    "p1": 40.48447971343994,
+    "median": 549.8700561523438,
+    "max": 5398.05908203125
+  },
+  "very_dark": [],
+  "very_bright": [],
+  "very_blurry": [
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_134_jpg.rf.8555802ba7374034a060a21ff282cb69.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_136_jpg.rf.6ba3333780015588e190b6d1225180ff.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_165_jpg.rf.f08c677df367b326a4efb8d004f569b5.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_168_jpg.rf.7aec2f8b1e389b5aa5989b3dc18a1b1e.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_177_jpg.rf.25709c0e2a5e2f4fab3804a257c65d94.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_188_jpg.rf.8bb43a058fadbc23da78437cfab881a0.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_190_jpg.rf.6dcbee48ad4df0373766ae08812fda7c.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_191_jpg.rf.0f7bc640cf62bdaaa2ca7d9255beb57a.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_196_jpg.rf.4711a1d28a78a44253740ca4d26d7f14.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_198_jpg.rf.dcbe29264d13bcea32e9718d1682e965.jpg",
+    "Bangladesh-Road-Damage-Dataset/train/images/normal_357_jpg.rf.867de2af608faf9f6123cfbaef5c21b1.jpg",
+    "Bangladesh-Road-Damage-Dataset/valid/images/normal_132_jpg.rf.b2b3e2536b261a1f0046a9b6bf5bb79a.jpg",
+    "Bangladesh-Road-Damage-Dataset/valid/images/normal_173_jpg.rf.582d30e69aa434dda2edce1945cf2379.jpg",
+    "Bangladesh-Road-Damage-Dataset/valid/images/normal_301_jpg.rf.c6e6452e8e603ba69608f8dc395c9ed4.jpg",
+    "Bangladesh-Road-Damage-Dataset/valid/images/normal_521_jpg.rf.aa6506d28182f72560f2fa026e7d9aab.jpg"
+  ],
+  "with_camera_exif": 0,
+  "cameras": {},
+  "boxes": {
+    "total": 1442,
+    "damage_images_without_boxes": 0,
+    "normal_images_with_boxes": 0,
+    "per_damage_image": {
+      "count": 703.0,
+      "mean": 2.05,
+      "std": 1.26,
+      "min": 1.0,
+      "25%": 1.0,
+      "50%": 2.0,
+      "75%": 3.0,
+      "max": 8.0
+    },
+    "tiny_boxes_under_0.1_percent": 0
+  }
+}

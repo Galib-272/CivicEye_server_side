@@ -1,0 +1,1608 @@
+path,label,group,decision,camera,width,height
+rsd-bd/Road damage data/Asphalt/10.JPG,Asphalt,1,removed (copy),,385,195
+rsd-bd/Road damage data/Asphalt/109.JPG,Asphalt,2,removed (copy),,322,613
+rsd-bd/Road damage data/Asphalt/111.JPG,Asphalt,3,removed (copy),,370,400
+rsd-bd/Road damage data/Asphalt/116.JPG,Asphalt,4,removed (copy),,239,164
+rsd-bd/Road damage data/Asphalt/12.JPG,Asphalt,5,removed (copy),,431,368
+rsd-bd/Road damage data/Asphalt/13.JPG,Asphalt,6,kept,,261,162
+rsd-bd/Road damage data/Asphalt/16.JPG,Asphalt,7,kept,,348,368
+rsd-bd/Road damage data/Asphalt/18.JPG,Asphalt,8,kept,,430,366
+rsd-bd/Road damage data/Asphalt/20240301_081401.jpg,Asphalt,9,kept,samsung SM-G935F,3024,4032
+rsd-bd/Road damage data/Asphalt/20240301_081458.jpg,Asphalt,10,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Asphalt/20240301_081628.jpg,Asphalt,11,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Asphalt/27.JPG,Asphalt,12,kept,,211,181
+rsd-bd/Road damage data/Asphalt/28.JPG,Asphalt,13,kept,,403,194
+rsd-bd/Road damage data/Asphalt/38.JPG,Asphalt,14,kept,,319,185
+rsd-bd/Road damage data/Asphalt/40.JPG,Asphalt,15,kept,,173,177
+rsd-bd/Road damage data/Asphalt/48.JPG,Asphalt,16,kept,,199,270
+rsd-bd/Road damage data/Asphalt/51.JPG,Asphalt,17,kept,,346,237
+rsd-bd/Road damage data/Asphalt/52.JPG,Asphalt,18,kept,,316,147
+rsd-bd/Road damage data/Asphalt/55.JPG,Asphalt,19,kept,,244,106
+rsd-bd/Road damage data/Asphalt/60.JPG,Asphalt,20,kept,,472,337
+rsd-bd/Road damage data/Asphalt/74.JPG,Asphalt,21,kept,,497,270
+rsd-bd/Road damage data/Asphalt/77.JPG,Asphalt,22,kept,,191,305
+rsd-bd/Road damage data/Asphalt/78.JPG,Asphalt,23,kept,,373,215
+rsd-bd/Road damage data/Asphalt/86.JPG,Asphalt,24,kept,,229,231
+rsd-bd/Road damage data/Asphalt/94.JPG,Asphalt,25,kept,,487,237
+rsd-bd/Road damage data/Asphalt/96.JPG,Asphalt,26,kept,,262,321
+rsd-bd/Road damage data/Asphalt/97.JPG,Asphalt,27,kept,,484,613
+rsd-bd/Road damage data/Asphalt/IMG-20240301-WA0018.jpg,Asphalt,28,removed (copy),,1204,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240301-WA0027.jpg,Asphalt,29,removed (copy),,1204,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240301-WA0042.jpg,Asphalt,30,removed (copy),,1204,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0000.jpg,Asphalt,31,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0001.jpg,Asphalt,32,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0002.jpg,Asphalt,33,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0003.jpg,Asphalt,34,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0004.jpg,Asphalt,35,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0005.jpg,Asphalt,36,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0006.jpg,Asphalt,37,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0007 - Copy.jpg,Asphalt,38,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0007.jpg,Asphalt,38,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0008.jpg,Asphalt,39,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0009.jpg,Asphalt,40,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0010.jpg,Asphalt,41,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0012.jpg,Asphalt,42,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0015.jpg,Asphalt,43,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0016.jpg,Asphalt,44,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0022.jpg,Asphalt,45,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0023.jpg,Asphalt,46,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0027.jpg,Asphalt,47,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0031.jpg,Asphalt,48,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0033.jpg,Asphalt,49,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0036.jpg,Asphalt,50,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0039.jpg,Asphalt,51,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0042.jpg,Asphalt,52,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0043.jpg,Asphalt,53,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0044.jpg,Asphalt,54,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0045.jpg,Asphalt,55,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0046.jpg,Asphalt,56,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0047.jpg,Asphalt,57,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0048.jpg,Asphalt,58,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0051.jpg,Asphalt,59,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0052.jpg,Asphalt,60,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0056.jpg,Asphalt,61,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0063.jpg,Asphalt,62,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0064.jpg,Asphalt,63,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0065.jpg,Asphalt,64,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0066.jpg,Asphalt,65,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0067.jpg,Asphalt,66,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0068.jpg,Asphalt,67,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0070.jpg,Asphalt,68,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0071.jpg,Asphalt,69,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0073.jpg,Asphalt,70,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0074.jpg,Asphalt,71,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0075.jpg,Asphalt,72,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0077.jpg,Asphalt,73,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0078.jpg,Asphalt,74,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0080.jpg,Asphalt,75,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0081.jpg,Asphalt,76,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0084.jpg,Asphalt,77,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0086.jpg,Asphalt,78,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0087.jpg,Asphalt,79,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0090.jpg,Asphalt,80,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0092.jpg,Asphalt,81,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0094.jpg,Asphalt,82,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0095 - Copy.jpg,Asphalt,83,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0095.jpg,Asphalt,83,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0097.jpg,Asphalt,84,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0098.jpg,Asphalt,85,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0099.jpg,Asphalt,86,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0100.jpg,Asphalt,87,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0101 - Copy.jpg,Asphalt,88,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0101.jpg,Asphalt,88,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0102 - Copy.jpg,Asphalt,89,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0102.jpg,Asphalt,89,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0103.jpg,Asphalt,90,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0106 - Copy.jpg,Asphalt,91,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0106.jpg,Asphalt,91,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0107.jpg,Asphalt,92,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0108.jpg,Asphalt,93,kept,,1600,1200
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0114.jpg,Asphalt,94,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0118.jpg,Asphalt,95,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0119 - Copy.jpg,Asphalt,96,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0119.jpg,Asphalt,96,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0120 - Copy.jpg,Asphalt,97,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0120.jpg,Asphalt,97,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0122 - Copy.jpg,Asphalt,98,kept,,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240302-WA0122.jpg,Asphalt,98,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0000 - Copy.jpg,Asphalt,99,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0000.jpg,Asphalt,99,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0001.jpg,Asphalt,100,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0002.jpg,Asphalt,101,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0003 - Copy.jpg,Asphalt,102,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0003.jpg,Asphalt,102,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0004 - Copy.jpg,Asphalt,103,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0004.jpg,Asphalt,103,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240303-WA0006.jpg,Asphalt,104,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/IMG-20240305-WA0060.jpg,Asphalt,105,kept,,774,1032
+rsd-bd/Road damage data/Asphalt/IMG20240221072943.jpg,Asphalt,106,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301081406 - Copy.jpg,Asphalt,28,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301081406.jpg,Asphalt,28,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301081411.jpg,Asphalt,29,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301094458.jpg,Asphalt,107,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301094506.jpg,Asphalt,108,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301094728.jpg,Asphalt,109,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301095632.jpg,Asphalt,30,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Asphalt/IMG20240301102450.jpg,Asphalt,110,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Asphalt/IMG20240301153739.jpg,Asphalt,111,kept,OPPO OPPO A76,3120,4160
+rsd-bd/Road damage data/Asphalt/IMG20240301153743.jpg,Asphalt,112,kept,OPPO OPPO A76,3120,4160
+rsd-bd/Road damage data/Asphalt/IMG20240301153850.jpg,Asphalt,113,kept,OPPO OPPO A76,3120,4160
+rsd-bd/Road damage data/Asphalt/IMG20240301153914.jpg,Asphalt,114,kept,OPPO OPPO A76,3120,4160
+rsd-bd/Road damage data/Asphalt/IMG_20240301_171534.jpg,Asphalt,115,kept,Xiaomi 21091116I,3000,4000
+rsd-bd/Road damage data/Asphalt/IMG_20240301_171555.jpg,Asphalt,116,kept,Xiaomi 21091116I,3000,4000
+rsd-bd/Road damage data/Asphalt/asp(1).JPG,Asphalt,117,kept,,626,246
+rsd-bd/Road damage data/Asphalt/asp(10).JPG,Asphalt,1,removed (copy),,385,195
+rsd-bd/Road damage data/Asphalt/asp(11).JPG,Asphalt,118,removed (copy),,424,318
+rsd-bd/Road damage data/Asphalt/asp(12).JPG,Asphalt,119,kept,,484,365
+rsd-bd/Road damage data/Asphalt/asp(13).JPG,Asphalt,120,kept,,301,215
+rsd-bd/Road damage data/Asphalt/asp(14).JPG,Asphalt,121,kept,,218,359
+rsd-bd/Road damage data/Asphalt/asp(15).JPG,Asphalt,122,kept,,274,417
+rsd-bd/Road damage data/Asphalt/asp(16).JPG,Asphalt,123,kept,,354,137
+rsd-bd/Road damage data/Asphalt/asp(17).JPG,Asphalt,124,kept,,299,384
+rsd-bd/Road damage data/Asphalt/asp(18).JPG,Asphalt,125,kept,,262,333
+rsd-bd/Road damage data/Asphalt/asp(19).JPG,Asphalt,126,kept,,234,56
+rsd-bd/Road damage data/Asphalt/asp(2).JPG,Asphalt,127,kept,,379,128
+rsd-bd/Road damage data/Asphalt/asp(20).JPG,Asphalt,13,removed (copy),,403,194
+rsd-bd/Road damage data/Asphalt/asp(21).JPG,Asphalt,128,kept,,394,322
+rsd-bd/Road damage data/Asphalt/asp(22).JPG,Asphalt,129,kept,,499,218
+rsd-bd/Road damage data/Asphalt/asp(23).JPG,Asphalt,130,kept,,224,166
+rsd-bd/Road damage data/Asphalt/asp(24).JPG,Asphalt,131,kept,,226,175
+rsd-bd/Road damage data/Asphalt/asp(25).JPG,Asphalt,132,kept,,344,240
+rsd-bd/Road damage data/Asphalt/asp(26).JPG,Asphalt,133,kept,,205,240
+rsd-bd/Road damage data/Asphalt/asp(27).JPG,Asphalt,134,kept,,351,455
+rsd-bd/Road damage data/Asphalt/asp(28).JPG,Asphalt,135,kept,,220,137
+rsd-bd/Road damage data/Asphalt/asp(29).JPG,Asphalt,14,removed (copy),,319,185
+rsd-bd/Road damage data/Asphalt/asp(3).JPG,Asphalt,136,kept,,391,202
+rsd-bd/Road damage data/Asphalt/asp(30).JPG,Asphalt,137,kept,,504,211
+rsd-bd/Road damage data/Asphalt/asp(31).JPG,Asphalt,138,kept,,376,269
+rsd-bd/Road damage data/Asphalt/asp(32).JPG,Asphalt,139,kept,,497,164
+rsd-bd/Road damage data/Asphalt/asp(33).JPG,Asphalt,140,kept,,489,257
+rsd-bd/Road damage data/Asphalt/asp(34).JPG,Asphalt,141,kept,,321,232
+rsd-bd/Road damage data/Asphalt/asp(35).JPG,Asphalt,142,kept,,288,168
+rsd-bd/Road damage data/Asphalt/asp(36).JPG,Asphalt,143,kept,,152,227
+rsd-bd/Road damage data/Asphalt/asp(37).JPG,Asphalt,144,kept,,492,186
+rsd-bd/Road damage data/Asphalt/asp(38).JPG,Asphalt,145,kept,,345,114
+rsd-bd/Road damage data/Asphalt/asp(39).JPG,Asphalt,146,kept,,490,285
+rsd-bd/Road damage data/Asphalt/asp(4).JPG,Asphalt,147,kept,,336,83
+rsd-bd/Road damage data/Asphalt/asp(40).JPG,Asphalt,17,removed (copy),,346,237
+rsd-bd/Road damage data/Asphalt/asp(41).JPG,Asphalt,18,removed (copy),,316,147
+rsd-bd/Road damage data/Asphalt/asp(42).JPG,Asphalt,148,kept,,283,178
+rsd-bd/Road damage data/Asphalt/asp(43).JPG,Asphalt,149,kept,,190,203
+rsd-bd/Road damage data/Asphalt/asp(44).JPG,Asphalt,150,kept,,502,126
+rsd-bd/Road damage data/Asphalt/asp(45).JPG,Asphalt,151,kept,,504,146
+rsd-bd/Road damage data/Asphalt/asp(46).JPG,Asphalt,152,kept,,239,126
+rsd-bd/Road damage data/Asphalt/asp(47).JPG,Asphalt,153,kept,,135,170
+rsd-bd/Road damage data/Asphalt/asp(48).JPG,Asphalt,154,kept,,258,234
+rsd-bd/Road damage data/Asphalt/asp(49).JPG,Asphalt,155,kept,,345,196
+rsd-bd/Road damage data/Asphalt/asp(5).JPG,Asphalt,156,kept,,421,257
+rsd-bd/Road damage data/Asphalt/asp(50).JPG,Asphalt,157,kept,,141,162
+rsd-bd/Road damage data/Asphalt/asp(51).JPG,Asphalt,158,kept,,191,216
+rsd-bd/Road damage data/Asphalt/asp(52).JPG,Asphalt,159,kept,,471,146
+rsd-bd/Road damage data/Asphalt/asp(53).JPG,Asphalt,160,kept,,506,210
+rsd-bd/Road damage data/Asphalt/asp(54).JPG,Asphalt,161,kept,,301,209
+rsd-bd/Road damage data/Asphalt/asp(55).JPG,Asphalt,162,kept,,393,140
+rsd-bd/Road damage data/Asphalt/asp(56).JPG,Asphalt,163,kept,,495,292
+rsd-bd/Road damage data/Asphalt/asp(57).JPG,Asphalt,164,kept,,200,169
+rsd-bd/Road damage data/Asphalt/asp(58).JPG,Asphalt,165,kept,,203,314
+rsd-bd/Road damage data/Asphalt/asp(59).JPG,Asphalt,166,kept,,496,199
+rsd-bd/Road damage data/Asphalt/asp(6).JPG,Asphalt,167,kept,,426,264
+rsd-bd/Road damage data/Asphalt/asp(60).JPG,Asphalt,168,kept,,508,143
+rsd-bd/Road damage data/Asphalt/asp(61).JPG,Asphalt,169,kept,,487,153
+rsd-bd/Road damage data/Asphalt/asp(62).JPG,Asphalt,170,kept,,424,204
+rsd-bd/Road damage data/Asphalt/asp(63).JPG,Asphalt,171,kept,,395,256
+rsd-bd/Road damage data/Asphalt/asp(64).JPG,Asphalt,172,kept,,309,203
+rsd-bd/Road damage data/Asphalt/asp(65).JPG,Asphalt,173,kept,,500,151
+rsd-bd/Road damage data/Asphalt/asp(66).JPG,Asphalt,174,kept,,402,237
+rsd-bd/Road damage data/Asphalt/asp(67).JPG,Asphalt,175,kept,,295,191
+rsd-bd/Road damage data/Asphalt/asp(68).JPG,Asphalt,176,kept,,500,163
+rsd-bd/Road damage data/Asphalt/asp(69).JPG,Asphalt,177,kept,,502,192
+rsd-bd/Road damage data/Asphalt/asp(7).JPG,Asphalt,178,kept,,439,245
+rsd-bd/Road damage data/Asphalt/asp(70).JPG,Asphalt,179,kept,,485,271
+rsd-bd/Road damage data/Asphalt/asp(71).JPG,Asphalt,180,kept,,241,411
+rsd-bd/Road damage data/Asphalt/asp(72).JPG,Asphalt,25,removed (copy),,487,237
+rsd-bd/Road damage data/Asphalt/asp(73).JPG,Asphalt,181,kept,,256,297
+rsd-bd/Road damage data/Asphalt/asp(74).JPG,Asphalt,26,removed (copy),,262,321
+rsd-bd/Road damage data/Asphalt/asp(75).JPG,Asphalt,27,removed (copy),,484,613
+rsd-bd/Road damage data/Asphalt/asp(76).JPG,Asphalt,182,kept,,502,147
+rsd-bd/Road damage data/Asphalt/asp(77).JPG,Asphalt,183,kept,,297,348
+rsd-bd/Road damage data/Asphalt/asp(78).JPG,Asphalt,184,kept,,380,288
+rsd-bd/Road damage data/Asphalt/asp(79).JPG,Asphalt,185,kept,,503,182
+rsd-bd/Road damage data/Asphalt/asp(8).JPG,Asphalt,186,kept,,430,268
+rsd-bd/Road damage data/Asphalt/asp(80).JPG,Asphalt,187,kept,,338,395
+rsd-bd/Road damage data/Asphalt/asp(81).JPG,Asphalt,188,kept,,252,143
+rsd-bd/Road damage data/Asphalt/asp(82).JPG,Asphalt,189,kept,,263,102
+rsd-bd/Road damage data/Asphalt/asp(83).JPG,Asphalt,190,kept,,430,491
+rsd-bd/Road damage data/Asphalt/asp(84).JPG,Asphalt,191,kept,,424,502
+rsd-bd/Road damage data/Asphalt/asp(85).JPG,Asphalt,192,kept,,405,465
+rsd-bd/Road damage data/Asphalt/asp(86).JPG,Asphalt,193,kept,,537,126
+rsd-bd/Road damage data/Asphalt/asp(87).JPG,Asphalt,194,removed (copy),,170,193
+rsd-bd/Road damage data/Asphalt/asp(88).JPG,Asphalt,195,removed (copy),,472,238
+rsd-bd/Road damage data/Asphalt/asp(89).JPG,Asphalt,196,removed (copy),,295,225
+rsd-bd/Road damage data/Asphalt/asp(9).JPG,Asphalt,197,kept,,433,208
+rsd-bd/Road damage data/Asphalt/asp(90).JPG,Asphalt,198,removed (copy),,242,98
+rsd-bd/Road damage data/Asphalt/asp(91).JPG,Asphalt,4,removed (copy),,239,164
+rsd-bd/Road damage data/Asphalt/asp(92).JPG,Asphalt,199,removed (copy),,140,141
+rsd-bd/Road damage data/Asphalt/asp(93).JPG,Asphalt,200,removed (copy),,226,83
+rsd-bd/Road damage data/Asphalt/asp(94).JPG,Asphalt,201,removed (copy),,206,117
+rsd-bd/Road damage data/Asphalt/asp(95).JPG,Asphalt,202,removed (copy),,137,233
+rsd-bd/Road damage data/Asphalt/asp(96).jpg,Asphalt,203,kept,,1200,1600
+rsd-bd/Road damage data/Asphalt/asp1 (1).JPG,Asphalt,204,kept,,431,477
+rsd-bd/Road damage data/Asphalt/asp1 (10).JPG,Asphalt,205,kept,,216,327
+rsd-bd/Road damage data/Asphalt/asp1 (100).JPG,Asphalt,192,removed (copy),,405,465
+rsd-bd/Road damage data/Asphalt/asp1 (101).JPG,Asphalt,2,removed (copy),,322,613
+rsd-bd/Road damage data/Asphalt/asp1 (102).JPG,Asphalt,194,removed (copy),,170,193
+rsd-bd/Road damage data/Asphalt/asp1 (103).JPG,Asphalt,3,removed (copy),,370,400
+rsd-bd/Road damage data/Asphalt/asp1 (104).JPG,Asphalt,195,removed (copy),,472,238
+rsd-bd/Road damage data/Asphalt/asp1 (105).JPG,Asphalt,196,removed (copy),,295,225
+rsd-bd/Road damage data/Asphalt/asp1 (106).JPG,Asphalt,4,removed (copy),,239,164
+rsd-bd/Road damage data/Asphalt/asp1 (107).JPG,Asphalt,199,removed (copy),,140,141
+rsd-bd/Road damage data/Asphalt/asp1 (108).JPG,Asphalt,201,removed (copy),,206,117
+rsd-bd/Road damage data/Asphalt/asp1 (109).JPG,Asphalt,202,removed (copy),,137,233
+rsd-bd/Road damage data/Asphalt/asp1 (11).JPG,Asphalt,206,kept,,427,233
+rsd-bd/Road damage data/Asphalt/asp1 (110).jpg,Asphalt,203,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/asp1 (12).JPG,Asphalt,207,kept,,433,272
+rsd-bd/Road damage data/Asphalt/asp1 (13).JPG,Asphalt,208,kept,,417,182
+rsd-bd/Road damage data/Asphalt/asp1 (14).JPG,Asphalt,209,kept,,420,224
+rsd-bd/Road damage data/Asphalt/asp1 (15).JPG,Asphalt,210,kept,,412,335
+rsd-bd/Road damage data/Asphalt/asp1 (16).JPG,Asphalt,211,kept,,431,430
+rsd-bd/Road damage data/Asphalt/asp1 (17).JPG,Asphalt,212,kept,,429,367
+rsd-bd/Road damage data/Asphalt/asp1 (18).JPG,Asphalt,117,removed (copy),,626,246
+rsd-bd/Road damage data/Asphalt/asp1 (19).JPG,Asphalt,136,removed (copy),,391,202
+rsd-bd/Road damage data/Asphalt/asp1 (2).JPG,Asphalt,213,kept,,492,451
+rsd-bd/Road damage data/Asphalt/asp1 (20).JPG,Asphalt,156,removed (copy),,421,257
+rsd-bd/Road damage data/Asphalt/asp1 (21).JPG,Asphalt,167,removed (copy),,426,264
+rsd-bd/Road damage data/Asphalt/asp1 (22).JPG,Asphalt,178,removed (copy),,439,245
+rsd-bd/Road damage data/Asphalt/asp1 (23).JPG,Asphalt,186,removed (copy),,430,268
+rsd-bd/Road damage data/Asphalt/asp1 (24).JPG,Asphalt,197,removed (copy),,433,208
+rsd-bd/Road damage data/Asphalt/asp1 (25).JPG,Asphalt,1,removed (copy),,385,195
+rsd-bd/Road damage data/Asphalt/asp1 (26).JPG,Asphalt,118,removed (copy),,424,318
+rsd-bd/Road damage data/Asphalt/asp1 (27).JPG,Asphalt,5,removed (copy),,431,368
+rsd-bd/Road damage data/Asphalt/asp1 (28).JPG,Asphalt,6,removed (copy),,261,162
+rsd-bd/Road damage data/Asphalt/asp1 (29).JPG,Asphalt,119,removed (copy),,484,365
+rsd-bd/Road damage data/Asphalt/asp1 (3).JPG,Asphalt,204,removed (copy),,429,465
+rsd-bd/Road damage data/Asphalt/asp1 (30).JPG,Asphalt,7,removed (copy),,348,368
+rsd-bd/Road damage data/Asphalt/asp1 (31).JPG,Asphalt,8,removed (copy),,430,366
+rsd-bd/Road damage data/Asphalt/asp1 (32).JPG,Asphalt,120,removed (copy),,301,215
+rsd-bd/Road damage data/Asphalt/asp1 (33).JPG,Asphalt,121,removed (copy),,218,359
+rsd-bd/Road damage data/Asphalt/asp1 (34).JPG,Asphalt,122,removed (copy),,274,417
+rsd-bd/Road damage data/Asphalt/asp1 (35).JPG,Asphalt,124,removed (copy),,299,384
+rsd-bd/Road damage data/Asphalt/asp1 (36).JPG,Asphalt,125,removed (copy),,262,333
+rsd-bd/Road damage data/Asphalt/asp1 (37).JPG,Asphalt,12,removed (copy),,211,181
+rsd-bd/Road damage data/Asphalt/asp1 (38).JPG,Asphalt,13,removed (copy),,403,194
+rsd-bd/Road damage data/Asphalt/asp1 (39).JPG,Asphalt,128,removed (copy),,394,322
+rsd-bd/Road damage data/Asphalt/asp1 (4).JPG,Asphalt,214,kept,,427,321
+rsd-bd/Road damage data/Asphalt/asp1 (40).JPG,Asphalt,130,removed (copy),,224,166
+rsd-bd/Road damage data/Asphalt/asp1 (41).JPG,Asphalt,131,removed (copy),,226,175
+rsd-bd/Road damage data/Asphalt/asp1 (42).JPG,Asphalt,132,removed (copy),,344,240
+rsd-bd/Road damage data/Asphalt/asp1 (43).JPG,Asphalt,133,removed (copy),,205,240
+rsd-bd/Road damage data/Asphalt/asp1 (44).JPG,Asphalt,134,removed (copy),,351,455
+rsd-bd/Road damage data/Asphalt/asp1 (45).JPG,Asphalt,135,removed (copy),,220,137
+rsd-bd/Road damage data/Asphalt/asp1 (46).JPG,Asphalt,14,removed (copy),,319,185
+rsd-bd/Road damage data/Asphalt/asp1 (47).JPG,Asphalt,137,removed (copy),,504,211
+rsd-bd/Road damage data/Asphalt/asp1 (48).JPG,Asphalt,15,removed (copy),,173,177
+rsd-bd/Road damage data/Asphalt/asp1 (49).JPG,Asphalt,138,removed (copy),,376,269
+rsd-bd/Road damage data/Asphalt/asp1 (5).JPG,Asphalt,215,kept,,525,441
+rsd-bd/Road damage data/Asphalt/asp1 (50).JPG,Asphalt,139,removed (copy),,497,164
+rsd-bd/Road damage data/Asphalt/asp1 (51).JPG,Asphalt,140,removed (copy),,489,257
+rsd-bd/Road damage data/Asphalt/asp1 (52).JPG,Asphalt,141,removed (copy),,321,232
+rsd-bd/Road damage data/Asphalt/asp1 (53).JPG,Asphalt,142,removed (copy),,288,168
+rsd-bd/Road damage data/Asphalt/asp1 (54).JPG,Asphalt,143,removed (copy),,152,227
+rsd-bd/Road damage data/Asphalt/asp1 (55).JPG,Asphalt,16,removed (copy),,199,270
+rsd-bd/Road damage data/Asphalt/asp1 (56).JPG,Asphalt,145,removed (copy),,345,114
+rsd-bd/Road damage data/Asphalt/asp1 (57).JPG,Asphalt,146,removed (copy),,490,285
+rsd-bd/Road damage data/Asphalt/asp1 (58).JPG,Asphalt,17,removed (copy),,346,237
+rsd-bd/Road damage data/Asphalt/asp1 (59).JPG,Asphalt,18,removed (copy),,316,147
+rsd-bd/Road damage data/Asphalt/asp1 (6).JPG,Asphalt,216,kept,,424,402
+rsd-bd/Road damage data/Asphalt/asp1 (60).JPG,Asphalt,148,removed (copy),,283,178
+rsd-bd/Road damage data/Asphalt/asp1 (61).JPG,Asphalt,19,removed (copy),,244,106
+rsd-bd/Road damage data/Asphalt/asp1 (62).JPG,Asphalt,149,removed (copy),,190,203
+rsd-bd/Road damage data/Asphalt/asp1 (63).JPG,Asphalt,152,removed (copy),,239,126
+rsd-bd/Road damage data/Asphalt/asp1 (64).JPG,Asphalt,20,removed (copy),,472,337
+rsd-bd/Road damage data/Asphalt/asp1 (65).JPG,Asphalt,153,removed (copy),,135,170
+rsd-bd/Road damage data/Asphalt/asp1 (66).JPG,Asphalt,154,removed (copy),,258,234
+rsd-bd/Road damage data/Asphalt/asp1 (67).JPG,Asphalt,155,removed (copy),,345,196
+rsd-bd/Road damage data/Asphalt/asp1 (68).JPG,Asphalt,157,removed (copy),,141,162
+rsd-bd/Road damage data/Asphalt/asp1 (69).JPG,Asphalt,158,removed (copy),,191,216
+rsd-bd/Road damage data/Asphalt/asp1 (7).JPG,Asphalt,217,kept,,411,442
+rsd-bd/Road damage data/Asphalt/asp1 (70).JPG,Asphalt,159,removed (copy),,471,146
+rsd-bd/Road damage data/Asphalt/asp1 (71).JPG,Asphalt,160,removed (copy),,506,210
+rsd-bd/Road damage data/Asphalt/asp1 (72).JPG,Asphalt,161,removed (copy),,301,209
+rsd-bd/Road damage data/Asphalt/asp1 (73).JPG,Asphalt,162,removed (copy),,393,140
+rsd-bd/Road damage data/Asphalt/asp1 (74).JPG,Asphalt,163,removed (copy),,495,292
+rsd-bd/Road damage data/Asphalt/asp1 (75).JPG,Asphalt,164,removed (copy),,200,169
+rsd-bd/Road damage data/Asphalt/asp1 (76).JPG,Asphalt,21,removed (copy),,497,270
+rsd-bd/Road damage data/Asphalt/asp1 (77).JPG,Asphalt,165,removed (copy),,203,314
+rsd-bd/Road damage data/Asphalt/asp1 (78).JPG,Asphalt,22,removed (copy),,191,305
+rsd-bd/Road damage data/Asphalt/asp1 (79).JPG,Asphalt,23,removed (copy),,373,215
+rsd-bd/Road damage data/Asphalt/asp1 (8).JPG,Asphalt,218,kept,,413,254
+rsd-bd/Road damage data/Asphalt/asp1 (80).JPG,Asphalt,168,removed (copy),,508,143
+rsd-bd/Road damage data/Asphalt/asp1 (81).JPG,Asphalt,169,removed (copy),,487,153
+rsd-bd/Road damage data/Asphalt/asp1 (82).JPG,Asphalt,170,removed (copy),,424,204
+rsd-bd/Road damage data/Asphalt/asp1 (83).JPG,Asphalt,171,removed (copy),,395,256
+rsd-bd/Road damage data/Asphalt/asp1 (84).JPG,Asphalt,172,removed (copy),,309,203
+rsd-bd/Road damage data/Asphalt/asp1 (85).JPG,Asphalt,24,removed (copy),,229,231
+rsd-bd/Road damage data/Asphalt/asp1 (86).JPG,Asphalt,174,removed (copy),,402,237
+rsd-bd/Road damage data/Asphalt/asp1 (87).JPG,Asphalt,175,removed (copy),,295,191
+rsd-bd/Road damage data/Asphalt/asp1 (88).JPG,Asphalt,179,removed (copy),,485,271
+rsd-bd/Road damage data/Asphalt/asp1 (89).JPG,Asphalt,180,removed (copy),,241,411
+rsd-bd/Road damage data/Asphalt/asp1 (9).JPG,Asphalt,219,kept,,422,388
+rsd-bd/Road damage data/Asphalt/asp1 (90).JPG,Asphalt,25,removed (copy),,487,237
+rsd-bd/Road damage data/Asphalt/asp1 (91).JPG,Asphalt,181,removed (copy),,256,297
+rsd-bd/Road damage data/Asphalt/asp1 (92).JPG,Asphalt,26,removed (copy),,262,321
+rsd-bd/Road damage data/Asphalt/asp1 (93).JPG,Asphalt,27,removed (copy),,484,613
+rsd-bd/Road damage data/Asphalt/asp1 (94).JPG,Asphalt,183,removed (copy),,297,348
+rsd-bd/Road damage data/Asphalt/asp1 (95).JPG,Asphalt,184,removed (copy),,380,288
+rsd-bd/Road damage data/Asphalt/asp1 (96).JPG,Asphalt,187,removed (copy),,338,395
+rsd-bd/Road damage data/Asphalt/asp1 (97).JPG,Asphalt,188,removed (copy),,252,143
+rsd-bd/Road damage data/Asphalt/asp1 (98).JPG,Asphalt,190,removed (copy),,430,491
+rsd-bd/Road damage data/Asphalt/asp1 (99).JPG,Asphalt,191,removed (copy),,424,502
+rsd-bd/Road damage data/Asphalt/asphalt(1).JPG,Asphalt,117,removed (copy),,626,246
+rsd-bd/Road damage data/Asphalt/asphalt(10).JPG,Asphalt,1,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(100).JPG,Asphalt,2,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(101).JPG,Asphalt,194,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(102).JPG,Asphalt,3,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(103).JPG,Asphalt,195,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(104).JPG,Asphalt,196,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(105).JPG,Asphalt,198,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(106).JPG,Asphalt,4,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(107).JPG,Asphalt,199,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(108).JPG,Asphalt,200,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(109).JPG,Asphalt,201,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(11).JPG,Asphalt,118,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(110).JPG,Asphalt,202,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(111).jpg,Asphalt,203,removed (copy),,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(112).jpg,Asphalt,83,removed (copy),,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(113).jpg,Asphalt,91,removed (copy),,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(114).jpg,Asphalt,96,removed (copy),,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(115).jpg,Asphalt,97,removed (copy),,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(116).jpg,Asphalt,98,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/asphalt(117).jpg,Asphalt,99,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/asphalt(118).jpg,Asphalt,102,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/asphalt(119).jpg,Asphalt,103,removed (copy),,1200,1600
+rsd-bd/Road damage data/Asphalt/asphalt(12).JPG,Asphalt,5,kept,,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(120).jpg,Asphalt,28,removed (copy),,512,512
+rsd-bd/Road damage data/Asphalt/asphalt(13).JPG,Asphalt,6,removed (copy),,261,162
+rsd-bd/Road damage data/Asphalt/asphalt(14).JPG,Asphalt,119,removed (copy),,484,365
+rsd-bd/Road damage data/Asphalt/asphalt(15).JPG,Asphalt,7,removed (copy),,348,368
+rsd-bd/Road damage data/Asphalt/asphalt(16).JPG,Asphalt,8,removed (copy),,430,366
+rsd-bd/Road damage data/Asphalt/asphalt(17).JPG,Asphalt,120,removed (copy),,301,215
+rsd-bd/Road damage data/Asphalt/asphalt(18).JPG,Asphalt,121,removed (copy),,218,359
+rsd-bd/Road damage data/Asphalt/asphalt(19).JPG,Asphalt,122,removed (copy),,274,417
+rsd-bd/Road damage data/Asphalt/asphalt(2).JPG,Asphalt,127,removed (copy),,379,128
+rsd-bd/Road damage data/Asphalt/asphalt(20).JPG,Asphalt,123,removed (copy),,354,137
+rsd-bd/Road damage data/Asphalt/asphalt(21).JPG,Asphalt,124,removed (copy),,299,384
+rsd-bd/Road damage data/Asphalt/asphalt(22).JPG,Asphalt,125,removed (copy),,262,333
+rsd-bd/Road damage data/Asphalt/asphalt(23).JPG,Asphalt,126,removed (copy),,234,56
+rsd-bd/Road damage data/Asphalt/asphalt(24).JPG,Asphalt,12,removed (copy),,211,181
+rsd-bd/Road damage data/Asphalt/asphalt(25).JPG,Asphalt,13,removed (copy),,403,194
+rsd-bd/Road damage data/Asphalt/asphalt(26).JPG,Asphalt,128,removed (copy),,394,322
+rsd-bd/Road damage data/Asphalt/asphalt(27).JPG,Asphalt,129,removed (copy),,499,218
+rsd-bd/Road damage data/Asphalt/asphalt(28).JPG,Asphalt,130,removed (copy),,224,166
+rsd-bd/Road damage data/Asphalt/asphalt(29).JPG,Asphalt,131,removed (copy),,226,175
+rsd-bd/Road damage data/Asphalt/asphalt(3).JPG,Asphalt,136,removed (copy),,391,202
+rsd-bd/Road damage data/Asphalt/asphalt(30).JPG,Asphalt,132,removed (copy),,344,240
+rsd-bd/Road damage data/Asphalt/asphalt(31).JPG,Asphalt,133,removed (copy),,205,240
+rsd-bd/Road damage data/Asphalt/asphalt(32).JPG,Asphalt,134,removed (copy),,351,455
+rsd-bd/Road damage data/Asphalt/asphalt(33).JPG,Asphalt,135,removed (copy),,220,137
+rsd-bd/Road damage data/Asphalt/asphalt(34).JPG,Asphalt,14,removed (copy),,319,185
+rsd-bd/Road damage data/Asphalt/asphalt(35).JPG,Asphalt,137,removed (copy),,504,211
+rsd-bd/Road damage data/Asphalt/asphalt(36).JPG,Asphalt,15,removed (copy),,173,177
+rsd-bd/Road damage data/Asphalt/asphalt(37).JPG,Asphalt,138,removed (copy),,376,269
+rsd-bd/Road damage data/Asphalt/asphalt(38).JPG,Asphalt,139,removed (copy),,497,164
+rsd-bd/Road damage data/Asphalt/asphalt(39).JPG,Asphalt,140,removed (copy),,489,257
+rsd-bd/Road damage data/Asphalt/asphalt(4).JPG,Asphalt,147,removed (copy),,336,83
+rsd-bd/Road damage data/Asphalt/asphalt(40).JPG,Asphalt,141,removed (copy),,321,232
+rsd-bd/Road damage data/Asphalt/asphalt(41).JPG,Asphalt,142,removed (copy),,288,168
+rsd-bd/Road damage data/Asphalt/asphalt(42).JPG,Asphalt,143,removed (copy),,152,227
+rsd-bd/Road damage data/Asphalt/asphalt(43).JPG,Asphalt,144,removed (copy),,492,186
+rsd-bd/Road damage data/Asphalt/asphalt(44).JPG,Asphalt,16,removed (copy),,199,270
+rsd-bd/Road damage data/Asphalt/asphalt(45).JPG,Asphalt,145,removed (copy),,345,114
+rsd-bd/Road damage data/Asphalt/asphalt(46).JPG,Asphalt,146,removed (copy),,490,285
+rsd-bd/Road damage data/Asphalt/asphalt(47).JPG,Asphalt,17,removed (copy),,346,237
+rsd-bd/Road damage data/Asphalt/asphalt(48).JPG,Asphalt,18,removed (copy),,316,147
+rsd-bd/Road damage data/Asphalt/asphalt(49).JPG,Asphalt,148,removed (copy),,283,178
+rsd-bd/Road damage data/Asphalt/asphalt(5).JPG,Asphalt,156,removed (copy),,421,257
+rsd-bd/Road damage data/Asphalt/asphalt(50).JPG,Asphalt,19,removed (copy),,244,106
+rsd-bd/Road damage data/Asphalt/asphalt(51).JPG,Asphalt,149,removed (copy),,190,203
+rsd-bd/Road damage data/Asphalt/asphalt(52).JPG,Asphalt,150,removed (copy),,502,126
+rsd-bd/Road damage data/Asphalt/asphalt(53).JPG,Asphalt,151,removed (copy),,504,146
+rsd-bd/Road damage data/Asphalt/asphalt(54).JPG,Asphalt,152,removed (copy),,239,126
+rsd-bd/Road damage data/Asphalt/asphalt(55).JPG,Asphalt,20,removed (copy),,472,337
+rsd-bd/Road damage data/Asphalt/asphalt(56).JPG,Asphalt,153,removed (copy),,135,170
+rsd-bd/Road damage data/Asphalt/asphalt(57).JPG,Asphalt,154,removed (copy),,258,234
+rsd-bd/Road damage data/Asphalt/asphalt(58).JPG,Asphalt,155,removed (copy),,345,196
+rsd-bd/Road damage data/Asphalt/asphalt(59).JPG,Asphalt,157,removed (copy),,141,162
+rsd-bd/Road damage data/Asphalt/asphalt(6).JPG,Asphalt,167,removed (copy),,426,264
+rsd-bd/Road damage data/Asphalt/asphalt(60).JPG,Asphalt,158,removed (copy),,191,216
+rsd-bd/Road damage data/Asphalt/asphalt(61).JPG,Asphalt,159,removed (copy),,471,146
+rsd-bd/Road damage data/Asphalt/asphalt(62).JPG,Asphalt,160,removed (copy),,506,210
+rsd-bd/Road damage data/Asphalt/asphalt(63).JPG,Asphalt,161,removed (copy),,301,209
+rsd-bd/Road damage data/Asphalt/asphalt(64).JPG,Asphalt,162,removed (copy),,393,140
+rsd-bd/Road damage data/Asphalt/asphalt(65).JPG,Asphalt,163,removed (copy),,495,292
+rsd-bd/Road damage data/Asphalt/asphalt(66).JPG,Asphalt,164,removed (copy),,200,169
+rsd-bd/Road damage data/Asphalt/asphalt(67).JPG,Asphalt,21,removed (copy),,497,270
+rsd-bd/Road damage data/Asphalt/asphalt(68).JPG,Asphalt,165,removed (copy),,203,314
+rsd-bd/Road damage data/Asphalt/asphalt(69).JPG,Asphalt,166,removed (copy),,496,199
+rsd-bd/Road damage data/Asphalt/asphalt(7).JPG,Asphalt,178,removed (copy),,439,245
+rsd-bd/Road damage data/Asphalt/asphalt(70).JPG,Asphalt,22,removed (copy),,191,305
+rsd-bd/Road damage data/Asphalt/asphalt(71).JPG,Asphalt,23,removed (copy),,373,215
+rsd-bd/Road damage data/Asphalt/asphalt(72).JPG,Asphalt,168,removed (copy),,508,143
+rsd-bd/Road damage data/Asphalt/asphalt(73).JPG,Asphalt,169,removed (copy),,487,153
+rsd-bd/Road damage data/Asphalt/asphalt(74).JPG,Asphalt,170,removed (copy),,424,204
+rsd-bd/Road damage data/Asphalt/asphalt(75).JPG,Asphalt,171,removed (copy),,395,256
+rsd-bd/Road damage data/Asphalt/asphalt(76).JPG,Asphalt,172,removed (copy),,309,203
+rsd-bd/Road damage data/Asphalt/asphalt(77).JPG,Asphalt,173,removed (copy),,500,151
+rsd-bd/Road damage data/Asphalt/asphalt(78).JPG,Asphalt,24,removed (copy),,229,231
+rsd-bd/Road damage data/Asphalt/asphalt(79).JPG,Asphalt,174,removed (copy),,402,237
+rsd-bd/Road damage data/Asphalt/asphalt(8).JPG,Asphalt,186,removed (copy),,430,268
+rsd-bd/Road damage data/Asphalt/asphalt(80).JPG,Asphalt,175,removed (copy),,295,191
+rsd-bd/Road damage data/Asphalt/asphalt(81).JPG,Asphalt,176,removed (copy),,500,163
+rsd-bd/Road damage data/Asphalt/asphalt(82).JPG,Asphalt,177,removed (copy),,502,192
+rsd-bd/Road damage data/Asphalt/asphalt(83).JPG,Asphalt,179,removed (copy),,485,271
+rsd-bd/Road damage data/Asphalt/asphalt(84).JPG,Asphalt,180,removed (copy),,241,411
+rsd-bd/Road damage data/Asphalt/asphalt(85).JPG,Asphalt,25,removed (copy),,487,237
+rsd-bd/Road damage data/Asphalt/asphalt(86).JPG,Asphalt,181,removed (copy),,256,297
+rsd-bd/Road damage data/Asphalt/asphalt(87).JPG,Asphalt,26,removed (copy),,262,321
+rsd-bd/Road damage data/Asphalt/asphalt(88).JPG,Asphalt,27,removed (copy),,484,613
+rsd-bd/Road damage data/Asphalt/asphalt(89).JPG,Asphalt,182,removed (copy),,502,147
+rsd-bd/Road damage data/Asphalt/asphalt(9).JPG,Asphalt,197,removed (copy),,433,208
+rsd-bd/Road damage data/Asphalt/asphalt(90).JPG,Asphalt,183,removed (copy),,297,348
+rsd-bd/Road damage data/Asphalt/asphalt(91).JPG,Asphalt,184,removed (copy),,380,288
+rsd-bd/Road damage data/Asphalt/asphalt(92).JPG,Asphalt,185,removed (copy),,503,182
+rsd-bd/Road damage data/Asphalt/asphalt(93).JPG,Asphalt,187,removed (copy),,338,395
+rsd-bd/Road damage data/Asphalt/asphalt(94).JPG,Asphalt,188,removed (copy),,252,143
+rsd-bd/Road damage data/Asphalt/asphalt(95).JPG,Asphalt,189,removed (copy),,263,102
+rsd-bd/Road damage data/Asphalt/asphalt(96).JPG,Asphalt,190,removed (copy),,430,491
+rsd-bd/Road damage data/Asphalt/asphalt(97).JPG,Asphalt,191,removed (copy),,424,502
+rsd-bd/Road damage data/Asphalt/asphalt(98).JPG,Asphalt,192,removed (copy),,405,465
+rsd-bd/Road damage data/Asphalt/asphalt(99).JPG,Asphalt,193,removed (copy),,537,126
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641351_y.jpg,Asphalt,220,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641353_y.jpg,Asphalt,103,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641354_y.jpg,Asphalt,32,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641355_y.jpg,Asphalt,102,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641356_y.jpg,Asphalt,101,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641357_y.jpg,Asphalt,100,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641358_y.jpg,Asphalt,99,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641361_y.jpg,Asphalt,38,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641362_y.jpg,Asphalt,221,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641363_y.jpg,Asphalt,97,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641364_y.jpg,Asphalt,96,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641365_y.jpg,Asphalt,95,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641366_y (1).jpg,Asphalt,93,removed (copy),,1280,960
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641366_y.jpg,Asphalt,93,removed (copy),,1280,960
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641367_y (1).jpg,Asphalt,86,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641367_y.jpg,Asphalt,86,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641369_y.jpg,Asphalt,85,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641421_y.jpg,Asphalt,222,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641422_y.jpg,Asphalt,223,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641425_y.jpg,Asphalt,61,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641427_y.jpg,Asphalt,60,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641431_y.jpg,Asphalt,56,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641433_y (1).jpg,Asphalt,51,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641433_y.jpg,Asphalt,51,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641434_y.jpg,Asphalt,49,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641435_y.jpg,Asphalt,224,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641436_y.jpg,Asphalt,50,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641440_y.jpg,Asphalt,48,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641442_y.jpg,Asphalt,47,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641443_y.jpg,Asphalt,225,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641444_y.jpg,Asphalt,226,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641445_y.jpg,Asphalt,46,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641446_y.jpg,Asphalt,45,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641450_y.jpg,Asphalt,203,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641451_y.jpg,Asphalt,44,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641454_y.jpg,Asphalt,42,removed (copy),,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641455_y.jpg,Asphalt,227,kept,,960,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641456_y.jpg,Asphalt,40,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641457_y.jpg,Asphalt,39,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641458_y.jpg,Asphalt,37,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641461_y.jpg,Asphalt,34,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641462_y.jpg,Asphalt,33,removed (copy),,867,1156
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641468_y.jpg,Asphalt,106,removed (copy),,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641472_y.jpg,Asphalt,228,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641473_y.jpg,Asphalt,229,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641477_y.jpg,Asphalt,230,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641485_y.jpg,Asphalt,107,removed (copy),,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641486_y.jpg,Asphalt,231,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641490_y.jpg,Asphalt,232,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641491_y.jpg,Asphalt,233,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641492_y.jpg,Asphalt,234,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641493_y.jpg,Asphalt,235,kept,,963,1280
+rsd-bd/Road damage data/Asphalt/photo_6217532711279641494_y.jpg,Asphalt,236,kept,,963,1280
+rsd-bd/Road damage data/Creak/1 (2).JPG,Creak,237,removed (copy),,238,238
+rsd-bd/Road damage data/Creak/1.JPG,Creak,237,kept,,512,512
+rsd-bd/Road damage data/Creak/10 (2).JPG,Creak,238,removed (copy),,342,413
+rsd-bd/Road damage data/Creak/10.JPG,Creak,238,kept,,512,512
+rsd-bd/Road damage data/Creak/100 (2).JPG,Creak,239,removed (copy),,257,314
+rsd-bd/Road damage data/Creak/100 (3).JPG,Creak,239,removed (copy),,257,314
+rsd-bd/Road damage data/Creak/100.JPG,Creak,239,kept,,512,512
+rsd-bd/Road damage data/Creak/101 (2).JPG,Creak,240,removed (copy),,259,339
+rsd-bd/Road damage data/Creak/101 (3).JPG,Creak,240,removed (copy),,259,339
+rsd-bd/Road damage data/Creak/101.JPG,Creak,240,kept,,512,512
+rsd-bd/Road damage data/Creak/102 (2).JPG,Creak,241,removed (copy),,318,369
+rsd-bd/Road damage data/Creak/102 (3).JPG,Creak,241,removed (copy),,318,369
+rsd-bd/Road damage data/Creak/102.JPG,Creak,241,kept,,512,512
+rsd-bd/Road damage data/Creak/103 (2).JPG,Creak,242,removed (copy),,380,365
+rsd-bd/Road damage data/Creak/103 (3).JPG,Creak,242,removed (copy),,380,365
+rsd-bd/Road damage data/Creak/103.JPG,Creak,242,kept,,512,512
+rsd-bd/Road damage data/Creak/104 (2).JPG,Creak,243,removed (copy),,446,327
+rsd-bd/Road damage data/Creak/104 (3).JPG,Creak,243,removed (copy),,446,327
+rsd-bd/Road damage data/Creak/104.JPG,Creak,243,kept,,512,512
+rsd-bd/Road damage data/Creak/105 (2).JPG,Creak,244,removed (copy),,249,354
+rsd-bd/Road damage data/Creak/105 (3).JPG,Creak,244,removed (copy),,249,354
+rsd-bd/Road damage data/Creak/105.JPG,Creak,244,kept,,512,512
+rsd-bd/Road damage data/Creak/107 (2).JPG,Creak,245,removed (copy),,344,386
+rsd-bd/Road damage data/Creak/107 (3).JPG,Creak,245,removed (copy),,344,386
+rsd-bd/Road damage data/Creak/107.JPG,Creak,245,kept,,512,512
+rsd-bd/Road damage data/Creak/108 (2).JPG,Creak,246,removed (copy),,274,310
+rsd-bd/Road damage data/Creak/108 (3).JPG,Creak,246,removed (copy),,274,310
+rsd-bd/Road damage data/Creak/108.JPG,Creak,246,kept,,512,512
+rsd-bd/Road damage data/Creak/109 (2).JPG,Creak,247,removed (copy),,272,323
+rsd-bd/Road damage data/Creak/109 (3).JPG,Creak,247,removed (copy),,272,323
+rsd-bd/Road damage data/Creak/109.JPG,Creak,247,kept,,512,512
+rsd-bd/Road damage data/Creak/11 (2).JPG,Creak,248,removed (copy),,600,379
+rsd-bd/Road damage data/Creak/11.JPG,Creak,248,kept,,512,512
+rsd-bd/Road damage data/Creak/110 (2).JPG,Creak,249,removed (copy),,441,251
+rsd-bd/Road damage data/Creak/110 (3).JPG,Creak,249,removed (copy),,441,251
+rsd-bd/Road damage data/Creak/110.JPG,Creak,249,kept,,512,512
+rsd-bd/Road damage data/Creak/111 (2).JPG,Creak,250,removed (copy),,319,245
+rsd-bd/Road damage data/Creak/111 (3).JPG,Creak,250,removed (copy),,319,245
+rsd-bd/Road damage data/Creak/111.JPG,Creak,250,kept,,512,512
+rsd-bd/Road damage data/Creak/112 (2).JPG,Creak,251,removed (copy),,255,227
+rsd-bd/Road damage data/Creak/112 (3).JPG,Creak,251,removed (copy),,255,227
+rsd-bd/Road damage data/Creak/112.JPG,Creak,251,kept,,512,512
+rsd-bd/Road damage data/Creak/113 (2).JPG,Creak,252,removed (copy),,338,279
+rsd-bd/Road damage data/Creak/113 (3).JPG,Creak,252,removed (copy),,338,279
+rsd-bd/Road damage data/Creak/113.JPG,Creak,252,kept,,512,512
+rsd-bd/Road damage data/Creak/114 (2).JPG,Creak,253,removed (copy),,224,246
+rsd-bd/Road damage data/Creak/114 (3).JPG,Creak,253,removed (copy),,224,246
+rsd-bd/Road damage data/Creak/114.JPG,Creak,253,kept,,512,512
+rsd-bd/Road damage data/Creak/115 (2).JPG,Creak,254,removed (copy),,184,210
+rsd-bd/Road damage data/Creak/115 (3).JPG,Creak,254,removed (copy),,184,210
+rsd-bd/Road damage data/Creak/115.JPG,Creak,254,kept,,512,512
+rsd-bd/Road damage data/Creak/116 (2).JPG,Creak,255,removed (copy),,218,288
+rsd-bd/Road damage data/Creak/116 (3).JPG,Creak,255,removed (copy),,218,288
+rsd-bd/Road damage data/Creak/116.JPG,Creak,255,kept,,512,512
+rsd-bd/Road damage data/Creak/117 (2).JPG,Creak,256,removed (copy),,258,312
+rsd-bd/Road damage data/Creak/117 (3).JPG,Creak,256,removed (copy),,258,312
+rsd-bd/Road damage data/Creak/117.JPG,Creak,256,kept,,512,512
+rsd-bd/Road damage data/Creak/118 (2).JPG,Creak,257,removed (copy),,245,276
+rsd-bd/Road damage data/Creak/118 (3).JPG,Creak,257,removed (copy),,245,276
+rsd-bd/Road damage data/Creak/118.JPG,Creak,257,kept,,512,512
+rsd-bd/Road damage data/Creak/119.JPG,Creak,258,kept,,247,228
+rsd-bd/Road damage data/Creak/12 (2).JPG,Creak,259,removed (copy),,342,384
+rsd-bd/Road damage data/Creak/12.JPG,Creak,259,kept,,512,512
+rsd-bd/Road damage data/Creak/120 (2).JPG,Creak,260,removed (copy),,272,202
+rsd-bd/Road damage data/Creak/120 (3).JPG,Creak,260,removed (copy),,272,202
+rsd-bd/Road damage data/Creak/120.JPG,Creak,260,kept,,512,512
+rsd-bd/Road damage data/Creak/13 (2).JPG,Creak,261,removed (copy),,331,364
+rsd-bd/Road damage data/Creak/13 (3).JPG,Creak,261,removed (copy),,331,364
+rsd-bd/Road damage data/Creak/13.JPG,Creak,261,kept,,512,512
+rsd-bd/Road damage data/Creak/14 (2).JPG,Creak,262,removed (copy),,401,446
+rsd-bd/Road damage data/Creak/14 (3).JPG,Creak,262,removed (copy),,401,446
+rsd-bd/Road damage data/Creak/14.JPG,Creak,262,kept,,512,512
+rsd-bd/Road damage data/Creak/15 (2).JPG,Creak,263,removed (copy),,307,371
+rsd-bd/Road damage data/Creak/15 (3).JPG,Creak,263,removed (copy),,307,371
+rsd-bd/Road damage data/Creak/15.JPG,Creak,263,kept,,512,512
+rsd-bd/Road damage data/Creak/16 (2).JPG,Creak,264,removed (copy),,354,428
+rsd-bd/Road damage data/Creak/16 (3).JPG,Creak,264,removed (copy),,354,428
+rsd-bd/Road damage data/Creak/16.JPG,Creak,264,kept,,512,512
+rsd-bd/Road damage data/Creak/17 (2).JPG,Creak,265,removed (copy),,262,357
+rsd-bd/Road damage data/Creak/17.JPG,Creak,265,kept,,512,512
+rsd-bd/Road damage data/Creak/18 (2).JPG,Creak,266,removed (copy),,367,335
+rsd-bd/Road damage data/Creak/18.JPG,Creak,266,kept,,512,512
+rsd-bd/Road damage data/Creak/2 (2).JPG,Creak,267,removed (copy),,294,209
+rsd-bd/Road damage data/Creak/2.JPG,Creak,267,kept,,512,512
+rsd-bd/Road damage data/Creak/20 (2).JPG,Creak,268,removed (copy),,422,224
+rsd-bd/Road damage data/Creak/20.jpg,Creak,268,kept,,512,512
+rsd-bd/Road damage data/Creak/20240301_072619 - Copy.jpg,Creak,269,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_072806.jpg,Creak,270,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_072824 - Copy.jpg,Creak,271,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_072824.jpg,Creak,271,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_072905 - Copy.jpg,Creak,272,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_072905.jpg,Creak,272,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_072947 - Copy.jpg,Creak,273,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_072947.jpg,Creak,273,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073010 - Copy.jpg,Creak,274,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073010.jpg,Creak,274,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073039 - Copy.jpg,Creak,275,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073102.jpg,Creak,276,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073331 - Copy.jpg,Creak,277,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073331.jpg,Creak,277,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073343 - Copy.jpg,Creak,278,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073343.jpg,Creak,278,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073417 - Copy.jpg,Creak,279,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073417.jpg,Creak,279,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073437 - Copy.jpg,Creak,280,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073437.jpg,Creak,280,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073517 - Copy.jpg,Creak,281,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073517.jpg,Creak,281,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073530 - Copy (2).jpg,Creak,282,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073530 - Copy.jpg,Creak,282,removed (copy),,512,512
+rsd-bd/Road damage data/Creak/20240301_073530.jpg,Creak,282,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073625 - Copy.jpg,Creak,283,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073625.jpg,Creak,283,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073707 - Copy.jpg,Creak,284,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073707.jpg,Creak,284,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073739 - Copy.jpg,Creak,285,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073739.jpg,Creak,285,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073747 - Copy.jpg,Creak,286,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073747.jpg,Creak,286,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073812 - Copy.jpg,Creak,287,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073812.jpg,Creak,287,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073841 (2).jpg,Creak,288,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073841 - Copy.jpg,Creak,288,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_073841.jpg,Creak,288,removed (copy),,512,512
+rsd-bd/Road damage data/Creak/20240301_074137 - Copy.jpg,Creak,289,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_074137.jpg,Creak,289,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_074158 - Copy.jpg,Creak,290,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_074158.jpg,Creak,290,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_074238 - Copy (2).jpg,Creak,291,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_074238 - Copy.jpg,Creak,291,removed (copy),,512,512
+rsd-bd/Road damage data/Creak/20240301_074238.jpg,Creak,291,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075044 - Copy.jpg,Creak,292,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075227 - Copy.jpg,Creak,293,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075236 - Copy.jpg,Creak,294,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075430 - Copy.jpg,Creak,295,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075430.jpg,Creak,295,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075452 - Copy.jpg,Creak,296,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075452.jpg,Creak,296,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075616.jpg,Creak,297,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_075956.jpg,Creak,298,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_080103.jpg,Creak,299,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_094913.jpg,Creak,300,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_100937.jpg,Creak,301,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101037.jpg,Creak,302,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101149.jpg,Creak,303,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101221.jpg,Creak,304,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101345.jpg,Creak,305,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101402.jpg,Creak,306,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101413.jpg,Creak,307,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101452.jpg,Creak,308,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101602.jpg,Creak,309,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101633.jpg,Creak,310,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101645.jpg,Creak,311,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101727.jpg,Creak,312,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101851.jpg,Creak,313,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_101957.jpg,Creak,314,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_102038.jpg,Creak,315,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/20240301_102105.jpg,Creak,316,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Creak/21 (2).JPG,Creak,317,removed (copy),,291,377
+rsd-bd/Road damage data/Creak/21.JPG,Creak,317,kept,,512,512
+rsd-bd/Road damage data/Creak/22 (2).JPG,Creak,318,removed (copy),,266,360
+rsd-bd/Road damage data/Creak/22 (3).JPG,Creak,318,removed (copy),,266,360
+rsd-bd/Road damage data/Creak/22.JPG,Creak,318,kept,,512,512
+rsd-bd/Road damage data/Creak/23 (2).JPG,Creak,319,removed (copy),,283,354
+rsd-bd/Road damage data/Creak/23 (3).JPG,Creak,319,removed (copy),,283,354
+rsd-bd/Road damage data/Creak/23.JPG,Creak,319,kept,,512,512
+rsd-bd/Road damage data/Creak/24 (2).JPG,Creak,320,removed (copy),,409,208
+rsd-bd/Road damage data/Creak/24 (3).JPG,Creak,320,removed (copy),,409,208
+rsd-bd/Road damage data/Creak/24.JPG,Creak,320,kept,,512,512
+rsd-bd/Road damage data/Creak/25 (2).JPG,Creak,321,removed (copy),,303,418
+rsd-bd/Road damage data/Creak/25 (3).JPG,Creak,321,removed (copy),,303,418
+rsd-bd/Road damage data/Creak/25.JPG,Creak,321,kept,,512,512
+rsd-bd/Road damage data/Creak/26 (2).JPG,Creak,322,removed (copy),,389,328
+rsd-bd/Road damage data/Creak/26.JPG,Creak,322,kept,,512,512
+rsd-bd/Road damage data/Creak/27 (2).JPG,Creak,323,removed (copy),,265,302
+rsd-bd/Road damage data/Creak/27.JPG,Creak,323,kept,,512,512
+rsd-bd/Road damage data/Creak/28 (2).JPG,Creak,324,removed (copy),,247,309
+rsd-bd/Road damage data/Creak/28.JPG,Creak,324,kept,,512,512
+rsd-bd/Road damage data/Creak/29 (2).JPG,Creak,325,removed (copy),,260,397
+rsd-bd/Road damage data/Creak/29.JPG,Creak,325,kept,,512,512
+rsd-bd/Road damage data/Creak/3 (2).JPG,Creak,326,removed (copy),,230,276
+rsd-bd/Road damage data/Creak/3.JPG,Creak,326,kept,,512,512
+rsd-bd/Road damage data/Creak/30 (2).JPG,Creak,327,removed (copy),,419,293
+rsd-bd/Road damage data/Creak/30 (3).JPG,Creak,327,removed (copy),,419,293
+rsd-bd/Road damage data/Creak/30.JPG,Creak,327,kept,,512,512
+rsd-bd/Road damage data/Creak/31 (2).JPG,Creak,328,removed (copy),,361,478
+rsd-bd/Road damage data/Creak/31 (3).JPG,Creak,328,removed (copy),,361,478
+rsd-bd/Road damage data/Creak/31.JPG,Creak,328,kept,,512,512
+rsd-bd/Road damage data/Creak/32 (2).JPG,Creak,329,removed (copy),,312,482
+rsd-bd/Road damage data/Creak/32 (3).JPG,Creak,329,removed (copy),,312,482
+rsd-bd/Road damage data/Creak/32.JPG,Creak,329,kept,,512,512
+rsd-bd/Road damage data/Creak/33 (2).JPG,Creak,330,removed (copy),,335,349
+rsd-bd/Road damage data/Creak/33 (3).JPG,Creak,330,removed (copy),,335,349
+rsd-bd/Road damage data/Creak/33.JPG,Creak,330,kept,,512,512
+rsd-bd/Road damage data/Creak/34 (2).JPG,Creak,331,removed (copy),,408,442
+rsd-bd/Road damage data/Creak/34.JPG,Creak,331,kept,,512,512
+rsd-bd/Road damage data/Creak/35 (2).JPG,Creak,332,removed (copy),,390,299
+rsd-bd/Road damage data/Creak/35.JPG,Creak,332,kept,,512,512
+rsd-bd/Road damage data/Creak/36 (2).JPG,Creak,333,removed (copy),,331,326
+rsd-bd/Road damage data/Creak/36.JPG,Creak,333,kept,,512,512
+rsd-bd/Road damage data/Creak/37 (2).JPG,Creak,334,removed (copy),,402,256
+rsd-bd/Road damage data/Creak/37.JPG,Creak,334,kept,,512,512
+rsd-bd/Road damage data/Creak/38 (2).JPG,Creak,335,removed (copy),,336,395
+rsd-bd/Road damage data/Creak/38 (3).JPG,Creak,335,removed (copy),,336,395
+rsd-bd/Road damage data/Creak/38.JPG,Creak,335,kept,,512,512
+rsd-bd/Road damage data/Creak/39 (2).JPG,Creak,336,removed (copy),,389,239
+rsd-bd/Road damage data/Creak/39 (3).JPG,Creak,336,removed (copy),,389,239
+rsd-bd/Road damage data/Creak/39.JPG,Creak,336,kept,,512,512
+rsd-bd/Road damage data/Creak/4 (2).JPG,Creak,337,removed (copy),,207,264
+rsd-bd/Road damage data/Creak/4.JPG,Creak,337,kept,,512,512
+rsd-bd/Road damage data/Creak/40 (2).JPG,Creak,338,removed (copy),,385,296
+rsd-bd/Road damage data/Creak/40 (3).JPG,Creak,338,removed (copy),,385,296
+rsd-bd/Road damage data/Creak/40.JPG,Creak,338,kept,,512,512
+rsd-bd/Road damage data/Creak/41 (2).JPG,Creak,339,removed (copy),,377,277
+rsd-bd/Road damage data/Creak/41 (3).JPG,Creak,339,removed (copy),,377,277
+rsd-bd/Road damage data/Creak/41.JPG,Creak,339,kept,,512,512
+rsd-bd/Road damage data/Creak/42 (2).JPG,Creak,340,removed (copy),,340,381
+rsd-bd/Road damage data/Creak/42.JPG,Creak,340,kept,,512,512
+rsd-bd/Road damage data/Creak/43 (2).JPG,Creak,341,removed (copy),,266,327
+rsd-bd/Road damage data/Creak/43.JPG,Creak,341,kept,,512,512
+rsd-bd/Road damage data/Creak/44 (2).JPG,Creak,342,removed (copy),,294,288
+rsd-bd/Road damage data/Creak/44.JPG,Creak,342,kept,,512,512
+rsd-bd/Road damage data/Creak/45 (2).JPG,Creak,343,removed (copy),,264,345
+rsd-bd/Road damage data/Creak/45.JPG,Creak,343,kept,,512,512
+rsd-bd/Road damage data/Creak/46 (2).JPG,Creak,344,removed (copy),,315,262
+rsd-bd/Road damage data/Creak/46 (3).JPG,Creak,344,removed (copy),,315,262
+rsd-bd/Road damage data/Creak/46.JPG,Creak,344,kept,,512,512
+rsd-bd/Road damage data/Creak/47 (2).JPG,Creak,345,removed (copy),,283,468
+rsd-bd/Road damage data/Creak/47 (3).JPG,Creak,345,removed (copy),,283,468
+rsd-bd/Road damage data/Creak/47.JPG,Creak,345,kept,,512,512
+rsd-bd/Road damage data/Creak/48 (2).JPG,Creak,346,removed (copy),,416,241
+rsd-bd/Road damage data/Creak/48 (3).JPG,Creak,346,removed (copy),,416,241
+rsd-bd/Road damage data/Creak/48.JPG,Creak,346,kept,,512,512
+rsd-bd/Road damage data/Creak/49 (2).JPG,Creak,347,removed (copy),,239,378
+rsd-bd/Road damage data/Creak/49 (3).JPG,Creak,347,removed (copy),,239,378
+rsd-bd/Road damage data/Creak/49.JPG,Creak,347,kept,,512,512
+rsd-bd/Road damage data/Creak/5 (2).JPG,Creak,348,removed (copy),,212,251
+rsd-bd/Road damage data/Creak/5 (3).JPG,Creak,348,removed (copy),,212,251
+rsd-bd/Road damage data/Creak/5.JPG,Creak,348,kept,,512,512
+rsd-bd/Road damage data/Creak/50 (2).JPG,Creak,349,removed (copy),,325,206
+rsd-bd/Road damage data/Creak/50 (3).JPG,Creak,349,removed (copy),,325,206
+rsd-bd/Road damage data/Creak/50.JPG,Creak,349,kept,,512,512
+rsd-bd/Road damage data/Creak/51 (2).JPG,Creak,350,removed (copy),,368,203
+rsd-bd/Road damage data/Creak/51 (3).JPG,Creak,350,removed (copy),,368,203
+rsd-bd/Road damage data/Creak/51.JPG,Creak,350,kept,,512,512
+rsd-bd/Road damage data/Creak/52 (2).JPG,Creak,351,removed (copy),,423,234
+rsd-bd/Road damage data/Creak/52 (3).JPG,Creak,351,removed (copy),,423,234
+rsd-bd/Road damage data/Creak/52.JPG,Creak,351,kept,,512,512
+rsd-bd/Road damage data/Creak/54 (2).JPG,Creak,352,removed (copy),,345,377
+rsd-bd/Road damage data/Creak/54 (3).JPG,Creak,352,removed (copy),,345,377
+rsd-bd/Road damage data/Creak/54.JPG,Creak,352,kept,,512,512
+rsd-bd/Road damage data/Creak/55 (2).JPG,Creak,353,removed (copy),,370,251
+rsd-bd/Road damage data/Creak/55 (3).JPG,Creak,353,removed (copy),,370,251
+rsd-bd/Road damage data/Creak/55.JPG,Creak,353,kept,,512,512
+rsd-bd/Road damage data/Creak/56 (2).JPG,Creak,354,removed (copy),,300,204
+rsd-bd/Road damage data/Creak/56 (3).JPG,Creak,354,removed (copy),,300,204
+rsd-bd/Road damage data/Creak/56.JPG,Creak,354,kept,,512,512
+rsd-bd/Road damage data/Creak/57 (2).JPG,Creak,355,removed (copy),,222,389
+rsd-bd/Road damage data/Creak/57 (3).JPG,Creak,355,removed (copy),,222,389
+rsd-bd/Road damage data/Creak/57.JPG,Creak,355,kept,,512,512
+rsd-bd/Road damage data/Creak/58 (2).JPG,Creak,356,removed (copy),,259,386
+rsd-bd/Road damage data/Creak/58 (3).JPG,Creak,356,removed (copy),,259,386
+rsd-bd/Road damage data/Creak/58.JPG,Creak,356,kept,,512,512
+rsd-bd/Road damage data/Creak/59 (2).JPG,Creak,357,removed (copy),,322,358
+rsd-bd/Road damage data/Creak/59 (3).JPG,Creak,357,removed (copy),,322,358
+rsd-bd/Road damage data/Creak/59.JPG,Creak,357,kept,,512,512
+rsd-bd/Road damage data/Creak/6 (2).JPG,Creak,358,removed (copy),,175,329
+rsd-bd/Road damage data/Creak/6 (3).JPG,Creak,358,removed (copy),,175,329
+rsd-bd/Road damage data/Creak/6.JPG,Creak,358,kept,,512,512
+rsd-bd/Road damage data/Creak/60 (2).JPG,Creak,359,removed (copy),,214,395
+rsd-bd/Road damage data/Creak/60 (3).JPG,Creak,359,removed (copy),,214,395
+rsd-bd/Road damage data/Creak/60.JPG,Creak,359,kept,,512,512
+rsd-bd/Road damage data/Creak/61 (2).JPG,Creak,360,removed (copy),,352,344
+rsd-bd/Road damage data/Creak/61 (3).JPG,Creak,360,removed (copy),,352,344
+rsd-bd/Road damage data/Creak/61.JPG,Creak,360,kept,,512,512
+rsd-bd/Road damage data/Creak/62 (2).JPG,Creak,361,removed (copy),,367,322
+rsd-bd/Road damage data/Creak/62 (3).JPG,Creak,361,removed (copy),,367,322
+rsd-bd/Road damage data/Creak/62.JPG,Creak,361,kept,,512,512
+rsd-bd/Road damage data/Creak/63 (2).JPG,Creak,362,removed (copy),,287,305
+rsd-bd/Road damage data/Creak/63 (3).JPG,Creak,362,removed (copy),,287,305
+rsd-bd/Road damage data/Creak/63.JPG,Creak,362,kept,,512,512
+rsd-bd/Road damage data/Creak/64 (2).JPG,Creak,363,removed (copy),,332,296
+rsd-bd/Road damage data/Creak/64 (3).JPG,Creak,363,removed (copy),,332,296
+rsd-bd/Road damage data/Creak/64.JPG,Creak,363,kept,,512,512
+rsd-bd/Road damage data/Creak/65 (2).JPG,Creak,364,removed (copy),,329,343
+rsd-bd/Road damage data/Creak/65 (3).JPG,Creak,364,removed (copy),,329,343
+rsd-bd/Road damage data/Creak/65.JPG,Creak,364,kept,,512,512
+rsd-bd/Road damage data/Creak/66 (2).JPG,Creak,365,removed (copy),,477,437
+rsd-bd/Road damage data/Creak/66 (3).JPG,Creak,365,removed (copy),,477,437
+rsd-bd/Road damage data/Creak/66.JPG,Creak,365,kept,,512,512
+rsd-bd/Road damage data/Creak/67 (2).JPG,Creak,366,removed (copy),,575,308
+rsd-bd/Road damage data/Creak/67 (3).JPG,Creak,366,removed (copy),,575,308
+rsd-bd/Road damage data/Creak/67.JPG,Creak,366,kept,,512,512
+rsd-bd/Road damage data/Creak/68 (2).JPG,Creak,367,removed (copy),,277,333
+rsd-bd/Road damage data/Creak/68 (3).JPG,Creak,367,removed (copy),,277,333
+rsd-bd/Road damage data/Creak/68.JPG,Creak,367,kept,,512,512
+rsd-bd/Road damage data/Creak/69 (2).JPG,Creak,368,removed (copy),,352,320
+rsd-bd/Road damage data/Creak/69 (3).JPG,Creak,368,removed (copy),,352,320
+rsd-bd/Road damage data/Creak/69.JPG,Creak,368,kept,,512,512
+rsd-bd/Road damage data/Creak/7 (2).JPG,Creak,369,removed (copy),,306,363
+rsd-bd/Road damage data/Creak/7 (3).JPG,Creak,369,removed (copy),,306,363
+rsd-bd/Road damage data/Creak/7.JPG,Creak,369,kept,,512,512
+rsd-bd/Road damage data/Creak/70 (2).JPG,Creak,370,removed (copy),,428,193
+rsd-bd/Road damage data/Creak/70 (3).JPG,Creak,370,removed (copy),,428,193
+rsd-bd/Road damage data/Creak/70.JPG,Creak,370,kept,,512,512
+rsd-bd/Road damage data/Creak/71 (2).JPG,Creak,371,removed (copy),,360,295
+rsd-bd/Road damage data/Creak/71 (3).JPG,Creak,371,removed (copy),,360,295
+rsd-bd/Road damage data/Creak/71.JPG,Creak,371,kept,,512,512
+rsd-bd/Road damage data/Creak/72 (2).JPG,Creak,372,removed (copy),,581,410
+rsd-bd/Road damage data/Creak/72 (3).JPG,Creak,372,removed (copy),,581,410
+rsd-bd/Road damage data/Creak/72.JPG,Creak,372,kept,,512,512
+rsd-bd/Road damage data/Creak/73 (2).JPG,Creak,373,removed (copy),,378,312
+rsd-bd/Road damage data/Creak/73 (3).JPG,Creak,373,removed (copy),,378,312
+rsd-bd/Road damage data/Creak/73.JPG,Creak,373,kept,,512,512
+rsd-bd/Road damage data/Creak/74 (2).JPG,Creak,374,removed (copy),,285,374
+rsd-bd/Road damage data/Creak/74 (3).JPG,Creak,374,removed (copy),,285,374
+rsd-bd/Road damage data/Creak/74.JPG,Creak,374,kept,,512,512
+rsd-bd/Road damage data/Creak/75 (2).JPG,Creak,375,removed (copy),,252,284
+rsd-bd/Road damage data/Creak/75 (3).JPG,Creak,375,removed (copy),,252,284
+rsd-bd/Road damage data/Creak/75.JPG,Creak,375,kept,,512,512
+rsd-bd/Road damage data/Creak/76 (2).JPG,Creak,376,removed (copy),,335,316
+rsd-bd/Road damage data/Creak/76 (3).JPG,Creak,376,removed (copy),,335,316
+rsd-bd/Road damage data/Creak/76.JPG,Creak,376,kept,,512,512
+rsd-bd/Road damage data/Creak/77 (2).JPG,Creak,377,removed (copy),,380,320
+rsd-bd/Road damage data/Creak/77 (3).JPG,Creak,377,removed (copy),,380,320
+rsd-bd/Road damage data/Creak/77.JPG,Creak,377,kept,,512,512
+rsd-bd/Road damage data/Creak/78 (2).JPG,Creak,378,removed (copy),,295,272
+rsd-bd/Road damage data/Creak/78 (3).JPG,Creak,378,removed (copy),,295,272
+rsd-bd/Road damage data/Creak/78.JPG,Creak,378,kept,,512,512
+rsd-bd/Road damage data/Creak/79 (2).JPG,Creak,379,removed (copy),,336,343
+rsd-bd/Road damage data/Creak/79 (3).JPG,Creak,379,removed (copy),,336,343
+rsd-bd/Road damage data/Creak/79.JPG,Creak,379,kept,,512,512
+rsd-bd/Road damage data/Creak/8 (2).JPG,Creak,380,removed (copy),,293,392
+rsd-bd/Road damage data/Creak/8 (3).JPG,Creak,380,removed (copy),,293,392
+rsd-bd/Road damage data/Creak/8.JPG,Creak,380,kept,,512,512
+rsd-bd/Road damage data/Creak/80 (2).JPG,Creak,381,removed (copy),,383,213
+rsd-bd/Road damage data/Creak/80 (3).JPG,Creak,381,removed (copy),,383,213
+rsd-bd/Road damage data/Creak/80.JPG,Creak,381,kept,,512,512
+rsd-bd/Road damage data/Creak/81 (2).JPG,Creak,382,removed (copy),,370,279
+rsd-bd/Road damage data/Creak/81 (3).JPG,Creak,382,removed (copy),,370,279
+rsd-bd/Road damage data/Creak/81.JPG,Creak,382,kept,,512,512
+rsd-bd/Road damage data/Creak/82 (2).JPG,Creak,383,removed (copy),,466,255
+rsd-bd/Road damage data/Creak/82 (3).JPG,Creak,383,removed (copy),,466,255
+rsd-bd/Road damage data/Creak/82.JPG,Creak,383,kept,,512,512
+rsd-bd/Road damage data/Creak/83 (2).JPG,Creak,384,removed (copy),,366,464
+rsd-bd/Road damage data/Creak/83 (3).JPG,Creak,384,removed (copy),,366,464
+rsd-bd/Road damage data/Creak/83.JPG,Creak,384,kept,,512,512
+rsd-bd/Road damage data/Creak/84 (2).JPG,Creak,385,removed (copy),,264,284
+rsd-bd/Road damage data/Creak/84 (3).JPG,Creak,385,removed (copy),,264,284
+rsd-bd/Road damage data/Creak/84.JPG,Creak,385,kept,,512,512
+rsd-bd/Road damage data/Creak/85 (2).JPG,Creak,386,removed (copy),,242,355
+rsd-bd/Road damage data/Creak/85 (3).JPG,Creak,386,removed (copy),,242,355
+rsd-bd/Road damage data/Creak/85.JPG,Creak,386,kept,,512,512
+rsd-bd/Road damage data/Creak/86 (2).JPG,Creak,387,removed (copy),,401,341
+rsd-bd/Road damage data/Creak/86 (3).JPG,Creak,387,removed (copy),,401,341
+rsd-bd/Road damage data/Creak/86.JPG,Creak,387,kept,,512,512
+rsd-bd/Road damage data/Creak/87 (2).JPG,Creak,388,removed (copy),,271,396
+rsd-bd/Road damage data/Creak/87 (3).JPG,Creak,388,removed (copy),,271,396
+rsd-bd/Road damage data/Creak/87.JPG,Creak,388,kept,,512,512
+rsd-bd/Road damage data/Creak/88 (2).JPG,Creak,389,removed (copy),,600,337
+rsd-bd/Road damage data/Creak/88 (3).JPG,Creak,389,removed (copy),,600,337
+rsd-bd/Road damage data/Creak/88.JPG,Creak,389,kept,,512,512
+rsd-bd/Road damage data/Creak/89 (2).JPG,Creak,390,removed (copy),,267,338
+rsd-bd/Road damage data/Creak/89 (3) - Copy.JPG,Creak,390,removed (copy),,267,338
+rsd-bd/Road damage data/Creak/89 (3).JPG,Creak,390,removed (copy),,267,338
+rsd-bd/Road damage data/Creak/89.JPG,Creak,390,kept,,512,512
+rsd-bd/Road damage data/Creak/9 (2).JPG,Creak,391,removed (copy),,253,326
+rsd-bd/Road damage data/Creak/9.JPG,Creak,391,kept,,512,512
+rsd-bd/Road damage data/Creak/90 (2).JPG,Creak,392,kept,,456,267
+rsd-bd/Road damage data/Creak/90.JPG,Creak,392,removed (copy),,456,267
+rsd-bd/Road damage data/Creak/91 (2).JPG,Creak,393,removed (copy),,482,246
+rsd-bd/Road damage data/Creak/91 (3).JPG,Creak,393,removed (copy),,482,246
+rsd-bd/Road damage data/Creak/91.JPG,Creak,393,kept,,512,512
+rsd-bd/Road damage data/Creak/92 (2).JPG,Creak,394,removed (copy),,328,405
+rsd-bd/Road damage data/Creak/92 (3).JPG,Creak,394,removed (copy),,328,405
+rsd-bd/Road damage data/Creak/92.JPG,Creak,394,kept,,512,512
+rsd-bd/Road damage data/Creak/93 (2).JPG,Creak,395,removed (copy),,415,335
+rsd-bd/Road damage data/Creak/93 (3).JPG,Creak,395,removed (copy),,415,335
+rsd-bd/Road damage data/Creak/93.JPG,Creak,395,kept,,512,512
+rsd-bd/Road damage data/Creak/94 (2).JPG,Creak,396,removed (copy),,153,403
+rsd-bd/Road damage data/Creak/94 (3).JPG,Creak,396,removed (copy),,153,403
+rsd-bd/Road damage data/Creak/94.JPG,Creak,396,kept,,512,512
+rsd-bd/Road damage data/Creak/95 (2).JPG,Creak,397,removed (copy),,261,296
+rsd-bd/Road damage data/Creak/95 (3).JPG,Creak,397,removed (copy),,261,296
+rsd-bd/Road damage data/Creak/95.JPG,Creak,397,kept,,512,512
+rsd-bd/Road damage data/Creak/96 (2).JPG,Creak,398,removed (copy),,253,272
+rsd-bd/Road damage data/Creak/96 (3).JPG,Creak,398,removed (copy),,253,272
+rsd-bd/Road damage data/Creak/96.JPG,Creak,398,kept,,512,512
+rsd-bd/Road damage data/Creak/97 (2).JPG,Creak,399,removed (copy),,305,282
+rsd-bd/Road damage data/Creak/97 (3).JPG,Creak,399,removed (copy),,305,282
+rsd-bd/Road damage data/Creak/97.JPG,Creak,399,kept,,512,512
+rsd-bd/Road damage data/Creak/98 (2).JPG,Creak,400,removed (copy),,298,390
+rsd-bd/Road damage data/Creak/98 (3).JPG,Creak,400,removed (copy),,298,390
+rsd-bd/Road damage data/Creak/98.JPG,Creak,400,kept,,512,512
+rsd-bd/Road damage data/Creak/99 (2).JPG,Creak,401,removed (copy),,248,252
+rsd-bd/Road damage data/Creak/99 (3).JPG,Creak,401,removed (copy),,248,252
+rsd-bd/Road damage data/Creak/99.JPG,Creak,401,kept,,512,512
+rsd-bd/Road damage data/Creak/Copy of hjmfj.jpg,Creak,402,kept,,542,360
+rsd-bd/Road damage data/Creak/Copy of photo_2023-11-03_17-04-39.jpg,Creak,403,kept,,960,1280
+rsd-bd/Road damage data/Creak/Copy of rg.jpg,Creak,404,kept,,910,607
+rsd-bd/Road damage data/Creak/IMG-20240302-WA0111.jpg,Creak,405,kept,,1200,1600
+rsd-bd/Road damage data/Creak/IMG20240301072823.jpg,Creak,406,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301072842.jpg,Creak,407,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301072907.jpg,Creak,408,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301073018.jpg,Creak,409,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301073031.jpg,Creak,410,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073058.jpg,Creak,411,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073133.jpg,Creak,412,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073138.jpg,Creak,413,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073157.jpg,Creak,414,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073255.jpg,Creak,415,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073314.jpg,Creak,416,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073316.jpg,Creak,417,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073331.jpg,Creak,418,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073333.jpg,Creak,419,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073341.jpg,Creak,420,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073345.jpg,Creak,421,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073415.jpg,Creak,422,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073421.jpg,Creak,423,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073423.jpg,Creak,424,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073431.jpg,Creak,425,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073432.jpg,Creak,426,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073503.jpg,Creak,427,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073504.jpg,Creak,428,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073506.jpg,Creak,429,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073527.jpg,Creak,430,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073606.jpg,Creak,431,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073608.jpg,Creak,432,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073635.jpg,Creak,433,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301073734.jpg,Creak,434,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073737.jpg,Creak,435,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073800 (2).jpg,Creak,436,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073800.jpg,Creak,436,removed (copy),,512,512
+rsd-bd/Road damage data/Creak/IMG20240301073803.jpg,Creak,437,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073827.jpg,Creak,438,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073859.jpg,Creak,439,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073907.jpg,Creak,440,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301073910.jpg,Creak,441,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074024.jpg,Creak,442,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074101.jpg,Creak,443,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074140.jpg,Creak,444,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074141.jpg,Creak,445,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074202.jpg,Creak,446,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074224.jpg,Creak,447,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074241.jpg,Creak,448,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074307.jpg,Creak,449,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074308.jpg,Creak,450,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074309.jpg,Creak,451,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074334.jpg,Creak,452,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074340.jpg,Creak,453,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074455.jpg,Creak,454,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074459.jpg,Creak,455,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074511.jpg,Creak,456,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074606.jpg,Creak,457,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074630.jpg,Creak,458,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074718_BURST000_COVER.jpg,Creak,459,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074718_BURST001.jpg,Creak,459,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074718_BURST002.jpg,Creak,459,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074718_BURST003.jpg,Creak,459,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074805.jpg,Creak,460,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074951.jpg,Creak,461,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301074953.jpg,Creak,462,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075026.jpg,Creak,463,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075046.jpg,Creak,464,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075056.jpg,Creak,465,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075114.jpg,Creak,466,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075138.jpg,Creak,467,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075148.jpg,Creak,468,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075205.jpg,Creak,469,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075215.jpg,Creak,470,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075226.jpg,Creak,471,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075311.jpg,Creak,472,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075429.jpg,Creak,473,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075435.jpg,Creak,474,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301075957.jpg,Creak,475,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101156.jpg,Creak,476,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101202.jpg,Creak,477,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301101220.jpg,Creak,478,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101230.jpg,Creak,479,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101320.jpg,Creak,480,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101340.jpg,Creak,481,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101355.jpg,Creak,482,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101358.jpg,Creak,483,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101414.jpg,Creak,484,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301101422.jpg,Creak,485,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101445.jpg,Creak,486,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101505.jpg,Creak,487,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101510.jpg,Creak,488,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101559 - Copy.jpg,Creak,489,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101559.jpg,Creak,489,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101606 - Copy.jpg,Creak,490,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101606.jpg,Creak,490,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101629 - Copy (2).jpg,Creak,491,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101629 - Copy - Copy.jpg,Creak,491,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101629 - Copy.jpg,Creak,491,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101629.jpg,Creak,491,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101634 - Copy (2).jpg,Creak,492,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101634 - Copy - Copy.jpg,Creak,492,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101634 - Copy.jpg,Creak,492,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101634.jpg,Creak,492,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101807 - Copy (2).jpg,Creak,493,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101807 - Copy - Copy.jpg,Creak,493,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101807 - Copy.jpg,Creak,493,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101807.jpg,Creak,493,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101808 - Copy (2).jpg,Creak,494,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101808 - Copy - Copy.jpg,Creak,494,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101808 - Copy.jpg,Creak,494,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101808.jpg,Creak,494,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101830 - Copy (2).jpg,Creak,495,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101830 - Copy - Copy.jpg,Creak,495,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101830 - Copy.jpg,Creak,495,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101830.jpg,Creak,495,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101844 - Copy (2).jpg,Creak,496,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101844 - Copy - Copy.jpg,Creak,496,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101844 - Copy.jpg,Creak,496,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101844.jpg,Creak,496,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101914 - Copy.jpg,Creak,497,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101914.jpg,Creak,497,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101958 - Copy.jpg,Creak,498,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301101958.jpg,Creak,498,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102010.jpg,Creak,499,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102029.jpg,Creak,500,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102035.jpg,Creak,501,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102104 - Copy.jpg,Creak,502,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102104.jpg,Creak,502,removed (copy),OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102122.jpg,Creak,503,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102126 - Copy.jpg,Creak,504,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102126.jpg,Creak,504,removed (copy),OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102132 - Copy.jpg,Creak,505,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102132.jpg,Creak,505,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102150.jpg,Creak,506,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102157.jpg,Creak,507,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102207.jpg,Creak,508,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102220.jpg,Creak,509,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102226.jpg,Creak,510,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102234.jpg,Creak,511,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102252.jpg,Creak,512,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102300.jpg,Creak,513,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102310.jpg,Creak,514,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102317.jpg,Creak,515,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102321.jpg,Creak,516,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102326.jpg,Creak,517,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102341.jpg,Creak,518,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102351.jpg,Creak,519,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102419.jpg,Creak,520,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102424.jpg,Creak,521,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102444.jpg,Creak,522,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102552 - Copy.jpg,Creak,523,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102552.jpg,Creak,523,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102600.jpg,Creak,524,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102604.jpg,Creak,525,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102615.jpg,Creak,526,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102619.jpg,Creak,527,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102626.jpg,Creak,528,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301102654.jpg,Creak,529,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102709.jpg,Creak,530,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102728.jpg,Creak,531,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102745.jpg,Creak,532,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102749.jpg,Creak,533,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102803.jpg,Creak,534,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102816.jpg,Creak,535,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301102843.jpg,Creak,536,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301104107.jpg,Creak,537,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301104112.jpg,Creak,538,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301104113.jpg,Creak,539,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301104118.jpg,Creak,540,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301104122.jpg,Creak,541,kept,OPPO OPPO A77s,4080,3072
+rsd-bd/Road damage data/Creak/IMG20240301104128.jpg,Creak,542,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301104141.jpg,Creak,543,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301104145.jpg,Creak,544,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/IMG20240301104154.jpg,Creak,545,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Creak/hjmfj.jpg,Creak,402,removed (copy),,542,360
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-01-45.jpg,Creak,546,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-01-46.jpg,Creak,546,removed (copy),,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-01-53.jpg,Creak,547,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-02-16.jpg,Creak,548,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-02-21.jpg,Creak,549,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-02-45.jpg,Creak,550,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-02-51.jpg,Creak,551,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-03-09.jpg,Creak,552,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-03-21.jpg,Creak,553,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-03-26.jpg,Creak,554,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-03-41.jpg,Creak,555,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-04-34.jpg,Creak,556,kept,,960,1280
+rsd-bd/Road damage data/Creak/photo_2023-11-03_17-04-39.jpg,Creak,403,removed (copy),,960,1280
+rsd-bd/Road damage data/Creak/rg.jpg,Creak,404,removed (copy),,910,607
+rsd-bd/Road damage data/Pot hole/1 (2).jpg,Pot hole,557,kept,,620,314
+rsd-bd/Road damage data/Pot hole/1 (3).jpg,Pot hole,557,removed (copy),,620,314
+rsd-bd/Road damage data/Pot hole/1 (4).JPG,Pot hole,558,kept,,490,192
+rsd-bd/Road damage data/Pot hole/1.JPG,Pot hole,558,removed (copy),,490,192
+rsd-bd/Road damage data/Pot hole/10 (2).JPG,Pot hole,559,kept,,476,154
+rsd-bd/Road damage data/Pot hole/10 (3).JPG,Pot hole,559,removed (copy),,476,154
+rsd-bd/Road damage data/Pot hole/10 (4).JPG,Pot hole,560,kept,,486,307
+rsd-bd/Road damage data/Pot hole/10.JPG,Pot hole,560,removed (copy),,486,307
+rsd-bd/Road damage data/Pot hole/100 (2).JPG,Pot hole,561,kept,,64,196
+rsd-bd/Road damage data/Pot hole/100 (3).JPG,Pot hole,561,removed (copy),,64,196
+rsd-bd/Road damage data/Pot hole/100 (4).JPG,Pot hole,562,kept,,396,489
+rsd-bd/Road damage data/Pot hole/100.JPG,Pot hole,562,removed (copy),,396,489
+rsd-bd/Road damage data/Pot hole/101 (2).JPG,Pot hole,563,kept,,105,184
+rsd-bd/Road damage data/Pot hole/101 (3).JPG,Pot hole,563,removed (copy),,105,184
+rsd-bd/Road damage data/Pot hole/101 (4).JPG,Pot hole,564,kept,,498,509
+rsd-bd/Road damage data/Pot hole/101.JPG,Pot hole,564,removed (copy),,498,509
+rsd-bd/Road damage data/Pot hole/102 (2).JPG,Pot hole,565,kept,,106,252
+rsd-bd/Road damage data/Pot hole/102 (3).JPG,Pot hole,565,removed (copy),,106,252
+rsd-bd/Road damage data/Pot hole/102 (4).JPG,Pot hole,566,kept,,466,219
+rsd-bd/Road damage data/Pot hole/102.JPG,Pot hole,566,removed (copy),,466,219
+rsd-bd/Road damage data/Pot hole/103 (2).JPG,Pot hole,567,kept,,123,231
+rsd-bd/Road damage data/Pot hole/103 (3).JPG,Pot hole,567,removed (copy),,123,231
+rsd-bd/Road damage data/Pot hole/103 (4).JPG,Pot hole,568,kept,,487,195
+rsd-bd/Road damage data/Pot hole/103.JPG,Pot hole,568,removed (copy),,487,195
+rsd-bd/Road damage data/Pot hole/104 (2).JPG,Pot hole,569,kept,,124,290
+rsd-bd/Road damage data/Pot hole/104 (3).JPG,Pot hole,569,removed (copy),,124,290
+rsd-bd/Road damage data/Pot hole/104 (4).JPG,Pot hole,570,kept,,512,512
+rsd-bd/Road damage data/Pot hole/104.JPG,Pot hole,569,removed (copy),,124,290
+rsd-bd/Road damage data/Pot hole/105 (2).JPG,Pot hole,571,kept,,222,621
+rsd-bd/Road damage data/Pot hole/105 (3).JPG,Pot hole,571,removed (copy),,222,621
+rsd-bd/Road damage data/Pot hole/105 (4).JPG,Pot hole,572,kept,,394,243
+rsd-bd/Road damage data/Pot hole/105.JPG,Pot hole,572,removed (copy),,394,243
+rsd-bd/Road damage data/Pot hole/106 (2).JPG,Pot hole,573,kept,,229,444
+rsd-bd/Road damage data/Pot hole/106 (3).JPG,Pot hole,573,removed (copy),,229,444
+rsd-bd/Road damage data/Pot hole/106 (4).JPG,Pot hole,574,kept,,512,512
+rsd-bd/Road damage data/Pot hole/106.JPG,Pot hole,573,removed (copy),,229,444
+rsd-bd/Road damage data/Pot hole/107 (2).JPG,Pot hole,575,kept,,165,473
+rsd-bd/Road damage data/Pot hole/107 (3).JPG,Pot hole,575,removed (copy),,165,473
+rsd-bd/Road damage data/Pot hole/107 (4).JPG,Pot hole,576,kept,,473,243
+rsd-bd/Road damage data/Pot hole/107.JPG,Pot hole,576,removed (copy),,473,243
+rsd-bd/Road damage data/Pot hole/108 (2).JPG,Pot hole,577,kept,,189,422
+rsd-bd/Road damage data/Pot hole/108 (3).JPG,Pot hole,577,removed (copy),,189,422
+rsd-bd/Road damage data/Pot hole/108 (4).JPG,Pot hole,578,kept,,492,314
+rsd-bd/Road damage data/Pot hole/108.JPG,Pot hole,578,removed (copy),,492,314
+rsd-bd/Road damage data/Pot hole/109 (2).JPG,Pot hole,579,kept,,140,386
+rsd-bd/Road damage data/Pot hole/109 (3).JPG,Pot hole,579,removed (copy),,140,386
+rsd-bd/Road damage data/Pot hole/109 (4).JPG,Pot hole,580,kept,,504,367
+rsd-bd/Road damage data/Pot hole/109.JPG,Pot hole,580,removed (copy),,504,367
+rsd-bd/Road damage data/Pot hole/11 (2).JPG,Pot hole,581,removed (copy),,488,508
+rsd-bd/Road damage data/Pot hole/11 (3).JPG,Pot hole,581,kept,,512,512
+rsd-bd/Road damage data/Pot hole/11 (4).JPG,Pot hole,582,kept,,420,311
+rsd-bd/Road damage data/Pot hole/11 (5).JPG,Pot hole,581,removed (copy),,488,508
+rsd-bd/Road damage data/Pot hole/11.JPG,Pot hole,582,removed (copy),,420,311
+rsd-bd/Road damage data/Pot hole/110 (2).JPG,Pot hole,583,kept,,185,498
+rsd-bd/Road damage data/Pot hole/110 (3).JPG,Pot hole,583,removed (copy),,185,498
+rsd-bd/Road damage data/Pot hole/110 (4).JPG,Pot hole,584,kept,,487,264
+rsd-bd/Road damage data/Pot hole/110.JPG,Pot hole,584,removed (copy),,487,264
+rsd-bd/Road damage data/Pot hole/111 (2).JPG,Pot hole,585,kept,,280,529
+rsd-bd/Road damage data/Pot hole/111 (3).JPG,Pot hole,585,removed (copy),,280,529
+rsd-bd/Road damage data/Pot hole/111 (4).JPG,Pot hole,586,kept,,512,512
+rsd-bd/Road damage data/Pot hole/111.JPG,Pot hole,585,removed (copy),,280,529
+rsd-bd/Road damage data/Pot hole/112 (2).JPG,Pot hole,587,removed (copy),,145,313
+rsd-bd/Road damage data/Pot hole/112 (3).JPG,Pot hole,587,kept,,512,512
+rsd-bd/Road damage data/Pot hole/112 (4).JPG,Pot hole,588,kept,,493,371
+rsd-bd/Road damage data/Pot hole/112.JPG,Pot hole,588,removed (copy),,493,371
+rsd-bd/Road damage data/Pot hole/113 (2).JPG,Pot hole,589,removed (copy),,220,228
+rsd-bd/Road damage data/Pot hole/113 (3).JPG,Pot hole,589,kept,,512,512
+rsd-bd/Road damage data/Pot hole/113 (4).JPG,Pot hole,590,kept,,455,583
+rsd-bd/Road damage data/Pot hole/113 (5).JPG,Pot hole,589,removed (copy),,220,228
+rsd-bd/Road damage data/Pot hole/113.JPG,Pot hole,590,removed (copy),,455,583
+rsd-bd/Road damage data/Pot hole/114 (2).JPG,Pot hole,591,kept,,294,400
+rsd-bd/Road damage data/Pot hole/114 (3).JPG,Pot hole,591,removed (copy),,294,400
+rsd-bd/Road damage data/Pot hole/114 (4).JPG,Pot hole,592,kept,,503,416
+rsd-bd/Road damage data/Pot hole/114 (5).JPG,Pot hole,591,removed (copy),,294,400
+rsd-bd/Road damage data/Pot hole/114.JPG,Pot hole,592,removed (copy),,503,416
+rsd-bd/Road damage data/Pot hole/115 (2).JPG,Pot hole,593,kept,,144,313
+rsd-bd/Road damage data/Pot hole/115 (3).JPG,Pot hole,593,removed (copy),,144,313
+rsd-bd/Road damage data/Pot hole/115 (4).JPG,Pot hole,594,kept,,434,435
+rsd-bd/Road damage data/Pot hole/115.JPG,Pot hole,594,removed (copy),,434,435
+rsd-bd/Road damage data/Pot hole/116 (2).JPG,Pot hole,595,kept,,256,544
+rsd-bd/Road damage data/Pot hole/116 (3).JPG,Pot hole,595,removed (copy),,256,544
+rsd-bd/Road damage data/Pot hole/116 (4).JPG,Pot hole,596,kept,,388,501
+rsd-bd/Road damage data/Pot hole/116.JPG,Pot hole,596,removed (copy),,388,501
+rsd-bd/Road damage data/Pot hole/118 (2).JPG,Pot hole,597,removed (copy),,198,126
+rsd-bd/Road damage data/Pot hole/118 (3).JPG,Pot hole,597,kept,,512,512
+rsd-bd/Road damage data/Pot hole/118 (4).JPG,Pot hole,598,kept,,499,373
+rsd-bd/Road damage data/Pot hole/118.JPG,Pot hole,598,removed (copy),,499,373
+rsd-bd/Road damage data/Pot hole/119 (2).JPG,Pot hole,599,kept,,381,557
+rsd-bd/Road damage data/Pot hole/119 (3).JPG,Pot hole,599,removed (copy),,381,557
+rsd-bd/Road damage data/Pot hole/119 (4).JPG,Pot hole,600,kept,,403,350
+rsd-bd/Road damage data/Pot hole/119 (5).JPG,Pot hole,599,removed (copy),,381,557
+rsd-bd/Road damage data/Pot hole/119.JPG,Pot hole,600,removed (copy),,403,350
+rsd-bd/Road damage data/Pot hole/12 (2).JPG,Pot hole,601,removed (copy),,517,261
+rsd-bd/Road damage data/Pot hole/12 (3).JPG,Pot hole,601,kept,,512,512
+rsd-bd/Road damage data/Pot hole/12 (4).JPG,Pot hole,602,kept,,473,206
+rsd-bd/Road damage data/Pot hole/12 (5).JPG,Pot hole,601,removed (copy),,517,261
+rsd-bd/Road damage data/Pot hole/12.jpg,Pot hole,602,removed (copy),,473,206
+rsd-bd/Road damage data/Pot hole/120 (2).JPG,Pot hole,603,kept,,325,314
+rsd-bd/Road damage data/Pot hole/120 (3).JPG,Pot hole,603,removed (copy),,325,314
+rsd-bd/Road damage data/Pot hole/120 (4).JPG,Pot hole,604,kept,,478,342
+rsd-bd/Road damage data/Pot hole/120 (5).JPG,Pot hole,603,removed (copy),,325,314
+rsd-bd/Road damage data/Pot hole/120.JPG,Pot hole,604,removed (copy),,478,342
+rsd-bd/Road damage data/Pot hole/121 (2).JPG,Pot hole,605,kept,,286,456
+rsd-bd/Road damage data/Pot hole/121 (3).JPG,Pot hole,605,removed (copy),,286,456
+rsd-bd/Road damage data/Pot hole/121 (4).JPG,Pot hole,605,removed (copy),,286,456
+rsd-bd/Road damage data/Pot hole/121.JPG,Pot hole,605,removed (copy),,286,456
+rsd-bd/Road damage data/Pot hole/13 (2).JPG,Pot hole,606,removed (copy),,495,264
+rsd-bd/Road damage data/Pot hole/13 (3).JPG,Pot hole,606,kept,,512,512
+rsd-bd/Road damage data/Pot hole/13.jpg,Pot hole,606,removed (copy),,495,264
+rsd-bd/Road damage data/Pot hole/14 (2).JPG,Pot hole,607,kept,,492,239
+rsd-bd/Road damage data/Pot hole/14 (3).JPG,Pot hole,607,removed (copy),,492,239
+rsd-bd/Road damage data/Pot hole/14 (4).JPG,Pot hole,608,kept,,466,198
+rsd-bd/Road damage data/Pot hole/14.jpg,Pot hole,608,removed (copy),,466,198
+rsd-bd/Road damage data/Pot hole/15 (2).JPG,Pot hole,609,kept,,491,282
+rsd-bd/Road damage data/Pot hole/15 (3).JPG,Pot hole,609,removed (copy),,491,282
+rsd-bd/Road damage data/Pot hole/15 (4).JPG,Pot hole,610,kept,,489,405
+rsd-bd/Road damage data/Pot hole/15.jpg,Pot hole,610,removed (copy),,489,405
+rsd-bd/Road damage data/Pot hole/16 (1).jpg,Pot hole,611,kept,,314,620
+rsd-bd/Road damage data/Pot hole/16 (2).jpg,Pot hole,612,kept,,620,314
+rsd-bd/Road damage data/Pot hole/16 (3).JPG,Pot hole,613,kept,,502,354
+rsd-bd/Road damage data/Pot hole/16 (4).JPG,Pot hole,613,removed (copy),,502,354
+rsd-bd/Road damage data/Pot hole/16 (5).JPG,Pot hole,614,kept,,501,302
+rsd-bd/Road damage data/Pot hole/16.JPG,Pot hole,614,removed (copy),,501,302
+rsd-bd/Road damage data/Pot hole/17 (2).JPG,Pot hole,615,kept,,498,309
+rsd-bd/Road damage data/Pot hole/17 (3).JPG,Pot hole,615,removed (copy),,498,309
+rsd-bd/Road damage data/Pot hole/17 (4).JPG,Pot hole,616,kept,,396,118
+rsd-bd/Road damage data/Pot hole/17.JPG,Pot hole,616,removed (copy),,396,118
+rsd-bd/Road damage data/Pot hole/18 (2).JPG,Pot hole,617,removed (copy),,499,415
+rsd-bd/Road damage data/Pot hole/18 (3).JPG,Pot hole,617,kept,,512,512
+rsd-bd/Road damage data/Pot hole/18 (4).JPG,Pot hole,618,kept,,495,341
+rsd-bd/Road damage data/Pot hole/18.JPG,Pot hole,618,removed (copy),,495,341
+rsd-bd/Road damage data/Pot hole/19 (2).JPG,Pot hole,619,removed (copy),,264,518
+rsd-bd/Road damage data/Pot hole/19 (3).JPG,Pot hole,619,kept,,512,512
+rsd-bd/Road damage data/Pot hole/19 (4).JPG,Pot hole,620,kept,,488,338
+rsd-bd/Road damage data/Pot hole/19.JPG,Pot hole,620,removed (copy),,488,338
+rsd-bd/Road damage data/Pot hole/2 (2).JPG,Pot hole,621,kept,,382,130
+rsd-bd/Road damage data/Pot hole/2 (3).JPG,Pot hole,621,removed (copy),,382,130
+rsd-bd/Road damage data/Pot hole/2 (4).JPG,Pot hole,622,kept,,438,211
+rsd-bd/Road damage data/Pot hole/2.JPG,Pot hole,622,removed (copy),,438,211
+rsd-bd/Road damage data/Pot hole/20 (2).JPG,Pot hole,623,kept,,231,485
+rsd-bd/Road damage data/Pot hole/20 (3).JPG,Pot hole,623,removed (copy),,231,485
+rsd-bd/Road damage data/Pot hole/20 (4).JPG,Pot hole,624,kept,,489,398
+rsd-bd/Road damage data/Pot hole/20.JPG,Pot hole,624,removed (copy),,489,398
+rsd-bd/Road damage data/Pot hole/20240301_085244 (2).jpg,Pot hole,625,kept,samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Pot hole/20240301_085244 (3).jpg,Pot hole,625,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Pot hole/20240301_085244 (4).jpg,Pot hole,625,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Pot hole/20240301_085244.jpg,Pot hole,625,removed (copy),samsung SM-G935F,4032,3024
+rsd-bd/Road damage data/Pot hole/21 (2).JPG,Pot hole,626,kept,,480,344
+rsd-bd/Road damage data/Pot hole/21 (3).JPG,Pot hole,626,removed (copy),,480,344
+rsd-bd/Road damage data/Pot hole/21 (4).JPG,Pot hole,627,kept,,493,396
+rsd-bd/Road damage data/Pot hole/21.JPG,Pot hole,627,removed (copy),,493,396
+rsd-bd/Road damage data/Pot hole/22 (2).JPG,Pot hole,628,kept,,490,269
+rsd-bd/Road damage data/Pot hole/22 (3).JPG,Pot hole,628,removed (copy),,490,269
+rsd-bd/Road damage data/Pot hole/22 (4).JPG,Pot hole,629,kept,,492,349
+rsd-bd/Road damage data/Pot hole/22.JPG,Pot hole,629,removed (copy),,492,349
+rsd-bd/Road damage data/Pot hole/23 (2).JPG,Pot hole,630,kept,,494,291
+rsd-bd/Road damage data/Pot hole/23 (3).JPG,Pot hole,630,removed (copy),,494,291
+rsd-bd/Road damage data/Pot hole/23 (4).JPG,Pot hole,631,kept,,479,408
+rsd-bd/Road damage data/Pot hole/23.JPG,Pot hole,631,removed (copy),,479,408
+rsd-bd/Road damage data/Pot hole/24 (2).JPG,Pot hole,632,kept,,486,574
+rsd-bd/Road damage data/Pot hole/24 (3).JPG,Pot hole,632,removed (copy),,486,574
+rsd-bd/Road damage data/Pot hole/24 (4).JPG,Pot hole,633,kept,,494,294
+rsd-bd/Road damage data/Pot hole/24 (5).JPG,Pot hole,632,removed (copy),,486,574
+rsd-bd/Road damage data/Pot hole/24.JPG,Pot hole,633,removed (copy),,494,294
+rsd-bd/Road damage data/Pot hole/25 (2).JPG,Pot hole,634,kept,,499,246
+rsd-bd/Road damage data/Pot hole/25 (3).JPG,Pot hole,634,removed (copy),,499,246
+rsd-bd/Road damage data/Pot hole/25 (4).JPG,Pot hole,635,kept,,497,342
+rsd-bd/Road damage data/Pot hole/25.JPG,Pot hole,635,removed (copy),,497,342
+rsd-bd/Road damage data/Pot hole/26 (2).JPG,Pot hole,636,kept,,492,455
+rsd-bd/Road damage data/Pot hole/26 (3).JPG,Pot hole,636,removed (copy),,492,455
+rsd-bd/Road damage data/Pot hole/26 (4).JPG,Pot hole,637,kept,,490,308
+rsd-bd/Road damage data/Pot hole/26 (5).JPG,Pot hole,636,removed (copy),,492,455
+rsd-bd/Road damage data/Pot hole/26.JPG,Pot hole,637,removed (copy),,490,308
+rsd-bd/Road damage data/Pot hole/27 (2).JPG,Pot hole,638,kept,,491,461
+rsd-bd/Road damage data/Pot hole/27 (3).JPG,Pot hole,638,removed (copy),,491,461
+rsd-bd/Road damage data/Pot hole/27 (4).JPG,Pot hole,639,kept,,496,262
+rsd-bd/Road damage data/Pot hole/27 (5).JPG,Pot hole,638,removed (copy),,491,461
+rsd-bd/Road damage data/Pot hole/27.JPG,Pot hole,639,removed (copy),,496,262
+rsd-bd/Road damage data/Pot hole/28 (2).JPG,Pot hole,640,kept,,493,317
+rsd-bd/Road damage data/Pot hole/28 (3).JPG,Pot hole,640,removed (copy),,493,317
+rsd-bd/Road damage data/Pot hole/28 (4).JPG,Pot hole,641,kept,,512,512
+rsd-bd/Road damage data/Pot hole/28.JPG,Pot hole,640,removed (copy),,493,317
+rsd-bd/Road damage data/Pot hole/29 (2).JPG,Pot hole,642,kept,,494,381
+rsd-bd/Road damage data/Pot hole/29 (3).JPG,Pot hole,642,removed (copy),,494,381
+rsd-bd/Road damage data/Pot hole/29 (4).JPG,Pot hole,643,kept,,498,391
+rsd-bd/Road damage data/Pot hole/29.JPG,Pot hole,643,removed (copy),,498,391
+rsd-bd/Road damage data/Pot hole/3 (2).JPG,Pot hole,644,kept,,485,199
+rsd-bd/Road damage data/Pot hole/3 (3).JPG,Pot hole,644,removed (copy),,485,199
+rsd-bd/Road damage data/Pot hole/3 (4).JPG,Pot hole,645,kept,,495,458
+rsd-bd/Road damage data/Pot hole/3.JPG,Pot hole,645,removed (copy),,495,458
+rsd-bd/Road damage data/Pot hole/30 (2).JPG,Pot hole,646,kept,,489,263
+rsd-bd/Road damage data/Pot hole/30 (3).JPG,Pot hole,646,removed (copy),,489,263
+rsd-bd/Road damage data/Pot hole/30.JPG,Pot hole,646,removed (copy),,489,263
+rsd-bd/Road damage data/Pot hole/31 (2).JPG,Pot hole,647,kept,,491,422
+rsd-bd/Road damage data/Pot hole/31 (3).JPG,Pot hole,647,removed (copy),,491,422
+rsd-bd/Road damage data/Pot hole/31 (4).JPG,Pot hole,648,kept,,512,512
+rsd-bd/Road damage data/Pot hole/31.JPG,Pot hole,647,removed (copy),,491,422
+rsd-bd/Road damage data/Pot hole/32 (2).JPG,Pot hole,649,kept,,423,454
+rsd-bd/Road damage data/Pot hole/32.JPG,Pot hole,649,removed (copy),,423,454
+rsd-bd/Road damage data/Pot hole/33 (2).JPG,Pot hole,650,kept,,473,513
+rsd-bd/Road damage data/Pot hole/33 (3).JPG,Pot hole,650,removed (copy),,473,513
+rsd-bd/Road damage data/Pot hole/33 (4).JPG,Pot hole,651,kept,,512,512
+rsd-bd/Road damage data/Pot hole/33.JPG,Pot hole,650,removed (copy),,473,513
+rsd-bd/Road damage data/Pot hole/34 (2).JPG,Pot hole,652,removed (copy),,483,525
+rsd-bd/Road damage data/Pot hole/34 (3).JPG,Pot hole,652,kept,,512,512
+rsd-bd/Road damage data/Pot hole/34 (4).JPG,Pot hole,653,kept,,512,512
+rsd-bd/Road damage data/Pot hole/34.JPG,Pot hole,652,removed (copy),,483,525
+rsd-bd/Road damage data/Pot hole/35 (2).JPG,Pot hole,654,kept,,314,403
+rsd-bd/Road damage data/Pot hole/35 (3).JPG,Pot hole,654,removed (copy),,314,403
+rsd-bd/Road damage data/Pot hole/35 (4).JPG,Pot hole,655,kept,,400,404
+rsd-bd/Road damage data/Pot hole/35.JPG,Pot hole,655,removed (copy),,400,404
+rsd-bd/Road damage data/Pot hole/36 (2).JPG,Pot hole,656,kept,,335,272
+rsd-bd/Road damage data/Pot hole/36 (3).JPG,Pot hole,656,removed (copy),,335,272
+rsd-bd/Road damage data/Pot hole/36 (4).JPG,Pot hole,657,kept,,494,420
+rsd-bd/Road damage data/Pot hole/36.JPG,Pot hole,657,removed (copy),,494,420
+rsd-bd/Road damage data/Pot hole/37 (2).JPG,Pot hole,658,kept,,302,268
+rsd-bd/Road damage data/Pot hole/37 (3).JPG,Pot hole,658,removed (copy),,302,268
+rsd-bd/Road damage data/Pot hole/37 (4).JPG,Pot hole,659,kept,,493,343
+rsd-bd/Road damage data/Pot hole/37.JPG,Pot hole,659,removed (copy),,493,343
+rsd-bd/Road damage data/Pot hole/38 (2).JPG,Pot hole,660,kept,,365,374
+rsd-bd/Road damage data/Pot hole/38 (3).JPG,Pot hole,660,removed (copy),,365,374
+rsd-bd/Road damage data/Pot hole/38 (4).JPG,Pot hole,661,kept,,499,270
+rsd-bd/Road damage data/Pot hole/38.JPG,Pot hole,661,removed (copy),,499,270
+rsd-bd/Road damage data/Pot hole/39 (2).JPG,Pot hole,662,kept,,243,405
+rsd-bd/Road damage data/Pot hole/39 (3).JPG,Pot hole,662,removed (copy),,243,405
+rsd-bd/Road damage data/Pot hole/39 (4).JPG,Pot hole,663,kept,,438,392
+rsd-bd/Road damage data/Pot hole/39.JPG,Pot hole,663,removed (copy),,438,392
+rsd-bd/Road damage data/Pot hole/4 (2).JPG,Pot hole,664,kept,,482,197
+rsd-bd/Road damage data/Pot hole/4 (3).JPG,Pot hole,664,removed (copy),,482,197
+rsd-bd/Road damage data/Pot hole/4 (4).JPG,Pot hole,665,kept,,512,512
+rsd-bd/Road damage data/Pot hole/4.JPG,Pot hole,664,removed (copy),,482,197
+rsd-bd/Road damage data/Pot hole/40 (2).JPG,Pot hole,666,kept,,201,375
+rsd-bd/Road damage data/Pot hole/40 (3).JPG,Pot hole,666,removed (copy),,201,375
+rsd-bd/Road damage data/Pot hole/40 (4).JPG,Pot hole,667,kept,,484,375
+rsd-bd/Road damage data/Pot hole/40 (5).JPG,Pot hole,666,removed (copy),,201,375
+rsd-bd/Road damage data/Pot hole/40.JPG,Pot hole,667,removed (copy),,484,375
+rsd-bd/Road damage data/Pot hole/41 (2).JPG,Pot hole,668,kept,,195,374
+rsd-bd/Road damage data/Pot hole/41 (3).JPG,Pot hole,668,removed (copy),,195,374
+rsd-bd/Road damage data/Pot hole/41 (4).JPG,Pot hole,669,kept,,449,514
+rsd-bd/Road damage data/Pot hole/41.JPG,Pot hole,669,removed (copy),,449,514
+rsd-bd/Road damage data/Pot hole/42 (2).JPG,Pot hole,670,kept,,223,385
+rsd-bd/Road damage data/Pot hole/42 (3).JPG,Pot hole,670,removed (copy),,223,385
+rsd-bd/Road damage data/Pot hole/42 (4).JPG,Pot hole,671,kept,,392,485
+rsd-bd/Road damage data/Pot hole/42.JPG,Pot hole,671,removed (copy),,392,485
+rsd-bd/Road damage data/Pot hole/43 (2).JPG,Pot hole,672,kept,,192,375
+rsd-bd/Road damage data/Pot hole/43 (3).JPG,Pot hole,672,removed (copy),,192,375
+rsd-bd/Road damage data/Pot hole/43 (4).JPG,Pot hole,673,kept,,506,344
+rsd-bd/Road damage data/Pot hole/43.JPG,Pot hole,673,removed (copy),,506,344
+rsd-bd/Road damage data/Pot hole/44 (2).JPG,Pot hole,674,kept,,265,527
+rsd-bd/Road damage data/Pot hole/44 (3).JPG,Pot hole,674,removed (copy),,265,527
+rsd-bd/Road damage data/Pot hole/44 (4).JPG,Pot hole,675,kept,,512,512
+rsd-bd/Road damage data/Pot hole/44.JPG,Pot hole,674,removed (copy),,265,527
+rsd-bd/Road damage data/Pot hole/45 (2).JPG,Pot hole,676,kept,,288,399
+rsd-bd/Road damage data/Pot hole/45 (3).JPG,Pot hole,676,removed (copy),,288,399
+rsd-bd/Road damage data/Pot hole/45 (4).JPG,Pot hole,677,kept,,501,382
+rsd-bd/Road damage data/Pot hole/45.JPG,Pot hole,677,removed (copy),,501,382
+rsd-bd/Road damage data/Pot hole/46 (2).JPG,Pot hole,678,kept,,260,479
+rsd-bd/Road damage data/Pot hole/46 (3).JPG,Pot hole,678,removed (copy),,260,479
+rsd-bd/Road damage data/Pot hole/46 (4).JPG,Pot hole,679,kept,,512,512
+rsd-bd/Road damage data/Pot hole/46.JPG,Pot hole,678,removed (copy),,260,479
+rsd-bd/Road damage data/Pot hole/47 (2).JPG,Pot hole,680,kept,,335,518
+rsd-bd/Road damage data/Pot hole/47 (3).JPG,Pot hole,680,removed (copy),,335,518
+rsd-bd/Road damage data/Pot hole/47 (4).JPG,Pot hole,681,kept,,512,512
+rsd-bd/Road damage data/Pot hole/47.JPG,Pot hole,680,removed (copy),,335,518
+rsd-bd/Road damage data/Pot hole/48 (2).JPG,Pot hole,682,removed (copy),,283,410
+rsd-bd/Road damage data/Pot hole/48 (3).JPG,Pot hole,682,kept,,512,512
+rsd-bd/Road damage data/Pot hole/48 (4).JPG,Pot hole,683,kept,,377,476
+rsd-bd/Road damage data/Pot hole/48 (5).JPG,Pot hole,682,removed (copy),,283,410
+rsd-bd/Road damage data/Pot hole/48.JPG,Pot hole,683,removed (copy),,377,476
+rsd-bd/Road damage data/Pot hole/49 (2).JPG,Pot hole,684,removed (copy),,314,412
+rsd-bd/Road damage data/Pot hole/49 (3).JPG,Pot hole,684,kept,,512,512
+rsd-bd/Road damage data/Pot hole/49 (4).JPG,Pot hole,685,kept,,512,512
+rsd-bd/Road damage data/Pot hole/49 (5).JPG,Pot hole,684,removed (copy),,314,412
+rsd-bd/Road damage data/Pot hole/49.JPG,Pot hole,684,removed (copy),,314,412
+rsd-bd/Road damage data/Pot hole/5 (2).JPG,Pot hole,686,kept,,493,197
+rsd-bd/Road damage data/Pot hole/5 (3).JPG,Pot hole,686,removed (copy),,493,197
+rsd-bd/Road damage data/Pot hole/5 (4).JPG,Pot hole,687,kept,,501,608
+rsd-bd/Road damage data/Pot hole/5.JPG,Pot hole,687,removed (copy),,501,608
+rsd-bd/Road damage data/Pot hole/50 (2).JPG,Pot hole,688,removed (copy),,289,465
+rsd-bd/Road damage data/Pot hole/50 (3).JPG,Pot hole,688,kept,,512,512
+rsd-bd/Road damage data/Pot hole/50 (4).JPG,Pot hole,689,kept,,512,512
+rsd-bd/Road damage data/Pot hole/50.JPG,Pot hole,688,removed (copy),,289,465
+rsd-bd/Road damage data/Pot hole/51 (2).JPG,Pot hole,690,kept,,281,443
+rsd-bd/Road damage data/Pot hole/51 (3).JPG,Pot hole,690,removed (copy),,281,443
+rsd-bd/Road damage data/Pot hole/51 (4).JPG,Pot hole,691,kept,,505,287
+rsd-bd/Road damage data/Pot hole/51.JPG,Pot hole,691,removed (copy),,505,287
+rsd-bd/Road damage data/Pot hole/52 (2).JPG,Pot hole,692,kept,,267,550
+rsd-bd/Road damage data/Pot hole/52 (3).JPG,Pot hole,692,removed (copy),,267,550
+rsd-bd/Road damage data/Pot hole/52 (4).JPG,Pot hole,693,kept,,512,512
+rsd-bd/Road damage data/Pot hole/52.JPG,Pot hole,692,removed (copy),,267,550
+rsd-bd/Road damage data/Pot hole/53 (2).JPG,Pot hole,694,kept,,361,571
+rsd-bd/Road damage data/Pot hole/53 (3).JPG,Pot hole,694,removed (copy),,361,571
+rsd-bd/Road damage data/Pot hole/53 (4).JPG,Pot hole,695,kept,,498,350
+rsd-bd/Road damage data/Pot hole/53.JPG,Pot hole,695,removed (copy),,498,350
+rsd-bd/Road damage data/Pot hole/54 (2).JPG,Pot hole,696,kept,,375,610
+rsd-bd/Road damage data/Pot hole/54 (3).JPG,Pot hole,696,removed (copy),,375,610
+rsd-bd/Road damage data/Pot hole/54 (4).JPG,Pot hole,697,kept,,498,310
+rsd-bd/Road damage data/Pot hole/54 (5).JPG,Pot hole,696,removed (copy),,375,610
+rsd-bd/Road damage data/Pot hole/54.JPG,Pot hole,697,removed (copy),,498,310
+rsd-bd/Road damage data/Pot hole/55 (2).JPG,Pot hole,698,removed (copy),,359,381
+rsd-bd/Road damage data/Pot hole/55 (3).JPG,Pot hole,698,kept,,512,512
+rsd-bd/Road damage data/Pot hole/55 (4).JPG,Pot hole,699,kept,,424,320
+rsd-bd/Road damage data/Pot hole/55 (5).JPG,Pot hole,698,removed (copy),,359,381
+rsd-bd/Road damage data/Pot hole/55.JPG,Pot hole,699,removed (copy),,424,320
+rsd-bd/Road damage data/Pot hole/56 (2).JPG,Pot hole,700,kept,,214,458
+rsd-bd/Road damage data/Pot hole/56 (3).JPG,Pot hole,700,removed (copy),,214,458
+rsd-bd/Road damage data/Pot hole/56 (4).JPG,Pot hole,701,kept,,501,258
+rsd-bd/Road damage data/Pot hole/56.JPG,Pot hole,701,removed (copy),,501,258
+rsd-bd/Road damage data/Pot hole/57 (2).JPG,Pot hole,702,kept,,194,484
+rsd-bd/Road damage data/Pot hole/57 (3).JPG,Pot hole,702,removed (copy),,194,484
+rsd-bd/Road damage data/Pot hole/57 (4).JPG,Pot hole,703,kept,,499,472
+rsd-bd/Road damage data/Pot hole/57.JPG,Pot hole,703,removed (copy),,499,472
+rsd-bd/Road damage data/Pot hole/58 (2).JPG,Pot hole,704,kept,,222,336
+rsd-bd/Road damage data/Pot hole/58 (3).JPG,Pot hole,704,removed (copy),,222,336
+rsd-bd/Road damage data/Pot hole/58 (4).JPG,Pot hole,705,kept,,533,294
+rsd-bd/Road damage data/Pot hole/58.JPG,Pot hole,705,removed (copy),,533,294
+rsd-bd/Road damage data/Pot hole/59 (2).JPG,Pot hole,706,kept,,288,435
+rsd-bd/Road damage data/Pot hole/59 (3).JPG,Pot hole,706,removed (copy),,288,435
+rsd-bd/Road damage data/Pot hole/59 (4).JPG,Pot hole,707,kept,,497,532
+rsd-bd/Road damage data/Pot hole/59.JPG,Pot hole,707,removed (copy),,497,532
+rsd-bd/Road damage data/Pot hole/6 (2).JPG,Pot hole,708,kept,,472,194
+rsd-bd/Road damage data/Pot hole/6 (3).JPG,Pot hole,708,removed (copy),,472,194
+rsd-bd/Road damage data/Pot hole/6 (4).JPG,Pot hole,709,kept,,512,512
+rsd-bd/Road damage data/Pot hole/60 (2).JPG,Pot hole,710,kept,,185,369
+rsd-bd/Road damage data/Pot hole/60 (3).JPG,Pot hole,710,removed (copy),,185,369
+rsd-bd/Road damage data/Pot hole/60 (4).JPG,Pot hole,711,kept,,500,252
+rsd-bd/Road damage data/Pot hole/60.JPG,Pot hole,711,removed (copy),,500,252
+rsd-bd/Road damage data/Pot hole/61 (2).JPG,Pot hole,712,kept,,246,494
+rsd-bd/Road damage data/Pot hole/61 (3).JPG,Pot hole,712,removed (copy),,246,494
+rsd-bd/Road damage data/Pot hole/61 (4).JPG,Pot hole,713,kept,,495,397
+rsd-bd/Road damage data/Pot hole/61.JPG,Pot hole,713,removed (copy),,495,397
+rsd-bd/Road damage data/Pot hole/62 (2).JPG,Pot hole,714,kept,,242,462
+rsd-bd/Road damage data/Pot hole/62 (3).JPG,Pot hole,714,removed (copy),,242,462
+rsd-bd/Road damage data/Pot hole/62 (4).JPG,Pot hole,715,kept,,498,288
+rsd-bd/Road damage data/Pot hole/62.JPG,Pot hole,715,removed (copy),,498,288
+rsd-bd/Road damage data/Pot hole/63 (2).JPG,Pot hole,716,kept,,271,446
+rsd-bd/Road damage data/Pot hole/63 (3).JPG,Pot hole,716,removed (copy),,271,446
+rsd-bd/Road damage data/Pot hole/63 (4).JPG,Pot hole,717,kept,,502,412
+rsd-bd/Road damage data/Pot hole/63.JPG,Pot hole,717,removed (copy),,502,412
+rsd-bd/Road damage data/Pot hole/64 (2).JPG,Pot hole,718,kept,,260,360
+rsd-bd/Road damage data/Pot hole/64 (3).JPG,Pot hole,718,removed (copy),,260,360
+rsd-bd/Road damage data/Pot hole/64 (4).JPG,Pot hole,719,kept,,506,367
+rsd-bd/Road damage data/Pot hole/64.JPG,Pot hole,719,removed (copy),,506,367
+rsd-bd/Road damage data/Pot hole/65 (2).JPG,Pot hole,720,kept,,238,505
+rsd-bd/Road damage data/Pot hole/65 (3).JPG,Pot hole,720,removed (copy),,238,505
+rsd-bd/Road damage data/Pot hole/65 (4).JPG,Pot hole,721,kept,,512,512
+rsd-bd/Road damage data/Pot hole/65.JPG,Pot hole,720,removed (copy),,238,505
+rsd-bd/Road damage data/Pot hole/66 (2).JPG,Pot hole,722,kept,,258,490
+rsd-bd/Road damage data/Pot hole/66 (3).JPG,Pot hole,722,removed (copy),,258,490
+rsd-bd/Road damage data/Pot hole/66 (4).JPG,Pot hole,723,kept,,315,624
+rsd-bd/Road damage data/Pot hole/66.JPG,Pot hole,723,removed (copy),,315,624
+rsd-bd/Road damage data/Pot hole/67 (2).JPG,Pot hole,724,kept,,274,477
+rsd-bd/Road damage data/Pot hole/67 (3).JPG,Pot hole,724,removed (copy),,274,477
+rsd-bd/Road damage data/Pot hole/67 (4).JPG,Pot hole,725,kept,,512,512
+rsd-bd/Road damage data/Pot hole/67.JPG,Pot hole,724,removed (copy),,274,477
+rsd-bd/Road damage data/Pot hole/68 (2).JPG,Pot hole,726,kept,,251,439
+rsd-bd/Road damage data/Pot hole/68 (3).JPG,Pot hole,726,removed (copy),,251,439
+rsd-bd/Road damage data/Pot hole/68.JPG,Pot hole,726,removed (copy),,251,439
+rsd-bd/Road damage data/Pot hole/69 (2).JPG,Pot hole,727,kept,,138,240
+rsd-bd/Road damage data/Pot hole/69 (3).JPG,Pot hole,727,removed (copy),,138,240
+rsd-bd/Road damage data/Pot hole/69 (4).JPG,Pot hole,728,kept,,512,512
+rsd-bd/Road damage data/Pot hole/69.JPG,Pot hole,727,removed (copy),,138,240
+rsd-bd/Road damage data/Pot hole/7 (2).JPG,Pot hole,729,removed (copy),,480,241
+rsd-bd/Road damage data/Pot hole/7 (3).JPG,Pot hole,729,kept,,512,512
+rsd-bd/Road damage data/Pot hole/7 (4).JPG,Pot hole,730,kept,,512,512
+rsd-bd/Road damage data/Pot hole/7.JPG,Pot hole,729,removed (copy),,480,241
+rsd-bd/Road damage data/Pot hole/70 (2).JPG,Pot hole,731,kept,,107,263
+rsd-bd/Road damage data/Pot hole/70 (3).JPG,Pot hole,731,removed (copy),,107,263
+rsd-bd/Road damage data/Pot hole/70 (4).JPG,Pot hole,732,kept,,498,436
+rsd-bd/Road damage data/Pot hole/70.JPG,Pot hole,732,removed (copy),,498,436
+rsd-bd/Road damage data/Pot hole/71 (2).JPG,Pot hole,733,kept,,196,327
+rsd-bd/Road damage data/Pot hole/71 (3).JPG,Pot hole,733,removed (copy),,196,327
+rsd-bd/Road damage data/Pot hole/71.JPG,Pot hole,733,removed (copy),,196,327
+rsd-bd/Road damage data/Pot hole/72 (2).JPG,Pot hole,734,kept,,272,407
+rsd-bd/Road damage data/Pot hole/72 (3).JPG,Pot hole,734,removed (copy),,272,407
+rsd-bd/Road damage data/Pot hole/72 (4).JPG,Pot hole,735,kept,,497,528
+rsd-bd/Road damage data/Pot hole/72.JPG,Pot hole,735,removed (copy),,497,528
+rsd-bd/Road damage data/Pot hole/73 (2).JPG,Pot hole,736,kept,,258,362
+rsd-bd/Road damage data/Pot hole/73 (3).JPG,Pot hole,736,removed (copy),,258,362
+rsd-bd/Road damage data/Pot hole/73 (4).JPG,Pot hole,737,kept,,500,442
+rsd-bd/Road damage data/Pot hole/73.JPG,Pot hole,737,removed (copy),,500,442
+rsd-bd/Road damage data/Pot hole/74 (2).JPG,Pot hole,738,kept,,286,433
+rsd-bd/Road damage data/Pot hole/74 (3).JPG,Pot hole,738,removed (copy),,286,433
+rsd-bd/Road damage data/Pot hole/74 (4).JPG,Pot hole,739,kept,,511,362
+rsd-bd/Road damage data/Pot hole/74.JPG,Pot hole,739,removed (copy),,511,362
+rsd-bd/Road damage data/Pot hole/75 (2).JPG,Pot hole,740,kept,,273,391
+rsd-bd/Road damage data/Pot hole/75 (3).JPG,Pot hole,740,removed (copy),,273,391
+rsd-bd/Road damage data/Pot hole/75 (4).JPG,Pot hole,741,kept,,502,322
+rsd-bd/Road damage data/Pot hole/75.JPG,Pot hole,741,removed (copy),,502,322
+rsd-bd/Road damage data/Pot hole/76 (2).JPG,Pot hole,742,removed (copy),,297,459
+rsd-bd/Road damage data/Pot hole/76 (3).JPG,Pot hole,742,kept,,512,512
+rsd-bd/Road damage data/Pot hole/76 (4).JPG,Pot hole,743,kept,,427,482
+rsd-bd/Road damage data/Pot hole/76.JPG,Pot hole,743,removed (copy),,427,482
+rsd-bd/Road damage data/Pot hole/77 (2).JPG,Pot hole,744,kept,,236,379
+rsd-bd/Road damage data/Pot hole/77 (3).JPG,Pot hole,744,removed (copy),,236,379
+rsd-bd/Road damage data/Pot hole/77 (4).JPG,Pot hole,745,kept,,491,275
+rsd-bd/Road damage data/Pot hole/77.JPG,Pot hole,745,removed (copy),,491,275
+rsd-bd/Road damage data/Pot hole/78 (2).JPG,Pot hole,746,kept,,226,395
+rsd-bd/Road damage data/Pot hole/78 (3).JPG,Pot hole,746,removed (copy),,226,395
+rsd-bd/Road damage data/Pot hole/78 (4).JPG,Pot hole,747,kept,,504,250
+rsd-bd/Road damage data/Pot hole/78.JPG,Pot hole,747,removed (copy),,504,250
+rsd-bd/Road damage data/Pot hole/79 (2).JPG,Pot hole,748,kept,,349,556
+rsd-bd/Road damage data/Pot hole/79 (3).JPG,Pot hole,748,removed (copy),,349,556
+rsd-bd/Road damage data/Pot hole/79 (4).JPG,Pot hole,749,kept,,512,512
+rsd-bd/Road damage data/Pot hole/79.JPG,Pot hole,748,removed (copy),,349,556
+rsd-bd/Road damage data/Pot hole/8 (2).JPG,Pot hole,750,removed (copy),,475,219
+rsd-bd/Road damage data/Pot hole/8 (3).JPG,Pot hole,750,kept,,512,512
+rsd-bd/Road damage data/Pot hole/8 (4).JPG,Pot hole,751,kept,,352,228
+rsd-bd/Road damage data/Pot hole/8.JPG,Pot hole,751,removed (copy),,352,228
+rsd-bd/Road damage data/Pot hole/80 (2).JPG,Pot hole,752,removed (copy),,350,601
+rsd-bd/Road damage data/Pot hole/80 (3).JPG,Pot hole,752,kept,,512,512
+rsd-bd/Road damage data/Pot hole/80 (4).JPG,Pot hole,753,kept,,496,597
+rsd-bd/Road damage data/Pot hole/80 (5).JPG,Pot hole,752,removed (copy),,350,601
+rsd-bd/Road damage data/Pot hole/80.JPG,Pot hole,753,removed (copy),,496,597
+rsd-bd/Road damage data/Pot hole/81 (2).JPG,Pot hole,754,kept,,222,408
+rsd-bd/Road damage data/Pot hole/81 (3).JPG,Pot hole,754,removed (copy),,222,408
+rsd-bd/Road damage data/Pot hole/81 (4).JPG,Pot hole,755,kept,,498,340
+rsd-bd/Road damage data/Pot hole/81.JPG,Pot hole,755,removed (copy),,498,340
+rsd-bd/Road damage data/Pot hole/82 (2).JPG,Pot hole,756,kept,,241,468
+rsd-bd/Road damage data/Pot hole/82 (3).JPG,Pot hole,756,removed (copy),,241,468
+rsd-bd/Road damage data/Pot hole/82 (4).JPG,Pot hole,757,kept,,512,512
+rsd-bd/Road damage data/Pot hole/82.JPG,Pot hole,756,removed (copy),,241,468
+rsd-bd/Road damage data/Pot hole/83 (2).JPG,Pot hole,758,removed (copy),,220,403
+rsd-bd/Road damage data/Pot hole/83 (3).JPG,Pot hole,758,kept,,512,512
+rsd-bd/Road damage data/Pot hole/83 (4).JPG,Pot hole,759,kept,,512,512
+rsd-bd/Road damage data/Pot hole/83.JPG,Pot hole,758,removed (copy),,220,403
+rsd-bd/Road damage data/Pot hole/84 (2).JPG,Pot hole,760,kept,,212,430
+rsd-bd/Road damage data/Pot hole/84 (3).JPG,Pot hole,760,removed (copy),,212,430
+rsd-bd/Road damage data/Pot hole/84 (4).JPG,Pot hole,761,kept,,512,512
+rsd-bd/Road damage data/Pot hole/84.JPG,Pot hole,760,removed (copy),,212,430
+rsd-bd/Road damage data/Pot hole/85 (2).JPG,Pot hole,762,removed (copy),,301,460
+rsd-bd/Road damage data/Pot hole/85 (3).JPG,Pot hole,762,kept,,512,512
+rsd-bd/Road damage data/Pot hole/85 (4).JPG,Pot hole,763,kept,,497,431
+rsd-bd/Road damage data/Pot hole/85.JPG,Pot hole,763,removed (copy),,497,431
+rsd-bd/Road damage data/Pot hole/86 (2).JPG,Pot hole,764,removed (copy),,300,474
+rsd-bd/Road damage data/Pot hole/86 (3).JPG,Pot hole,764,kept,,512,512
+rsd-bd/Road damage data/Pot hole/86 (4).JPG,Pot hole,765,kept,,482,474
+rsd-bd/Road damage data/Pot hole/86.JPG,Pot hole,765,removed (copy),,482,474
+rsd-bd/Road damage data/Pot hole/87 (2).JPG,Pot hole,766,removed (copy),,136,340
+rsd-bd/Road damage data/Pot hole/87 (3).JPG,Pot hole,766,kept,,512,512
+rsd-bd/Road damage data/Pot hole/87 (4).JPG,Pot hole,767,kept,,501,427
+rsd-bd/Road damage data/Pot hole/87.JPG,Pot hole,767,removed (copy),,501,427
+rsd-bd/Road damage data/Pot hole/88 (2).JPG,Pot hole,768,kept,,194,398
+rsd-bd/Road damage data/Pot hole/88 (3).JPG,Pot hole,768,removed (copy),,194,398
+rsd-bd/Road damage data/Pot hole/88 (4).JPG,Pot hole,769,kept,,361,385
+rsd-bd/Road damage data/Pot hole/88.JPG,Pot hole,769,removed (copy),,361,385
+rsd-bd/Road damage data/Pot hole/89 (2).JPG,Pot hole,770,kept,,256,498
+rsd-bd/Road damage data/Pot hole/89 (3).JPG,Pot hole,770,removed (copy),,256,498
+rsd-bd/Road damage data/Pot hole/89 (4).JPG,Pot hole,771,kept,,339,456
+rsd-bd/Road damage data/Pot hole/89.JPG,Pot hole,771,removed (copy),,339,456
+rsd-bd/Road damage data/Pot hole/9 (2).JPG,Pot hole,772,removed (copy),,487,223
+rsd-bd/Road damage data/Pot hole/9 (3).JPG,Pot hole,772,kept,,512,512
+rsd-bd/Road damage data/Pot hole/9 (4).JPG,Pot hole,773,kept,,418,270
+rsd-bd/Road damage data/Pot hole/9.JPG,Pot hole,773,removed (copy),,418,270
+rsd-bd/Road damage data/Pot hole/90 (2).JPG,Pot hole,774,removed (copy),,210,538
+rsd-bd/Road damage data/Pot hole/90 (3).JPG,Pot hole,774,kept,,512,512
+rsd-bd/Road damage data/Pot hole/90 (4).JPG,Pot hole,775,kept,,418,440
+rsd-bd/Road damage data/Pot hole/90.JPG,Pot hole,775,removed (copy),,418,440
+rsd-bd/Road damage data/Pot hole/91 (2).JPG,Pot hole,776,kept,,232,513
+rsd-bd/Road damage data/Pot hole/91 (3).JPG,Pot hole,776,removed (copy),,232,513
+rsd-bd/Road damage data/Pot hole/91 (4).JPG,Pot hole,777,kept,,494,380
+rsd-bd/Road damage data/Pot hole/91.JPG,Pot hole,777,removed (copy),,494,380
+rsd-bd/Road damage data/Pot hole/92 (2).JPG,Pot hole,778,kept,,177,442
+rsd-bd/Road damage data/Pot hole/92 (3).JPG,Pot hole,778,removed (copy),,177,442
+rsd-bd/Road damage data/Pot hole/92 (4).JPG,Pot hole,779,kept,,386,189
+rsd-bd/Road damage data/Pot hole/92.JPG,Pot hole,779,removed (copy),,386,189
+rsd-bd/Road damage data/Pot hole/93 (2).JPG,Pot hole,780,kept,,232,537
+rsd-bd/Road damage data/Pot hole/93 (3).JPG,Pot hole,780,removed (copy),,232,537
+rsd-bd/Road damage data/Pot hole/93 (4).JPG,Pot hole,781,kept,,427,440
+rsd-bd/Road damage data/Pot hole/93.JPG,Pot hole,781,removed (copy),,427,440
+rsd-bd/Road damage data/Pot hole/94 (2).JPG,Pot hole,782,kept,,217,517
+rsd-bd/Road damage data/Pot hole/94 (3).JPG,Pot hole,782,removed (copy),,217,517
+rsd-bd/Road damage data/Pot hole/94 (4).JPG,Pot hole,783,kept,,362,664
+rsd-bd/Road damage data/Pot hole/94.JPG,Pot hole,783,removed (copy),,362,664
+rsd-bd/Road damage data/Pot hole/95 (2).JPG,Pot hole,784,removed (copy),,166,496
+rsd-bd/Road damage data/Pot hole/95 (3).JPG,Pot hole,784,kept,,512,512
+rsd-bd/Road damage data/Pot hole/95 (4).JPG,Pot hole,785,kept,,504,462
+rsd-bd/Road damage data/Pot hole/95.JPG,Pot hole,785,removed (copy),,504,462
+rsd-bd/Road damage data/Pot hole/96 (2).JPG,Pot hole,786,kept,,197,469
+rsd-bd/Road damage data/Pot hole/96 (3).JPG,Pot hole,786,removed (copy),,197,469
+rsd-bd/Road damage data/Pot hole/96 (4).JPG,Pot hole,787,kept,,500,329
+rsd-bd/Road damage data/Pot hole/96.JPG,Pot hole,787,removed (copy),,500,329
+rsd-bd/Road damage data/Pot hole/97 (2).JPG,Pot hole,788,kept,,131,350
+rsd-bd/Road damage data/Pot hole/97 (3).JPG,Pot hole,788,removed (copy),,131,350
+rsd-bd/Road damage data/Pot hole/97 (4).JPG,Pot hole,789,kept,,457,484
+rsd-bd/Road damage data/Pot hole/97.JPG,Pot hole,789,removed (copy),,457,484
+rsd-bd/Road damage data/Pot hole/98 (2).JPG,Pot hole,790,kept,,172,435
+rsd-bd/Road damage data/Pot hole/98 (3).JPG,Pot hole,790,removed (copy),,172,435
+rsd-bd/Road damage data/Pot hole/98 (4).JPG,Pot hole,791,kept,,344,659
+rsd-bd/Road damage data/Pot hole/98.JPG,Pot hole,791,removed (copy),,344,659
+rsd-bd/Road damage data/Pot hole/99 (2).JPG,Pot hole,792,kept,,82,231
+rsd-bd/Road damage data/Pot hole/99 (3).JPG,Pot hole,792,removed (copy),,82,231
+rsd-bd/Road damage data/Pot hole/99 (4).JPG,Pot hole,793,kept,,512,512
+rsd-bd/Road damage data/Pot hole/99.JPG,Pot hole,792,removed (copy),,82,231
+rsd-bd/Road damage data/Pot hole/IMG20240301090425 (2).jpg,Pot hole,794,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/IMG20240301090425.jpg,Pot hole,794,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/IMG20240301092533 (2).jpg,Pot hole,795,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/IMG20240301092533.jpg,Pot hole,795,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/IMG20240301092818 (2).jpg,Pot hole,796,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/IMG20240301092818.jpg,Pot hole,796,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/IMG20240301095723 (2).jpg,Pot hole,797,kept,OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/IMG20240301095723.jpg,Pot hole,797,removed (copy),OPPO OPPO A77s,3072,4080
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-01-12 (2).jpg,Pot hole,798,kept,,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-01-12.jpg,Pot hole,798,removed (copy),,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-01-16 (2).jpg,Pot hole,799,kept,,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-01-16.jpg,Pot hole,799,removed (copy),,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-01-22.jpg,Pot hole,800,kept,,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-01-26 (2).jpg,Pot hole,801,kept,,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-01-26.jpg,Pot hole,801,removed (copy),,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-02-11 (2).jpg,Pot hole,802,kept,,960,1280
+rsd-bd/Road damage data/Pot hole/photo_2023-11-03_17-02-11.jpg,Pot hole,802,removed (copy),,960,1280

@@ -7,6 +7,8 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   {
     ignores: [
+      // Folders iCloud does not sync (node_modules.nosync, ml/data.nosync).
+      '**/*.nosync/**',
       'dist/**',
       'coverage/**',
       'src/generated/**',
