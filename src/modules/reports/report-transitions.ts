@@ -136,6 +136,17 @@ export const TRANSITIONS = {
     actors: ['org_reviewer', 'system'],
     requiresReason: false,
   },
+  // ─── Duplicates (Phase 8, PRD §6.3) ──────────────────────────────────────────
+  /**
+   * Approved policy: from SUBMITTED up to ACCEPTED, always with a link to the original
+   * (enforced in the database) and a reason. DUPLICATE is final.
+   */
+  markDuplicate: {
+    from: ['SUBMITTED', 'UNDER_REVIEW', 'NEEDS_INFORMATION', 'ACCEPTED'],
+    to: 'DUPLICATE',
+    actors: ['org_reviewer'],
+    requiresReason: true,
+  },
 } as const satisfies Record<string, TransitionRule>;
 
 export type TransitionName = keyof typeof TRANSITIONS;

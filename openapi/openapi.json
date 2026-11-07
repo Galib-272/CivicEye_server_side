@@ -2405,6 +2405,12 @@
                             "type": "integer",
                             "minimum": -9007199254740991,
                             "maximum": 9007199254740991
+                          },
+                          "duplicateRadiusM": {
+                            "nullable": true,
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           }
                         },
                         "required": [
@@ -2416,7 +2422,8 @@
                           "descriptionEn",
                           "descriptionBn",
                           "isActive",
-                          "displayOrder"
+                          "displayOrder",
+                          "duplicateRadiusM"
                         ],
                         "additionalProperties": false
                       }
@@ -2499,6 +2506,12 @@
                             "type": "integer",
                             "minimum": -9007199254740991,
                             "maximum": 9007199254740991
+                          },
+                          "duplicateRadiusM": {
+                            "nullable": true,
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
                           }
                         },
                         "required": [
@@ -2510,7 +2523,8 @@
                           "descriptionEn",
                           "descriptionBn",
                           "isActive",
-                          "displayOrder"
+                          "displayOrder",
+                          "duplicateRadiusM"
                         ],
                         "additionalProperties": false
                       }
@@ -2574,6 +2588,12 @@
                     "type": "integer",
                     "minimum": 0,
                     "maximum": 10000
+                  },
+                  "duplicateRadiusM": {
+                    "nullable": true,
+                    "type": "integer",
+                    "minimum": 10,
+                    "maximum": 1000
                   }
                 },
                 "required": [
@@ -2643,6 +2663,12 @@
                           "type": "integer",
                           "minimum": -9007199254740991,
                           "maximum": 9007199254740991
+                        },
+                        "duplicateRadiusM": {
+                          "nullable": true,
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
                         }
                       },
                       "required": [
@@ -2654,7 +2680,8 @@
                         "descriptionEn",
                         "descriptionBn",
                         "isActive",
-                        "displayOrder"
+                        "displayOrder",
+                        "duplicateRadiusM"
                       ],
                       "additionalProperties": false
                     },
@@ -2744,6 +2771,12 @@
                     "minimum": 0,
                     "maximum": 10000
                   },
+                  "duplicateRadiusM": {
+                    "nullable": true,
+                    "type": "integer",
+                    "minimum": 10,
+                    "maximum": 1000
+                  },
                   "isActive": {
                     "type": "boolean"
                   }
@@ -2810,6 +2843,12 @@
                           "type": "integer",
                           "minimum": -9007199254740991,
                           "maximum": 9007199254740991
+                        },
+                        "duplicateRadiusM": {
+                          "nullable": true,
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
                         }
                       },
                       "required": [
@@ -2821,7 +2860,8 @@
                         "descriptionEn",
                         "descriptionBn",
                         "isActive",
-                        "displayOrder"
+                        "displayOrder",
+                        "duplicateRadiusM"
                       ],
                       "additionalProperties": false
                     },
@@ -9376,6 +9416,20 @@
                         "canGiveFeedback": {
                           "type": "boolean"
                         },
+                        "duplicateOf": {
+                          "nullable": true,
+                          "type": "object",
+                          "properties": {
+                            "publicId": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "publicId"
+                          ],
+                          "additionalProperties": false
+                        },
                         "feedback": {
                           "nullable": true,
                           "type": "object",
@@ -9420,6 +9474,7 @@
                         "photos",
                         "completion",
                         "canGiveFeedback",
+                        "duplicateOf",
                         "feedback"
                       ],
                       "additionalProperties": false
@@ -10035,6 +10090,20 @@
                             "canGiveFeedback": {
                               "type": "boolean"
                             },
+                            "duplicateOf": {
+                              "nullable": true,
+                              "type": "object",
+                              "properties": {
+                                "publicId": {
+                                  "nullable": true,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "publicId"
+                              ],
+                              "additionalProperties": false
+                            },
                             "feedback": {
                               "nullable": true,
                               "type": "object",
@@ -10079,6 +10148,7 @@
                             "photos",
                             "completion",
                             "canGiveFeedback",
+                            "duplicateOf",
                             "feedback"
                           ],
                           "additionalProperties": false
@@ -10554,6 +10624,20 @@
                         "canGiveFeedback": {
                           "type": "boolean"
                         },
+                        "duplicateOf": {
+                          "nullable": true,
+                          "type": "object",
+                          "properties": {
+                            "publicId": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "publicId"
+                          ],
+                          "additionalProperties": false
+                        },
                         "feedback": {
                           "nullable": true,
                           "type": "object",
@@ -10598,6 +10682,7 @@
                         "photos",
                         "completion",
                         "canGiveFeedback",
+                        "duplicateOf",
                         "feedback"
                       ],
                       "additionalProperties": false
@@ -11189,6 +11274,20 @@
                         "canGiveFeedback": {
                           "type": "boolean"
                         },
+                        "duplicateOf": {
+                          "nullable": true,
+                          "type": "object",
+                          "properties": {
+                            "publicId": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "publicId"
+                          ],
+                          "additionalProperties": false
+                        },
                         "feedback": {
                           "nullable": true,
                           "type": "object",
@@ -11233,6 +11332,7 @@
                         "photos",
                         "completion",
                         "canGiveFeedback",
+                        "duplicateOf",
                         "feedback"
                       ],
                       "additionalProperties": false
@@ -11591,6 +11691,20 @@
                         "canGiveFeedback": {
                           "type": "boolean"
                         },
+                        "duplicateOf": {
+                          "nullable": true,
+                          "type": "object",
+                          "properties": {
+                            "publicId": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "publicId"
+                          ],
+                          "additionalProperties": false
+                        },
                         "feedback": {
                           "nullable": true,
                           "type": "object",
@@ -11635,6 +11749,7 @@
                         "photos",
                         "completion",
                         "canGiveFeedback",
+                        "duplicateOf",
                         "feedback"
                       ],
                       "additionalProperties": false
@@ -12571,6 +12686,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -12584,7 +12702,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -13942,6 +14061,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -13955,7 +14077,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -14728,6 +14851,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -14741,7 +14867,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -15428,6 +15555,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -15441,7 +15571,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -16140,6 +16271,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -16153,7 +16287,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -16862,6 +16997,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -16875,7 +17013,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -17209,6 +17348,1294 @@
           }
         },
         "summary": "Move the report to another eligible organization, or back to Super Admin triage (toOrganizationId null). Your organization loses access.",
+        "tags": [
+          "organization reports"
+        ]
+      }
+    },
+    "/api/v1/organizations/{organizationId}/reports/{publicId}/duplicates": {
+      "get": {
+        "operationId": "OrganizationReportsController_duplicates_v1",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "publicId": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "SUBMITTED",
+                              "UNDER_REVIEW",
+                              "NEEDS_INFORMATION",
+                              "ACCEPTED",
+                              "REJECTED",
+                              "ASSIGNED",
+                              "IN_PROGRESS",
+                              "WORK_COMPLETED",
+                              "PENDING_VERIFICATION",
+                              "RESOLVED",
+                              "REOPENED",
+                              "CLOSED",
+                              "WITHDRAWN",
+                              "DUPLICATE"
+                            ]
+                          },
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "slug": {
+                                "type": "string"
+                              },
+                              "nameEn": {
+                                "type": "string"
+                              },
+                              "nameBn": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "slug",
+                              "nameEn",
+                              "nameBn"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "distanceM": {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          "submittedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                          },
+                          "photos": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "format": "uuid",
+                                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                },
+                                "thumbnailUrl": {
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "displayUrl": {
+                                  "nullable": true,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "thumbnailUrl",
+                                "displayUrl"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "publicId",
+                          "title",
+                          "status",
+                          "category",
+                          "distanceM",
+                          "submittedAt",
+                          "photos"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Possible duplicates: nearby reports of the same category family, your organization only.",
+        "tags": [
+          "organization reports"
+        ]
+      }
+    },
+    "/api/v1/organizations/{organizationId}/reports/{publicId}/nearby": {
+      "get": {
+        "operationId": "OrganizationReportsController_nearby_v1",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "radius",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "default": 200,
+              "type": "integer",
+              "minimum": 50,
+              "maximum": 1000
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "publicId": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "SUBMITTED",
+                              "UNDER_REVIEW",
+                              "NEEDS_INFORMATION",
+                              "ACCEPTED",
+                              "REJECTED",
+                              "ASSIGNED",
+                              "IN_PROGRESS",
+                              "WORK_COMPLETED",
+                              "PENDING_VERIFICATION",
+                              "RESOLVED",
+                              "REOPENED",
+                              "CLOSED",
+                              "WITHDRAWN",
+                              "DUPLICATE"
+                            ]
+                          },
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "slug": {
+                                "type": "string"
+                              },
+                              "nameEn": {
+                                "type": "string"
+                              },
+                              "nameBn": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "slug",
+                              "nameEn",
+                              "nameBn"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "distanceM": {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          "submittedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                          },
+                          "photos": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "format": "uuid",
+                                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                },
+                                "thumbnailUrl": {
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "displayUrl": {
+                                  "nullable": true,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "thumbnailUrl",
+                                "displayUrl"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "publicId",
+                          "title",
+                          "status",
+                          "category",
+                          "distanceM",
+                          "submittedAt",
+                          "photos"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Your organization’s reports within a distance (50–1000 m).",
+        "tags": [
+          "organization reports"
+        ]
+      }
+    },
+    "/api/v1/organizations/{organizationId}/reports/{publicId}/mark-duplicate": {
+      "post": {
+        "operationId": "OrganizationReportsController_markDuplicate_v1",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "If-Match",
+            "in": "header",
+            "description": "The report version the reviewer is looking at",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "canonicalPublicId": {
+                    "type": "string",
+                    "pattern": "^CE-[0-9A-Z]{4}-[0-9A-Z]{4}$"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 1000
+                  }
+                },
+                "required": [
+                  "canonicalPublicId",
+                  "reason"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "publicId": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "category": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "string",
+                              "format": "uuid",
+                              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                            },
+                            "slug": {
+                              "type": "string"
+                            },
+                            "nameEn": {
+                              "type": "string"
+                            },
+                            "nameBn": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "id",
+                            "slug",
+                            "nameEn",
+                            "nameBn"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "SUBMITTED",
+                            "UNDER_REVIEW",
+                            "NEEDS_INFORMATION",
+                            "ACCEPTED",
+                            "REJECTED",
+                            "ASSIGNED",
+                            "IN_PROGRESS",
+                            "WORK_COMPLETED",
+                            "PENDING_VERIFICATION",
+                            "RESOLVED",
+                            "REOPENED",
+                            "CLOSED",
+                            "WITHDRAWN",
+                            "DUPLICATE"
+                          ]
+                        },
+                        "latitude": {
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "type": "number"
+                        },
+                        "locationAccuracyM": {
+                          "nullable": true,
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "locationDescription": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "visibility": {
+                          "type": "string",
+                          "enum": [
+                            "PUBLIC",
+                            "PRIVATE",
+                            "ORGANIZATION_ONLY",
+                            "RESTRICTED"
+                          ]
+                        },
+                        "routing": {
+                          "type": "string",
+                          "enum": [
+                            "ROUTED",
+                            "UNROUTED",
+                            "AMBIGUOUS",
+                            "MANUAL",
+                            "TRANSFERRED"
+                          ]
+                        },
+                        "organizationId": {
+                          "nullable": true,
+                          "type": "string",
+                          "format": "uuid",
+                          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                        },
+                        "organizationName": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "submittedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time",
+                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                        },
+                        "photos": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "thumbnailUrl": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "displayUrl": {
+                                "nullable": true,
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "thumbnailUrl",
+                              "displayUrl"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "informationRequests": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "message": {
+                                "type": "string"
+                              },
+                              "requestedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "response": {
+                                "nullable": true,
+                                "type": "object",
+                                "properties": {
+                                  "message": {
+                                    "type": "string"
+                                  },
+                                  "photoCount": {
+                                    "type": "integer",
+                                    "minimum": -9007199254740991,
+                                    "maximum": 9007199254740991
+                                  },
+                                  "respondedAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                  }
+                                },
+                                "required": [
+                                  "message",
+                                  "photoCount",
+                                  "respondedAt"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "message",
+                              "requestedAt",
+                              "response"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "rejection": {
+                          "nullable": true,
+                          "type": "object",
+                          "properties": {
+                            "reason": {
+                              "type": "string",
+                              "enum": [
+                                "NOT_A_CIVIC_ISSUE",
+                                "INSUFFICIENT_INFORMATION",
+                                "ALREADY_FIXED",
+                                "INAPPROPRIATE_CONTENT",
+                                "NO_RESPONSE",
+                                "OTHER"
+                              ]
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "reason",
+                            "message"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "assignments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "workerId": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "workerName": {
+                                "type": "string"
+                              },
+                              "state": {
+                                "type": "string",
+                                "enum": [
+                                  "PENDING",
+                                  "ACCEPTED",
+                                  "IN_PROGRESS",
+                                  "COMPLETED",
+                                  "VERIFIED",
+                                  "DECLINED",
+                                  "RETURNED",
+                                  "CANCELLED"
+                                ]
+                              },
+                              "note": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "assignedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "acceptedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "startedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "completedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "endedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "endReason": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "events": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "kind": {
+                                      "type": "string",
+                                      "enum": [
+                                        "ASSIGNED",
+                                        "ACCEPTED",
+                                        "DECLINED",
+                                        "STARTED",
+                                        "PROGRESS",
+                                        "COMPLETED",
+                                        "APPROVED",
+                                        "REJECTED",
+                                        "MORE_EVIDENCE_NEEDED",
+                                        "RETURNED",
+                                        "CANCELLED"
+                                      ]
+                                    },
+                                    "message": {
+                                      "nullable": true,
+                                      "type": "string"
+                                    },
+                                    "photos": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                          },
+                                          "thumbnailUrl": {
+                                            "nullable": true,
+                                            "type": "string"
+                                          },
+                                          "displayUrl": {
+                                            "nullable": true,
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "thumbnailUrl",
+                                          "displayUrl"
+                                        ],
+                                        "additionalProperties": false
+                                      }
+                                    },
+                                    "actorName": {
+                                      "nullable": true,
+                                      "type": "string"
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time",
+                                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                    }
+                                  },
+                                  "required": [
+                                    "kind",
+                                    "message",
+                                    "photos",
+                                    "actorName",
+                                    "createdAt"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "submissions": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "format": "uuid",
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                    },
+                                    "description": {
+                                      "type": "string"
+                                    },
+                                    "photos": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string",
+                                            "format": "uuid",
+                                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                          },
+                                          "thumbnailUrl": {
+                                            "nullable": true,
+                                            "type": "string"
+                                          },
+                                          "displayUrl": {
+                                            "nullable": true,
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "id",
+                                          "thumbnailUrl",
+                                          "displayUrl"
+                                        ],
+                                        "additionalProperties": false
+                                      }
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time",
+                                      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                    },
+                                    "verification": {
+                                      "nullable": true,
+                                      "type": "object",
+                                      "properties": {
+                                        "outcome": {
+                                          "type": "string",
+                                          "enum": [
+                                            "APPROVED",
+                                            "REJECTED",
+                                            "NEEDS_MORE_EVIDENCE"
+                                          ]
+                                        },
+                                        "reason": {
+                                          "nullable": true,
+                                          "type": "string"
+                                        },
+                                        "verifierName": {
+                                          "type": "string"
+                                        },
+                                        "createdAt": {
+                                          "type": "string",
+                                          "format": "date-time",
+                                          "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                        }
+                                      },
+                                      "required": [
+                                        "outcome",
+                                        "reason",
+                                        "verifierName",
+                                        "createdAt"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "description",
+                                    "photos",
+                                    "createdAt",
+                                    "verification"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "workerId",
+                              "workerName",
+                              "state",
+                              "note",
+                              "assignedAt",
+                              "acceptedAt",
+                              "startedAt",
+                              "completedAt",
+                              "endedAt",
+                              "endReason",
+                              "events",
+                              "submissions"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "feedback": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "fixed": {
+                                "type": "boolean"
+                              },
+                              "comment": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              }
+                            },
+                            "required": [
+                              "fixed",
+                              "comment",
+                              "createdAt"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "actions": {
+                          "type": "object",
+                          "properties": {
+                            "startReview": {
+                              "type": "boolean"
+                            },
+                            "requestInformation": {
+                              "type": "boolean"
+                            },
+                            "accept": {
+                              "type": "boolean"
+                            },
+                            "reject": {
+                              "type": "boolean"
+                            },
+                            "transfer": {
+                              "type": "boolean"
+                            },
+                            "assign": {
+                              "type": "boolean"
+                            },
+                            "reassign": {
+                              "type": "boolean"
+                            },
+                            "cancelAssignment": {
+                              "type": "boolean"
+                            },
+                            "verify": {
+                              "type": "boolean"
+                            },
+                            "reopen": {
+                              "type": "boolean"
+                            },
+                            "close": {
+                              "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
+                            }
+                          },
+                          "required": [
+                            "startReview",
+                            "requestInformation",
+                            "accept",
+                            "reject",
+                            "transfer",
+                            "assign",
+                            "reassign",
+                            "cancelAssignment",
+                            "verify",
+                            "reopen",
+                            "close",
+                            "markDuplicate"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "publicId",
+                        "title",
+                        "description",
+                        "category",
+                        "status",
+                        "latitude",
+                        "longitude",
+                        "locationAccuracyM",
+                        "locationDescription",
+                        "visibility",
+                        "routing",
+                        "organizationId",
+                        "organizationName",
+                        "version",
+                        "submittedAt",
+                        "updatedAt",
+                        "photos",
+                        "informationRequests",
+                        "rejection",
+                        "assignments",
+                        "feedback",
+                        "actions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "428": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Link the report to its original (→ DUPLICATE, final). Both must be yours.",
+        "tags": [
+          "organization reports"
+        ]
+      }
+    },
+    "/api/v1/organizations/{organizationId}/reports/{publicId}/dismiss-duplicate": {
+      "post": {
+        "operationId": "OrganizationReportsController_dismissDuplicate_v1",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "candidatePublicId": {
+                    "type": "string",
+                    "pattern": "^CE-[0-9A-Z]{4}-[0-9A-Z]{4}$"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1000
+                  }
+                },
+                "required": [
+                  "candidatePublicId"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "publicId": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "SUBMITTED",
+                              "UNDER_REVIEW",
+                              "NEEDS_INFORMATION",
+                              "ACCEPTED",
+                              "REJECTED",
+                              "ASSIGNED",
+                              "IN_PROGRESS",
+                              "WORK_COMPLETED",
+                              "PENDING_VERIFICATION",
+                              "RESOLVED",
+                              "REOPENED",
+                              "CLOSED",
+                              "WITHDRAWN",
+                              "DUPLICATE"
+                            ]
+                          },
+                          "category": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "slug": {
+                                "type": "string"
+                              },
+                              "nameEn": {
+                                "type": "string"
+                              },
+                              "nameBn": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "slug",
+                              "nameEn",
+                              "nameBn"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "distanceM": {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          "submittedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                          },
+                          "photos": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string",
+                                  "format": "uuid",
+                                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                },
+                                "thumbnailUrl": {
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "displayUrl": {
+                                  "nullable": true,
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "thumbnailUrl",
+                                "displayUrl"
+                              ],
+                              "additionalProperties": false
+                            }
+                          }
+                        },
+                        "required": [
+                          "publicId",
+                          "title",
+                          "status",
+                          "category",
+                          "distanceM",
+                          "submittedAt",
+                          "photos"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Record that a suggested report is a different problem.",
         "tags": [
           "organization reports"
         ]
@@ -18384,6 +19811,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -18397,7 +19827,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -19105,6 +20536,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -19118,7 +20552,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -19815,6 +21250,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -19828,7 +21266,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -20533,6 +21972,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -20546,7 +21988,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -21253,6 +22696,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -21266,7 +22712,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -21942,6 +23389,9 @@
                             },
                             "close": {
                               "type": "boolean"
+                            },
+                            "markDuplicate": {
+                              "type": "boolean"
                             }
                           },
                           "required": [
@@ -21955,7 +23405,8 @@
                             "cancelAssignment",
                             "verify",
                             "reopen",
-                            "close"
+                            "close",
+                            "markDuplicate"
                           ],
                           "additionalProperties": false
                         }
@@ -22343,6 +23794,20 @@
                         "canGiveFeedback": {
                           "type": "boolean"
                         },
+                        "duplicateOf": {
+                          "nullable": true,
+                          "type": "object",
+                          "properties": {
+                            "publicId": {
+                              "nullable": true,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "publicId"
+                          ],
+                          "additionalProperties": false
+                        },
                         "feedback": {
                           "nullable": true,
                           "type": "object",
@@ -22387,6 +23852,7 @@
                         "photos",
                         "completion",
                         "canGiveFeedback",
+                        "duplicateOf",
                         "feedback"
                       ],
                       "additionalProperties": false
@@ -26267,6 +27733,428 @@
         ]
       }
     },
+    "/api/v1/map/reports": {
+      "get": {
+        "operationId": "MapController_reports_v1",
+        "parameters": [
+          {
+            "name": "minLng",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "minLat",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "maxLng",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "maxLat",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "categoryId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "SUBMITTED",
+                "UNDER_REVIEW",
+                "NEEDS_INFORMATION",
+                "ACCEPTED",
+                "REJECTED",
+                "ASSIGNED",
+                "IN_PROGRESS",
+                "WORK_COMPLETED",
+                "PENDING_VERIFICATION",
+                "RESOLVED",
+                "REOPENED",
+                "CLOSED",
+                "WITHDRAWN",
+                "DUPLICATE"
+              ]
+            }
+          },
+          {
+            "name": "from",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            }
+          },
+          {
+            "name": "to",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "reports": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "publicId": {
+                                "type": "string"
+                              },
+                              "title": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string",
+                                "enum": [
+                                  "SUBMITTED",
+                                  "UNDER_REVIEW",
+                                  "NEEDS_INFORMATION",
+                                  "ACCEPTED",
+                                  "REJECTED",
+                                  "ASSIGNED",
+                                  "IN_PROGRESS",
+                                  "WORK_COMPLETED",
+                                  "PENDING_VERIFICATION",
+                                  "RESOLVED",
+                                  "REOPENED",
+                                  "CLOSED",
+                                  "WITHDRAWN",
+                                  "DUPLICATE"
+                                ]
+                              },
+                              "categoryId": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "latitude": {
+                                "type": "number"
+                              },
+                              "longitude": {
+                                "type": "number"
+                              },
+                              "submittedAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              }
+                            },
+                            "required": [
+                              "publicId",
+                              "title",
+                              "status",
+                              "categoryId",
+                              "latitude",
+                              "longitude",
+                              "submittedAt"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "truncated": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "reports",
+                        "truncated"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Public reports inside a map box (at most 2,000; zoom in for more).",
+        "tags": [
+          "map"
+        ]
+      }
+    },
+    "/api/v1/map/organizations": {
+      "get": {
+        "operationId": "MapController_organizations_v1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "format": "uuid",
+                            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "properties": {
+                              "type": {
+                                "type": "string"
+                              },
+                              "coordinates": {
+                                "type": "array",
+                                "items": {}
+                              }
+                            },
+                            "required": [
+                              "type",
+                              "coordinates"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "geometry"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Areas covered by verified organizations (simplified outlines).",
+        "tags": [
+          "map"
+        ]
+      }
+    },
+    "/api/v1/map/nearby": {
+      "get": {
+        "operationId": "MapController_nearby_v1",
+        "parameters": [
+          {
+            "name": "latitude",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "minimum": 20.3,
+              "maximum": 26.8
+            }
+          },
+          {
+            "name": "longitude",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "minimum": 88,
+              "maximum": 92.8
+            }
+          },
+          {
+            "name": "categoryId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "publicId": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "SUBMITTED",
+                              "UNDER_REVIEW",
+                              "NEEDS_INFORMATION",
+                              "ACCEPTED",
+                              "REJECTED",
+                              "ASSIGNED",
+                              "IN_PROGRESS",
+                              "WORK_COMPLETED",
+                              "PENDING_VERIFICATION",
+                              "RESOLVED",
+                              "REOPENED",
+                              "CLOSED",
+                              "WITHDRAWN",
+                              "DUPLICATE"
+                            ]
+                          },
+                          "distanceM": {
+                            "type": "integer",
+                            "minimum": -9007199254740991,
+                            "maximum": 9007199254740991
+                          },
+                          "submittedAt": {
+                            "type": "string",
+                            "format": "date-time",
+                            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                          }
+                        },
+                        "required": [
+                          "publicId",
+                          "title",
+                          "status",
+                          "distanceM",
+                          "submittedAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Public reports of the same category family near a point, to check before reporting again.",
+        "tags": [
+          "map"
+        ]
+      }
+    },
     "/api/v1/notifications": {
       "get": {
         "operationId": "NotificationsController_list_v1",
@@ -26360,7 +28248,8 @@
                               "TASK_ASSIGNED",
                               "TASK_CANCELLED",
                               "MORE_EVIDENCE_NEEDED",
-                              "WORK_APPROVED"
+                              "WORK_APPROVED",
+                              "REPORT_DUPLICATE"
                             ]
                           },
                           "reportPublicId": {
@@ -26929,7 +28818,8 @@
                                   "TASK_ASSIGNED",
                                   "TASK_CANCELLED",
                                   "MORE_EVIDENCE_NEEDED",
-                                  "WORK_APPROVED"
+                                  "WORK_APPROVED",
+                                  "REPORT_DUPLICATE"
                                 ]
                               },
                               "failedAttempts": {

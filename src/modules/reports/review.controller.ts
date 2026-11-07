@@ -42,6 +42,15 @@ import {
   type TransferInput,
 } from './review.schemas';
 import { ReviewService } from './review.service';
+import {
+  dismissDuplicateSchema,
+  DuplicatesService,
+  markDuplicateSchema,
+  nearbyQuerySchema,
+  relatedReportSchema,
+  type DismissDuplicateInput,
+  type MarkDuplicateInput,
+} from './duplicates.service';
 
 const uuid = new ZodValidationPipe(z.uuid());
 const publicId = new ZodValidationPipe(publicIdSchema);
@@ -74,7 +83,10 @@ const ifMatchHeader = {
 @Controller({ path: 'organizations/:organizationId/reports', version: '1' })
 @RequirePermissions(Permission.AccountSelf)
 export class OrganizationReportsController {
-  constructor(private readonly review: ReviewService) {}
+  constructor(
+    private readonly review: ReviewService,
+    private readonly duplicateService: DuplicatesService,
+  ) {}
 
   @Get()
   @RequireOrganizationPermission(OrganizationPermission.ReviewReports)
@@ -265,6 +277,79 @@ export class OrganizationReportsController {
       request,
     );
     return { transferred: true as const };
+  }
+
+  @Get(':publicId/duplicates')
+  @RequireOrganizationPermission(OrganizationPermission.ReviewReports)
+  @ApiOperation({
+    summary:
+      'Possible duplicates: nearby reports of the same category family, your organization only.',
+  })
+  @ApiZodResponse(z.array(relatedReportSchema))
+  @ApiErrorResponses(404)
+  duplicates(
+    @Param('organizationId', uuid) organizationId: string,
+    @Param('publicId', publicId) id: string,
+  ) {
+    return this.duplicateService.candidates(organizationId, id);
+  }
+
+  @Get(':publicId/nearby')
+  @RequireOrganizationPermission(OrganizationPermission.ReviewReports)
+  @ApiOperation({ summary: 'Your organization’s reports within a distance (50–1000 m).' })
+  @ApiZodQuery(nearbyQuerySchema)
+  @ApiZodResponse(z.array(relatedReportSchema))
+  @ApiErrorResponses(400, 404)
+  nearby(
+    @Param('organizationId', uuid) organizationId: string,
+    @Param('publicId', publicId) id: string,
+    @Query(new ZodValidationPipe(nearbyQuerySchema)) query: { radius: number },
+  ) {
+    return this.duplicateService.nearby(organizationId, id, query.radius);
+  }
+
+  @Post(':publicId/mark-duplicate')
+  @HttpCode(200)
+  @RequireOrganizationPermission(OrganizationPermission.ReviewReports)
+  @ApiOperation({
+    summary: 'Link the report to its original (→ DUPLICATE, final). Both must be yours.',
+  })
+  @ApiHeader(ifMatchHeader)
+  @ApiZodBody(markDuplicateSchema)
+  @ApiZodResponse(organizationReportSchema)
+  @ApiErrorResponses(400, 404, 409, 422, 428)
+  markDuplicate(
+    @CurrentAuth() auth: AuthContext,
+    @Param('organizationId', uuid) organizationId: string,
+    @Param('publicId', publicId) id: string,
+    @Headers('if-match') ifMatch: string | undefined,
+    @Body(new ZodValidationPipe(markDuplicateSchema)) input: MarkDuplicateInput,
+    @Req() request: Request,
+  ) {
+    return this.duplicateService.markDuplicate(
+      organizationId,
+      id,
+      parseIfMatch(ifMatch),
+      input,
+      auth.user.id,
+      request,
+    );
+  }
+
+  @Post(':publicId/dismiss-duplicate')
+  @HttpCode(200)
+  @RequireOrganizationPermission(OrganizationPermission.ReviewReports)
+  @ApiOperation({ summary: 'Record that a suggested report is a different problem.' })
+  @ApiZodBody(dismissDuplicateSchema)
+  @ApiZodResponse(z.array(relatedReportSchema))
+  @ApiErrorResponses(400, 404)
+  dismissDuplicate(
+    @CurrentAuth() auth: AuthContext,
+    @Param('organizationId', uuid) organizationId: string,
+    @Param('publicId', publicId) id: string,
+    @Body(new ZodValidationPipe(dismissDuplicateSchema)) input: DismissDuplicateInput,
+  ) {
+    return this.duplicateService.dismiss(organizationId, id, input, auth.user.id);
   }
 
   @Get(':publicId/notes')

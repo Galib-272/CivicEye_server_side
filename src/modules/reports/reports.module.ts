@@ -16,6 +16,8 @@ import {
   WorkController,
 } from './work.controller';
 import { WorkService } from './work.service';
+import { DuplicatesService } from './duplicates.service';
+import { MapController } from './map.controller';
 
 @Module({
   imports: [MediaModule, OrganizationsModule],
@@ -28,7 +30,15 @@ import { WorkService } from './work.service';
     OrganizationWorkController,
     ReportFeedbackController,
     WorkController,
+    MapController,
   ],
-  providers: [ReportsService, ReviewService, WorkService, AssignmentViews, IdempotencyService],
+  providers: [
+    ReportsService,
+    ReviewService,
+    WorkService,
+    DuplicatesService,
+    AssignmentViews,
+    IdempotencyService,
+  ],
 })
 export class ReportsModule {}

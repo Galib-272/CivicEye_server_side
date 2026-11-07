@@ -51,6 +51,11 @@ const EXPECTED: Record<TransitionName, { from: string[]; actors: TransitionActor
     rejectWork: { from: ['PENDING_VERIFICATION'], actors: ['org_reviewer'], to: 'IN_PROGRESS' },
     reopen: { from: ['RESOLVED'], actors: ['org_reviewer'], to: 'REOPENED' },
     close: { from: ['RESOLVED'], actors: ['org_reviewer', 'system'], to: 'CLOSED' },
+    markDuplicate: {
+      from: ['SUBMITTED', 'UNDER_REVIEW', 'NEEDS_INFORMATION', 'ACCEPTED'],
+      actors: ['org_reviewer'],
+      to: 'DUPLICATE',
+    },
   };
 
 describe('report transition rules', () => {

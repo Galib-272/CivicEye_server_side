@@ -51,6 +51,7 @@ export const EMAIL_GROUP: Record<
   TASK_CANCELLED: 'emailMyTasks',
   MORE_EVIDENCE_NEEDED: 'emailMyTasks',
   WORK_APPROVED: 'emailMyTasks',
+  REPORT_DUPLICATE: 'emailMyReports',
 };
 
 /** Status changes that concern the reporting citizen, and how they are told. */
@@ -65,6 +66,7 @@ const CITIZEN_TRANSITIONS: Record<string, NotificationType> = {
   approveWork: 'REPORT_RESOLVED',
   reopen: 'REPORT_REOPENED',
   close: 'REPORT_CLOSED',
+  markDuplicate: 'REPORT_DUPLICATE',
 };
 
 /** Status changes that concern the handling organization's reviewers. */

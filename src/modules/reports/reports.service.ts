@@ -16,6 +16,7 @@ import { MediaService } from '../media/media.service';
 import { ServiceAreasService } from '../service-areas/service-areas.service';
 import { canTransition, EDITABLE_STATUSES } from './report-transitions';
 import { recordEvent } from '../notifications/outbox';
+import { refreshDuplicateCandidates } from './duplicates';
 import { applyTransition, lockReport } from './report-workflow';
 import type {
   CreateReportInput,
@@ -165,7 +166,23 @@ export class ReportsService {
       photos: photos.map(({ id, thumbnailUrl, displayUrl }) => ({ id, thumbnailUrl, displayUrl })),
       completion,
       canGiveFeedback: row.status === 'RESOLVED' && feedback === null,
+      duplicateOf: row.status === 'DUPLICATE' ? await this.duplicateOf(row.id) : null,
       feedback,
+    };
+  }
+
+  /** The original of a duplicate, named only if it is public and not withdrawn. */
+  private async duplicateOf(reportId: string) {
+    const report = await this.prisma.report.findUnique({
+      where: { id: reportId },
+      select: { duplicateOf: { select: { publicId: true, visibility: true, status: true } } },
+    });
+    const original = report?.duplicateOf;
+    return {
+      publicId:
+        original && original.visibility === 'PUBLIC' && original.status !== 'WITHDRAWN'
+          ? original.publicId
+          : null,
     };
   }
 
@@ -392,6 +409,7 @@ export class ReportsService {
               throw new AppException(ErrorCode.CONFLICT, 'A photo was used by another submission.');
             }
           }
+          await refreshDuplicateCandidates(tx, id);
           await recordEvent(tx, 'report.submitted', { reportId: id });
           await this.audit.record(
             {
@@ -525,6 +543,8 @@ export class ReportsService {
             reason: 'Report edited by the citizen',
           },
         });
+        // A new place or category means new duplicate candidates.
+        await refreshDuplicateCandidates(tx, current.id);
       }
       await tx.reportEdit.create({
         data: {

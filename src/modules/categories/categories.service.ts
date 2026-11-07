@@ -22,6 +22,8 @@ export const createCategorySchema = z.strictObject({
   descriptionEn: z.string().trim().max(500).nullable().optional(),
   descriptionBn: z.string().trim().max(500).nullable().optional(),
   displayOrder: z.number().int().min(0).max(10_000).optional(),
+  /** Duplicate search radius in metres; null uses the parent's radius, then 50 m. */
+  duplicateRadiusM: z.number().int().min(10).max(1000).nullable().optional(),
 });
 export type CreateCategoryInput = z.infer<typeof createCategorySchema>;
 
@@ -42,6 +44,7 @@ export const categorySchema = z.object({
   descriptionBn: z.string().nullable(),
   isActive: z.boolean(),
   displayOrder: z.number().int(),
+  duplicateRadiusM: z.number().int().nullable(),
 });
 export type CategoryView = z.infer<typeof categorySchema>;
 
@@ -55,6 +58,7 @@ const CATEGORY_SELECT = {
   descriptionBn: true,
   isActive: true,
   displayOrder: true,
+  duplicateRadiusM: true,
 } as const;
 
 /** Parents first, then their children, each ordered by display order and English name. */

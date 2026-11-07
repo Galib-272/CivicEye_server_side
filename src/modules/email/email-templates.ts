@@ -112,6 +112,10 @@ export const NOTIFICATION_SENTENCES: Record<NotificationType, { en: string; bn: 
     en: 'Your completed work was approved.',
     bn: 'আপনার সম্পন্ন কাজ অনুমোদিত হয়েছে।',
   },
+  REPORT_DUPLICATE: {
+    en: 'Your report describes the same problem as an existing report and was linked to it.',
+    bn: 'আপনার রিপোর্টে একটি বিদ্যমান রিপোর্টের একই সমস্যা বলা হয়েছে, তাই এটিকে সেটির সঙ্গে যুক্ত করা হয়েছে।',
+  },
 };
 
 export interface RenderedEmail {

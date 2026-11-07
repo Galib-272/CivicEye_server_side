@@ -80,6 +80,7 @@ model User {
   reportFeedback          CitizenFeedback[]                @relation("FeedbackCitizen")
   notifications           Notification[]                   @relation("NotificationRecipient")
   notificationPreference  NotificationPreference?
+  duplicateDecisions      DuplicateDecision[]              @relation("DuplicateReviewer")
   idempotencyKeys         IdempotencyKey[]                 @relation("IdempotencyKeyUser")
 
   @@map("users")
@@ -323,7 +324,8 @@ model ReportCategory {
   descriptionBn    String?  @map("description_bn") @db.VarChar(500)
   isActive         Boolean  @default(true) @map("is_active")
   displayOrder     Int      @default(0) @map("display_order")
-  /// Radius for duplicate candidate search (Phase 8). Unset until validated with real data.
+  /// Duplicate search radius in metres. Unset: the parent's radius, then 50 m. Defaults are
+  /// starting values and must be checked against real data before launch (PRD §10.5).
   duplicateRadiusM Int?     @map("duplicate_radius_m")
   aiConfig         Json?    @map("ai_config")
   evidenceRules    Json?    @map("evidence_rules")
@@ -481,6 +483,8 @@ model Report {
   visibility          ReportVisibility                     @default(PUBLIC)
   routingOutcome      RoutingOutcome                       @map("routing_outcome")
   version             Int                                  @default(1)
+  /// Set exactly when the status is DUPLICATE: the original (canonical) report.
+  duplicateOfId       String?                              @map("duplicate_of_id") @db.Uuid
   submittedAt         DateTime                             @default(now()) @map("submitted_at") @db.Timestamptz(3)
   reviewedAt          DateTime?                            @map("reviewed_at") @db.Timestamptz(3)
   resolvedAt          DateTime?                            @map("resolved_at") @db.Timestamptz(3)
@@ -488,21 +492,27 @@ model Report {
   createdAt           DateTime                             @default(now()) @map("created_at") @db.Timestamptz(3)
   updatedAt           DateTime                             @updatedAt @map("updated_at") @db.Timestamptz(3)
 
-  citizen          User                       @relation("ReportCitizen", fields: [citizenId], references: [id], onDelete: Restrict)
-  organization     Organization?              @relation(fields: [organizationId], references: [id], onDelete: Restrict)
-  category         ReportCategory             @relation(fields: [categoryId], references: [id], onDelete: Restrict)
-  statusHistory    ReportStatusHistory[]
-  edits            ReportEdit[]
-  media            ReportMedia[]
-  routingDecisions ReportRoutingDecision[]
-  reviewDecisions  ReportReviewDecision[]
-  infoRequests     ReportInformationRequest[]
-  transfers        ReportTransfer[]
-  internalNotes    ReportInternalNote[]
-  publicUpdates    ReportPublicUpdate[]
-  assignments      ReportAssignment[]
-  verifications    WorkVerification[]
-  feedback         CitizenFeedback[]
+  citizen            User                       @relation("ReportCitizen", fields: [citizenId], references: [id], onDelete: Restrict)
+  organization       Organization?              @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  category           ReportCategory             @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  statusHistory      ReportStatusHistory[]
+  edits              ReportEdit[]
+  media              ReportMedia[]
+  routingDecisions   ReportRoutingDecision[]
+  reviewDecisions    ReportReviewDecision[]
+  infoRequests       ReportInformationRequest[]
+  transfers          ReportTransfer[]
+  internalNotes      ReportInternalNote[]
+  publicUpdates      ReportPublicUpdate[]
+  assignments        ReportAssignment[]
+  verifications      WorkVerification[]
+  feedback           CitizenFeedback[]
+  duplicateOf        Report?                    @relation("DuplicateOf", fields: [duplicateOfId], references: [id], onDelete: Restrict)
+  duplicates         Report[]                   @relation("DuplicateOf")
+  candidatesFor      DuplicateCandidate[]       @relation("CandidateReport")
+  candidateOf        DuplicateCandidate[]       @relation("CandidateMatch")
+  duplicateDecisions DuplicateDecision[]        @relation("DecisionReport")
+  canonicalDecisions DuplicateDecision[]        @relation("DecisionCanonical")
 
   @@index([location], type: Gist)
   @@index([citizenId, createdAt])
@@ -510,6 +520,7 @@ model Report {
   @@index([status, visibility, createdAt])
   @@index([routingOutcome, status])
   @@index([categoryId])
+  @@index([duplicateOfId])
   @@map("reports")
 }
 
@@ -625,6 +636,19 @@ enum NotificationType {
   TASK_CANCELLED
   MORE_EVIDENCE_NEEDED
   WORK_APPROVED
+  // Phase 8: the citizen's report was linked to an existing report.
+  REPORT_DUPLICATE
+}
+
+enum DuplicateCandidateStatus {
+  PENDING
+  CONFIRMED
+  DISMISSED
+}
+
+enum DuplicateDecisionKind {
+  CONFIRMED
+  DISMISSED
 }
 
 enum DeliveryStatus {
@@ -1008,4 +1032,44 @@ model NotificationDelivery {
   @@index([notificationId, attemptedAt])
   @@index([status, attemptedAt])
   @@map("notification_deliveries")
+}
+
+/// A nearby report that may describe the same problem (PRD §10.5), found when a report is
+/// submitted or moved. Pairs are stored once (report_id = the newer report).
+model DuplicateCandidate {
+  id          String                   @id @default(uuid(7)) @db.Uuid
+  reportId    String                   @map("report_id") @db.Uuid
+  candidateId String                   @map("candidate_id") @db.Uuid
+  distanceM   Float                    @map("distance_m")
+  /// "GEO" now; image similarity arrives with the AI phase.
+  source      String                   @default("GEO") @db.VarChar(20)
+  status      DuplicateCandidateStatus @default(PENDING)
+  createdAt   DateTime                 @default(now()) @map("created_at") @db.Timestamptz(3)
+  decidedAt   DateTime?                @map("decided_at") @db.Timestamptz(3)
+
+  report    Report @relation("CandidateReport", fields: [reportId], references: [id], onDelete: Restrict)
+  candidate Report @relation("CandidateMatch", fields: [candidateId], references: [id], onDelete: Restrict)
+
+  @@unique([reportId, candidateId])
+  @@index([candidateId])
+  @@map("duplicate_candidates")
+}
+
+/// A reviewer's decision about a pair of reports. Append-only.
+model DuplicateDecision {
+  id          String                @id @default(uuid(7)) @db.Uuid
+  reportId    String                @map("report_id") @db.Uuid
+  /// The original report (CONFIRMED) or the report judged different (DISMISSED).
+  canonicalId String                @map("canonical_id") @db.Uuid
+  decision    DuplicateDecisionKind
+  reviewerId  String                @map("reviewer_id") @db.Uuid
+  reason      String?               @db.VarChar(1000)
+  createdAt   DateTime              @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  report    Report @relation("DecisionReport", fields: [reportId], references: [id], onDelete: Restrict)
+  canonical Report @relation("DecisionCanonical", fields: [canonicalId], references: [id], onDelete: Restrict)
+  reviewer  User   @relation("DuplicateReviewer", fields: [reviewerId], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@map("duplicate_decisions")
 }

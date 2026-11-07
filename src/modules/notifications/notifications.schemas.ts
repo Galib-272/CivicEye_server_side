@@ -24,6 +24,7 @@ export const NOTIFICATION_TYPES = [
   'TASK_CANCELLED',
   'MORE_EVIDENCE_NEEDED',
   'WORK_APPROVED',
+  'REPORT_DUPLICATE',
 ] as const;
 
 export const notificationsQuerySchema = z.strictObject({

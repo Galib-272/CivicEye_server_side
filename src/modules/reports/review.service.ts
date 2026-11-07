@@ -229,6 +229,7 @@ export class ReviewService {
         verify: can('approveWork') && awaitingVerification,
         reopen: can('reopen'),
         close: can('close'),
+        markDuplicate: can('markDuplicate'),
       },
       assignments,
       feedback: feedback.map((entry) => ({

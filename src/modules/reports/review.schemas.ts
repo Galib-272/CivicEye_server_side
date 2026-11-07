@@ -122,6 +122,7 @@ export const organizationReportSchema = z.object({
     verify: z.boolean(),
     reopen: z.boolean(),
     close: z.boolean(),
+    markDuplicate: z.boolean(),
   }),
 });
 export type OrganizationReport = z.infer<typeof organizationReportSchema>;

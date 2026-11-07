@@ -173,6 +173,8 @@ export const ownReportSchema = publicReportSchema.extend({
     })
     .nullable(),
   canGiveFeedback: z.boolean(),
+  /** For a DUPLICATE: the original's ID when that report is public, else null. */
+  duplicateOf: z.object({ publicId: z.string().nullable() }).nullable(),
   /** The citizen's "Is it fixed?" answer for the current resolution. */
   feedback: z.object({ fixed: z.boolean(), comment: z.string().nullable() }).nullable(),
 });
