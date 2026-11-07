@@ -211,6 +211,18 @@ requests at `POST /reports/:publicId/additional-information`.
 - Resolved reports close automatically after 14 days; reviewers are reminded about tasks not
   accepted within 48 hours. Super Admins see failures at `GET /admin/delivery-health`.
 
+## Map and duplicates
+
+- `GET /map/reports` (public reports inside a box, at most 2,000), `GET /map/organizations`
+  (simplified service-area outlines) and `GET /map/nearby` (public reports of the same kind
+  near a point, used before submitting). All coordinates are WGS84; distances are metres.
+- Duplicate candidates are found when a report is submitted or moved: same category family,
+  within the category's radius (`report_categories.duplicate_radius_m`, else the parent's,
+  else 50 m), open or resolved in the last 30 days.
+- Reviewers see candidates (`GET .../duplicates`), search nearby (`GET .../nearby?radius=`),
+  dismiss a pair, or link a report to its original (`POST .../mark-duplicate`, final). The
+  database guarantees that every DUPLICATE report points to its original.
+
 ## API conventions
 
 - Base path `/api/v1`. Every response uses the standard envelope:

@@ -4,59 +4,64 @@ Tracks product and engineering decisions required by the PRD (§37, §39). A dec
 **Decided** only with product-owner approval; approved product decisions are also written back
 into the PRD. **Default** entries are reversible engineering choices made so work can proceed.
 
-Last updated: 2026-11-06 (Phase 7).
+Last updated: 2026-11-06 (Phase 8).
 
 ## Decided
 
-| Decision                       | Outcome                                                                                                               | Date       |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Architecture review (Phase 0)  | Approved; Phase 1 approved as proposed                                                                                | 2026-11-04 |
-| Technology stack               | As PRD §11.1, §12.1, §17.1                                                                                            | 2026-11-04 |
-| Package manager                | npm                                                                                                                   | 2026-11-04 |
-| Repository layout              | Two GitHub repositories: CivicEye_server_side and CivicEye_client_side                                                | 2026-11-04 |
-| Email verification             | Required before submitting reports, commenting or joining an organization; login allowed before verifying             | 2026-11-04 |
-| Email delivery provider        | Resend (staging/production); Mailpit in local development                                                             | 2026-11-04 |
-| Two-factor login               | Required for Super Admins (authenticator app + backup codes); optional for Org Admins now, required before launch     | 2026-11-04 |
-| Session lifetimes              | Citizens 7 days / 24 h idle; Super Admins 12 h / 30 min idle                                                          | 2026-11-04 |
-| Password policy                | 12–128 characters, not common, no name/email; no composition rules                                                    | 2026-11-04 |
-| Launch area                    | Dhaka: Dhaka North and Dhaka South city corporations                                                                  | 2026-11-04 |
-| Organization creation          | Super Admin creates organizations; no self-registration at launch                                                     | 2026-11-04 |
-| Verification evidence          | Official government email domain, confirmed by a named contact person at that domain                                  | 2026-11-04 |
-| Organization roles             | Org Admin, Reviewer (reviews reports, verifies work) and Worker                                                       | 2026-11-04 |
-| Initial organization types     | City corporations only at launch                                                                                      | 2026-11-04 |
-| Report visibility default      | Public by default; the reporting citizen's identity is never shown publicly                                           | 2026-11-04 |
-| Public location precision      | Public views rounded to about 100 m; organizations see the exact point                                                | 2026-11-04 |
-| Citizen editing                | Editable while SUBMITTED; afterwards only additional information; every edit kept                                     | 2026-11-04 |
-| Citizen withdrawal             | Immediate while SUBMITTED or NEEDS_INFORMATION; not possible afterwards                                               | 2026-11-04 |
-| Photo limits                   | 1–5 photos, 10 MB each, JPEG/PNG/WebP (HEIC: see Phase 4 notes); all metadata including GPS removed                   | 2026-11-04 |
-| Object storage                 | Cloudflare R2 (staging/production); SeaweedFS locally (MinIO images are no longer published)                          | 2026-11-04 |
-| Unrouted reports               | Reports outside every service area wait in a Super Admin triage list; never auto-assigned                             | 2026-11-04 |
-| Project purpose                | Portfolio project: free services only; technical choices delegated to the developer, each phase still approved        | 2026-11-06 |
-| Review start                   | A reviewer starts the review explicitly (SUBMITTED → UNDER_REVIEW)                                                    | 2026-11-06 |
-| Information requests           | Message required; the citizen answers with text and optional photos (5 in total); no automatic timeout                | 2026-11-06 |
-| Acceptance rule                | Category must be one the organization handles; location in its area unless sent there by a Super Admin/transfer       | 2026-11-06 |
-| Rejection reasons              | Not a civic issue, not enough information, already fixed, inappropriate, no answer, other — plus a message            | 2026-11-06 |
-| Transfer policy                | Reason required; to an organization covering the location and category, or back to triage; restarts at SUBMITTED      | 2026-11-06 |
-| Internal notes                 | Org reviewers/admins and Super Admins only; append-only; not visible to another organization after a transfer         | 2026-11-06 |
-| Public updates                 | Organization posts; Super Admin can hide one with a reason (audited)                                                  | 2026-11-06 |
-| Reporter identity              | Never shown to organizations; contact only through information requests and public updates                            | 2026-11-06 |
-| Assignment                     | One active worker per report (database-enforced); only active, available Workers of the organization; no teams        | 2026-11-06 |
-| Task acceptance                | Worker accepts before starting, or declines with a reason; no automatic timeout                                       | 2026-11-06 |
-| Returning a task               | Worker returns it with a reason (unsafe, inaccessible, partly done); report goes back to ACCEPTED                     | 2026-11-06 |
-| Worker leaves the organization | Open tasks are cancelled automatically; submitted work stays for the verifier                                         | 2026-11-06 |
-| Completion evidence            | Description plus 1–5 after photos; submitting moves the report straight to PENDING_VERIFICATION                       | 2026-11-06 |
-| Verification                   | Approved → RESOLVED; Rejected or Needs more evidence → IN_PROGRESS for the same worker; never one's own work          | 2026-11-06 |
-| Reopen and close               | Reviewer reopens a resolved report with a reason, or closes it; closed is final                                       | 2026-11-06 |
-| Citizen feedback               | "Is it fixed?" once per resolution; feedback only, never changes the status                                           | 2026-11-06 |
-| Worker privacy                 | Workers never see the reporter or internal notes; citizens never see which worker did the job                         | 2026-11-06 |
-| Notifications                  | In-app for every important event; only to the people concerned, never to the actor; at most one per event and person  | 2026-11-06 |
-| Emails                         | Optional per group (my reports, my tasks, organization work), on by default; generic subject, report ID and link only | 2026-11-06 |
-| Email provider                 | Brevo free plan through SMTP in staging/production (no paid service, no domain needed); Mailpit locally               | 2026-11-06 |
-| Reliable delivery              | Transactional outbox; retries with growing delays; FAILED after 8 attempts, retried manually by a Super Admin         | 2026-11-06 |
-| Auto-close                     | Resolved reports close automatically after 14 days unless reopened                                                    | 2026-11-06 |
-| Acceptance reminder            | Reviewers are reminded once when a task is not accepted within 48 hours; nothing changes automatically                | 2026-11-06 |
-| Live updates                   | Socket.IO with one-time 60-second tickets; messages carry no data, browsers re-fetch through the API                  | 2026-11-06 |
-| Session architecture           | Server-managed sessions in Redis, opaque HttpOnly cookie, no JWT or refresh tokens                                    | 2026-11-04 |
+| Decision                       | Outcome                                                                                                                     | Date       |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Architecture review (Phase 0)  | Approved; Phase 1 approved as proposed                                                                                      | 2026-11-04 |
+| Technology stack               | As PRD §11.1, §12.1, §17.1                                                                                                  | 2026-11-04 |
+| Package manager                | npm                                                                                                                         | 2026-11-04 |
+| Repository layout              | Two GitHub repositories: CivicEye_server_side and CivicEye_client_side                                                      | 2026-11-04 |
+| Email verification             | Required before submitting reports, commenting or joining an organization; login allowed before verifying                   | 2026-11-04 |
+| Email delivery provider        | Resend (staging/production); Mailpit in local development                                                                   | 2026-11-04 |
+| Two-factor login               | Required for Super Admins (authenticator app + backup codes); optional for Org Admins now, required before launch           | 2026-11-04 |
+| Session lifetimes              | Citizens 7 days / 24 h idle; Super Admins 12 h / 30 min idle                                                                | 2026-11-04 |
+| Password policy                | 12–128 characters, not common, no name/email; no composition rules                                                          | 2026-11-04 |
+| Launch area                    | Dhaka: Dhaka North and Dhaka South city corporations                                                                        | 2026-11-04 |
+| Organization creation          | Super Admin creates organizations; no self-registration at launch                                                           | 2026-11-04 |
+| Verification evidence          | Official government email domain, confirmed by a named contact person at that domain                                        | 2026-11-04 |
+| Organization roles             | Org Admin, Reviewer (reviews reports, verifies work) and Worker                                                             | 2026-11-04 |
+| Initial organization types     | City corporations only at launch                                                                                            | 2026-11-04 |
+| Report visibility default      | Public by default; the reporting citizen's identity is never shown publicly                                                 | 2026-11-04 |
+| Public location precision      | Public views rounded to about 100 m; organizations see the exact point                                                      | 2026-11-04 |
+| Citizen editing                | Editable while SUBMITTED; afterwards only additional information; every edit kept                                           | 2026-11-04 |
+| Citizen withdrawal             | Immediate while SUBMITTED or NEEDS_INFORMATION; not possible afterwards                                                     | 2026-11-04 |
+| Photo limits                   | 1–5 photos, 10 MB each, JPEG/PNG/WebP (HEIC: see Phase 4 notes); all metadata including GPS removed                         | 2026-11-04 |
+| Object storage                 | Cloudflare R2 (staging/production); SeaweedFS locally (MinIO images are no longer published)                                | 2026-11-04 |
+| Unrouted reports               | Reports outside every service area wait in a Super Admin triage list; never auto-assigned                                   | 2026-11-04 |
+| Project purpose                | Portfolio project: free services only; technical choices delegated to the developer, each phase still approved              | 2026-11-06 |
+| Review start                   | A reviewer starts the review explicitly (SUBMITTED → UNDER_REVIEW)                                                          | 2026-11-06 |
+| Information requests           | Message required; the citizen answers with text and optional photos (5 in total); no automatic timeout                      | 2026-11-06 |
+| Acceptance rule                | Category must be one the organization handles; location in its area unless sent there by a Super Admin/transfer             | 2026-11-06 |
+| Rejection reasons              | Not a civic issue, not enough information, already fixed, inappropriate, no answer, other — plus a message                  | 2026-11-06 |
+| Transfer policy                | Reason required; to an organization covering the location and category, or back to triage; restarts at SUBMITTED            | 2026-11-06 |
+| Internal notes                 | Org reviewers/admins and Super Admins only; append-only; not visible to another organization after a transfer               | 2026-11-06 |
+| Public updates                 | Organization posts; Super Admin can hide one with a reason (audited)                                                        | 2026-11-06 |
+| Reporter identity              | Never shown to organizations; contact only through information requests and public updates                                  | 2026-11-06 |
+| Assignment                     | One active worker per report (database-enforced); only active, available Workers of the organization; no teams              | 2026-11-06 |
+| Task acceptance                | Worker accepts before starting, or declines with a reason; no automatic timeout                                             | 2026-11-06 |
+| Returning a task               | Worker returns it with a reason (unsafe, inaccessible, partly done); report goes back to ACCEPTED                           | 2026-11-06 |
+| Worker leaves the organization | Open tasks are cancelled automatically; submitted work stays for the verifier                                               | 2026-11-06 |
+| Completion evidence            | Description plus 1–5 after photos; submitting moves the report straight to PENDING_VERIFICATION                             | 2026-11-06 |
+| Verification                   | Approved → RESOLVED; Rejected or Needs more evidence → IN_PROGRESS for the same worker; never one's own work                | 2026-11-06 |
+| Reopen and close               | Reviewer reopens a resolved report with a reason, or closes it; closed is final                                             | 2026-11-06 |
+| Citizen feedback               | "Is it fixed?" once per resolution; feedback only, never changes the status                                                 | 2026-11-06 |
+| Worker privacy                 | Workers never see the reporter or internal notes; citizens never see which worker did the job                               | 2026-11-06 |
+| Notifications                  | In-app for every important event; only to the people concerned, never to the actor; at most one per event and person        | 2026-11-06 |
+| Emails                         | Optional per group (my reports, my tasks, organization work), on by default; generic subject, report ID and link only       | 2026-11-06 |
+| Email provider                 | Brevo free plan through SMTP in staging/production (no paid service, no domain needed); Mailpit locally                     | 2026-11-06 |
+| Reliable delivery              | Transactional outbox; retries with growing delays; FAILED after 8 attempts, retried manually by a Super Admin               | 2026-11-06 |
+| Auto-close                     | Resolved reports close automatically after 14 days unless reopened                                                          | 2026-11-06 |
+| Acceptance reminder            | Reviewers are reminded once when a task is not accepted within 48 hours; nothing changes automatically                      | 2026-11-06 |
+| Live updates                   | Socket.IO with one-time 60-second tickets; messages carry no data, browsers re-fetch through the API                        | 2026-11-06 |
+| Public map                     | Public reports only, rounded to about 100 m; withdrawn and duplicate reports never shown; at most 2,000 per view            | 2026-11-06 |
+| Duplicate radius               | Per category (pothole, streetlight 30 m; road damage, garbage 50 m; drainage, waterlogging 150 m; else parent, then 50 m)   | 2026-11-06 |
+| Duplicate candidates           | Same category family, within the radius, open or resolved in the last 30 days; not withdrawn, rejected or duplicate         | 2026-11-06 |
+| Linking duplicates             | Reviewers link only within their organization (else transfer), SUBMITTED to ACCEPTED, reason required, no chains, final     | 2026-11-06 |
+| Nearby warning                 | While reporting, public reports of the same kind within twice the radius (max 300 m) are shown; submitting is never blocked | 2026-11-06 |
+| Session architecture           | Server-managed sessions in Redis, opaque HttpOnly cookie, no JWT or refresh tokens                                          | 2026-11-04 |
 
 ## Engineering defaults (reversible)
 
@@ -75,6 +80,7 @@ Last updated: 2026-11-06 (Phase 7).
 | Decision                                                                                  | Needed by                        |
 | ----------------------------------------------------------------------------------------- | -------------------------------- |
 | Map tiles: confirm OpenFreeMap for launch (no SLA) or choose a paid provider; geocoding   | Before launch                    |
+| Validate duplicate radii with real reports (PRD §10.5)                                    | Before launch                    |
 | Appeal policy (G7) and public comment policy                                              | Later phase                      |
 | Assignment acknowledgement and completion verification policies                           | Phase 6                          |
 | Resend sending domain (a domain you own, verified in Resend)                              | Before staging                   |
@@ -158,6 +164,20 @@ Last updated: 2026-11-06 (Phase 7).
 - Small gap: if a worker crashes after creating notifications but before queuing their emails,
   those emails are not sent (the in-app notifications remain).
 - Not built in Phase 7: push notifications and SMS (future in the PRD).
+
+## Phase 8 notes
+
+- Coordinates are WGS84 (EPSG:4326) everywhere. Distances use PostGIS `geography`
+  (`ST_DWithin`, `ST_Distance`, geodesic metres) on the GiST-indexed `reports.location`; the
+  map uses a bounding-box (`&&`) query on the same index; organization outlines are
+  `ST_Union` + `ST_SimplifyPreserveTopology` (about 50 m tolerance) for display only.
+- The duplicate radii are starting values; the PRD requires checking them against real data
+  before launch (open item below). Super Admins can change them on the Categories page.
+- Candidates are computed when a report is submitted or moved; pairs are stored once and
+  shown in both directions. Image-based duplicate detection arrives with the AI phase.
+- The application now refuses to start when two handlers share a method and path (found when
+  a Phase 8 endpoint duplicated a Phase 3 one).
+- Not built in Phase 8: address search (needs a free geocoding provider), image similarity.
 
 ## Open — remaining PRD §37 items
 
