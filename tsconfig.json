@@ -32,5 +32,5 @@
     "jest.config.ts",
     "jest.integration.config.ts"
   ],
-  "exclude": ["node_modules", "**/*.nosync", "dist", "ai-services", "ml"]
+  "exclude": ["node_modules", "dist", "ai-services", "ml"]
 }

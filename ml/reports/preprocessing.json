@@ -1,0 +1,353 @@
+{
+  "created": "2026-11-07T20:23:13",
+  "settings": {
+    "max_side": 1024,
+    "jpeg_quality": 92,
+    "min_short_side": 96,
+    "letterbox_level": 24,
+    "letterbox_margin": 3,
+    "same_photo_similarity": 0.94,
+    "same_burst_seconds": 30,
+    "seed": 42
+  },
+  "classes": [
+    "pothole",
+    "crack",
+    "asphalt_damage",
+    "no_damage"
+  ],
+  "images_in": 2208,
+  "images_kept": 2204,
+  "dropped": [
+    {
+      "path": "rsd-bd/Road damage data/Asphalt/asp(19).JPG",
+      "class": "asphalt_damage",
+      "width": 234,
+      "height": 56,
+      "dropped": "smaller than 96 px"
+    },
+    {
+      "path": "rsd-bd/Road damage data/Asphalt/asp(4).JPG",
+      "class": "asphalt_damage",
+      "width": 336,
+      "height": 83,
+      "dropped": "smaller than 96 px"
+    },
+    {
+      "path": "rsd-bd/Road damage data/Pot hole/100 (2).JPG",
+      "class": "pothole",
+      "width": 64,
+      "height": 196,
+      "dropped": "smaller than 96 px"
+    },
+    {
+      "path": "rsd-bd/Road damage data/Pot hole/99 (2).JPG",
+      "class": "pothole",
+      "width": 82,
+      "height": 231,
+      "dropped": "smaller than 96 px"
+    }
+  ],
+  "letterbox": {
+    "cropped": 1403,
+    "by_class": {
+      "no_damage": 703,
+      "damage_detection_only": 700
+    },
+    "aspect_after_cleaning_by_class": {
+      "asphalt_damage": {
+        "mean": 1.201,
+        "std": 0.719,
+        "min": 0.586,
+        "25%": 0.75,
+        "50%": 0.775,
+        "75%": 1.438,
+        "max": 4.262
+      },
+      "crack": {
+        "mean": 0.891,
+        "std": 0.183,
+        "min": 0.75,
+        "25%": 0.753,
+        "50%": 0.753,
+        "75%": 1.0,
+        "max": 1.708
+      },
+      "damage_detection_only": {
+        "mean": 1.348,
+        "std": 0.289,
+        "min": 0.666,
+        "25%": 1.168,
+        "50%": 1.306,
+        "75%": 1.486,
+        "max": 3.743
+      },
+      "no_damage": {
+        "mean": 0.962,
+        "std": 0.27,
+        "min": 0.698,
+        "25%": 0.741,
+        "50%": 0.87,
+        "75%": 1.068,
+        "max": 2.192
+      },
+      "pothole": {
+        "mean": 1.083,
+        "std": 0.546,
+        "min": 0.349,
+        "25%": 0.662,
+        "50%": 1.0,
+        "75%": 1.341,
+        "max": 3.356
+      }
+    }
+  },
+  "boxes": {
+    "total": 1442,
+    "trimmed_by_crop": 20,
+    "removed_by_crop": 0,
+    "damage_photos_without_boxes": 0
+  },
+  "outliers": {
+    "flagged": 127,
+    "by_flag": {
+      "high contrast": 50,
+      "low sharpness": 43,
+      "low brightness": 23,
+      "high aspect": 10,
+      "high brightness": 1
+    }
+  },
+  "groups": {
+    "count": 1730,
+    "links": {
+      "near_identical": 179,
+      "crop_of_larger_photo": 38,
+      "same_burst": 257
+    },
+    "largest": [
+      78,
+      63,
+      48,
+      31,
+      14,
+      14,
+      13,
+      12,
+      10,
+      9
+    ],
+    "single_photo_groups": 1621
+  },
+  "split": {
+    "train": {
+      "no_damage": 493,
+      "damage_detection_only": 493,
+      "crack": 260,
+      "pothole": 184,
+      "asphalt_damage": 162
+    },
+    "validation": {
+      "no_damage": 105,
+      "damage_detection_only": 105,
+      "asphalt_damage": 36,
+      "crack": 30,
+      "pothole": 30
+    },
+    "test": {
+      "no_damage": 105,
+      "damage_detection_only": 105,
+      "asphalt_damage": 36,
+      "crack": 30,
+      "pothole": 30
+    }
+  },
+  "leakage": {
+    "validation": {
+      "images": 306,
+      "near_identical_to_a_training_image": 0,
+      "perceptual_hash_within_4_bits_of_a_training_image": 2,
+      "nearest_training_similarity": {
+        "median": 0.878,
+        "p95": 0.931,
+        "max": 0.939
+      },
+      "groups_shared_with_train": 0
+    },
+    "test": {
+      "images": 306,
+      "near_identical_to_a_training_image": 0,
+      "perceptual_hash_within_4_bits_of_a_training_image": 0,
+      "nearest_training_similarity": {
+        "median": 0.869,
+        "p95": 0.932,
+        "max": 0.94
+      },
+      "groups_shared_with_train": 0
+    }
+  },
+  "class_weights_train": {
+    "pothole": 1.4932,
+    "crack": 1.0567,
+    "asphalt_damage": 1.696,
+    "no_damage": 0.5573
+  },
+  "scaling": {
+    "min_max": "pixel / 255 -> 0..1",
+    "z_score_mean_used": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "z_score_std_used": [
+      0.229,
+      0.224,
+      0.225
+    ],
+    "dataset_train_mean": [
+      0.647,
+      0.618,
+      0.581
+    ],
+    "dataset_train_std": [
+      0.131,
+      0.119,
+      0.12
+    ]
+  },
+  "features": {
+    "cnn_embedding": 960,
+    "handcrafted": 386,
+    "handcrafted_groups": [
+      "brightness",
+      "contrast",
+      "dark_fraction",
+      "edge_density",
+      "entropy",
+      "glcm_contrast",
+      "glcm_correlation",
+      "glcm_energy",
+      "glcm_homogeneity",
+      "hist_h",
+      "hist_s",
+      "hist_v",
+      "hog",
+      "lbp",
+      "rgb_mean",
+      "rgb_std",
+      "sharpness"
+    ],
+    "preview_on_train_split": {
+      "top_mutual_information": [
+        {
+          "feature": "lbp_8",
+          "mi": 0.3402
+        },
+        {
+          "feature": "cnn_500",
+          "mi": 0.2924
+        },
+        {
+          "feature": "lbp_5",
+          "mi": 0.2795
+        },
+        {
+          "feature": "lbp_9",
+          "mi": 0.2788
+        },
+        {
+          "feature": "cnn_48",
+          "mi": 0.2746
+        },
+        {
+          "feature": "lbp_4",
+          "mi": 0.2664
+        },
+        {
+          "feature": "hist_s_1",
+          "mi": 0.266
+        },
+        {
+          "feature": "cnn_638",
+          "mi": 0.2526
+        },
+        {
+          "feature": "cnn_169",
+          "mi": 0.2521
+        },
+        {
+          "feature": "hist_s_2",
+          "mi": 0.252
+        },
+        {
+          "feature": "hist_s_0",
+          "mi": 0.2516
+        },
+        {
+          "feature": "cnn_424",
+          "mi": 0.2469
+        },
+        {
+          "feature": "cnn_375",
+          "mi": 0.242
+        },
+        {
+          "feature": "cnn_883",
+          "mi": 0.2396
+        },
+        {
+          "feature": "cnn_610",
+          "mi": 0.2388
+        }
+      ],
+      "top_handcrafted": [
+        {
+          "feature": "lbp_8",
+          "mi": 0.3402
+        },
+        {
+          "feature": "lbp_5",
+          "mi": 0.2795
+        },
+        {
+          "feature": "lbp_9",
+          "mi": 0.2788
+        },
+        {
+          "feature": "lbp_4",
+          "mi": 0.2664
+        },
+        {
+          "feature": "hist_s_1",
+          "mi": 0.266
+        },
+        {
+          "feature": "hist_s_2",
+          "mi": 0.252
+        },
+        {
+          "feature": "hist_s_0",
+          "mi": 0.2516
+        },
+        {
+          "feature": "edge_density",
+          "mi": 0.238
+        },
+        {
+          "feature": "hist_v_5",
+          "mi": 0.2235
+        },
+        {
+          "feature": "glcm_contrast_3",
+          "mi": 0.2231
+        }
+      ],
+      "features_with_zero_mi": 17,
+      "pca_components_for_90_95_99_percent": [
+        284,
+        411,
+        666
+      ]
+    }
+  }
+}

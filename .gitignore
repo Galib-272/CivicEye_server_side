@@ -1,6 +1,7 @@
-# Dependencies: node_modules links to .deps.nosync/node_modules, which iCloud does not sync
-node_modules
-*.nosync
+# Dependencies
+node_modules/
+
+# ML datasets, processed images and pretrained weights (recreated by ml/scripts)
 ml/data
 
 # Build output

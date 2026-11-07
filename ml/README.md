@@ -3,8 +3,9 @@
 Data preparation, training and evaluation for CivicEye's advisory AI (PRD §16–19, Phase 9).
 CivicEye serves Bangladesh only, so every dataset used here was captured on Bangladeshi roads.
 
-**Status (2026-11-07):** datasets downloaded, verified and inspected (reports in `reports/`);
-training not done yet. No model exists and no AI result is shown anywhere in CivicEye.
+**Status (2026-11-07):** datasets downloaded, verified, de-duplicated and preprocessed
+(see [`reports/preprocessing.md`](reports/preprocessing.md)); training not done yet. No model
+exists and no AI result is shown anywhere in CivicEye.
 
 ## Setup
 
@@ -20,6 +21,19 @@ Training tools are pinned in [`requirements.txt`](requirements.txt) (Python 3.12
 ```bash
 uv venv --python 3.12 .venv && uv pip install -r ml/requirements.txt
 ```
+
+Then run the pipeline in order. Every step writes a manifest (`manifests/`) or report
+(`reports/`) that is committed, so results can be checked without the images:
+
+```bash
+python ml/scripts/inspect_datasets.py detection && python ml/scripts/inspect_datasets.py rsd-bd
+python ml/scripts/deduplicate.py   # one copy of each photo -> ml/data/deduplicated
+python ml/scripts/preprocess.py    # clean, group, split, features -> ml/data/processed
+```
+
+Pretrained weights come from download.pytorch.org (BSD licence) on first use and are kept in
+`ml/data/pretrained`: MobileNetV3-Large ImageNet (21 MB, used by `preprocess.py`) and
+SSDLite320 COCO (13 MB, used by detector training).
 
 ## Dataset registry (PRD §18.2)
 
