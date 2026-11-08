@@ -193,6 +193,16 @@ Last updated: 2026-11-06 (Phase 8).
 - Not built in Phase 9: text-based category suggestion, image-similarity duplicates, a Super
   Admin screen for AI status (the API exists).
 
+## Phase 10 notes
+
+- Metric definitions are in `docs/metrics.md`. Days are counted in Bangladesh time; durations
+  under 5 cases are shown as "too few cases to judge".
+- Moderation is decided by Super Admins only (approved default). Organizations escalate but do
+  not moderate. No automatic hiding or suspension from flags or the AI (PRD §28.3).
+- Flag limit: 20 per user per hour (starting value).
+- Not built in Phase 10: a reporter-reputation score, appeals against moderation decisions
+  (appeal policy is still open), charts beyond simple bars, export of dashboard data.
+
 ## Open — remaining PRD §37 items
 
 appeal policy · public comment policy · minimum account age ·

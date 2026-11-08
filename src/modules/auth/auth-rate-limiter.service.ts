@@ -37,6 +37,8 @@ export const AuthLimits = {
   reportsPerUserHour: { bucket: 'reports:user:hour', limit: 10, windowSeconds: 60 * 60 },
   reportsPerUserDay: { bucket: 'reports:user:day', limit: 30, windowSeconds: 24 * 60 * 60 },
   mediaUploadsPerUser: { bucket: 'media:user', limit: 60, windowSeconds: 60 * 60 },
+  // Flags on public content (Phase 10): enough for real problems, too few to flood moderators.
+  flagsPerUserHour: { bucket: 'flags:user:hour', limit: 20, windowSeconds: 60 * 60 },
 } satisfies Record<string, LimitRule>;
 
 /**

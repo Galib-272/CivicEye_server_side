@@ -239,6 +239,23 @@ requests at `POST /reports/:publicId/additional-information`.
 - `GET /admin/ai/status`: switch state, the service's model version, and 7-day counts,
   correction rate and median time. Model details and limits: [`ml/MODEL_CARD.md`](ml/MODEL_CARD.md).
 
+## Dashboards, moderation and audit
+
+- Dashboards: `GET /users/me/dashboard` (own reports), `GET /users/me/work-dashboard` (own tasks),
+  `GET /organizations/:id/analytics` (Org Admins and Reviewers), `GET /admin/analytics` (Super
+  Admins); optional `from`/`to` (Bangladesh dates, at most 366 days). Every number is defined in
+  [`docs/metrics.md`](docs/metrics.md); durations show median, 90th percentile and mean, and say
+  when there are too few cases (under 5) to judge.
+- Moderation (PRD §28): signed-in users flag public reports and public updates
+  (`POST /reports/:publicId/flags`, 20 per hour); organizations escalate their reports
+  (`POST .../escalate`). Flags join one open case per item. Super Admins decide at
+  `/admin/moderation/cases`: hide or restore a report, hide an update, ask for a correction, warn,
+  suspend, resolve or dismiss; each needs a reason, is audited, and the citizen is notified of
+  hiding, correction requests and warnings. Nothing is decided automatically. Hidden reports leave
+  every public list, page, map and nearby search; the citizen and the organization still see them.
+- Audit views: `GET /admin/audit` (Super Admins, with filters) and
+  `GET /organizations/:id/audit` (Org Admins: the organization's own history, no IP addresses).
+
 ## API conventions
 
 - Base path `/api/v1`. Every response uses the standard envelope:

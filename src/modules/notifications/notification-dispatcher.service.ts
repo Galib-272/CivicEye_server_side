@@ -2,7 +2,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import type { Queue } from 'bullmq';
 import { PrismaService } from '../../database/prisma.service';
 import type { Prisma } from '../../generated/prisma/client';
-import type { NotificationType } from '../../generated/prisma/enums';
+import type { ModerationActionKind, NotificationType } from '../../generated/prisma/enums';
 import { RealtimePublisher } from './realtime.publisher';
 import type { OutboxEvents, OutboxEventType } from './outbox';
 
@@ -52,6 +52,16 @@ export const EMAIL_GROUP: Record<
   MORE_EVIDENCE_NEEDED: 'emailMyTasks',
   WORK_APPROVED: 'emailMyTasks',
   REPORT_DUPLICATE: 'emailMyReports',
+  REPORT_HIDDEN: 'emailMyReports',
+  CORRECTION_REQUESTED: 'emailMyReports',
+  MODERATION_WARNING: 'emailMyReports',
+};
+
+/** Moderation actions that the affected citizen is told about. */
+const MODERATION_NOTICES: Partial<Record<ModerationActionKind, NotificationType>> = {
+  HIDE_REPORT: 'REPORT_HIDDEN',
+  REQUEST_CORRECTION: 'CORRECTION_REQUESTED',
+  WARN_USER: 'MODERATION_WARNING',
 };
 
 /** Status changes that concern the reporting citizen, and how they are told. */
@@ -275,6 +285,24 @@ export class NotificationDispatcher {
         const reviewerType = REVIEWER_TRANSITIONS[event.transition];
         if (reviewerType && event.organizationId) {
           await toReviewers(event.organizationId, reviewerType, report.publicId, event.actorUserId);
+        }
+        break;
+      }
+      case 'moderation.action': {
+        const event = payload as OutboxEvents['moderation.action'];
+        const report = await reportEvent(event.reportId);
+        const notice = MODERATION_NOTICES[event.kind];
+        if (notice && event.targetUserId) {
+          add(
+            {
+              recipientId: event.targetUserId,
+              type: notice,
+              reportPublicId: report.publicId,
+              organizationId: null,
+              assignmentId: null,
+            },
+            event.actorUserId,
+          );
         }
         break;
       }

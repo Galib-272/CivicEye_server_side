@@ -113,6 +113,7 @@ export class MapController {
              latitude::float8 AS latitude, longitude::float8 AS longitude, submitted_at
       FROM reports
       WHERE visibility = 'PUBLIC'
+        AND moderation_hidden_at IS NULL
         AND status NOT IN ('WITHDRAWN', 'DUPLICATE')
         AND location && ST_MakeEnvelope(${query.minLng}, ${query.minLat}, ${query.maxLng}, ${query.maxLat}, 4326)::geography
         AND (${query.categoryId ?? null}::uuid IS NULL OR category_id = ${query.categoryId ?? null}::uuid)
@@ -190,6 +191,7 @@ export class MapController {
       FROM reports r
       JOIN report_categories c ON c.id = r.category_id, point, family
       WHERE r.visibility = 'PUBLIC'
+        AND r.moderation_hidden_at IS NULL
         AND r.status NOT IN ('WITHDRAWN', 'REJECTED', 'DUPLICATE')
         AND (r.status NOT IN ('RESOLVED', 'CLOSED')
              OR r.resolved_at >= now() - make_interval(days => ${RESOLVED_CANDIDATE_DAYS}))

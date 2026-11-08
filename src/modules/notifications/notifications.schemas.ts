@@ -25,6 +25,9 @@ export const NOTIFICATION_TYPES = [
   'MORE_EVIDENCE_NEEDED',
   'WORK_APPROVED',
   'REPORT_DUPLICATE',
+  'REPORT_HIDDEN',
+  'CORRECTION_REQUESTED',
+  'MODERATION_WARNING',
 ] as const;
 
 export const notificationsQuerySchema = z.strictObject({

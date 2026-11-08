@@ -177,6 +177,17 @@ export const ownReportSchema = publicReportSchema.extend({
   duplicateOf: z.object({ publicId: z.string().nullable() }).nullable(),
   /** The citizen's "Is it fixed?" answer for the current resolution. */
   feedback: z.object({ fixed: z.boolean(), comment: z.string().nullable() }).nullable(),
+  /** Moderation: whether the public can see the report, and moderators' messages (newest first). */
+  moderation: z.object({
+    hiddenFromPublic: z.boolean(),
+    notices: z.array(
+      z.object({
+        kind: z.enum(['HIDE_REPORT', 'REQUEST_CORRECTION', 'WARN_USER', 'RESTORE_REPORT']),
+        message: z.string().nullable(),
+        createdAt: z.iso.datetime(),
+      }),
+    ),
+  }),
 });
 
 /** An organization's message on a report, as citizens and the public see it. */

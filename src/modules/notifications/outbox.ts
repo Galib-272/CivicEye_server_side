@@ -1,5 +1,5 @@
 import type { Prisma } from '../../generated/prisma/client';
-import type { ReportStatus } from '../../generated/prisma/enums';
+import type { ModerationActionKind, ReportStatus } from '../../generated/prisma/enums';
 
 /**
  * Events recorded in the transactional outbox (PRD §9.3). Payloads hold IDs and states only,
@@ -33,6 +33,14 @@ export interface OutboxEvents {
     actorUserId: string;
   };
   'assignment.overdue': { assignmentId: string };
+  /** A moderator's decision; the citizen is told about hiding, correction requests and warnings. */
+  'moderation.action': {
+    caseId: string;
+    reportId: string;
+    kind: ModerationActionKind;
+    targetUserId: string | null;
+    actorUserId: string;
+  };
 }
 export type OutboxEventType = keyof OutboxEvents;
 

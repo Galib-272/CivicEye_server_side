@@ -7,10 +7,12 @@ import { DatabaseModule } from './database/database.module';
 import { HealthModule } from './health/health.module';
 import { AccessModule } from './modules/access/access.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { AuditModule } from './modules/audit/audit.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { EmailModule } from './modules/email/email.module';
+import { ModerationModule } from './modules/moderation/moderation.module';
 import { OrganizationsModule } from './modules/organizations/organizations.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { ReportsModule } from './modules/reports/reports.module';
@@ -42,6 +44,8 @@ export class AppModule {
         StorageModule,
         ReportsModule,
         NotificationsModule,
+        ModerationModule,
+        AnalyticsModule,
       ],
     };
   }

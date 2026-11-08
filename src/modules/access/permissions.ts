@@ -22,6 +22,12 @@ export const Permission = {
   AdminReportsTriage: 'admin.reports.triage',
   AdminReportsManage: 'admin.reports.manage',
   AdminDeliveryManage: 'admin.delivery.manage',
+  /** Platform dashboard (Phase 10). */
+  AdminAnalyticsView: 'admin.analytics.view',
+  /** Decide moderation cases: hide content, warn or suspend users (Phase 10). */
+  AdminModerationManage: 'admin.moderation.manage',
+  /** Browse the audit log (Phase 10). */
+  AdminAuditRead: 'admin.audit.read',
 } as const;
 
 export type Permission = (typeof Permission)[keyof typeof Permission];
@@ -51,6 +57,9 @@ export const PLATFORM_ROLE_PERMISSIONS: Record<PlatformRole, ReadonlySet<Permiss
     Permission.AdminReportsTriage,
     Permission.AdminReportsManage,
     Permission.AdminDeliveryManage,
+    Permission.AdminAnalyticsView,
+    Permission.AdminModerationManage,
+    Permission.AdminAuditRead,
   ]),
 };
 

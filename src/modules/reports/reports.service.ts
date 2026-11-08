@@ -65,6 +65,7 @@ export const REPORT_SELECT = {
   submittedAt: true,
   resolvedAt: true,
   updatedAt: true,
+  moderationHiddenAt: true,
   category: { select: { id: true, slug: true, nameEn: true, nameBn: true } },
   organization: { select: { name: true } },
   _count: { select: { media: true } },
@@ -72,11 +73,23 @@ export const REPORT_SELECT = {
 
 export type ReportRow = Prisma.ReportGetPayload<{ select: typeof REPORT_SELECT }>;
 
-/** Reports a member of the public may see: public, and not withdrawn by the citizen. */
+/**
+ * Reports a member of the public may see: public, not withdrawn by the citizen, and not hidden
+ * by a moderator.
+ */
 const PUBLICLY_VISIBLE: Prisma.ReportWhereInput = {
   visibility: 'PUBLIC',
   status: { notIn: ['WITHDRAWN'] },
+  moderationHiddenAt: null,
 };
+
+function isPublic(row: {
+  visibility: string;
+  status: string;
+  moderationHiddenAt: Date | null;
+}): boolean {
+  return row.visibility === 'PUBLIC' && row.status !== 'WITHDRAWN' && !row.moderationHiddenAt;
+}
 
 @Injectable()
 export class ReportsService {
@@ -121,7 +134,7 @@ export class ReportsService {
       },
     });
     const photos = await Promise.all(media.map((item) => this.media.toView(item)));
-    const [request, decision, completion, feedback] = await Promise.all([
+    const [request, decision, completion, feedback, notices] = await Promise.all([
       row.status === 'NEEDS_INFORMATION'
         ? this.prisma.reportInformationRequest.findFirst({
             where: { reportId: row.id, response: null },
@@ -144,6 +157,17 @@ export class ReportsService {
             select: { fixed: true, comment: true },
           })
         : null,
+      // Moderators' messages to the citizen about this report (PRD §28.2).
+      this.prisma.moderationAction.findMany({
+        where: {
+          case: { reportId: row.id },
+          targetUserId: row.citizenId,
+          kind: { in: ['HIDE_REPORT', 'REQUEST_CORRECTION', 'WARN_USER', 'RESTORE_REPORT'] },
+        },
+        orderBy: { createdAt: 'desc' },
+        take: 10,
+        select: { kind: true, message: true, createdAt: true },
+      }),
     ]);
     return {
       ...this.toPublic(row),
@@ -170,6 +194,15 @@ export class ReportsService {
       canGiveFeedback: row.status === 'RESOLVED' && feedback === null,
       duplicateOf: row.status === 'DUPLICATE' ? await this.duplicateOf(row.id) : null,
       feedback,
+      moderation: {
+        hiddenFromPublic: row.moderationHiddenAt !== null,
+        notices: notices.map((notice) => ({
+          kind: notice.kind as
+            'HIDE_REPORT' | 'REQUEST_CORRECTION' | 'WARN_USER' | 'RESTORE_REPORT',
+          message: notice.message,
+          createdAt: notice.createdAt.toISOString(),
+        })),
+      },
     };
   }
 
@@ -177,15 +210,14 @@ export class ReportsService {
   private async duplicateOf(reportId: string) {
     const report = await this.prisma.report.findUnique({
       where: { id: reportId },
-      select: { duplicateOf: { select: { publicId: true, visibility: true, status: true } } },
+      select: {
+        duplicateOf: {
+          select: { publicId: true, visibility: true, status: true, moderationHiddenAt: true },
+        },
+      },
     });
     const original = report?.duplicateOf;
-    return {
-      publicId:
-        original && original.visibility === 'PUBLIC' && original.status !== 'WITHDRAWN'
-          ? original.publicId
-          : null,
-    };
+    return { publicId: original && isPublic(original) ? original.publicId : null };
   }
 
   /** What the organization verified as the fix (description and after photos). */
@@ -225,7 +257,7 @@ export class ReportsService {
     if (viewer && row.citizenId === viewer.id) {
       return { kind: 'own' as const, report: await this.toOwn(row) };
     }
-    if (row.visibility === 'PUBLIC' && row.status !== 'WITHDRAWN') {
+    if (isPublic(row)) {
       return { kind: 'public' as const, report: this.toPublic(row) };
     }
     throw new AppException(ErrorCode.NOT_FOUND);

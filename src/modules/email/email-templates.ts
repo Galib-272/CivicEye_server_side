@@ -116,6 +116,18 @@ export const NOTIFICATION_SENTENCES: Record<NotificationType, { en: string; bn: 
     en: 'Your report describes the same problem as an existing report and was linked to it.',
     bn: 'আপনার রিপোর্টে একটি বিদ্যমান রিপোর্টের একই সমস্যা বলা হয়েছে, তাই এটিকে সেটির সঙ্গে যুক্ত করা হয়েছে।',
   },
+  REPORT_HIDDEN: {
+    en: 'A moderator hid your report from public view. You and the organization can still see it.',
+    bn: 'একজন মডারেটর আপনার রিপোর্টটি জনসাধারণের দৃষ্টি থেকে লুকিয়েছেন। আপনি ও প্রতিষ্ঠান এখনো এটি দেখতে পাবেন।',
+  },
+  CORRECTION_REQUESTED: {
+    en: 'A moderator asked you to correct your report. Open CivicEye to read the request.',
+    bn: 'একজন মডারেটর আপনাকে রিপোর্টটি সংশোধন করতে বলেছেন। অনুরোধটি পড়তে CivicEye খুলুন।',
+  },
+  MODERATION_WARNING: {
+    en: 'A moderator sent you a warning about your content. Open CivicEye to read it.',
+    bn: 'একজন মডারেটর আপনার কনটেন্ট নিয়ে আপনাকে একটি সতর্কবার্তা পাঠিয়েছেন। পড়তে CivicEye খুলুন।',
+  },
 };
 
 export interface RenderedEmail {

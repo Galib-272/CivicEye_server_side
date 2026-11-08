@@ -83,7 +83,11 @@ model User {
   duplicateDecisions      DuplicateDecision[]              @relation("DuplicateReviewer")
   idempotencyKeys         IdempotencyKey[]                 @relation("IdempotencyKeyUser")
   aiReviews               AiPrediction[]                   @relation("AiReviewer")
+  moderationFlags         ModerationFlag[]                 @relation("FlagReporter")
+  moderationActions       ModerationAction[]               @relation("ModerationActor")
+  moderationNotices       ModerationAction[]               @relation("ModerationTargetUser")
 
+  @@index([createdAt])
   @@map("users")
 }
 
@@ -463,35 +467,39 @@ enum RejectionReason {
 }
 
 model Report {
-  id                  String                               @id @default(uuid(7)) @db.Uuid
+  id                     String                               @id @default(uuid(7)) @db.Uuid
   /// Human-friendly, unguessable identifier shown to users, e.g. CE-7K3M-Q9TX.
-  publicId            String                               @unique @map("public_id") @db.VarChar(16)
-  citizenId           String                               @map("citizen_id") @db.Uuid
-  organizationId      String?                              @map("organization_id") @db.Uuid
-  categoryId          String                               @map("category_id") @db.Uuid
-  title               String                               @db.VarChar(120)
-  description         String                               @db.VarChar(2000)
-  status              ReportStatus                         @default(SUBMITTED)
+  publicId               String                               @unique @map("public_id") @db.VarChar(16)
+  citizenId              String                               @map("citizen_id") @db.Uuid
+  organizationId         String?                              @map("organization_id") @db.Uuid
+  categoryId             String                               @map("category_id") @db.Uuid
+  title                  String                               @db.VarChar(120)
+  description            String                               @db.VarChar(2000)
+  status                 ReportStatus                         @default(SUBMITTED)
   /// Unset until the report priority policy is decided.
-  priority            Int?
+  priority               Int?
   /// WGS84 point. Written and queried with raw SQL (Prisma has no PostGIS types).
-  location            Unsupported("geography(Point,4326)")
+  location               Unsupported("geography(Point,4326)")
   /// Exact coordinates for display; the geography column is authoritative for spatial queries.
-  latitude            Decimal                              @db.Decimal(9, 6)
-  longitude           Decimal                              @db.Decimal(9, 6)
-  locationAccuracyM   Int?                                 @map("location_accuracy_m")
-  locationDescription String?                              @map("location_description") @db.VarChar(300)
-  visibility          ReportVisibility                     @default(PUBLIC)
-  routingOutcome      RoutingOutcome                       @map("routing_outcome")
-  version             Int                                  @default(1)
+  latitude               Decimal                              @db.Decimal(9, 6)
+  longitude              Decimal                              @db.Decimal(9, 6)
+  locationAccuracyM      Int?                                 @map("location_accuracy_m")
+  locationDescription    String?                              @map("location_description") @db.VarChar(300)
+  visibility             ReportVisibility                     @default(PUBLIC)
+  routingOutcome         RoutingOutcome                       @map("routing_outcome")
+  version                Int                                  @default(1)
   /// Set exactly when the status is DUPLICATE: the original (canonical) report.
-  duplicateOfId       String?                              @map("duplicate_of_id") @db.Uuid
-  submittedAt         DateTime                             @default(now()) @map("submitted_at") @db.Timestamptz(3)
-  reviewedAt          DateTime?                            @map("reviewed_at") @db.Timestamptz(3)
-  resolvedAt          DateTime?                            @map("resolved_at") @db.Timestamptz(3)
-  closedAt            DateTime?                            @map("closed_at") @db.Timestamptz(3)
-  createdAt           DateTime                             @default(now()) @map("created_at") @db.Timestamptz(3)
-  updatedAt           DateTime                             @updatedAt @map("updated_at") @db.Timestamptz(3)
+  duplicateOfId          String?                              @map("duplicate_of_id") @db.Uuid
+  submittedAt            DateTime                             @default(now()) @map("submitted_at") @db.Timestamptz(3)
+  reviewedAt             DateTime?                            @map("reviewed_at") @db.Timestamptz(3)
+  resolvedAt             DateTime?                            @map("resolved_at") @db.Timestamptz(3)
+  closedAt               DateTime?                            @map("closed_at") @db.Timestamptz(3)
+  /// Set by a Super Admin moderator: the report disappears from every public view (PRD §28.2).
+  /// The citizen and the handling organization still see it.
+  moderationHiddenAt     DateTime?                            @map("moderation_hidden_at") @db.Timestamptz(3)
+  moderationHiddenReason String?                              @map("moderation_hidden_reason") @db.VarChar(1000)
+  createdAt              DateTime                             @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt              DateTime                             @updatedAt @map("updated_at") @db.Timestamptz(3)
 
   citizen            User                       @relation("ReportCitizen", fields: [citizenId], references: [id], onDelete: Restrict)
   organization       Organization?              @relation(fields: [organizationId], references: [id], onDelete: Restrict)
@@ -514,6 +522,7 @@ model Report {
   candidateOf        DuplicateCandidate[]       @relation("CandidateMatch")
   duplicateDecisions DuplicateDecision[]        @relation("DecisionReport")
   aiPredictions      AiPrediction[]
+  moderationCases    ModerationCase[]
   canonicalDecisions DuplicateDecision[]        @relation("DecisionCanonical")
 
   @@index([location], type: Gist)
@@ -523,6 +532,7 @@ model Report {
   @@index([routingOutcome, status])
   @@index([categoryId])
   @@index([duplicateOfId])
+  @@index([submittedAt])
   @@map("reports")
 }
 
@@ -544,6 +554,7 @@ model ReportStatusHistory {
   actor  User?  @relation("StatusHistoryActor", fields: [actorUserId], references: [id], onDelete: Restrict)
 
   @@index([reportId, createdAt])
+  @@index([toStatus, createdAt])
   @@map("report_status_history")
 }
 
@@ -640,6 +651,10 @@ enum NotificationType {
   WORK_APPROVED
   // Phase 8: the citizen's report was linked to an existing report.
   REPORT_DUPLICATE
+  // Phase 10: moderation decisions about the citizen's content or account.
+  REPORT_HIDDEN
+  CORRECTION_REQUESTED
+  MODERATION_WARNING
 }
 
 enum DuplicateCandidateStatus {
@@ -717,6 +732,7 @@ model ReportRoutingDecision {
   decidedBy    User?         @relation("RoutingDecidedBy", fields: [decidedById], references: [id], onDelete: Restrict)
 
   @@index([reportId, createdAt])
+  @@index([organizationId, createdAt])
   @@map("report_routing_decisions")
 }
 
@@ -760,6 +776,7 @@ model ReportReviewDecision {
   categoryTo   ReportCategory? @relation("ReviewCategoryTo", fields: [categoryToId], references: [id], onDelete: Restrict)
 
   @@index([reportId, createdAt])
+  @@index([organizationId, createdAt])
   @@map("report_review_decisions")
 }
 
@@ -815,6 +832,7 @@ model ReportTransfer {
   actor            User          @relation("TransferActor", fields: [actorId], references: [id], onDelete: Restrict)
 
   @@index([reportId, createdAt])
+  @@index([toOrganizationId, createdAt])
   @@map("report_transfers")
 }
 
@@ -849,10 +867,11 @@ model ReportPublicUpdate {
   hiddenById     String?   @map("hidden_by_id") @db.Uuid
   hiddenReason   String?   @map("hidden_reason") @db.VarChar(1000)
 
-  report       Report       @relation(fields: [reportId], references: [id], onDelete: Restrict)
-  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
-  author       User         @relation("PublicUpdateAuthor", fields: [authorId], references: [id], onDelete: Restrict)
-  hiddenBy     User?        @relation("PublicUpdateHiddenBy", fields: [hiddenById], references: [id], onDelete: Restrict)
+  report          Report           @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  organization    Organization     @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  author          User             @relation("PublicUpdateAuthor", fields: [authorId], references: [id], onDelete: Restrict)
+  hiddenBy        User?            @relation("PublicUpdateHiddenBy", fields: [hiddenById], references: [id], onDelete: Restrict)
+  moderationCases ModerationCase[]
 
   @@index([reportId, createdAt])
   @@map("report_public_updates")
@@ -891,6 +910,7 @@ model ReportAssignment {
   @@index([reportId, assignedAt])
   @@index([workerId, state])
   @@index([organizationId, state])
+  @@index([organizationId, completedAt])
   @@map("report_assignments")
 }
 
@@ -1126,4 +1146,107 @@ model AiPrediction {
   @@index([mediaId])
   @@index([status, createdAt])
   @@map("ai_predictions")
+}
+
+/// PRD §28.2. A case is open while OPEN, UNDER_REVIEW or ACTION_REQUIRED.
+enum ModerationCaseStatus {
+  OPEN
+  UNDER_REVIEW
+  ACTION_REQUIRED
+  RESOLVED
+  DISMISSED
+}
+
+enum ModerationTargetType {
+  REPORT
+  PUBLIC_UPDATE
+}
+
+enum ModerationReason {
+  SPAM_OR_FAKE
+  OFFENSIVE
+  PERSONAL_INFORMATION
+  MISLEADING_PHOTO
+  OTHER
+}
+
+enum ModerationActionKind {
+  START_REVIEW
+  HIDE_REPORT
+  RESTORE_REPORT
+  HIDE_UPDATE
+  REQUEST_CORRECTION
+  WARN_USER
+  SUSPEND_USER
+  RESOLVE
+  DISMISS
+}
+
+/// One piece of public content under moderation. Flags on the same content join its open case;
+/// at most one open case per target (partial unique index in the migration). Super Admins
+/// decide; nothing is decided automatically (PRD §28.3).
+model ModerationCase {
+  id             String               @id @default(uuid(7)) @db.Uuid
+  targetType     ModerationTargetType @map("target_type")
+  /// The report, or the report the public update belongs to.
+  reportId       String               @map("report_id") @db.Uuid
+  publicUpdateId String?              @map("public_update_id") @db.Uuid
+  status         ModerationCaseStatus @default(OPEN)
+  flagCount      Int                  @default(0) @map("flag_count")
+  /// An organization reviewer escalated it to the Super Admins.
+  escalated      Boolean              @default(false)
+  createdAt      DateTime             @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime             @updatedAt @map("updated_at") @db.Timestamptz(3)
+  closedAt       DateTime?            @map("closed_at") @db.Timestamptz(3)
+
+  report       Report              @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  publicUpdate ReportPublicUpdate? @relation(fields: [publicUpdateId], references: [id], onDelete: Restrict)
+  flags        ModerationFlag[]
+  actions      ModerationAction[]
+
+  @@index([status, createdAt])
+  @@index([reportId])
+  @@map("moderation_cases")
+}
+
+/// A user's flag, or an organization's escalation, on a case. One per person per case.
+model ModerationFlag {
+  id             String           @id @default(uuid(7)) @db.Uuid
+  caseId         String           @map("case_id") @db.Uuid
+  reporterId     String           @map("reporter_id") @db.Uuid
+  /// Set when an organization reviewer escalated the report on behalf of the organization.
+  organizationId String?          @map("organization_id") @db.Uuid
+  reason         ModerationReason
+  details        String?          @db.VarChar(1000)
+  createdAt      DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  case     ModerationCase @relation(fields: [caseId], references: [id], onDelete: Restrict)
+  reporter User           @relation("FlagReporter", fields: [reporterId], references: [id], onDelete: Restrict)
+
+  @@unique([caseId, reporterId])
+  @@index([createdAt])
+  @@map("moderation_flags")
+}
+
+/// A moderator's decision on a case, with its reason. Append-only.
+model ModerationAction {
+  id           String               @id @default(uuid(7)) @db.Uuid
+  caseId       String               @map("case_id") @db.Uuid
+  actorId      String               @map("actor_id") @db.Uuid
+  kind         ModerationActionKind
+  /// Internal reason, required for every action (PRD §28.2).
+  reason       String               @db.VarChar(1000)
+  /// What the affected user is told (warnings and correction requests).
+  message      String?              @db.VarChar(1000)
+  /// The user the action concerns (the citizen for warnings, corrections and suspensions).
+  targetUserId String?              @map("target_user_id") @db.Uuid
+  createdAt    DateTime             @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  case       ModerationCase @relation(fields: [caseId], references: [id], onDelete: Restrict)
+  actor      User           @relation("ModerationActor", fields: [actorId], references: [id], onDelete: Restrict)
+  targetUser User?          @relation("ModerationTargetUser", fields: [targetUserId], references: [id], onDelete: Restrict)
+
+  @@index([caseId, createdAt])
+  @@index([targetUserId, createdAt])
+  @@map("moderation_actions")
 }
