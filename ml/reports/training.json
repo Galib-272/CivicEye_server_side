@@ -1,0 +1,1132 @@
+{
+  "created": "2026-11-08T11:14:15",
+  "design": "two-step: presence (damage / no damage), then type (pothole / crack / asphalt damage)",
+  "chosen_model": "ensemble",
+  "chosen_by": "highest validation macro F1 of the combined four-class answer",
+  "ensemble_cnn_weight": {
+    "presence": 0.5,
+    "type": 0.5
+  },
+  "cnn_best_epoch": {
+    "presence": 20,
+    "type": 10
+  },
+  "hybrid": {
+    "presence": {
+      "family": "svm",
+      "settings": "C=20, n_components=0.95, k=500"
+    },
+    "type": {
+      "family": "svm",
+      "settings": "C=5, n_components=0.95, k=all"
+    }
+  },
+  "steps": {
+    "presence": {
+      "cnn": {
+        "validation": {
+          "accuracy": 0.9901960784313726,
+          "balanced_accuracy": 0.9925373134328358,
+          "macro_precision": 0.9861111111111112,
+          "macro_recall": 0.9925373134328358,
+          "macro_f1": 0.9891983479826326,
+          "weighted_f1": 0.9902282632845577,
+          "roc_auc": 0.9995735607675906,
+          "per_class": {
+            "damage": {
+              "precision": 1.0,
+              "recall": 0.9850746268656716,
+              "f1": 0.9924812030075187,
+              "photos": 201
+            },
+            "no_damage": {
+              "precision": 0.9722222222222222,
+              "recall": 1.0,
+              "f1": 0.9859154929577465,
+              "photos": 105
+            }
+          },
+          "confusion_matrix": [
+            [
+              198,
+              3
+            ],
+            [
+              0,
+              105
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.9934640522875817,
+          "balanced_accuracy": 0.9950248756218906,
+          "macro_precision": 0.9906542056074766,
+          "macro_recall": 0.9950248756218906,
+          "macro_f1": 0.9927830188679245,
+          "weighted_f1": 0.9934785423603404,
+          "roc_auc": 0.9960672826344469,
+          "per_class": {
+            "damage": {
+              "precision": 1.0,
+              "recall": 0.9900497512437811,
+              "f1": 0.995,
+              "photos": 201
+            },
+            "no_damage": {
+              "precision": 0.9813084112149533,
+              "recall": 1.0,
+              "f1": 0.9905660377358491,
+              "photos": 105
+            }
+          },
+          "confusion_matrix": [
+            [
+              199,
+              2
+            ],
+            [
+              0,
+              105
+            ]
+          ],
+          "macro_f1_95_interval": [
+            0.9810206803832108,
+            1.0
+          ]
+        },
+        "source_check": {
+          "detection_dataset": {
+            "accuracy": 0.9904761904761905,
+            "balanced_accuracy": 0.9904761904761905,
+            "macro_precision": 0.9906542056074766,
+            "macro_recall": 0.9904761904761905,
+            "macro_f1": 0.9904753265602322,
+            "weighted_f1": 0.9904753265602322,
+            "roc_auc": 0.9924716553287981,
+            "per_class": {
+              "damage": {
+                "precision": 1.0,
+                "recall": 0.9809523809523809,
+                "f1": 0.9903846153846154,
+                "photos": 105
+              },
+              "no_damage": {
+                "precision": 0.9813084112149533,
+                "recall": 1.0,
+                "f1": 0.9905660377358491,
+                "photos": 105
+              }
+            },
+            "confusion_matrix": [
+              [
+                103,
+                2
+              ],
+              [
+                0,
+                105
+              ]
+            ]
+          },
+          "detection_damage_called_no_damage": 2,
+          "detection_damage_photos": 105,
+          "rsd_bd_damage_recall": 1.0
+        }
+      },
+      "hybrid": {
+        "validation": {
+          "accuracy": 0.9738562091503268,
+          "balanced_accuracy": 0.966453447050462,
+          "macro_precision": 0.9754648635595267,
+          "macro_recall": 0.966453447050462,
+          "macro_f1": 0.9707303075230762,
+          "weighted_f1": 0.9737311730852367,
+          "roc_auc": 0.9983416252072969,
+          "per_class": {
+            "damage": {
+              "precision": 0.9707317073170731,
+              "recall": 0.9900497512437811,
+              "f1": 0.9802955665024631,
+              "photos": 201
+            },
+            "no_damage": {
+              "precision": 0.9801980198019802,
+              "recall": 0.9428571428571428,
+              "f1": 0.9611650485436893,
+              "photos": 105
+            }
+          },
+          "confusion_matrix": [
+            [
+              199,
+              2
+            ],
+            [
+              6,
+              99
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.9771241830065359,
+          "balanced_accuracy": 0.9712153518123667,
+          "macro_precision": 0.9779411764705882,
+          "macro_recall": 0.9712153518123667,
+          "macro_f1": 0.9744498121309715,
+          "weighted_f1": 0.9770431414648522,
+          "roc_auc": 0.9957356076759062,
+          "per_class": {
+            "damage": {
+              "precision": 0.9754901960784313,
+              "recall": 0.9900497512437811,
+              "f1": 0.9827160493827161,
+              "photos": 201
+            },
+            "no_damage": {
+              "precision": 0.9803921568627451,
+              "recall": 0.9523809523809523,
+              "f1": 0.966183574879227,
+              "photos": 105
+            }
+          },
+          "confusion_matrix": [
+            [
+              199,
+              2
+            ],
+            [
+              5,
+              100
+            ]
+          ],
+          "macro_f1_95_interval": [
+            0.9533358270292951,
+            0.9926229010112145
+          ]
+        },
+        "source_check": {
+          "detection_dataset": {
+            "accuracy": 0.9666666666666667,
+            "balanced_accuracy": 0.9666666666666666,
+            "macro_precision": 0.9670479302832244,
+            "macro_recall": 0.9666666666666666,
+            "macro_f1": 0.9666598625569844,
+            "weighted_f1": 0.9666598625569846,
+            "roc_auc": 0.9928344671201814,
+            "per_class": {
+              "damage": {
+                "precision": 0.9537037037037037,
+                "recall": 0.9809523809523809,
+                "f1": 0.9671361502347418,
+                "photos": 105
+              },
+              "no_damage": {
+                "precision": 0.9803921568627451,
+                "recall": 0.9523809523809523,
+                "f1": 0.966183574879227,
+                "photos": 105
+              }
+            },
+            "confusion_matrix": [
+              [
+                103,
+                2
+              ],
+              [
+                5,
+                100
+              ]
+            ]
+          },
+          "detection_damage_called_no_damage": 2,
+          "detection_damage_photos": 105,
+          "rsd_bd_damage_recall": 1.0
+        }
+      },
+      "ensemble": {
+        "validation": {
+          "accuracy": 1.0,
+          "balanced_accuracy": 1.0,
+          "macro_precision": 1.0,
+          "macro_recall": 1.0,
+          "macro_f1": 1.0,
+          "weighted_f1": 1.0,
+          "roc_auc": 1.0,
+          "per_class": {
+            "damage": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "photos": 201
+            },
+            "no_damage": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "photos": 105
+            }
+          },
+          "confusion_matrix": [
+            [
+              201,
+              0
+            ],
+            [
+              0,
+              105
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.9869281045751634,
+          "balanced_accuracy": 0.985501066098081,
+          "macro_precision": 0.985501066098081,
+          "macro_recall": 0.985501066098081,
+          "macro_f1": 0.985501066098081,
+          "weighted_f1": 0.9869281045751634,
+          "roc_auc": 0.9971570717839374,
+          "per_class": {
+            "damage": {
+              "precision": 0.9900497512437811,
+              "recall": 0.9900497512437811,
+              "f1": 0.9900497512437811,
+              "photos": 201
+            },
+            "no_damage": {
+              "precision": 0.9809523809523809,
+              "recall": 0.9809523809523809,
+              "f1": 0.9809523809523809,
+              "photos": 105
+            }
+          },
+          "confusion_matrix": [
+            [
+              199,
+              2
+            ],
+            [
+              2,
+              103
+            ]
+          ],
+          "macro_f1_95_interval": [
+            0.9697194643176396,
+            0.9968019556107403
+          ]
+        },
+        "source_check": {
+          "detection_dataset": {
+            "accuracy": 0.9809523809523809,
+            "balanced_accuracy": 0.9809523809523809,
+            "macro_precision": 0.9809523809523809,
+            "macro_recall": 0.9809523809523809,
+            "macro_f1": 0.9809523809523809,
+            "weighted_f1": 0.9809523809523809,
+            "roc_auc": 0.9945578231292518,
+            "per_class": {
+              "damage": {
+                "precision": 0.9809523809523809,
+                "recall": 0.9809523809523809,
+                "f1": 0.9809523809523809,
+                "photos": 105
+              },
+              "no_damage": {
+                "precision": 0.9809523809523809,
+                "recall": 0.9809523809523809,
+                "f1": 0.9809523809523809,
+                "photos": 105
+              }
+            },
+            "confusion_matrix": [
+              [
+                103,
+                2
+              ],
+              [
+                2,
+                103
+              ]
+            ]
+          },
+          "detection_damage_called_no_damage": 2,
+          "detection_damage_photos": 105,
+          "rsd_bd_damage_recall": 1.0
+        }
+      }
+    },
+    "type": {
+      "cnn": {
+        "validation": {
+          "accuracy": 0.9583333333333334,
+          "balanced_accuracy": 0.9592592592592593,
+          "macro_precision": 0.9592345404358754,
+          "macro_recall": 0.9592592592592593,
+          "macro_f1": 0.9590678480647915,
+          "weighted_f1": 0.95815388533852,
+          "roc_auc": 0.9977833894500562,
+          "per_class": {
+            "pothole": {
+              "precision": 0.9655172413793104,
+              "recall": 0.9333333333333333,
+              "f1": 0.9491525423728814,
+              "photos": 30
+            },
+            "crack": {
+              "precision": 0.967741935483871,
+              "recall": 1.0,
+              "f1": 0.9836065573770492,
+              "photos": 30
+            },
+            "asphalt_damage": {
+              "precision": 0.9444444444444444,
+              "recall": 0.9444444444444444,
+              "f1": 0.9444444444444444,
+              "photos": 36
+            }
+          },
+          "confusion_matrix": [
+            [
+              28,
+              0,
+              2
+            ],
+            [
+              0,
+              30,
+              0
+            ],
+            [
+              1,
+              1,
+              34
+            ]
+          ],
+          "top2_accuracy": 1.0
+        },
+        "test": {
+          "accuracy": 0.9270833333333334,
+          "balanced_accuracy": 0.9333333333333335,
+          "macro_precision": 0.9305171530977981,
+          "macro_recall": 0.9333333333333335,
+          "macro_f1": 0.928421992601097,
+          "weighted_f1": 0.92636576731726,
+          "roc_auc": 0.9927609427609427,
+          "per_class": {
+            "pothole": {
+              "precision": 0.8571428571428571,
+              "recall": 1.0,
+              "f1": 0.9230769230769231,
+              "photos": 30
+            },
+            "crack": {
+              "precision": 0.9666666666666667,
+              "recall": 0.9666666666666667,
+              "f1": 0.9666666666666667,
+              "photos": 30
+            },
+            "asphalt_damage": {
+              "precision": 0.967741935483871,
+              "recall": 0.8333333333333334,
+              "f1": 0.8955223880597015,
+              "photos": 36
+            }
+          },
+          "confusion_matrix": [
+            [
+              30,
+              0,
+              0
+            ],
+            [
+              0,
+              29,
+              1
+            ],
+            [
+              5,
+              1,
+              30
+            ]
+          ],
+          "top2_accuracy": 0.9895833333333334,
+          "macro_f1_95_interval": [
+            0.8625030617610426,
+            0.9771390870344085
+          ]
+        }
+      },
+      "hybrid": {
+        "validation": {
+          "accuracy": 0.96875,
+          "balanced_accuracy": 0.9703703703703704,
+          "macro_precision": 0.9689708141321045,
+          "macro_recall": 0.9703703703703704,
+          "macro_f1": 0.9695220503347955,
+          "weighted_f1": 0.9687860771184482,
+          "roc_auc": 0.9872053872053872,
+          "per_class": {
+            "pothole": {
+              "precision": 0.9354838709677419,
+              "recall": 0.9666666666666667,
+              "f1": 0.9508196721311475,
+              "photos": 30
+            },
+            "crack": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "photos": 30
+            },
+            "asphalt_damage": {
+              "precision": 0.9714285714285714,
+              "recall": 0.9444444444444444,
+              "f1": 0.9577464788732394,
+              "photos": 36
+            }
+          },
+          "confusion_matrix": [
+            [
+              29,
+              0,
+              1
+            ],
+            [
+              0,
+              30,
+              0
+            ],
+            [
+              2,
+              0,
+              34
+            ]
+          ],
+          "top2_accuracy": 0.9895833333333334
+        },
+        "test": {
+          "accuracy": 0.9166666666666666,
+          "balanced_accuracy": 0.9166666666666666,
+          "macro_precision": 0.9191363777570674,
+          "macro_recall": 0.9166666666666666,
+          "macro_f1": 0.9177540438046591,
+          "weighted_f1": 0.9169012653819365,
+          "roc_auc": 0.974719416386083,
+          "per_class": {
+            "pothole": {
+              "precision": 0.9,
+              "recall": 0.9,
+              "f1": 0.9,
+              "photos": 30
+            },
+            "crack": {
+              "precision": 0.9655172413793104,
+              "recall": 0.9333333333333333,
+              "f1": 0.9491525423728814,
+              "photos": 30
+            },
+            "asphalt_damage": {
+              "precision": 0.8918918918918919,
+              "recall": 0.9166666666666666,
+              "f1": 0.9041095890410958,
+              "photos": 36
+            }
+          },
+          "confusion_matrix": [
+            [
+              27,
+              1,
+              2
+            ],
+            [
+              0,
+              28,
+              2
+            ],
+            [
+              3,
+              0,
+              33
+            ]
+          ],
+          "top2_accuracy": 0.9895833333333334,
+          "macro_f1_95_interval": [
+            0.8557995726907813,
+            0.9636151130348437
+          ]
+        }
+      },
+      "ensemble": {
+        "validation": {
+          "accuracy": 0.9791666666666666,
+          "balanced_accuracy": 0.9814814814814815,
+          "macro_precision": 0.9791666666666666,
+          "macro_recall": 0.9814814814814815,
+          "macro_f1": 0.9797235023041475,
+          "weighted_f1": 0.9792050691244238,
+          "roc_auc": 0.9985830527497194,
+          "per_class": {
+            "pothole": {
+              "precision": 0.9375,
+              "recall": 1.0,
+              "f1": 0.967741935483871,
+              "photos": 30
+            },
+            "crack": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0,
+              "photos": 30
+            },
+            "asphalt_damage": {
+              "precision": 1.0,
+              "recall": 0.9444444444444444,
+              "f1": 0.9714285714285714,
+              "photos": 36
+            }
+          },
+          "confusion_matrix": [
+            [
+              30,
+              0,
+              0
+            ],
+            [
+              0,
+              30,
+              0
+            ],
+            [
+              2,
+              0,
+              34
+            ]
+          ],
+          "top2_accuracy": 0.9895833333333334
+        },
+        "test": {
+          "accuracy": 0.9375,
+          "balanced_accuracy": 0.9388888888888888,
+          "macro_precision": 0.9399641577060932,
+          "macro_recall": 0.9388888888888888,
+          "macro_f1": 0.9392501003365132,
+          "weighted_f1": 0.9378386357321479,
+          "roc_auc": 0.9905864197530865,
+          "per_class": {
+            "pothole": {
+              "precision": 0.9032258064516129,
+              "recall": 0.9333333333333333,
+              "f1": 0.9180327868852459,
+              "photos": 30
+            },
+            "crack": {
+              "precision": 1.0,
+              "recall": 0.9666666666666667,
+              "f1": 0.9830508474576272,
+              "photos": 30
+            },
+            "asphalt_damage": {
+              "precision": 0.9166666666666666,
+              "recall": 0.9166666666666666,
+              "f1": 0.9166666666666666,
+              "photos": 36
+            }
+          },
+          "confusion_matrix": [
+            [
+              28,
+              0,
+              2
+            ],
+            [
+              0,
+              29,
+              1
+            ],
+            [
+              3,
+              0,
+              33
+            ]
+          ],
+          "top2_accuracy": 0.9895833333333334,
+          "macro_f1_95_interval": [
+            0.8790912409435452,
+            0.9795501747707631
+          ]
+        }
+      }
+    }
+  },
+  "combined": {
+    "cnn": {
+      "validation": {
+        "accuracy": 0.9800995024875622,
+        "balanced_accuracy": 0.9694444444444444,
+        "macro_precision": 0.9694259053269065,
+        "macro_recall": 0.9694444444444444,
+        "macro_f1": 0.9693008860485937,
+        "weighted_f1": 0.9800137959825768,
+        "roc_auc": 0.9993775474038632,
+        "per_class": {
+          "pothole": {
+            "precision": 0.9655172413793104,
+            "recall": 0.9333333333333333,
+            "f1": 0.9491525423728814,
+            "photos": 30
+          },
+          "crack": {
+            "precision": 0.967741935483871,
+            "recall": 1.0,
+            "f1": 0.9836065573770492,
+            "photos": 30
+          },
+          "asphalt_damage": {
+            "precision": 0.9444444444444444,
+            "recall": 0.9444444444444444,
+            "f1": 0.9444444444444444,
+            "photos": 36
+          },
+          "no_damage": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "photos": 105
+          }
+        },
+        "confusion_matrix": [
+          [
+            28,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            34,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            105
+          ]
+        ],
+        "top2_accuracy": 1.0
+      },
+      "test": {
+        "accuracy": 0.9651741293532339,
+        "balanced_accuracy": 0.9500000000000001,
+        "macro_precision": 0.9478878648233486,
+        "macro_recall": 0.9500000000000001,
+        "macro_f1": 0.9463164944508228,
+        "weighted_f1": 0.9648314112560047,
+        "roc_auc": 0.9972067162856637,
+        "per_class": {
+          "pothole": {
+            "precision": 0.8571428571428571,
+            "recall": 1.0,
+            "f1": 0.9230769230769231,
+            "photos": 30
+          },
+          "crack": {
+            "precision": 0.9666666666666667,
+            "recall": 0.9666666666666667,
+            "f1": 0.9666666666666667,
+            "photos": 30
+          },
+          "asphalt_damage": {
+            "precision": 0.967741935483871,
+            "recall": 0.8333333333333334,
+            "f1": 0.8955223880597015,
+            "photos": 36
+          },
+          "no_damage": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "photos": 105
+          }
+        },
+        "confusion_matrix": [
+          [
+            30,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            29,
+            1,
+            0
+          ],
+          [
+            5,
+            1,
+            30,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            105
+          ]
+        ],
+        "top2_accuracy": 0.9950248756218906,
+        "macro_f1_95_interval": [
+          0.8987482680778976,
+          0.9796434394752083
+        ]
+      }
+    },
+    "hybrid": {
+      "validation": {
+        "accuracy": 0.9552238805970149,
+        "balanced_accuracy": 0.9634920634920636,
+        "macro_precision": 0.935189452124936,
+        "macro_recall": 0.9634920634920636,
+        "macro_f1": 0.9477367323558259,
+        "weighted_f1": 0.956165135305595,
+        "roc_auc": 0.9928819444444444,
+        "per_class": {
+          "pothole": {
+            "precision": 0.8285714285714286,
+            "recall": 0.9666666666666667,
+            "f1": 0.8923076923076924,
+            "photos": 30
+          },
+          "crack": {
+            "precision": 0.967741935483871,
+            "recall": 1.0,
+            "f1": 0.9836065573770492,
+            "photos": 30
+          },
+          "asphalt_damage": {
+            "precision": 0.9444444444444444,
+            "recall": 0.9444444444444444,
+            "f1": 0.9444444444444444,
+            "photos": 36
+          },
+          "no_damage": {
+            "precision": 1.0,
+            "recall": 0.9428571428571428,
+            "f1": 0.9705882352941176,
+            "photos": 105
+          }
+        },
+        "confusion_matrix": [
+          [
+            29,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            34,
+            0
+          ],
+          [
+            4,
+            1,
+            1,
+            99
+          ]
+        ],
+        "top2_accuracy": 0.9950248756218906
+      },
+      "test": {
+        "accuracy": 0.9402985074626866,
+        "balanced_accuracy": 0.9279761904761905,
+        "macro_precision": 0.9123449131513648,
+        "macro_recall": 0.9279761904761905,
+        "macro_f1": 0.9196538277892726,
+        "weighted_f1": 0.9412047196771197,
+        "roc_auc": 0.9896815507835245,
+        "per_class": {
+          "pothole": {
+            "precision": 0.9,
+            "recall": 0.9,
+            "f1": 0.9,
+            "photos": 30
+          },
+          "crack": {
+            "precision": 0.9032258064516129,
+            "recall": 0.9333333333333333,
+            "f1": 0.9180327868852459,
+            "photos": 30
+          },
+          "asphalt_damage": {
+            "precision": 0.8461538461538461,
+            "recall": 0.9166666666666666,
+            "f1": 0.88,
+            "photos": 36
+          },
+          "no_damage": {
+            "precision": 1.0,
+            "recall": 0.9619047619047619,
+            "f1": 0.9805825242718447,
+            "photos": 105
+          }
+        },
+        "confusion_matrix": [
+          [
+            27,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            28,
+            2,
+            0
+          ],
+          [
+            3,
+            0,
+            33,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            101
+          ]
+        ],
+        "top2_accuracy": 0.9800995024875622,
+        "macro_f1_95_interval": [
+          0.8739289549398901,
+          0.9584300959084311
+        ]
+      }
+    },
+    "ensemble": {
+      "validation": {
+        "accuracy": 0.9900497512437811,
+        "balanced_accuracy": 0.9861111111111112,
+        "macro_precision": 0.984375,
+        "macro_recall": 0.9861111111111112,
+        "macro_f1": 0.9847926267281106,
+        "weighted_f1": 0.9900680927161427,
+        "roc_auc": 0.9996079213184477,
+        "per_class": {
+          "pothole": {
+            "precision": 0.9375,
+            "recall": 1.0,
+            "f1": 0.967741935483871,
+            "photos": 30
+          },
+          "crack": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "photos": 30
+          },
+          "asphalt_damage": {
+            "precision": 1.0,
+            "recall": 0.9444444444444444,
+            "f1": 0.9714285714285714,
+            "photos": 36
+          },
+          "no_damage": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "photos": 105
+          }
+        },
+        "confusion_matrix": [
+          [
+            30,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            30,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            34,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            105
+          ]
+        ],
+        "top2_accuracy": 0.9950248756218906
+      },
+      "test": {
+        "accuracy": 0.9651741293532339,
+        "balanced_accuracy": 0.9517857142857142,
+        "macro_precision": 0.9466397849462366,
+        "macro_recall": 0.9517857142857142,
+        "macro_f1": 0.949145357805841,
+        "weighted_f1": 0.9653661256818893,
+        "roc_auc": 0.9964690767322346,
+        "per_class": {
+          "pothole": {
+            "precision": 0.9032258064516129,
+            "recall": 0.9333333333333333,
+            "f1": 0.9180327868852459,
+            "photos": 30
+          },
+          "crack": {
+            "precision": 0.9666666666666667,
+            "recall": 0.9666666666666667,
+            "f1": 0.9666666666666667,
+            "photos": 30
+          },
+          "asphalt_damage": {
+            "precision": 0.9166666666666666,
+            "recall": 0.9166666666666666,
+            "f1": 0.9166666666666666,
+            "photos": 36
+          },
+          "no_damage": {
+            "precision": 1.0,
+            "recall": 0.9904761904761905,
+            "f1": 0.9952153110047847,
+            "photos": 105
+          }
+        },
+        "confusion_matrix": [
+          [
+            28,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            29,
+            1,
+            0
+          ],
+          [
+            3,
+            0,
+            33,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            104
+          ]
+        ],
+        "top2_accuracy": 0.9950248756218906,
+        "macro_f1_95_interval": [
+          0.904383683786165,
+          0.9809298427786797
+        ]
+      }
+    }
+  },
+  "first_design_for_comparison": {
+    "cnn": {
+      "test_macro_f1": 0.916023073499709,
+      "detection_damage_called_no_damage": 66
+    },
+    "hybrid": {
+      "test_macro_f1": 0.9273095953649328,
+      "detection_damage_called_no_damage": 43
+    },
+    "ensemble": {
+      "test_macro_f1": 0.9196067533779251,
+      "detection_damage_called_no_damage": 52
+    }
+  },
+  "cpu_ms_per_photo": {
+    "cnn_ms": 76.94079200018678,
+    "hybrid_ms": 94.1438335003113,
+    "ensemble_ms": 171.08462550049808
+  },
+  "detector": {
+    "threshold_chosen_on_validation": 0.65,
+    "validation": {
+      "map50": 0.46777374050264614,
+      "map50_95": 0.18235380562589282,
+      "box_precision": 0.5612903225806452,
+      "box_recall": 0.41232227488151657,
+      "box_f1": 0.4754098360655738,
+      "photos": {
+        "threshold": 0.65,
+        "accuracy": 0.7380952380952381,
+        "precision": 0.6923076923076923,
+        "recall": 0.8571428571428571,
+        "f1": 0.7659574468085107,
+        "confusion": {
+          "damage_found": 90,
+          "damage_missed": 15,
+          "false_alarm": 40,
+          "correctly_clear": 65
+        }
+      }
+    },
+    "test": {
+      "map50": 0.4085973600958195,
+      "map50_95": 0.18076258375207907,
+      "box_precision": 0.5460526315789473,
+      "box_recall": 0.38425925925925924,
+      "box_f1": 0.45108695652173914,
+      "photos": {
+        "threshold": 0.65,
+        "accuracy": 0.7857142857142857,
+        "precision": 0.734375,
+        "recall": 0.8952380952380953,
+        "f1": 0.8068669527896996,
+        "confusion": {
+          "damage_found": 94,
+          "damage_missed": 11,
+          "false_alarm": 34,
+          "correctly_clear": 71
+        }
+      }
+    },
+    "photos": {
+      "train": {
+        "total": 986,
+        "with_damage": 493
+      },
+      "validation": {
+        "total": 210,
+        "with_damage": 105
+      },
+      "test": {
+        "total": 210,
+        "with_damage": 105
+      }
+    },
+    "boxes": {
+      "validation": 211,
+      "test": 216
+    }
+  }
+}

@@ -12,8 +12,10 @@ from torchvision.transforms import v2
 
 from common import IMAGENET_MEAN, IMAGENET_STD
 
-#: Classifier classes, in class-id order.
+#: What CivicEye reports, in class-id order.
 CLASSES = ["pothole", "crack", "asphalt_damage", "no_damage"]
+#: The two steps that produce it: is there damage, and if so, which kind.
+TASKS = {"presence": ["damage", "no_damage"], "type": ["pothole", "crack", "asphalt_damage"]}
 SIZE = 224
 ROTATE_FROM = 256
 

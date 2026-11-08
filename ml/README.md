@@ -4,8 +4,9 @@ Data preparation, training and evaluation for CivicEye's advisory AI (PRD ยง16โ€
 CivicEye serves Bangladesh only, so every dataset used here was captured on Bangladeshi roads.
 
 **Status (2026-11-07):** datasets downloaded, verified, de-duplicated and preprocessed
-(see [`reports/preprocessing.md`](reports/preprocessing.md)); training not done yet. No model
-exists and no AI result is shown anywhere in CivicEye.
+(see [`reports/preprocessing.md`](reports/preprocessing.md)) and models trained (see
+[`reports/training.md`](reports/training.md)). The models are not connected to CivicEye yet,
+and no AI result is shown anywhere in the app.
 
 ## Setup
 
@@ -29,6 +30,7 @@ Then run the pipeline in order. Every step writes a manifest (`manifests/`) or r
 python ml/scripts/inspect_datasets.py detection && python ml/scripts/inspect_datasets.py rsd-bd
 python ml/scripts/deduplicate.py   # one copy of each photo -> ml/data/deduplicated
 python ml/scripts/preprocess.py    # clean, group, split, features -> ml/data/processed
+bash ml/scripts/train_all.sh       # both classifier steps, detector, report -> ml/models
 ```
 
 Pretrained weights come from download.pytorch.org (BSD licence) on first use and are kept in

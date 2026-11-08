@@ -1,0 +1,23 @@
+family,settings,mean_macro_f1,std
+svm,"C=5, n_components=0.95, k=all",0.914,0.0363
+svm,"C=20, n_components=0.95, k=all",0.914,0.0363
+svm,"C=1, n_components=0.9, k=all",0.9105,0.0286
+svm,"C=1, n_components=0.95, k=all",0.9087,0.0267
+svm,"C=20, n_components=0.9, k=all",0.9081,0.032
+svm,"C=1, n_components=0.95, k=500",0.907,0.031
+svm,"C=1, n_components=0.9, k=500",0.9049,0.0241
+svm,"C=20, n_components=0.9, k=500",0.9047,0.0319
+svm,"C=5, n_components=0.95, k=500",0.9044,0.0343
+svm,"C=5, n_components=0.9, k=all",0.9041,0.0311
+svm,"C=5, n_components=0.9, k=500",0.9031,0.0308
+svm,"C=20, n_components=0.95, k=500",0.903,0.0326
+gradient_boosting,"learning_rate=0.1, max_leaf_nodes=15, pca=passthrough, k=200",0.9023,0.0332
+svm,"C=1, n_components=0.9, k=200",0.9018,0.0331
+svm,"C=1, n_components=0.95, k=200",0.9018,0.0261
+gradient_boosting,"learning_rate=0.1, max_leaf_nodes=15, pca=passthrough, k=all",0.8987,0.0214
+svm,"C=5, n_components=0.95, k=200",0.8886,0.0302
+svm,"C=5, n_components=0.9, k=200",0.8878,0.0274
+gradient_boosting,"learning_rate=0.1, max_leaf_nodes=15, pca=PCA(0.95), k=200",0.8877,0.0179
+svm,"C=20, n_components=0.95, k=200",0.8867,0.0282
+gradient_boosting,"learning_rate=0.1, max_leaf_nodes=15, pca=PCA(0.95), k=all",0.8799,0.0137
+svm,"C=20, n_components=0.9, k=200",0.8734,0.0241

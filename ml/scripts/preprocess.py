@@ -531,7 +531,7 @@ def main() -> None:
     handcrafted_matrix = np.stack(features)
     np.savez_compressed(
         PROCESSED / "features.npz",
-        image_id=kept["image_id"].to_numpy(),
+        image_id=kept["image_id"].to_numpy(dtype=str),
         cnn=embeddings,
         handcrafted=handcrafted_matrix,
         handcrafted_names=np.array(names[0]),
