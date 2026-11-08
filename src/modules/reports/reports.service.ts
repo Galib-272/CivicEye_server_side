@@ -16,6 +16,7 @@ import { MediaService } from '../media/media.service';
 import { ServiceAreasService } from '../service-areas/service-areas.service';
 import { canTransition, EDITABLE_STATUSES } from './report-transitions';
 import { recordEvent } from '../notifications/outbox';
+import { AiService } from '../ai/ai.service';
 import { refreshDuplicateCandidates } from './duplicates';
 import { applyTransition, lockReport } from './report-workflow';
 import type {
@@ -85,6 +86,7 @@ export class ReportsService {
     private readonly limiter: AuthRateLimiter,
     private readonly media: MediaService,
     private readonly serviceAreas: ServiceAreasService,
+    private readonly ai: AiService,
   ) {}
 
   // ─── Views ──────────────────────────────────────────────────────────────────
@@ -363,7 +365,7 @@ export class ReportsService {
       const id = randomUUID();
       const publicId = generatePublicId();
       try {
-        await this.prisma.$transaction(async (tx) => {
+        const analyses = await this.prisma.$transaction(async (tx) => {
           await tx.$executeRaw`
             INSERT INTO reports (id, public_id, citizen_id, organization_id, category_id, title,
               description, status, location, latitude, longitude, location_accuracy_m,
@@ -423,7 +425,10 @@ export class ReportsService {
             request,
             tx,
           );
+          return this.ai.recordPending(tx, id, mediaIds);
         });
+        // Advisory only: queued after commit, and never able to fail the submission.
+        await this.ai.enqueue(analyses);
         return publicId;
       } catch (error) {
         // Retry only on the (very unlikely) public ID collision.

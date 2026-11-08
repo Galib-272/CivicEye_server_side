@@ -6,6 +6,7 @@ import { Secret, TOTP } from 'otpauth';
 import request from 'supertest';
 import { configureApp } from '../../src/app.factory';
 import { AppModule } from '../../src/app.module';
+import type { AppConfig } from '../../src/config/app-config';
 import { PrismaService } from '../../src/database/prisma.service';
 import { PasswordService } from '../../src/modules/auth/password.service';
 import {
@@ -136,7 +137,7 @@ export class Client {
 
 export async function startAuthHarness(
   extraControllers: Type[] = [],
-  options: { runWorkers?: boolean } = {},
+  options: { runWorkers?: boolean; config?: Partial<AppConfig> } = {},
 ): Promise<AuthHarness> {
   const env = await startEnvironment();
   const deploy = runPrisma(['migrate', 'deploy'], env.databaseUrl);
@@ -148,6 +149,7 @@ export async function startAuthHarness(
   const config = env.config({
     rateLimit: { windowSeconds: 60, maxRequests: 10_000 },
     runWorkers: options.runWorkers ?? false,
+    ...options.config,
   });
   const moduleRef = await Test.createTestingModule({
     imports: [AppModule.forRoot(config)],

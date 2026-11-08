@@ -66,6 +66,13 @@ export const envSchema = z
 
     // Run background job processors in this process (the worker entry point sets this).
     RUN_WORKERS: booleanString.default(false),
+
+    // Advisory AI (PRD §16-17). Off by default: switching it off stops new analyses at once
+    // and hides nothing already recorded. The service runs on a private network only.
+    AI_ENABLED: booleanString.default(false),
+    AI_SERVICE_URL: z.url({ protocol: /^https?$/ }).optional(),
+    AI_SERVICE_TOKEN: z.string().min(32).optional(),
+    AI_REQUEST_TIMEOUT_MS: z.coerce.number().int().min(1000).max(120000).default(20000),
   })
   .superRefine((env, ctx) => {
     if (
@@ -86,6 +93,20 @@ export const envSchema = z
         code: 'custom',
         path: ['STORAGE_CREATE_BUCKET'],
         message: 'must not be enabled in staging or production',
+      });
+    }
+    if (env.AI_ENABLED && !env.AI_SERVICE_URL) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['AI_SERVICE_URL'],
+        message: 'required when AI_ENABLED=true',
+      });
+    }
+    if (env.AI_ENABLED && !env.AI_SERVICE_TOKEN) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['AI_SERVICE_TOKEN'],
+        message: 'required when AI_ENABLED=true',
       });
     }
     if (env.EMAIL_PROVIDER === 'smtp' && !env.SMTP_URL) {

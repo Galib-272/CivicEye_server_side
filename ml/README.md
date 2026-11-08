@@ -3,10 +3,14 @@
 Data preparation, training and evaluation for CivicEye's advisory AI (PRD §16–19, Phase 9).
 CivicEye serves Bangladesh only, so every dataset used here was captured on Bangladeshi roads.
 
-**Status (2026-11-07):** datasets downloaded, verified, de-duplicated and preprocessed
+Documents: [model card](MODEL_CARD.md) · [acceptance criteria](ACCEPTANCE_CRITERIA.md) ·
+[annotation guidelines](ANNOTATION_GUIDELINES.md) · [preprocessing report](reports/preprocessing.md) ·
+[training report](reports/training.md). The models are served by [`../ai-services`](../ai-services).
+
+**Status (2026-11-08):** datasets downloaded, verified, de-duplicated and preprocessed
 (see [`reports/preprocessing.md`](reports/preprocessing.md)) and models trained (see
-[`reports/training.md`](reports/training.md)). The models are not connected to CivicEye yet,
-and no AI result is shown anywhere in the app.
+[`reports/training.md`](reports/training.md)). Reviewers see advisory suggestions when
+`AI_ENABLED=true`; it is off by default and not approved for production.
 
 ## Setup
 
@@ -31,6 +35,7 @@ python ml/scripts/inspect_datasets.py detection && python ml/scripts/inspect_dat
 python ml/scripts/deduplicate.py   # one copy of each photo -> ml/data/deduplicated
 python ml/scripts/preprocess.py    # clean, group, split, features -> ml/data/processed
 bash ml/scripts/train_all.sh       # both classifier steps, detector, report -> ml/models
+python ml/scripts/make_manifest.py # version, checksums, thresholds -> ml/models/manifest.json
 ```
 
 Pretrained weights come from download.pytorch.org (BSD licence) on first use and are kept in

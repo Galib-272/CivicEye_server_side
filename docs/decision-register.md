@@ -77,16 +77,16 @@ Last updated: 2026-11-06 (Phase 8).
 
 ## Open — needed by the next phases
 
-| Decision                                                                                  | Needed by                        |
-| ----------------------------------------------------------------------------------------- | -------------------------------- |
-| Map tiles: confirm OpenFreeMap for launch (no SLA) or choose a paid provider; geocoding   | Before launch                    |
-| Validate duplicate radii with real reports (PRD §10.5)                                    | Before launch                    |
-| Appeal policy (G7) and public comment policy                                              | Later phase                      |
-| Assignment acknowledgement and completion verification policies                           | Phase 6                          |
-| Resend sending domain (a domain you own, verified in Resend)                              | Before staging                   |
-| Update PRD §32.1 (one repository) to the approved two-repository layout                   | Before Phase 2                   |
-| Detection model licence path (Ultralytics AGPL-3.0 vs. paid licence vs. Apache-2.0 model) | Phase 9                          |
-| Whether CivicEye will be open source                                                      | Phase 9 (affects the item above) |
+| Decision                                                                                                                 | Needed by                     |
+| ------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| Map tiles: confirm OpenFreeMap for launch (no SLA) or choose a paid provider; geocoding                                  | Before launch                 |
+| Validate duplicate radii with real reports (PRD §10.5)                                                                   | Before launch                 |
+| Appeal policy (G7) and public comment policy                                                                             | Later phase                   |
+| Assignment acknowledgement and completion verification policies                                                          | Phase 6                       |
+| Resend sending domain (a domain you own, verified in Resend)                                                             | Before staging                |
+| Update PRD §32.1 (one repository) to the approved two-repository layout                                                  | Before Phase 2                |
+| Whether CivicEye will be open source                                                                                     | Before launch                 |
+| Approve the AI for production after an evaluation on photos from outside the training data (`ml/ACCEPTANCE_CRITERIA.md`) | Before enabling AI in staging |
 
 ## Phase 2 notes
 
@@ -179,11 +179,24 @@ Last updated: 2026-11-06 (Phase 8).
   a Phase 8 endpoint duplicated a Phase 3 one).
 - Not built in Phase 8: address search (needs a free geocoding provider), image similarity.
 
+## Phase 9 notes
+
+- Datasets: Bangladeshi roads only, both CC BY 4.0 (registry in `ml/README.md`). A third
+  dataset was rejected because part of it is Google Earth imagery.
+- Models: torchvision MobileNetV3 and SSDLite (BSD licence), so the detection licence question
+  (Ultralytics AGPL-3.0) does not arise: no YOLO code or weights are used.
+- The first single-step classifier learned the photo source; it was replaced by a two-step
+  design (damage or not, then which kind). Both results are kept in `ml/reports`.
+- The AI is advisory only and off by default (`AI_ENABLED=false`). Production activation needs
+  explicit approval (`ml/ACCEPTANCE_CRITERIA.md`); not approved yet.
+- Model files are committed (62 MB) with SHA-256 checksums; datasets are not (download script).
+- Not built in Phase 9: text-based category suggestion, image-similarity duplicates, a Super
+  Admin screen for AI status (the API exists).
+
 ## Open — remaining PRD §37 items
 
 appeal policy · public comment policy · minimum account age ·
 authentication provider · worker availability rules (beyond available/unavailable) ·
 report priority policy · emergency issue handling · data retention schedule · account deletion
-and anonymization · AI training data consent · AI production acceptance thresholds · AI hardware
-budget · RPO and RTO · production hosting provider · expected initial traffic · load targets ·
+and anonymization · AI training data consent · AI hardware budget · RPO and RTO · production hosting provider · expected initial traffic · load targets ·
 face and number-plate blurring in public photos · Bangla category names.

@@ -31,6 +31,7 @@ from tqdm import tqdm
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import PRETRAINED, PROCESSED, REPORTS, device  # noqa: E402
 from data import MODELS, manifest, preload, seed_everything  # noqa: E402
+from networks import build_detector  # noqa: E402
 
 BATCH = 16
 EPOCHS = 60
@@ -79,9 +80,7 @@ def collate(batch):
 
 
 def build_model() -> torch.nn.Module:
-    from torchvision.models.detection import ssdlite320_mobilenet_v3_large
-
-    model = ssdlite320_mobilenet_v3_large(weights=None, weights_backbone=None, num_classes=2)
+    model = build_detector()
     coco = torch.load(PRETRAINED / "hub" / "checkpoints" / "ssdlite320_mobilenet_v3_large_coco-a79551df.pth", map_location="cpu")
     own = model.state_dict()
     # Everything except the class layer (91 COCO classes -> background + damage) is reused.

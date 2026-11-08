@@ -30,6 +30,8 @@ export interface AppConfig {
     createBucket: boolean;
   };
   runWorkers: boolean;
+  /** Advisory AI. When disabled, no photo is sent for analysis. */
+  ai: { enabled: boolean; serviceUrl: string; token: string; timeoutMs: number };
 }
 
 export class ConfigValidationError extends Error {
@@ -93,5 +95,11 @@ export function loadConfig(source: NodeJS.ProcessEnv = process.env): AppConfig {
       createBucket: env.STORAGE_CREATE_BUCKET,
     },
     runWorkers: env.RUN_WORKERS,
+    ai: {
+      enabled: env.AI_ENABLED,
+      serviceUrl: env.AI_SERVICE_URL ?? '',
+      token: env.AI_SERVICE_TOKEN ?? '',
+      timeoutMs: env.AI_REQUEST_TIMEOUT_MS,
+    },
   };
 }

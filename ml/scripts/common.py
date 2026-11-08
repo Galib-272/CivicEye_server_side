@@ -27,6 +27,10 @@ IMAGENET_STD = (0.229, 0.224, 0.225)
 
 
 def device() -> torch.device:
+    """CIVICEYE_DEVICE (e.g. "cpu") wins; otherwise Apple's GPU (MPS) when available."""
+    forced = os.environ.get("CIVICEYE_DEVICE")
+    if forced:
+        return torch.device(forced)
     return torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
 
@@ -39,11 +43,15 @@ def open_rgb(path: Path) -> Image.Image:
 class Embedder:
     """MobileNetV3-Large (ImageNet) features: one L2-normalized 960-value vector per image."""
 
-    def __init__(self) -> None:
+    def __init__(self, weights: Path | None = None) -> None:
+        """weights: a saved feature extractor (ml/models/embedder.pt); without it the ImageNet
+        weights are downloaded into ml/data/pretrained on first use."""
         from torchvision.models import MobileNet_V3_Large_Weights, mobilenet_v3_large
 
-        model = mobilenet_v3_large(weights=MobileNet_V3_Large_Weights.IMAGENET1K_V2)
+        model = mobilenet_v3_large(weights=None if weights else MobileNet_V3_Large_Weights.IMAGENET1K_V2)
         self.net = torch.nn.Sequential(model.features, model.avgpool, torch.nn.Flatten()).eval()
+        if weights:
+            self.net.load_state_dict(torch.load(weights, map_location="cpu"))
         self.net.to(device())
         self.mean = torch.tensor(IMAGENET_MEAN).view(1, 3, 1, 1)
         self.std = torch.tensor(IMAGENET_STD).view(1, 3, 1, 1)

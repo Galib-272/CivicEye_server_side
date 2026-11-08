@@ -31,6 +31,7 @@ from tqdm import tqdm
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import REPORTS, SEED, device  # noqa: E402
+from networks import build_classifier  # noqa: E402
 from data import MODELS, PREDICTIONS, manifest, prediction_rows, preload, seed_everything, task_rows  # noqa: E402
 from transforms import TASKS, eval_transform, train_transform  # noqa: E402
 
@@ -53,11 +54,7 @@ class Images(Dataset):
 
 
 def build_model(classes: int) -> nn.Module:
-    from torchvision.models import MobileNet_V3_Large_Weights, mobilenet_v3_large
-
-    model = mobilenet_v3_large(weights=MobileNet_V3_Large_Weights.IMAGENET1K_V2)
-    model.classifier[3] = nn.Linear(model.classifier[3].in_features, classes)
-    return model
+    return build_classifier(classes, pretrained=True)
 
 
 @torch.no_grad()

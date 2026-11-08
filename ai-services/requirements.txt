@@ -1,0 +1,14 @@
+# CivicEye AI service (Python 3.12). torch/torchvision: install the CPU build, e.g.
+#   pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+fastapi==0.143.3
+uvicorn==0.54.0
+python-multipart==0.0.32
+pydantic==2.14.1
+torch==2.14.1
+torchvision==0.29.1
+numpy==2.5.4
+pillow==13.0.0
+scikit-learn==1.9.1
+scikit-image==0.26.0
+scipy==1.18.1
+joblib==1.6.0

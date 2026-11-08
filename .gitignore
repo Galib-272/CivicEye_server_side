@@ -22,10 +22,13 @@ __pycache__/
 *.py[cod]
 .venv/
 
-# ML artifacts are versioned with DVC, never committed directly
+# ML: datasets and pretrained downloads stay local (ml/scripts/download_datasets.sh recreates
+# them). The released models in ml/models are committed, with checksums in manifest.json.
 ml/**/data/
 ml/**/*.pt
 ml/**/*.onnx
+!ml/models/*.pt
+.pytest_cache/
 
 # OS / editors
 .DS_Store

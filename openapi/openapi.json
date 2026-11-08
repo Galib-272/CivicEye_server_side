@@ -29014,6 +29014,1292 @@
         ]
       }
     },
+    "/api/v1/organizations/{organizationId}/reports/{publicId}/ai": {
+      "get": {
+        "operationId": "OrganizationAiController_view_v1",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "predictions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "mediaId": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "photoPosition": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "status": {
+                                "type": "string",
+                                "enum": [
+                                  "PENDING",
+                                  "SUCCEEDED",
+                                  "FAILED"
+                                ]
+                              },
+                              "modelVersion": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "label": {
+                                "nullable": true,
+                                "type": "string",
+                                "enum": [
+                                  "pothole",
+                                  "crack",
+                                  "asphalt_damage",
+                                  "no_damage"
+                                ]
+                              },
+                              "confidence": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "uncertain": {
+                                "nullable": true,
+                                "type": "boolean"
+                              },
+                              "probabilities": {
+                                "nullable": true,
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "number"
+                                }
+                              },
+                              "detections": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "box": {
+                                      "minItems": 4,
+                                      "maxItems": 4,
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "score": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "box",
+                                    "score"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "warnings": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "errorCode": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "completedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "suggestedCategories": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "format": "uuid",
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                    },
+                                    "slug": {
+                                      "type": "string"
+                                    },
+                                    "nameEn": {
+                                      "type": "string"
+                                    },
+                                    "nameBn": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "slug",
+                                    "nameEn",
+                                    "nameBn"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "review": {
+                                "nullable": true,
+                                "type": "object",
+                                "properties": {
+                                  "action": {
+                                    "type": "string",
+                                    "enum": [
+                                      "ACCEPTED",
+                                      "CORRECTED",
+                                      "DISMISSED"
+                                    ]
+                                  },
+                                  "correctedLabel": {
+                                    "nullable": true,
+                                    "type": "string",
+                                    "enum": [
+                                      "pothole",
+                                      "crack",
+                                      "asphalt_damage",
+                                      "no_damage"
+                                    ]
+                                  },
+                                  "reviewedAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                  }
+                                },
+                                "required": [
+                                  "action",
+                                  "correctedLabel",
+                                  "reviewedAt"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "mediaId",
+                              "photoPosition",
+                              "status",
+                              "modelVersion",
+                              "label",
+                              "confidence",
+                              "uncertain",
+                              "probabilities",
+                              "detections",
+                              "warnings",
+                              "errorCode",
+                              "createdAt",
+                              "completedAt",
+                              "suggestedCategories",
+                              "review"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "enabled",
+                        "predictions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Advisory AI analysis of each photo (latest per photo).",
+        "tags": [
+          "organization reports"
+        ]
+      }
+    },
+    "/api/v1/organizations/{organizationId}/reports/{publicId}/ai/{predictionId}/review": {
+      "post": {
+        "operationId": "OrganizationAiController_review_v1",
+        "parameters": [
+          {
+            "name": "organizationId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "predictionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "ACCEPTED",
+                      "CORRECTED",
+                      "DISMISSED"
+                    ]
+                  },
+                  "correctedLabel": {
+                    "type": "string",
+                    "enum": [
+                      "pothole",
+                      "crack",
+                      "asphalt_damage",
+                      "no_damage"
+                    ]
+                  }
+                },
+                "required": [
+                  "action"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "predictions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "mediaId": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "photoPosition": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "status": {
+                                "type": "string",
+                                "enum": [
+                                  "PENDING",
+                                  "SUCCEEDED",
+                                  "FAILED"
+                                ]
+                              },
+                              "modelVersion": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "label": {
+                                "nullable": true,
+                                "type": "string",
+                                "enum": [
+                                  "pothole",
+                                  "crack",
+                                  "asphalt_damage",
+                                  "no_damage"
+                                ]
+                              },
+                              "confidence": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "uncertain": {
+                                "nullable": true,
+                                "type": "boolean"
+                              },
+                              "probabilities": {
+                                "nullable": true,
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "number"
+                                }
+                              },
+                              "detections": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "box": {
+                                      "minItems": 4,
+                                      "maxItems": 4,
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "score": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "box",
+                                    "score"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "warnings": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "errorCode": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "completedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "suggestedCategories": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "format": "uuid",
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                    },
+                                    "slug": {
+                                      "type": "string"
+                                    },
+                                    "nameEn": {
+                                      "type": "string"
+                                    },
+                                    "nameBn": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "slug",
+                                    "nameEn",
+                                    "nameBn"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "review": {
+                                "nullable": true,
+                                "type": "object",
+                                "properties": {
+                                  "action": {
+                                    "type": "string",
+                                    "enum": [
+                                      "ACCEPTED",
+                                      "CORRECTED",
+                                      "DISMISSED"
+                                    ]
+                                  },
+                                  "correctedLabel": {
+                                    "nullable": true,
+                                    "type": "string",
+                                    "enum": [
+                                      "pothole",
+                                      "crack",
+                                      "asphalt_damage",
+                                      "no_damage"
+                                    ]
+                                  },
+                                  "reviewedAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                  }
+                                },
+                                "required": [
+                                  "action",
+                                  "correctedLabel",
+                                  "reviewedAt"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "mediaId",
+                              "photoPosition",
+                              "status",
+                              "modelVersion",
+                              "label",
+                              "confidence",
+                              "uncertain",
+                              "probabilities",
+                              "detections",
+                              "warnings",
+                              "errorCode",
+                              "createdAt",
+                              "completedAt",
+                              "suggestedCategories",
+                              "review"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "enabled",
+                        "predictions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Accept, correct or dismiss an AI suggestion (recorded once).",
+        "tags": [
+          "organization reports"
+        ]
+      }
+    },
+    "/api/v1/admin/reports/{publicId}/ai": {
+      "get": {
+        "operationId": "AdminAiController_view_v1",
+        "parameters": [
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "predictions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "mediaId": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "photoPosition": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "status": {
+                                "type": "string",
+                                "enum": [
+                                  "PENDING",
+                                  "SUCCEEDED",
+                                  "FAILED"
+                                ]
+                              },
+                              "modelVersion": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "label": {
+                                "nullable": true,
+                                "type": "string",
+                                "enum": [
+                                  "pothole",
+                                  "crack",
+                                  "asphalt_damage",
+                                  "no_damage"
+                                ]
+                              },
+                              "confidence": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "uncertain": {
+                                "nullable": true,
+                                "type": "boolean"
+                              },
+                              "probabilities": {
+                                "nullable": true,
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "number"
+                                }
+                              },
+                              "detections": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "box": {
+                                      "minItems": 4,
+                                      "maxItems": 4,
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "score": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "box",
+                                    "score"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "warnings": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "errorCode": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "completedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "suggestedCategories": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "format": "uuid",
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                    },
+                                    "slug": {
+                                      "type": "string"
+                                    },
+                                    "nameEn": {
+                                      "type": "string"
+                                    },
+                                    "nameBn": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "slug",
+                                    "nameEn",
+                                    "nameBn"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "review": {
+                                "nullable": true,
+                                "type": "object",
+                                "properties": {
+                                  "action": {
+                                    "type": "string",
+                                    "enum": [
+                                      "ACCEPTED",
+                                      "CORRECTED",
+                                      "DISMISSED"
+                                    ]
+                                  },
+                                  "correctedLabel": {
+                                    "nullable": true,
+                                    "type": "string",
+                                    "enum": [
+                                      "pothole",
+                                      "crack",
+                                      "asphalt_damage",
+                                      "no_damage"
+                                    ]
+                                  },
+                                  "reviewedAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                  }
+                                },
+                                "required": [
+                                  "action",
+                                  "correctedLabel",
+                                  "reviewedAt"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "mediaId",
+                              "photoPosition",
+                              "status",
+                              "modelVersion",
+                              "label",
+                              "confidence",
+                              "uncertain",
+                              "probabilities",
+                              "detections",
+                              "warnings",
+                              "errorCode",
+                              "createdAt",
+                              "completedAt",
+                              "suggestedCategories",
+                              "review"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "enabled",
+                        "predictions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Advisory AI analysis of each photo of any report (Super Admin).",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/admin/reports/{publicId}/ai/{predictionId}/review": {
+      "post": {
+        "operationId": "AdminAiController_review_v1",
+        "parameters": [
+          {
+            "name": "publicId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "predictionId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "ACCEPTED",
+                      "CORRECTED",
+                      "DISMISSED"
+                    ]
+                  },
+                  "correctedLabel": {
+                    "type": "string",
+                    "enum": [
+                      "pothole",
+                      "crack",
+                      "asphalt_damage",
+                      "no_damage"
+                    ]
+                  }
+                },
+                "required": [
+                  "action"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "predictions": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "mediaId": {
+                                "type": "string",
+                                "format": "uuid",
+                                "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                              },
+                              "photoPosition": {
+                                "type": "integer",
+                                "minimum": -9007199254740991,
+                                "maximum": 9007199254740991
+                              },
+                              "status": {
+                                "type": "string",
+                                "enum": [
+                                  "PENDING",
+                                  "SUCCEEDED",
+                                  "FAILED"
+                                ]
+                              },
+                              "modelVersion": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "label": {
+                                "nullable": true,
+                                "type": "string",
+                                "enum": [
+                                  "pothole",
+                                  "crack",
+                                  "asphalt_damage",
+                                  "no_damage"
+                                ]
+                              },
+                              "confidence": {
+                                "nullable": true,
+                                "type": "number"
+                              },
+                              "uncertain": {
+                                "nullable": true,
+                                "type": "boolean"
+                              },
+                              "probabilities": {
+                                "nullable": true,
+                                "type": "object",
+                                "additionalProperties": {
+                                  "type": "number"
+                                }
+                              },
+                              "detections": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "box": {
+                                      "minItems": 4,
+                                      "maxItems": 4,
+                                      "type": "array",
+                                      "items": {
+                                        "type": "number"
+                                      }
+                                    },
+                                    "score": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "box",
+                                    "score"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "warnings": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              },
+                              "errorCode": {
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "completedAt": {
+                                "nullable": true,
+                                "type": "string",
+                                "format": "date-time",
+                                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                              },
+                              "suggestedCategories": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "string",
+                                      "format": "uuid",
+                                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                                    },
+                                    "slug": {
+                                      "type": "string"
+                                    },
+                                    "nameEn": {
+                                      "type": "string"
+                                    },
+                                    "nameBn": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "id",
+                                    "slug",
+                                    "nameEn",
+                                    "nameBn"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              },
+                              "review": {
+                                "nullable": true,
+                                "type": "object",
+                                "properties": {
+                                  "action": {
+                                    "type": "string",
+                                    "enum": [
+                                      "ACCEPTED",
+                                      "CORRECTED",
+                                      "DISMISSED"
+                                    ]
+                                  },
+                                  "correctedLabel": {
+                                    "nullable": true,
+                                    "type": "string",
+                                    "enum": [
+                                      "pothole",
+                                      "crack",
+                                      "asphalt_damage",
+                                      "no_damage"
+                                    ]
+                                  },
+                                  "reviewedAt": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z))$"
+                                  }
+                                },
+                                "required": [
+                                  "action",
+                                  "correctedLabel",
+                                  "reviewedAt"
+                                ],
+                                "additionalProperties": false
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "mediaId",
+                              "photoPosition",
+                              "status",
+                              "modelVersion",
+                              "label",
+                              "confidence",
+                              "uncertain",
+                              "probabilities",
+                              "detections",
+                              "warnings",
+                              "errorCode",
+                              "createdAt",
+                              "completedAt",
+                              "suggestedCategories",
+                              "review"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "enabled",
+                        "predictions"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiErrorDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Accept, correct or dismiss an AI suggestion (Super Admin).",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/admin/ai/status": {
+      "get": {
+        "operationId": "AdminAiController_status_v1",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "success",
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "enabled": {
+                          "type": "boolean"
+                        },
+                        "serviceModelVersion": {
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "last7Days": {
+                          "type": "object",
+                          "properties": {
+                            "pending": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "succeeded": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "failed": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "reviewed": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "accepted": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "corrected": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "dismissed": {
+                              "type": "integer",
+                              "minimum": -9007199254740991,
+                              "maximum": 9007199254740991
+                            },
+                            "correctionRate": {
+                              "nullable": true,
+                              "type": "number"
+                            },
+                            "medianLatencyMs": {
+                              "nullable": true,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "pending",
+                            "succeeded",
+                            "failed",
+                            "reviewed",
+                            "accepted",
+                            "corrected",
+                            "dismissed",
+                            "correctionRate",
+                            "medianLatencyMs"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "enabled",
+                        "serviceModelVersion",
+                        "last7Days"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/ResponseMetaDto"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "AI switch, service model version and the last 7 days of results.",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/api/v1/media/upload-intent": {
       "post": {
         "operationId": "MediaController_createIntent_v1",

@@ -82,6 +82,7 @@ model User {
   notificationPreference  NotificationPreference?
   duplicateDecisions      DuplicateDecision[]              @relation("DuplicateReviewer")
   idempotencyKeys         IdempotencyKey[]                 @relation("IdempotencyKeyUser")
+  aiReviews               AiPrediction[]                   @relation("AiReviewer")
 
   @@map("users")
 }
@@ -512,6 +513,7 @@ model Report {
   candidatesFor      DuplicateCandidate[]       @relation("CandidateReport")
   candidateOf        DuplicateCandidate[]       @relation("CandidateMatch")
   duplicateDecisions DuplicateDecision[]        @relation("DecisionReport")
+  aiPredictions      AiPrediction[]
   canonicalDecisions DuplicateDecision[]        @relation("DecisionCanonical")
 
   @@index([location], type: Gist)
@@ -686,9 +688,10 @@ model ReportMedia {
   /// Set for WORK_PHOTO media once used in a progress update or completion submission.
   assignmentId String? @map("assignment_id") @db.Uuid
 
-  report     Report?           @relation(fields: [reportId], references: [id], onDelete: Restrict)
-  uploader   User              @relation("MediaUploader", fields: [uploaderId], references: [id], onDelete: Restrict)
-  assignment ReportAssignment? @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  report        Report?           @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  uploader      User              @relation("MediaUploader", fields: [uploaderId], references: [id], onDelete: Restrict)
+  assignment    ReportAssignment? @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  aiPredictions AiPrediction[]
 
   @@index([reportId, position])
   @@index([assignmentId])
@@ -1041,7 +1044,7 @@ model DuplicateCandidate {
   reportId    String                   @map("report_id") @db.Uuid
   candidateId String                   @map("candidate_id") @db.Uuid
   distanceM   Float                    @map("distance_m")
-  /// "GEO" now; image similarity arrives with the AI phase.
+  /// "GEO": found by distance and category family.
   source      String                   @default("GEO") @db.VarChar(20)
   status      DuplicateCandidateStatus @default(PENDING)
   createdAt   DateTime                 @default(now()) @map("created_at") @db.Timestamptz(3)
@@ -1072,4 +1075,55 @@ model DuplicateDecision {
 
   @@index([reportId, createdAt])
   @@map("duplicate_decisions")
+}
+
+enum AiPredictionStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+}
+
+/// What a reviewer did with an AI suggestion (PRD §17.6). Recorded to measure the model later.
+enum AiReviewAction {
+  ACCEPTED
+  CORRECTED
+  DISMISSED
+}
+
+/// One advisory AI analysis of one report photo (PRD §17.4). Append-only history: a new
+/// analysis (for example by a newer model) adds a row and never replaces an earlier one.
+/// The AI never changes a report; reviewers make every decision.
+model AiPrediction {
+  id             String             @id @default(uuid(7)) @db.Uuid
+  reportId       String             @map("report_id") @db.Uuid
+  mediaId        String             @map("media_id") @db.Uuid
+  task           String             @default("road_damage") @db.VarChar(40)
+  status         AiPredictionStatus @default(PENDING)
+  attempts       Int                @default(0)
+  modelVersion   String?            @map("model_version") @db.VarChar(60)
+  /// pothole, crack, asphalt_damage or no_damage.
+  label          String?            @db.VarChar(40)
+  /// The model's score for the label. Not a guaranteed probability (PRD §17.5).
+  confidence     Float?             @db.Real
+  uncertain      Boolean?
+  /// Class scores, boxes, image quality warnings and timings, as returned by the AI service.
+  output         Json?
+  errorCode      String?            @map("error_code") @db.VarChar(60)
+  latencyMs      Int?               @map("latency_ms")
+  createdAt      DateTime           @default(now()) @map("created_at") @db.Timestamptz(3)
+  completedAt    DateTime?          @map("completed_at") @db.Timestamptz(3)
+  reviewAction   AiReviewAction?    @map("review_action")
+  /// What the reviewer says the photo shows, when they corrected the AI.
+  correctedLabel String?            @map("corrected_label") @db.VarChar(40)
+  reviewedById   String?            @map("reviewed_by_id") @db.Uuid
+  reviewedAt     DateTime?          @map("reviewed_at") @db.Timestamptz(3)
+
+  report     Report      @relation(fields: [reportId], references: [id], onDelete: Restrict)
+  media      ReportMedia @relation(fields: [mediaId], references: [id], onDelete: Restrict)
+  reviewedBy User?       @relation("AiReviewer", fields: [reviewedById], references: [id], onDelete: Restrict)
+
+  @@index([reportId, createdAt])
+  @@index([mediaId])
+  @@index([status, createdAt])
+  @@map("ai_predictions")
 }

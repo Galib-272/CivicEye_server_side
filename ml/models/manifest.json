@@ -1,0 +1,100 @@
+{
+  "version": "road-damage-2026.11.08",
+  "created": "2026-11-08",
+  "task": "road_damage",
+  "classes": [
+    "pothole",
+    "crack",
+    "asphalt_damage",
+    "no_damage"
+  ],
+  "steps": {
+    "presence": [
+      "damage",
+      "no_damage"
+    ],
+    "type": [
+      "pothole",
+      "crack",
+      "asphalt_damage"
+    ]
+  },
+  "chosen_model": "ensemble",
+  "ensemble_cnn_weight": {
+    "presence": 0.5,
+    "type": 0.5
+  },
+  "files": {
+    "embedder": {
+      "file": "embedder.pt",
+      "architecture": "MobileNetV3-Large features, ImageNet weights (torchvision IMAGENET1K_V2)",
+      "sha256": "4bed4689cc0ae46bab8bc59bccd32c2e6c6cebb6b18071a455bc42e8668a5f3f"
+    },
+    "cnn_presence": {
+      "file": "cnn-presence.pt",
+      "architecture": "MobileNetV3-Large fine-tuned: damage / no damage",
+      "sha256": "e29bff2e7bdc8650e17e068bb0ae27d30f6d83f053b099fde6735ca37cbfefce"
+    },
+    "cnn_type": {
+      "file": "cnn-type.pt",
+      "architecture": "MobileNetV3-Large fine-tuned: pothole / crack / asphalt damage",
+      "sha256": "7e1f66b14acfbef2f8d1fe30e99d936497041793f67d20911be24a2e943444a2"
+    },
+    "hybrid_presence": {
+      "file": "hybrid-presence.joblib",
+      "architecture": "z-score, mutual-information selection, PCA, SVM: damage / no damage",
+      "sha256": "96316623234d14f3b1c373f2fad96f30e6002460a4abcf3feb977d6e04664e4b"
+    },
+    "hybrid_type": {
+      "file": "hybrid-type.joblib",
+      "architecture": "z-score, mutual-information selection, PCA, SVM: damage type",
+      "sha256": "64e79a8ae26106272a2f09ae5a9f8c8cbfb0076a39b74560ecbb7f630ec5ab8d"
+    },
+    "detector": {
+      "file": "detector.pt",
+      "architecture": "SSDLite320-MobileNetV3-Large, 1 class (damage)",
+      "sha256": "e415ea2b39e2f94c0821d52b38dd06454f72dc29df9792432efb561704f468fe"
+    }
+  },
+  "thresholds": {
+    "uncertain_below": 0.6,
+    "detector_score": 0.65,
+    "dark_below": 0.12,
+    "blurry_below": 10.671
+  },
+  "datasets": [
+    {
+      "name": "Bangladesh Road Damage Detection Dataset v1",
+      "doi": "10.17632/ktnx66vtmc.1",
+      "licence": "CC BY 4.0"
+    },
+    {
+      "name": "RSD-BD v1",
+      "doi": "10.17632/745n5wnt7v.1",
+      "licence": "CC BY 4.0"
+    }
+  ],
+  "training": {
+    "manifest": "ml/manifests/processed.csv",
+    "scripts": "ml/scripts/train_all.sh",
+    "report": "ml/reports/training.md"
+  },
+  "evaluation_test_set": {
+    "photos": 201,
+    "accuracy": 0.9652,
+    "macro_f1": 0.9491,
+    "macro_f1_95_interval": [
+      0.9044,
+      0.9809
+    ],
+    "per_class_f1": {
+      "pothole": 0.918,
+      "crack": 0.9667,
+      "asphalt_damage": 0.9167,
+      "no_damage": 0.9952
+    },
+    "detector_map50": 0.4086
+  },
+  "approval_state": "evaluated; not approved for production (see ml/ACCEPTANCE_CRITERIA.md)",
+  "deployment_state": "development only"
+}

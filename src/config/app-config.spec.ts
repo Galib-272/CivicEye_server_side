@@ -149,4 +149,28 @@ describe('loadConfig', () => {
       /^STORAGE_BUCKET/,
     );
   });
+
+  it('keeps the AI off by default and needs its address and token when on', () => {
+    expect(loadConfig(validEnv).ai).toEqual({
+      enabled: false,
+      serviceUrl: '',
+      token: '',
+      timeoutMs: 20000,
+    });
+    const missing = captureError({ ...validEnv, AI_ENABLED: 'true' }).issues.map(
+      (issue) => issue.split(':')[0],
+    );
+    expect(missing).toEqual(['AI_SERVICE_URL', 'AI_SERVICE_TOKEN']);
+    expect(captureError({ ...validEnv, AI_SERVICE_TOKEN: 'short' }).issues[0]).toMatch(
+      /^AI_SERVICE_TOKEN/,
+    );
+    expect(
+      loadConfig({
+        ...validEnv,
+        AI_ENABLED: 'true',
+        AI_SERVICE_URL: 'http://10.0.0.5:8090',
+        AI_SERVICE_TOKEN: 'k'.repeat(40),
+      }).ai,
+    ).toMatchObject({ enabled: true, serviceUrl: 'http://10.0.0.5:8090' });
+  });
 });

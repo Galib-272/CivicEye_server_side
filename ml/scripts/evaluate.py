@@ -51,7 +51,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import common  # noqa: E402
 from common import PROCESSED, REPORTS, SEED, Embedder  # noqa: E402
 from data import MODELS, PREDICTIONS, SHORTCUT, manifest, prediction_rows  # noqa: E402
-from preprocess import handcrafted  # noqa: E402
+from features import handcrafted  # noqa: E402
+from networks import build_classifier  # noqa: E402
 from transforms import CLASSES, TASKS, eval_transform, eval_view  # noqa: E402
 
 KINDS = ("cnn", "hybrid", "ensemble")
@@ -125,14 +126,12 @@ def plot_confusion(matrix, classes: list[str], title: str, path: Path) -> None:
 def latency(frame) -> dict:
     """Milliseconds per photo on the CPU, one photo at a time, median of 50 photos.
     The hybrid steps share one feature extraction."""
-    from train_cnn import build_model
-
     torch.set_num_threads(4)
     rows = frame.sample(50, random_state=SEED)
     photos = [Image.open(PROCESSED / p).convert("RGB") for p in rows["processed_path"]]
     cnns, hybrids = {}, {}
     for task, classes in TASKS.items():
-        model = build_model(len(classes))
+        model = build_classifier(len(classes), pretrained=False)
         model.load_state_dict(torch.load(MODELS / f"cnn-{task}.pt", map_location="cpu")["state_dict"])
         cnns[task] = model.eval()
         hybrids[task] = joblib.load(MODELS / f"hybrid-{task}.joblib")["pipeline"]

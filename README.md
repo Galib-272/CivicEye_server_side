@@ -14,8 +14,9 @@ The web app lives in a separate repository: [CivicEye_client_side](https://githu
 ## Stack
 
 NestJS (modular monolith) · TypeScript · PostgreSQL 17 + PostGIS 3 via Prisma · Redis ·
-BullMQ · S3-compatible object storage (Cloudflare R2; SeaweedFS locally) · sharp · OpenAPI. The internal AI service ([`ai-services/`](ai-services)) and ML work
-([`ml/`](ml)) will live in this repository; neither exists yet.
+BullMQ · S3-compatible object storage (Cloudflare R2; SeaweedFS locally) · sharp · OpenAPI. The internal AI service ([`ai-services/`](ai-services), Python FastAPI) and the ML work
+([`ml/`](ml): datasets, preprocessing, training, [model card](ml/MODEL_CARD.md)) live in this
+repository.
 
 ## Prerequisites
 
@@ -103,9 +104,11 @@ Validated at startup: the API exits with a list of invalid variable names (never
 | `STORAGE_ACCESS_KEY_ID` / `STORAGE_SECRET_ACCESS_KEY` | yes | — | Storage credentials (local values are in `docker/seaweedfs/s3.json`) |
 | `STORAGE_FORCE_PATH_STYLE` | no | `false` | `true` for local SeaweedFS |
 | `STORAGE_CREATE_BUCKET` | no | `false` | Create the bucket and its CORS rule at startup; development/test only (rejected in staging/production) |
-| `RUN_WORKERS` | no | `false` | Run background jobs (photo processing) inside this process |
-
-Variables for maps and the AI service are added in the phases that need them.
+| `RUN_WORKERS` | no | `false` | Run background jobs (photo processing, AI analysis) inside this process |
+| `AI_ENABLED` | no | `false` | Send report photos to the AI service for advisory suggestions; `false` stops new analyses at once |
+| `AI_SERVICE_URL` | when AI on | — | Private address of the AI service (`http://127.0.0.1:8090` locally) |
+| `AI_SERVICE_TOKEN` | when AI on | — | Shared secret with the AI service, 32+ characters |
+| `AI_REQUEST_TIMEOUT_MS` | no | `20000` | Time allowed for one photo analysis |
 
 ## Accounts and access control
 
@@ -222,6 +225,19 @@ requests at `POST /reports/:publicId/additional-information`.
 - Reviewers see candidates (`GET .../duplicates`), search nearby (`GET .../nearby?radius=`),
   dismiss a pair, or link a report to its original (`POST .../mark-duplicate`, final). The
   database guarantees that every DUPLICATE report points to its original.
+
+## Advisory AI
+
+- When `AI_ENABLED=true`, each photo of a submitted report gets a pending row in
+  `ai_predictions` (in the submission transaction), and the worker sends the processed photo to
+  the AI service ([`ai-services/`](ai-services)). Retries with backoff; after 4 attempts the
+  analysis is `FAILED`. A sweep re-queues analyses that were never picked up. Reports never wait
+  for, depend on or change because of the AI.
+- Reviewers see the latest analysis per photo (`GET .../reports/:publicId/ai`, also under
+  `/admin/reports`), with boxes, quality warnings, matching categories and the model version, and
+  record once whether it was right (`POST .../ai/:predictionId/review`; audited).
+- `GET /admin/ai/status`: switch state, the service's model version, and 7-day counts,
+  correction rate and median time. Model details and limits: [`ml/MODEL_CARD.md`](ml/MODEL_CARD.md).
 
 ## API conventions
 

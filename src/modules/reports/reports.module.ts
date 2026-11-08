@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AiModule } from '../ai/ai.module';
 import { MediaModule } from '../media/media.module';
 import { OrganizationsModule } from '../organizations/organizations.module';
 import { IdempotencyService } from './idempotency.service';
@@ -20,7 +21,7 @@ import { DuplicatesService } from './duplicates.service';
 import { MapController } from './map.controller';
 
 @Module({
-  imports: [MediaModule, OrganizationsModule],
+  imports: [AiModule, MediaModule, OrganizationsModule],
   // AdminReportsController first: its fixed "triage" path must win over ":publicId".
   controllers: [
     ReportsController,
